@@ -1,0 +1,7 @@
+{
+  "name": "jeopardy-shared",
+  "version": "1.0.0",
+  "description": "Shared models and types for Jeopardy game",
+  "main": "src/index.ts",
+  "dependencies": {}
+}

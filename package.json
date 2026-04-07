@@ -1,0 +1,23 @@
+{
+  "name": "jeopardy-game",
+  "version": "1.0.0",
+  "description": "Welcome to the Jeopardy Game project! This project consists of a web application and a mobile companion app that allows users to play a game inspired by the classic quiz show, Jeopardy.",
+  "main": "index.js",
+  "scripts": {
+    "start:web": "npm --prefix web start",
+    "start:companion": "npm --prefix mobile start",
+    "start:server": "npm --prefix server start",
+    "start:clients": "concurrently -k -n WEB,COMPANION -c cyan,magenta \"npm run start:web\" \"npm run start:companion\"",
+    "start:all": "concurrently -k -n SERVER,WEB,COMPANION -c green,cyan,magenta \"npm run start:server\" \"npm run start:web\" \"npm run start:companion\"",
+    "build:companion": "npm --prefix mobile run build",
+    "build:web": "npm --prefix web run build",
+    "test": "npm --prefix server test"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs"
+}
