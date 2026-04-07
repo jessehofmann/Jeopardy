@@ -1535,6 +1535,9 @@ body {
 .fj-lb-row.rank-1 .fj-lb-rank { color: #FFD700; }
 .fj-lb-row.rank-2 .fj-lb-rank { color: #adb5bd; }
 .fj-lb-row.rank-3 .fj-lb-rank { color: #cd7f32; }
+.fj-lb-row.rank-4 .fj-lb-rank,
+.fj-lb-row.rank-4 { border-color: rgba(255,255,255,0.2); }
+.fj-lb-row.rank-4 .fj-lb-rank { color: rgba(255,255,255,0.55); }
 
 .fj-lb-name {
   flex: 1;

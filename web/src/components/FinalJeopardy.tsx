@@ -2,6 +2,16 @@ import React, { useEffect, useRef, useState } from "react";
 import type { GamePhase, RoomPlayer } from "../types";
 import { audio } from "../audio";
 
+function ordinal(n: number): string {
+  const mod100 = n % 100;
+  const mod10 = n % 10;
+  if (mod100 >= 11 && mod100 <= 13) return `${n}th`;
+  if (mod10 === 1) return `${n}st`;
+  if (mod10 === 2) return `${n}nd`;
+  if (mod10 === 3) return `${n}rd`;
+  return `${n}th`;
+}
+
 interface FinalJeopardyProps {
   gamePhase: GamePhase;
   finalCategory: string | null;
@@ -119,7 +129,7 @@ const FinalJeopardy: React.FC<FinalJeopardyProps> = ({
           {sortedPlayers.map((player, index) => (
             <div key={player.id} className={`fj-lb-row rank-${Math.min(index + 1, 4)}`}>
               <span className="fj-lb-rank">
-                {["1st", "2nd", "3rd", "4th", "5th", "6th", "7th", "8th"][index] ?? `${index + 1}th`}
+                {ordinal(index + 1)}
               </span>
               <span className="fj-lb-name">{player.name}</span>
               <span className="fj-lb-score">
