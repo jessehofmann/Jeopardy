@@ -1,11 +1,6 @@
-import { useEffect, useMemo, useState } from "react";
-import type { Clue, RoomState } from "../types";
+import { useMemo, useState } from "react";
+import type { RoomState } from "../types";
 import { generateGameCatalogs, pickFinalJeopardyClue } from "../data/clueCatalog";
-
-type DraftClue = {
-  categoryName: string;
-  clue: Clue;
-};
 
 interface HostConsoleProps {
   room: RoomState;
@@ -69,7 +64,6 @@ const HostConsole = ({
   }, [room.customBoard, isRoundTwo, catalogs]);
   const roundLabel = isRoundTwo ? "Round 2 - Double Jeopardy" : "Round 1";
   const [selectedCategoryId, setSelectedCategoryId] = useState<string>(catalog[0]?.id ?? "");
-  const [draftClue, setDraftClue] = useState<DraftClue | null>(null);
   const [wagerInput, setWagerInput] = useState<string>("");
   const [buzzerTimerSeconds, setBuzzerTimerSeconds] = useState<number>(5);
 
@@ -97,15 +91,9 @@ const HostConsole = ({
     return null;
   }, [catalog, room.selectedClueId]);
 
-  const previewClue = draftClue ?? selectedOrActiveClue;
+  const previewClue = selectedOrActiveClue;
   const hasActiveClue = Boolean(room.selectedClueId);
   const hasBuzzedPlayer = Boolean(room.firstBuzzedPlayerId);
-
-  useEffect(() => {
-    if (hasActiveClue && draftClue) {
-      setDraftClue(null);
-    }
-  }, [hasActiveClue, draftClue]);
 
   const handleStartFinalJeopardy = () => {
     const customFJ = room.customBoard?.finalJeopardy;
@@ -115,13 +103,6 @@ const HostConsole = ({
       const fj = pickFinalJeopardyClue(seed);
       onStartFinalJeopardy(fj.category, fj.question, fj.answer);
     }
-  };
-
-  const sendDraftClueToBoard = () => {
-    if (!draftClue) return;
-    onSelectClue(draftClue.clue.id, draftClue.clue.question, roundLabel, draftClue.clue.value, draftClue.clue.isDailyDouble, buzzerTimerSeconds * 1000);
-    setDraftClue(null);
-    setWagerInput("");
   };
 
   const submitDailyDoubleWager = () => {
@@ -305,7 +286,7 @@ const HostConsole = ({
       {/* ── Regular gameplay panel ── */}
       {!isInFinalJeopardy && (
       <section className="panel roster-panel">
-        {!hasActiveClue && !draftClue && (
+        {!hasActiveClue && (
           <>
             <div className="roster-header">
               <div>
@@ -364,12 +345,7 @@ const HostConsole = ({
                     className={`host-clue-button ${clue.isDailyDouble ? "is-daily-double" : ""}`}
                     disabled={isAnswered || !allCatsRevealed}
                     onClick={() => {
-                      if (clue.isDailyDouble) {
-                        onSelectClue(clue.id, clue.question, roundLabel, clue.value, true, buzzerTimerSeconds * 1000);
-                      } else {
-                        setDraftClue({ categoryName: selectedCategory.name, clue });
-                        setWagerInput("");
-                      }
+                      onSelectClue(clue.id, clue.question, roundLabel, clue.value, clue.isDailyDouble, buzzerTimerSeconds * 1000);
                     }}
                   >
                     {isAnswered ? "DONE" : `$${clue.value}`}
@@ -431,11 +407,6 @@ const HostConsole = ({
             <p className="host-preview-question">{previewClue.clue.question}</p>
             <p className="host-preview-answer">Answer: {previewClue.clue.answer}</p>
             <div className="host-actions-grid">
-              {!hasActiveClue && (
-                <button className="primary-action" onClick={sendDraftClueToBoard}>
-                  Reveal Question
-                </button>
-              )}
               {hasActiveClue && room.isDailyDoubleActive && !room.dailyDoubleWager && !room.answerRevealed && (
                 <button
                   className="primary-action host-dd-send-button"

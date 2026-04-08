@@ -89,6 +89,11 @@ const Board: React.FC<BoardProps> = ({
       return;
     }
 
+    // Categories can re-render on any server broadcast — only capture rect/clue when the ID actually changes
+    if (selectedClueId === prevSelectedClueIdRef.current) {
+      return;
+    }
+
     for (const category of categories) {
       const clue = category.clues.find((item) => item.id === selectedClueId);
       if (clue && !clue.isAnswered) {

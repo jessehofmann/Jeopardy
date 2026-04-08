@@ -1035,24 +1035,7 @@ body {
   overflow: hidden;
 }
 
-/* Zoom-from-tile animation */
-.modal-content.zoom-from-tile {
-  --origin-x: 0px;
-  --origin-y: 0px;
-  --origin-scale: 0.08;
-  animation: tile-zoom-in 0.75s cubic-bezier(0.2, 0, 0.2, 1) forwards;
-}
-
-@keyframes tile-zoom-in {
-  from {
-    transform: translate(var(--origin-x), var(--origin-y)) scale(var(--origin-scale));
-    opacity: 0.6;
-  }
-  to {
-    transform: translate(0, 0) scale(1);
-    opacity: 1;
-  }
-}
+/* Zoom-from-tile: transition is applied via inline style by JS */
 
 .modal-answer {
   position: absolute;

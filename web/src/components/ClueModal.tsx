@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { Clue } from "../types";
 
 interface ClueModalProps {
@@ -95,32 +95,50 @@ const ClueModal: React.FC<ClueModalProps> = ({
     qEl.style.fontSize = lo + "px";
   }, [clue.id, showDailyDouble, dailyDoubleWager]);
 
-  // Apply zoom-from-tile CSS vars — compute relative to the modal element's own rect
-  useEffect(() => {
+  // Zoom-from-tile: JS-driven CSS transition
+  // useLayoutEffect runs before paint, so we can set the initial transform synchronously,
+  // force a reflow (so the browser registers it as the "from" state), then set the target
+  // state — the CSS transition then smoothly animates between them.
+  useLayoutEffect(() => {
     const el = contentRef.current;
     if (!el || !originRect) return;
 
     const modalRect = el.getBoundingClientRect();
+    if (!modalRect.width || !modalRect.height) return;
+
     const centerX = modalRect.left + modalRect.width / 2;
     const centerY = modalRect.top + modalRect.height / 2;
-
     const tileX = originRect.left + originRect.width / 2;
     const tileY = originRect.top + originRect.height / 2;
-
     const dx = tileX - centerX;
     const dy = tileY - centerY;
     const scale = Math.min(originRect.width / modalRect.width, originRect.height / modalRect.height);
 
-    el.style.setProperty("--origin-x", `${dx}px`);
-    el.style.setProperty("--origin-y", `${dy}px`);
-    el.style.setProperty("--origin-scale", String(scale));
+    // 1. Snap to tile position with no transition
+    el.style.transition = 'none';
+    el.style.transform = `translate(${dx}px, ${dy}px) scale(${scale})`;
+    el.style.opacity = '0.5';
+
+    // 2. Force reflow — browser commits the above as the "from" state
+    void el.getBoundingClientRect();
+
+    // 3. Set target state — browser now transitions from tile → full screen
+    el.style.transition = 'transform 0.7s cubic-bezier(0.2, 0, 0.2, 1), opacity 0.4s ease';
+    el.style.transform = 'translate(0px, 0px) scale(1)';
+    el.style.opacity = '1';
+
+    return () => {
+      el.style.transform = '';
+      el.style.opacity = '';
+      el.style.transition = '';
+    };
   }, [clue.id, originRect]);
 
   return (
     <div className="modal-overlay">
       <div
         ref={contentRef}
-        className={`modal-content ${showDailyDouble ? "is-daily-double" : ""} ${originRect ? "zoom-from-tile" : ""}`}
+        className={`modal-content ${showDailyDouble ? "is-daily-double" : ""}`}
       >
         {isSynced && buzzerTimeLeft !== null && !firstBuzzedPlayerName && (
           <div className={`modal-buzzer-timer ${buzzerTimeLeft <= 2 ? "is-urgent" : ""}`}>
