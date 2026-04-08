@@ -125,7 +125,7 @@ function createRoomServer() {
       return;
     }
 
-    ws.send(JSON.stringify({ type, payload }));
+    ws.send(JSON.stringify({ type, payload, serverTimestamp: Date.now() }));
   }
 
   function sendError(ws, message) {

@@ -155,7 +155,10 @@ const Game: React.FC<GameProps> = ({ initialRoomCode, initialRoomState, boardSoc
     }));
   };
 
-  const handleRemoteRoomState = (room: RoomState) => {
+  const handleRemoteRoomState = (room: RoomState, serverTimestamp?: number) => {
+    const clockOffset = serverTimestamp != null ? serverTimestamp - Date.now() : 0;
+    const adjDeadline = (d: number | null | undefined): number | null =>
+      d != null ? d - clockOffset : null;
     const roomSeed = (room.boardSeed || room.roomCode || "").trim();
     if (roomSeed && roomSeed !== boardSeed) {
       setBoardSeed(roomSeed);
@@ -194,9 +197,9 @@ const Game: React.FC<GameProps> = ({ initialRoomCode, initialRoomState, boardSoc
     setIsDailyDoubleActive(room.isDailyDoubleActive ?? false);
     setDailyDoubleWager(room.dailyDoubleWager ?? null);
     setFirstBuzzedPlayerId(room.firstBuzzedPlayerId ?? null);
-    setAnswerDeadlineMs(room.answerDeadlineMs ?? null);
+    setAnswerDeadlineMs(adjDeadline(room.answerDeadlineMs));
     setBuzzersOpen(room.buzzersOpen ?? false);
-    setBuzzerDeadlineMs(room.buzzerDeadlineMs ?? null);
+    setBuzzerDeadlineMs(adjDeadline(room.buzzerDeadlineMs));
     setLockedOutPlayerIds(room.lockedOutPlayerIds ?? []);
     setRevealedCategoryIds(room.revealedCategoryIds ?? []);
     setGamePhase(room.gamePhase ?? "playing");
@@ -204,7 +207,7 @@ const Game: React.FC<GameProps> = ({ initialRoomCode, initialRoomState, boardSoc
     setFinalQuestion(room.finalQuestion ?? null);
     setFinalAnswer(room.finalAnswer ?? null);
     setFinalAnswerShown(room.finalAnswerShown ?? false);
-    setFinalQuestionDeadlineMs(room.finalQuestionDeadlineMs ?? null);
+    setFinalQuestionDeadlineMs(adjDeadline(room.finalQuestionDeadlineMs));
     setPlayers(
       (room.players || []).map((player) => ({
         ...player,
@@ -248,7 +251,7 @@ const Game: React.FC<GameProps> = ({ initialRoomCode, initialRoomState, boardSoc
     }
 
     const handleMessage = (event: MessageEvent) => {
-      let message: { type?: string; payload?: any } = {};
+      let message: { type?: string; payload?: any; serverTimestamp?: number } = {};
       try {
         message = JSON.parse(String(event.data));
       } catch {
@@ -256,7 +259,7 @@ const Game: React.FC<GameProps> = ({ initialRoomCode, initialRoomState, boardSoc
       }
 
       if (message.type === "room:state" && message.payload?.room) {
-        handleRemoteRoomState(message.payload.room);
+        handleRemoteRoomState(message.payload.room, message.serverTimestamp);
         return;
       }
 

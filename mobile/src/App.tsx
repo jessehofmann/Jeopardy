@@ -135,7 +135,7 @@ const App = () => {
     });
 
     socket.addEventListener("message", (event) => {
-      let message: { type?: string; payload?: any } = {};
+      let message: { type?: string; payload?: any; serverTimestamp?: number } = {};
       try {
         message = JSON.parse(String(event.data));
       } catch {
@@ -169,7 +169,14 @@ const App = () => {
 
       if (message.type === "room:state") {
         if (message.payload?.room) {
-          setRoom(message.payload.room);
+          const r = message.payload.room;
+          if (message.serverTimestamp != null) {
+            const off = message.serverTimestamp - Date.now();
+            const adj = (d: number | null) => (d != null ? d - off : null);
+            setRoom({ ...r, answerDeadlineMs: adj(r.answerDeadlineMs), buzzerDeadlineMs: adj(r.buzzerDeadlineMs), finalQuestionDeadlineMs: adj(r.finalQuestionDeadlineMs) });
+          } else {
+            setRoom(r);
+          }
         }
         return;
       }
