@@ -559,32 +559,111 @@ button {
   text-align: center;
 }
 
-.buzzer-button {
-  width: min(100%, 420px);
-  aspect-ratio: 1 / 1;
+/* ── Buzzer wrapper (rings + glow) ── */
+.buzzer-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: min(100%, 380px);
   align-self: center;
+}
+
+.buzzer-wrapper::before,
+.buzzer-wrapper::after {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  border: 3px solid rgba(229, 52, 31, 0.5);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.buzzer-wrapper.is-active::before {
+  animation: buzzer-ring 1.6s ease-out infinite;
+}
+
+.buzzer-wrapper.is-active::after {
+  animation: buzzer-ring 1.6s ease-out infinite 0.7s;
+}
+
+.buzzer-wrapper.is-buzzed::before {
+  border-color: rgba(60, 220, 100, 0.6);
+  animation: buzzer-ring 0.8s ease-out 1;
+}
+
+@keyframes buzzer-ring {
+  0%   { transform: scale(1);   opacity: 0.85; }
+  100% { transform: scale(1.55); opacity: 0; }
+}
+
+/* ── Buzzer button ── */
+.buzzer-button {
+  width: 100%;
+  aspect-ratio: 1 / 1;
   border: 0;
   border-radius: 50%;
   background:
-    radial-gradient(circle at 30% 30%, #ff8575 0%, #e5341f 35%, #8c1104 100%);
+    radial-gradient(circle at 35% 28%, rgba(255,190,170,0.55) 0%, transparent 45%),
+    radial-gradient(circle at 35% 28%, #ff8060 0%, #e5341f 32%, #9c1506 68%, #6b0d03 100%);
   color: white;
-  font-size: clamp(2rem, 7vw, 3.8rem);
-  font-weight: 800;
-  letter-spacing: 0.08em;
+  font-size: clamp(2rem, 7vw, 3.6rem);
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.5);
   box-shadow:
-    inset 0 -18px 28px rgba(0, 0, 0, 0.28),
-    0 20px 45px rgba(0, 0, 0, 0.35);
+    inset 0 -22px 36px rgba(0,0,0,0.38),
+    inset 0 10px 22px rgba(255,120,80,0.22),
+    0 0 40px rgba(229, 52, 31, 0.55),
+    0 16px 50px rgba(0,0,0,0.45);
+  transition: transform 0.08s ease, box-shadow 0.08s ease, filter 0.08s ease;
+  position: relative;
+  cursor: pointer;
+}
+
+.buzzer-button:not(:disabled):active {
+  transform: scale(0.93);
+  box-shadow:
+    inset 0 -10px 24px rgba(0,0,0,0.45),
+    inset 0 6px 12px rgba(255,120,80,0.18),
+    0 0 20px rgba(229, 52, 31, 0.35),
+    0 6px 22px rgba(0,0,0,0.45);
+}
+
+.buzzer-wrapper.is-active .buzzer-button {
+  filter: drop-shadow(0 0 18px rgba(255, 80, 40, 0.7));
+}
+
+.buzzer-wrapper.is-buzzed .buzzer-button {
+  background:
+    radial-gradient(circle at 35% 28%, rgba(180,255,180,0.45) 0%, transparent 45%),
+    radial-gradient(circle at 35% 28%, #80e890 0%, #22b84a 32%, #107030 68%, #0a4020 100%);
+  box-shadow:
+    inset 0 -22px 36px rgba(0,0,0,0.38),
+    inset 0 10px 22px rgba(100,255,100,0.18),
+    0 0 40px rgba(34, 184, 74, 0.55),
+    0 16px 50px rgba(0,0,0,0.45);
 }
 
 .buzzer-button.is-disabled {
-  opacity: 0.5;
   cursor: not-allowed;
 }
 
+.buzzer-button.is-disabled:not(.is-locked-out) {
+  opacity: 0.6;
+}
+
+.buzzer-wrapper.is-locked-out .buzzer-button,
 .buzzer-button.is-locked-out {
   background:
-    radial-gradient(circle at 30% 30%, #888 0%, #555 35%, #2a2a2a 100%);
-  opacity: 0.45;
+    radial-gradient(circle at 35% 28%, rgba(200,200,200,0.3) 0%, transparent 45%),
+    radial-gradient(circle at 35% 28%, #888 0%, #555 35%, #2a2a2a 100%);
+  box-shadow:
+    inset 0 -18px 28px rgba(0,0,0,0.35),
+    0 8px 30px rgba(0,0,0,0.35);
+  filter: none;
+  opacity: 0.5;
 }
 
 .player-question-reminder {
@@ -755,6 +834,38 @@ button {
   color: rgba(245, 247, 255, 0.6);
   font-size: 0.9rem;
   margin: 0 0 12px;
+}
+
+.host-fj-answer-spoiler {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  background: rgba(234, 179, 8, 0.12);
+  border: 1px solid rgba(234, 179, 8, 0.35);
+  border-radius: 10px;
+  padding: 10px 14px;
+  margin: 8px 0 14px;
+}
+
+.host-fj-answer-spoiler-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: rgba(234, 179, 8, 0.75);
+}
+
+.host-fj-answer-spoiler-text {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #fde68a;
+}
+
+.host-clue-locked-note {
+  font-size: 0.82rem;
+  color: rgba(245, 247, 255, 0.5);
+  text-align: center;
+  margin: 0 0 8px;
+  font-style: italic;
 }
 
 .host-fj-player-chips {

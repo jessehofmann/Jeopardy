@@ -180,13 +180,15 @@ const PlayerController = ({
             </span>
           </div>
           <p className="player-status-copy">{statusText}</p>
-          <button
-            className={`buzzer-button ${hasBuzzed || isLocked ? "is-disabled" : ""} ${isLockedOut ? "is-locked-out" : ""}`}
-            disabled={hasBuzzed || isLocked}
-            onClick={onBuzz}
-          >
-            BUZZ IN
-          </button>
+          <div className={`buzzer-wrapper${!hasBuzzed && !isLocked ? " is-active" : ""}${hasBuzzed ? " is-buzzed" : ""}${isLockedOut ? " is-locked-out" : ""}`}>
+            <button
+              className={`buzzer-button${hasBuzzed || isLocked ? " is-disabled" : ""}${isLockedOut ? " is-locked-out" : ""}`}
+              disabled={hasBuzzed || isLocked}
+              onClick={onBuzz}
+            >
+              {hasBuzzed ? "BUZZED!" : isLockedOut ? "LOCKED OUT" : "BUZZ IN"}
+            </button>
+          </div>
           <p className="player-question-reminder">Remember: answer in the form of a question</p>
           <div className="player-meta">
             <div>

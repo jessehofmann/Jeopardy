@@ -101,8 +101,11 @@ const Board: React.FC<BoardProps> = ({
     }
   }, [selectedClueId, categories]);
 
+  const allCategoriesRevealed = !revealedCategoryIds || revealedCategoryIds.length >= categories.length;
+
   const handleClueClick = (clue: Clue, e: React.MouseEvent<HTMLDivElement>) => {
     if (!allowManualPick) return;
+    if (!allCategoriesRevealed) return;
     if (!clue.isAnswered) {
       setOriginRect((e.currentTarget as HTMLDivElement).getBoundingClientRect());
       setSelectedClue(clue);

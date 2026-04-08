@@ -587,6 +587,146 @@ const round1Bank: Array<CategoryBank<Round1Value>> = [
       ],
     },
   },
+  {
+    id: "around-the-world",
+    name: "Around the World",
+    cluesByValue: {
+      200: [
+        { question: "This European country, home to the Eiffel Tower, the Louvre, and the Palace of Versailles, is the most visited country on Earth", answer: "France" },
+        { question: "The world's most populous country, home to the Great Wall and the Forbidden City, is this one", answer: "China" },
+        { question: "Known as the Land Down Under, this continent-country is famous for kangaroos, the Sydney Opera House, and the Great Barrier Reef", answer: "Australia" },
+      ],
+      400: [
+        { question: "The Amazon River, the world's largest river by water volume, flows primarily through this South American country", answer: "Brazil" },
+        { question: "Home to the Taj Mahal, the Ganges River, and over 1.4 billion people, this is the world's most populous democracy", answer: "India" },
+        { question: "This island nation off the coast of China is famous for sushi, samurai culture, Mount Fuji, and the city of Tokyo", answer: "Japan" },
+      ],
+      600: [
+        { question: "This Scandinavian country, famous for its fjords, Northern Lights, and Vikings, shares a 1,000-mile border with Sweden", answer: "Norway" },
+        { question: "Machu Picchu, the 15th-century Incan citadel set high in the Andes, is located in this South American country", answer: "Peru" },
+      ],
+      800: [
+        { question: "Lake Titicaca — the world's highest navigable lake at 12,507 feet above sea level — straddles the border between Peru and this country", answer: "Bolivia" },
+        { question: "This island nation in Southeast Asia, spread across over 7,600 islands, is the world's second-largest archipelago nation by island count", answer: "The Philippines" },
+      ],
+      1000: [
+        { question: "The Strait of Malacca, through which roughly 25% of global trade passes, separates the Malay Peninsula from this Indonesian island", answer: "Sumatra" },
+        { question: "This landlocked Central Asian country, bordered by China, Russia, Kazakhstan, and three others, has the world's second-largest gold mine and was the core of the ancient Silk Road", answer: "Uzbekistan" },
+      ],
+    },
+  },
+  {
+    id: "the-1980s",
+    name: "The 1980s",
+    cluesByValue: {
+      200: [
+        { question: "This 1982 Steven Spielberg blockbuster about a boy befriending a stranded alien became the highest-grossing film of the decade", answer: "E.T. the Extra-Terrestrial" },
+        { question: "Michael Jackson's 1982 album, the best-selling record of all time, featured the title track with its zombie-filled music video", answer: "Thriller" },
+        { question: "This pair of plumbers, Nintendo's most famous mascots, made their debut in the 1985 platform game Super Mario Bros.", answer: "Mario and Luigi" },
+      ],
+      400: [
+        { question: "This 1985 time-travel film starring Michael J. Fox and a time-traveling DeLorean spawned two sequels and became one of the most beloved franchises of the decade", answer: "Back to the Future" },
+        { question: "The Berlin Wall, which had divided this European city since 1961, fell on November 9, 1989", answer: "Berlin" },
+        { question: "She dominated pop music with hits like 'Like a Virgin' and 'Material Girl,' becoming the decade's most provocative female artist", answer: "Madonna" },
+      ],
+      600: [
+        { question: "In 1984, Apple launched the Macintosh with a famous Super Bowl ad directed by Ridley Scott, referencing this George Orwell novel's dystopian villain", answer: "Big Brother (1984)" },
+        { question: "This Tom Cruise 1986 action film about naval aviators used the tagline 'I feel the need — the need for speed!'", answer: "Top Gun" },
+      ],
+      800: [
+        { question: "MTV launched in 1981 with the first music video ever played on the network; it was 'Video Killed the Radio Star' by this British group", answer: "The Buggles" },
+        { question: "This British post-punk band, fronted by Robert Smith, pioneered goth rock with albums like 'Disintegration' and 'The Head on the Door'", answer: "The Cure" },
+      ],
+      1000: [
+        { question: "The Iran-Contra affair during the Reagan administration involved secretly selling arms to this country, then using the proceeds to fund Nicaraguan rebels", answer: "Iran" },
+        { question: "This 1987 Oliver Stone Wall Street film coined the phrase 'Greed, for lack of a better word, is good,' spoken by this character", answer: "Gordon Gekko" },
+      ],
+    },
+  },
+  {
+    id: "everyday-science",
+    name: "Everyday Science",
+    cluesByValue: {
+      200: [
+        { question: "When you mix baking soda with vinegar, the bubbling reaction produces this gas — the same one plants absorb during photosynthesis", answer: "Carbon dioxide" },
+        { question: "This is the force that keeps your feet on the ground, causes objects to fall when dropped, and keeps the moon orbiting Earth", answer: "Gravity" },
+        { question: "Ice floats in water because, unusually for most substances, water becomes less dense when it freezes — it expands into this form", answer: "A solid" },
+      ],
+      400: [
+        { question: "A bolt of lightning heats the surrounding air to about five times the temperature of the sun's surface, causing rapid air expansion we hear as this", answer: "Thunder" },
+        { question: "When a caterpillar seals itself in a chrysalis and emerges completely changed as a butterfly, this biological process has occurred", answer: "Metamorphosis" },
+        { question: "Vaccines work by training your immune system to recognize and fight a disease without actually causing it — they do this by introducing a harmless form of this", answer: "An antigen (pathogen)" },
+      ],
+      600: [
+        { question: "Sunscreen protects skin by absorbing or reflecting this invisible form of solar radiation, which causes sunburn and raises skin cancer risk", answer: "Ultraviolet (UV) radiation" },
+        { question: "This thin layer of gas, roughly 15–35 km above Earth's surface, absorbs most of the sun's ultraviolet radiation and was partially depleted by CFCs", answer: "The ozone layer" },
+      ],
+      800: [
+        { question: "This principle, which Archimedes allegedly discovered in his bathtub, states that an object in fluid experiences an upward force equal to the weight of the displaced fluid", answer: "Archimedes' principle (buoyancy)" },
+        { question: "The Doppler effect explains why an ambulance siren sounds higher-pitched as it approaches and lower as it recedes — the shift in perceived pitch is caused by this", answer: "Relative motion between the source and observer" },
+      ],
+      1000: [
+        { question: "In thermodynamics, this law states that energy cannot be created or destroyed — only converted from one form to another", answer: "The First Law of Thermodynamics (conservation of energy)" },
+        { question: "This phenomenon, in which light bends as it passes from one medium to another, explains why a straw appears bent in a glass of water", answer: "Refraction" },
+      ],
+    },
+  },
+  {
+    id: "movie-magic",
+    name: "Movie Magic",
+    cluesByValue: {
+      200: [
+        { question: "Buzz Lightyear's catchphrase 'To infinity and beyond!' became iconic after this 1995 Pixar film, the world's first feature-length computer-animated movie", answer: "Toy Story" },
+        { question: "In this 1994 Disney film, young Simba must reclaim his place as king of the Pride Lands from his treacherous uncle Scar", answer: "The Lion King" },
+        { question: "Tom Hanks delivers the famous line 'Life is like a box of chocolates' in this 1994 drama about a slow-witted but kind-hearted man's extraordinary life", answer: "Forrest Gump" },
+      ],
+      400: [
+        { question: "This 1993 Steven Spielberg blockbuster, in which scientists use ancient DNA to bring dinosaurs back to life, became the top-grossing film of all time upon release", answer: "Jurassic Park" },
+        { question: "The line 'You're gonna need a bigger boat' was improvised by Roy Scheider in this 1975 Spielberg thriller that made audiences afraid to swim in the ocean", answer: "Jaws" },
+        { question: "Neo chooses between a red pill and a blue pill in this 1999 Wachowski sci-fi thriller about a simulated reality imprisoning humanity", answer: "The Matrix" },
+      ],
+      600: [
+        { question: "This 2010 Christopher Nolan film, in which thieves invade peoples' dreams to plant ideas, starred Leonardo DiCaprio and coined the term 'braaaam' sound effect", answer: "Inception" },
+        { question: "Quentin Tarantino's 1994 crime anthology, weaving three intersecting stories, introduced Samuel L. Jackson's Jules Winnfield and won the Palme d'Or at Cannes", answer: "Pulp Fiction" },
+      ],
+      800: [
+        { question: "This 1972 Francis Ford Coppola crime epic, centered on the Corleone family and featuring Marlon Brando as the patriarch, is widely called the greatest film ever made", answer: "The Godfather" },
+        { question: "Stanley Kubrick's 1980 horror film, based on Stephen King's novel, featured Jack Nicholson's terrifying performance and the iconic 'Here's Johnny!' line", answer: "The Shining" },
+      ],
+      1000: [
+        { question: "Orson Welles directed and starred in this 1941 film, widely considered one of the greatest movies ever made, about the rise and fall of a newspaper mogul named Charles Foster Kane", answer: "Citizen Kane" },
+        { question: "This 1954 Akira Kurosawa Japanese epic about warriors defending a village directly inspired The Magnificent Seven and the structure of countless ensemble action films", answer: "Seven Samurai" },
+      ],
+    },
+  },
+  {
+    id: "state-by-state",
+    name: "State by State",
+    cluesByValue: {
+      200: [
+        { question: "Home to the Grand Canyon, Sedona's red rocks, and the Saguaro cactus, this southwestern state's capital city is Phoenix", answer: "Arizona" },
+        { question: "The Space Needle, Microsoft, Starbucks, and Mount Rainier are all associated with this rainy Pacific Northwest state", answer: "Washington" },
+        { question: "The Lone Star State, famous for its size, barbecue, and oil industry, is the second-largest US state by area", answer: "Texas" },
+      ],
+      400: [
+        { question: "Disneyland, Hollywood, Silicon Valley, and Yosemite all share this state, the most populous in the US", answer: "California" },
+        { question: "Though Miami and Orlando are more famous, this city in Florida's panhandle is the state's actual capital", answer: "Tallahassee" },
+        { question: "Nicknamed the Windy City, Chicago is the largest city in this Midwestern state, though Springfield is the capital", answer: "Illinois" },
+      ],
+      600: [
+        { question: "Alaska, purchased from Russia in 1867, is the largest US state by area — its purchase price was about $7.2 million, or roughly two cents per this unit of land", answer: "Acre" },
+        { question: "New Orleans, home of Mardi Gras and jazz, is the largest city in this Deep South state — but Baton Rouge is the capital", answer: "Louisiana" },
+      ],
+      800: [
+        { question: "Rhode Island, the smallest US state, covers just 1,545 square miles; this northwestern state is the largest in the contiguous 48 at over 84,000 square miles", answer: "Montana" },
+        { question: "Despite its name, this mid-Atlantic state is not an island but a peninsula; its name comes from a bay that borders it to the east", answer: "Delaware" },
+      ],
+      1000: [
+        { question: "In 1959, Alaska and this Pacific island state became the 49th and 50th states admitted to the Union within months of each other", answer: "Hawaii" },
+        { question: "The Mason-Dixon line, traditionally marking the boundary between the North and South, originally separated Pennsylvania from this state to the south", answer: "Maryland" },
+      ],
+    },
+  },
 ];
 
 const round2Bank: Array<CategoryBank<Round2Value>> = [
@@ -1122,6 +1262,141 @@ const round2Bank: Array<CategoryBank<Round2Value>> = [
       ],
     },
   },
+  {
+    id: "the-universe",
+    name: "The Universe",
+    cluesByValue: {
+      400: [
+        { question: "The Milky Way is a spiral galaxy, and our solar system sits in one of its outer arms — this is our galaxy's name", answer: "The Milky Way" },
+        { question: "The closest star to our solar system, at about 4.24 light-years away, is called this", answer: "Proxima Centauri" },
+        { question: "This NASA space telescope, launched in 1990 and repaired by shuttle astronauts in 1993, provided the deepest and clearest images of the cosmos ever captured", answer: "The Hubble Space Telescope" },
+      ],
+      800: [
+        { question: "Jupiter's Great Red Spot is a storm that has persisted for at least 350 years; it is larger than this planet", answer: "Earth" },
+        { question: "Light from the sun takes approximately eight minutes and twenty seconds to reach Earth, a distance of about 93 million of these units", answer: "Miles" },
+      ],
+      1200: [
+        { question: "First proposed by Georges Lemaître in 1927, this cosmological model holds that the universe began from an extremely hot, dense singularity approximately 13.8 billion years ago", answer: "The Big Bang theory" },
+        { question: "When a massive star exhausts its fuel and collapses, its outer layers explode outward in this dramatic event, briefly outshining its entire galaxy", answer: "A supernova" },
+      ],
+      1600: [
+        { question: "Pulsars are rapidly spinning neutron stars that emit beams of radio waves; the first was discovered in 1967 by this Northern Irish astrophysicist, who was a graduate student at the time", answer: "Jocelyn Bell Burnell" },
+        { question: "The Chandrasekhar limit — about 1.4 solar masses — is the maximum mass of a stable white dwarf; stars above this limit collapse into a neutron star or this", answer: "A black hole" },
+      ],
+      2000: [
+        { question: "Dark matter makes up about 27% of the universe's total mass-energy, but it has never been directly detected — scientists infer its existence from this effect on visible matter", answer: "Gravitational lensing (gravitational effects)" },
+        { question: "The Voyager 1 spacecraft, launched in 1977, crossed into interstellar space in 2012, making it the first human-made object to leave this", answer: "The heliosphere (the solar system)" },
+      ],
+    },
+  },
+  {
+    id: "crime-justice",
+    name: "Crime & Justice",
+    cluesByValue: {
+      400: [
+        { question: "In U.S. law, this Fifth Amendment right protects accused persons from being compelled to testify against themselves in a criminal case", answer: "The right against self-incrimination (pleading the Fifth)" },
+        { question: "Al Capone, the most feared gangster of Prohibition-era Chicago, was ultimately convicted in 1931 and imprisoned for this financial crime", answer: "Tax evasion" },
+        { question: "This principle — 'innocent until proven guilty' — places the burden of proof on this party in a criminal trial", answer: "The prosecution" },
+      ],
+      800: [
+        { question: "This 1966 Supreme Court case established that police must inform suspects of their constitutional rights before questioning — producing the now-familiar warning read at arrests", answer: "Miranda v. Arizona" },
+        { question: "The 'CSI effect' refers to jurors' unrealistic expectations of forensic evidence, influenced by TV dramas that over-rely on this type of evidence developed in the 1980s", answer: "DNA evidence" },
+      ],
+      1200: [
+        { question: "This 1961 Supreme Court case held that evidence obtained through an illegal search cannot be used in court, extending the exclusionary rule to all U.S. states", answer: "Mapp v. Ohio" },
+        { question: "The Innocence Project, co-founded by Barry Scheck in 1992, has freed over 375 wrongfully convicted people primarily through the use of this forensic technology", answer: "DNA testing" },
+      ],
+      1600: [
+        { question: "In English common law, this Latin phrase — meaning 'the body of the crime' — refers to the principle that a crime must be proven to have occurred before anyone can be convicted of it", answer: "Corpus delicti" },
+        { question: "Alphonse Bertillon developed this late-19th-century system of identifying criminals by precise body measurements, which was replaced by fingerprinting after the West brothers case in 1903", answer: "Bertillonage (anthropometry)" },
+      ],
+      2000: [
+        { question: "The Nuremberg trials, held from 1945–46, established the principle that individuals could be held criminally responsible for 'crimes against humanity' — a term first coined by this chief U.S. prosecutor", answer: "Robert H. Jackson" },
+        { question: "The RICO Act of 1970 — used to prosecute organized crime — stands for this full phrase describing a pattern of illegal business activities", answer: "Racketeer Influenced and Corrupt Organizations" },
+      ],
+    },
+  },
+  {
+    id: "the-2000s",
+    name: "The 2000s",
+    cluesByValue: {
+      400: [
+        { question: "This 2003 Disney-Pixar film about a clownfish's father crossing the ocean to find his missing son spawned a 2016 sequel set in California", answer: "Finding Nemo" },
+        { question: "Apple launched this music player in 2001 with the tagline 'A thousand songs in your pocket,' revolutionizing how people listened to music on the go", answer: "The iPod" },
+        { question: "She won her fourth consecutive Grand Slam singles title in 2003 and spent most of the decade as the world's top-ranked women's tennis player", answer: "Serena Williams" },
+      ],
+      800: [
+        { question: "Mark Zuckerberg launched this social network in 2004 from his Harvard dorm room; within two years it was open to anyone over 13", answer: "Facebook" },
+        { question: "Barack Obama won the 2008 U.S. presidential election, becoming the first African American president, defeating this Arizona senator and Vietnam War veteran", answer: "John McCain" },
+      ],
+      1200: [
+        { question: "The music file-sharing service Napster was shut down in 2001 following lawsuits from the recording industry; this heavy metal band was among its most vocal critics", answer: "Metallica" },
+        { question: "Her debut album 'Fearless' in 2008, released when she was just 18, won Album of the Year at the Grammy Awards and launched one of music's most dominant careers", answer: "Taylor Swift" },
+      ],
+      1600: [
+        { question: "The terrorist attacks of September 11, 2001, led directly to the U.S. invasion of this country in October 2001 and a second invasion of this country in 2003", answer: "Afghanistan and Iraq" },
+        { question: "This 2008 global financial crisis, triggered by the collapse of mortgage-backed securities and derivatives, caused this U.S. investment bank — the fourth largest — to file for bankruptcy", answer: "Lehman Brothers" },
+      ],
+      2000: [
+        { question: "The Human Genome Project, completed in 2003, produced the first full sequence of this molecule that contains the genetic instructions for all human life", answer: "DNA" },
+        { question: "This 2006 web platform, acquired by Google for $1.65 billion just 18 months after its founding, changed how video was shared and consumed online", answer: "YouTube" },
+      ],
+    },
+  },
+  {
+    id: "word-wizards",
+    name: "Word Wizards",
+    cluesByValue: {
+      400: [
+        { question: "A word that reads the same forwards and backwards — like 'racecar,' 'level,' or 'noon' — is called this", answer: "A palindrome" },
+        { question: "This literary device gives human qualities to non-human things — for example, 'the sun smiled down on us'", answer: "Personification" },
+        { question: "An acronym made from the initial letters of other words: NASA, laser, and scuba are all examples of this type of word", answer: "Acronym" },
+      ],
+      800: [
+        { question: "The words 'affect' and 'effect,' or 'their,' 'there,' and 'they're' are examples of words that are frequently confused; words that sound alike but have different meanings are called this", answer: "Homophones" },
+        { question: "In rhetoric, this device repeats the same word or phrase at the beginning of successive clauses — as in MLK's 'I have a dream, I have a dream, I have a dream'", answer: "Anaphora" },
+      ],
+      1200: [
+        { question: "The word 'quiz,' meaning a short test, may derive from the Latin 'qui es?' meaning 'who are you?' — the entire study of word origins and histories is called this", answer: "Etymology" },
+        { question: "An oxymoron combines two contradictory terms — like 'deafening silence' or 'bittersweet'; this related figure of speech uses two seemingly contradictory ideas in the same sentence for effect", answer: "Paradox" },
+      ],
+      1600: [
+        { question: "This Greek rhetorical device — deliberately saying less than what is meant, often for irony — is used when someone says 'not bad' to mean 'excellent'", answer: "Litotes" },
+        { question: "Portmanteau words blend two existing words; 'brunch' blends breakfast and lunch — this 1871 Lewis Carroll book gave us the word 'portmanteau' to describe this word type", answer: "Through the Looking-Glass" },
+      ],
+      2000: [
+        { question: "In linguistics, this term describes the phenomenon where a word's meaning shifts gradually over time — for example, 'nice' once meant 'foolish' in Middle English", answer: "Semantic shift (semantic change)" },
+        { question: "Tmesis is the grammatical term for inserting a word inside another word for emphasis — the most common English example being 'abso-bloody-lutely'; the inserted word is typically this type of word", answer: "An intensifier (expletive)" },
+      ],
+    },
+  },
+  {
+    id: "health-medicine",
+    name: "Health & Medicine",
+    cluesByValue: {
+      400: [
+        { question: "This organ, located in the upper left abdomen, filters old red blood cells from the bloodstream and is sometimes removed after a traumatic injury", answer: "The spleen" },
+        { question: "Produced by the pancreas, this hormone allows cells to absorb glucose from the bloodstream — its deficiency or inefficiency causes diabetes", answer: "Insulin" },
+        { question: "A BMI of 30 or above is classified as this condition, which is associated with increased risk of heart disease, type 2 diabetes, and certain cancers", answer: "Obesity" },
+      ],
+      800: [
+        { question: "The RICE method — Rest, Ice, Compression, Elevation — is a first-aid treatment for this common sports injury involving torn fibers in a muscle or ligament", answer: "A sprain or strain" },
+        { question: "An MRI (Magnetic Resonance Imaging) machine creates detailed images of the body's interior using powerful magnets and radio waves, with no exposure to this type of radiation used in X-rays", answer: "Ionizing radiation" },
+      ],
+      1200: [
+        { question: "The myelin sheath, a fatty coating around nerve fibers, speeds signal transmission; its progressive destruction causes this autoimmune disease affecting movement and coordination", answer: "Multiple sclerosis" },
+        { question: "This type of white blood cell — named for its T-shaped receptor — is at the center of the adaptive immune response and is the primary target of HIV", answer: "T cell (T lymphocyte)" },
+      ],
+      1600: [
+        { question: "Discovered in 1928 by Alexander Fleming and developed by Howard Florey and Ernst Chain, the first true antibiotic was extracted from this mold genus", answer: "Penicillium" },
+        { question: "This inflammatory condition, in which the body's immune system attacks the lining of the joints, is the most common autoimmune form of arthritis", answer: "Rheumatoid arthritis" },
+      ],
+      2000: [
+        { question: "CRISPR-Cas9, developed by Jennifer Doudna and Emmanuelle Charpentier — 2020 Nobel laureates — is a tool that allows scientists to cut and edit specific sequences in this molecule", answer: "DNA" },
+        { question: "The blood-brain barrier, a selective membrane of tightly packed cells lining brain capillaries, prevents most drugs from reaching the brain — this property makes it both protective and a major challenge in treating this class of disease", answer: "Neurological (brain) diseases" },
+      ],
+    },
+  },
 ];
 
 function hashSeed(seed: string): number {
@@ -1296,6 +1571,17 @@ const finalJeopardyBank: FinalJeopardyClue[] = [
   { category: "FILM HISTORY", question: "Gone with the Wind, still the all-time domestic box office champion when adjusted for inflation, was set primarily in this U.S. state during the Civil War", answer: "Georgia" },
   { category: "ECONOMICS", question: "Adam Smith's 1776 work laying the theoretical foundations of modern capitalism and the free market is known by this title", answer: "The Wealth of Nations" },
   { category: "WORLD HISTORY", question: "The Berlin Conference of 1884–1885 formalized the division of Africa among European powers; this process of seizing African territory for colonies became known as this", answer: "The Scramble for Africa" },
+  { category: "POP CULTURE", question: "She surpassed Elvis Presley's record for the most weeks at #1 on the Billboard Hot 100, with her 2022 album 'Midnights' and the 10-week chart-topper 'Anti-Hero'", answer: "Taylor Swift" },
+  { category: "SCIENCE", question: "Albert Einstein's general theory of relativity predicted this phenomenon — confirmed in 2015 by LIGO detectors — in which accelerating masses create ripples in the fabric of spacetime", answer: "Gravitational waves" },
+  { category: "AMERICAN HISTORY", question: "The Emancipation Proclamation took effect on January 1, 1863, but enslaved people in Texas didn't learn of their freedom until June 19, 1865 — a date now celebrated as this federal holiday", answer: "Juneteenth" },
+  { category: "WORLD GEOGRAPHY", question: "This country, the world's largest by land area, spans 11 time zones and shares borders with 14 other nations", answer: "Russia" },
+  { category: "LITERATURE", question: "Mary Shelley wrote this 1818 novel — often cited as the first science fiction novel — about a scientist who creates a living creature from dead tissue and is horrified by his creation", answer: "Frankenstein" },
+  { category: "FILM", question: "Steven Spielberg's 1993 film depicting the Holocaust and the rescue of over 1,200 Jewish workers by a German industrialist won seven Academy Awards including Best Picture", answer: "Schindler's List" },
+  { category: "CLASSICAL MUSIC", question: "This Austrian composer, who died at just 35, wrote over 600 works including 41 symphonies, 27 piano concertos, and the operas Don Giovanni and The Magic Flute", answer: "Wolfgang Amadeus Mozart" },
+  { category: "TECHNOLOGY", question: "This open-source operating system kernel, created by Linus Torvalds in 1991 as a hobby project, now powers the majority of the world's servers, all Android phones, and most supercomputers", answer: "Linux" },
+  { category: "SPORTS", question: "Michael Jordan led the Chicago Bulls to six NBA championships in two separate three-peats — the first in 1991, 1992, 1993, and the second after a brief baseball retirement in this trio of years", answer: "1996, 1997, 1998" },
+  { category: "MYTHOLOGY", question: "In Arthurian legend, the Knights of the Round Table quested for this sacred object, said to be the cup used by Jesus at the Last Supper and believed to grant eternal youth or divine grace", answer: "The Holy Grail" },
+  { category: "ANCIENT HISTORY", question: "This Macedonian king, tutored by Aristotle, conquered an empire stretching from Greece to northwestern India before dying in Babylon in 323 BC at age 32", answer: "Alexander the Great" },
 ];
 
 export function pickFinalJeopardyClue(seed: string): FinalJeopardyClue {

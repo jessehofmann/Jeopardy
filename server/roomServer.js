@@ -174,7 +174,7 @@ function createRoomServer() {
       finalQuestion: (room.gamePhase === "final-question" || room.gamePhase === "final-reveal" || room.gamePhase === "game-over")
         ? room._finalQuestion
         : null,
-      finalAnswer: (room.gamePhase === "final-reveal" || room.gamePhase === "game-over")
+      finalAnswer: (room.gamePhase !== "playing")
         ? room._finalAnswer
         : null,
       finalAnswerShown: room.finalAnswerShown ?? false,

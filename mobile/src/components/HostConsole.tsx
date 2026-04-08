@@ -154,6 +154,12 @@ const HostConsole = ({
             <>
               <p className="panel-label">Final Jeopardy</p>
               <h2 className="host-fj-category">{room.finalCategory}</h2>
+              {room.finalAnswer && (
+                <div className="host-fj-answer-spoiler">
+                  <span className="host-fj-answer-spoiler-label">Correct Answer (host only):</span>
+                  <span className="host-fj-answer-spoiler-text">{room.finalAnswer}</span>
+                </div>
+              )}
               <p className="host-fj-phase-note">Players are wagering...</p>
               <div className="host-fj-player-chips">
                 {room.players.map((p) => (
@@ -164,8 +170,14 @@ const HostConsole = ({
                 ))}
               </div>
               <div className="host-actions-grid" style={{ marginTop: "18px" }}>
-                <button className="primary-action" onClick={onRevealFinalQuestion}>
-                  Reveal Question
+                <button
+                  className="primary-action"
+                  disabled={!room.players.every((p) => p.finalWager != null)}
+                  onClick={onRevealFinalQuestion}
+                >
+                  {room.players.every((p) => p.finalWager != null)
+                    ? "Reveal Question"
+                    : `Waiting for wagers… (${room.players.filter((p) => p.finalWager != null).length}/${room.players.length})`}
                 </button>
               </div>
             </>
@@ -175,6 +187,12 @@ const HostConsole = ({
             <>
               <p className="panel-label">Final Jeopardy · {room.finalCategory}</p>
               <p className="host-fj-question">{room.finalQuestion}</p>
+              {room.finalAnswer && (
+                <div className="host-fj-answer-spoiler">
+                  <span className="host-fj-answer-spoiler-label">Correct Answer (host only):</span>
+                  <span className="host-fj-answer-spoiler-text">{room.finalAnswer}</span>
+                </div>
+              )}
               <p className="host-fj-phase-note">Players are writing answers...</p>
               <div className="host-fj-player-chips">
                 {room.players.map((p) => (
@@ -185,8 +203,14 @@ const HostConsole = ({
                 ))}
               </div>
               <div className="host-actions-grid" style={{ marginTop: "18px" }}>
-                <button className="primary-action" onClick={onRevealFinalAnswers}>
-                  Reveal Answers
+                <button
+                  className="primary-action"
+                  disabled={!room.players.every((p) => p.finalAnswer != null)}
+                  onClick={onRevealFinalAnswers}
+                >
+                  {room.players.every((p) => p.finalAnswer != null)
+                    ? "Reveal Answers"
+                    : `Waiting for answers… (${room.players.filter((p) => p.finalAnswer != null).length}/${room.players.length})`}
                 </button>
               </div>
             </>
@@ -324,15 +348,21 @@ const HostConsole = ({
               ))}
             </div>
 
+            {!catalog.every((cat) => (room.revealedCategoryIds ?? []).includes(cat.id)) && (
+              <p className="host-clue-locked-note">
+                Reveal all categories above before selecting a clue.
+              </p>
+            )}
             <div className="host-value-grid">
               {selectedCategory?.clues.map((clue) => {
                 const isAnswered = room.answeredClueIds.includes(clue.id);
+                const allCatsRevealed = catalog.every((cat) => (room.revealedCategoryIds ?? []).includes(cat.id));
 
                 return (
                   <button
                     key={clue.id}
                     className={`host-clue-button ${clue.isDailyDouble ? "is-daily-double" : ""}`}
-                    disabled={isAnswered}
+                    disabled={isAnswered || !allCatsRevealed}
                     onClick={() => {
                       if (clue.isDailyDouble) {
                         onSelectClue(clue.id, clue.question, roundLabel, clue.value, true, buzzerTimerSeconds * 1000);
