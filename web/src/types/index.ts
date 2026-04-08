@@ -1,9 +1,8 @@
 export type {
   Category,
   Clue,
+  CustomBoard,
   GamePhase,
-  GameState,
-  Player,
   RoomPlayer,
   RoomState,
 } from "@shared/types";

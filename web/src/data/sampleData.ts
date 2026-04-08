@@ -1,11 +1,4 @@
-import {
-  generateGameCatalogs,
-  round1Categories,
-  round2Categories as defaultRound2Categories,
-} from "@shared/data/clueCatalog";
-
-export const createBoardCatalogs = (seed: string, categoryCount = 6) =>
-  generateGameCatalogs({ seed, categoryCount });
+import { generateGameCatalogs } from "@shared/data/clueCatalog";
 
 export const createBoardCatalogsWithExcludes = (
   seed: string,
@@ -19,6 +12,3 @@ export const createBoardCatalogsWithExcludes = (
     round1ExcludeClueIds,
     round2ExcludeClueIds,
   });
-
-export const sampleCategories = round1Categories;
-export const round2Categories = defaultRound2Categories;

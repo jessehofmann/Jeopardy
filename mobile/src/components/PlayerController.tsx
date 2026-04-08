@@ -12,6 +12,7 @@ interface PlayerControllerProps {
   onSubmitFinalWager: (wager: number) => void;
   onSubmitFinalAnswer: (answer: string, dataUrl?: string | null) => void;
   onToggleNameDisplay?: () => void;
+  onUpdateSignature?: (dataUrl: string | null) => void;
 }
 
 const PlayerController = ({
@@ -24,6 +25,7 @@ const PlayerController = ({
   onSubmitFinalWager,
   onSubmitFinalAnswer,
   onToggleNameDisplay,
+  onUpdateSignature,
 }: PlayerControllerProps) => {
   const hasBuzzed = playerStatus === "buzzed";
   const isLockedOut = Boolean(playerId && room.lockedOutPlayerIds?.includes(playerId));
@@ -34,7 +36,7 @@ const PlayerController = ({
   );
 
   // Wager state
-  const maxWager = Math.max(myPlayer?.score ?? 0, 0);
+  const maxWager = Math.max(myPlayer?.score ?? 0, 1000);
   const [wagerInput, setWagerInput] = useState<string>("");
   const [wagerLocked, setWagerLocked] = useState(false);
   const parsedWager = parseInt(wagerInput, 10);
@@ -45,6 +47,10 @@ const PlayerController = ({
   const [answerInput, setAnswerInput] = useState<string>("");
   const [answerDataUrl, setAnswerDataUrl] = useState<string | null>(null);
   const [answerSubmitted, setAnswerSubmitted] = useState(false);
+
+  // Name change state
+  const [showNameEdit, setShowNameEdit] = useState(false);
+  const [newSigDataUrl, setNewSigDataUrl] = useState<string | null>(null);
 
   // Countdown timer driven by server deadline
   const [timeLeft, setTimeLeft] = useState(30);
@@ -105,9 +111,18 @@ const PlayerController = ({
     setAnswerSubmitted(true);
   };
 
+  const handleSaveSignature = () => {
+    if (!newSigDataUrl) return;
+    onUpdateSignature?.(newSigDataUrl);
+    setShowNameEdit(false);
+    setNewSigDataUrl(null);
+  };
+
   const canSubmitAnswer = answerMode === "type"
     ? answerInput.trim().length > 0
     : answerDataUrl !== null;
+
+  const showingSig = Boolean(myPlayer?.showNameSignature && myPlayer?.nameSignatureDataUrl);
 
   return (
     <main className="player-layout">
@@ -116,11 +131,44 @@ const PlayerController = ({
         <div className="room-badge">Room {room.roomCode}</div>
       </header>
 
+      {/* ── Name signature editor overlay ── */}
+      {showNameEdit && (
+        <div className="name-edit-overlay">
+          <div className="name-edit-card">
+            <p className="eyebrow" style={{ marginBottom: 8 }}>Update Your Signature</p>
+            <SignaturePad onChange={setNewSigDataUrl} label="Sign your name" />
+            <div className="name-edit-actions">
+              <button
+                className="primary-action"
+                disabled={!newSigDataUrl}
+                onClick={handleSaveSignature}
+              >
+                Save
+              </button>
+              <button
+                className="ghost-action"
+                onClick={() => { setShowNameEdit(false); setNewSigDataUrl(null); }}
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* ── Regular buzzer view ── */}
       {room.gamePhase === "playing" && (
         <section className="player-card">
           <p className="eyebrow">You are playing as</p>
-          <h1>{playerName}</h1>
+          {showingSig ? (
+            <img
+              src={myPlayer!.nameSignatureDataUrl!}
+              className="player-name-sig"
+              alt={playerName}
+            />
+          ) : (
+            <h1>{playerName}</h1>
+          )}
           <div className="player-score-display">
             <span className="player-score-label">Score</span>
             <span className="player-score-value">
@@ -150,11 +198,18 @@ const PlayerController = ({
               <strong>{room.boardOwnerPlayerName ?? "Unassigned"}</strong>
             </div>
           </div>
-          {myPlayer?.nameSignatureDataUrl && onToggleNameDisplay && (
-            <button className="name-display-toggle" onClick={onToggleNameDisplay} type="button">
-              Scoreboard name: {myPlayer.showNameSignature ? "Handwriting" : "Text"}
-            </button>
-          )}
+          <div className="player-name-controls">
+            {myPlayer?.nameSignatureDataUrl && onToggleNameDisplay && (
+              <button className="name-display-toggle" onClick={onToggleNameDisplay} type="button">
+                {myPlayer.showNameSignature ? "Show Text Name" : "Show Handwritten Name"}
+              </button>
+            )}
+            {onUpdateSignature && (
+              <button className="name-edit-btn" onClick={() => setShowNameEdit(true)} type="button">
+                {myPlayer?.nameSignatureDataUrl ? "Change Signature" : "Add Signature"}
+              </button>
+            )}
+          </div>
         </section>
       )}
 

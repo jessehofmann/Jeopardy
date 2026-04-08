@@ -168,6 +168,7 @@ function createRoomServer() {
       isDailyDoubleActive: room.isDailyDoubleActive,
       dailyDoubleWager: room.dailyDoubleWager,
       answerDeadlineMs: room._answerDeadlineMs ?? null,
+      buzzerDeadlineMs: room.buzzersOpen ? (room._buzzerDeadlineMs ?? null) : null,
       gamePhase: room.gamePhase || "playing",
       finalCategory: room.finalCategory || null,
       finalQuestion: (room.gamePhase === "final-question" || room.gamePhase === "final-reveal" || room.gamePhase === "game-over")
@@ -232,8 +233,10 @@ function createRoomServer() {
       lockedOutPlayerIds: [],
       firstBuzzedPlayerId: null,
       _buzzerTimer: null,
+      _buzzerDeadlineMs: null,
       _answerTimer: null,
       _answerDeadlineMs: null,
+      _finalQuestionDeadlineMs: null,
       isDailyDoubleActive: false,
       dailyDoubleWager: null,
       gamePhase: "playing",
@@ -426,6 +429,8 @@ function createRoomServer() {
       ? room.buzzerDurationMs
       : BUZZER_AUTO_CLOSE_MS;
 
+    room._buzzerDeadlineMs = Date.now() + duration;
+
     room._buzzerTimer = setTimeout(() => {
       room._buzzerTimer = null;
       if (!room.buzzersOpen) return;
@@ -444,6 +449,7 @@ function createRoomServer() {
       room._buzzerTimer = null;
     }
 
+    room._buzzerDeadlineMs = null;
     room.buzzersOpen = false;
     room.players = room.players.map((player) => ({
       ...player,
@@ -553,17 +559,9 @@ function createRoomServer() {
         room.buzzerDurationMs = Math.min(Math.floor(buzzerDurationMs), 30000);
       }
 
-      if (isDailyDouble === true) {
-        room.isDailyDoubleActive = true;
-        room.dailyDoubleWager = null; // set later via host:setDailyDoubleWager
-        closeBuzzers(room);
-        // players stay locked — only the board owner answers
-      } else {
-        room.isDailyDoubleActive = false;
-        room.dailyDoubleWager = null;
-        // Buzzers stay closed — host opens manually after reading the clue aloud
-        closeBuzzers(room);
-      }
+      room.isDailyDoubleActive = isDailyDouble === true;
+      room.dailyDoubleWager = null;
+      closeBuzzers(room);
 
       if (typeof clueLabel === "string") {
         room.clueLabel = clueLabel.slice(0, 80);
@@ -583,8 +581,8 @@ function createRoomServer() {
       }
 
       const { wager } = message.payload || {};
-      if (typeof wager !== "number" || wager < 5) {
-        sendError(client.ws, "Wager must be at least $5");
+      if (typeof wager !== "number" || wager < 0) {
+        sendError(client.ws, "Wager must be at least $0");
         return;
       }
 
@@ -819,6 +817,47 @@ function createRoomServer() {
 
     if (message.type === "host:endGame") {
       room.gamePhase = "game-over";
+      broadcastRoom(room.roomCode);
+      return;
+    }
+
+    if (message.type === "host:restartGame") {
+      // Reset game state but keep room, players, and connections
+      room.gamePhase = "playing";
+      room.roundLabel = "Round 1";
+      room.clueLabel = "Select a clue";
+      room.boardSeed = makeBoardSeed();
+      room.answeredClueIds = [];
+      room.revealedCategoryIds = [];
+      room.selectedClueId = null;
+      room.selectedClueValue = 0;
+      room.answerRevealed = false;
+      room.buzzersOpen = false;
+      room.firstBuzzedPlayerId = null;
+      room.lockedOutPlayerIds = [];
+      room.isDailyDoubleActive = false;
+      room.dailyDoubleWager = null;
+      room.finalCategory = null;
+      room._finalQuestion = null;
+      room._finalAnswer = null;
+      room.finalAnswerShown = false;
+      room._finalQuestionDeadlineMs = null;
+      room._buzzerDeadlineMs = null;
+      clearAnswerTimer(room);
+      closeBuzzers(room);
+
+      room.players = room.players.map((p) => ({
+        ...p,
+        score: 0,
+        status: "locked",
+        finalWager: null,
+        finalAnswer: null,
+        finalAnswerDataUrl: null,
+        finalAnswerRevealed: false,
+        finalAnswerCorrect: null,
+        finalRevealed: false,
+      }));
+
       broadcastRoom(room.roomCode);
       return;
     }
@@ -1081,48 +1120,63 @@ function createRoomServer() {
     }
 
     if (message.type === "player:submitFinalWager") {
-      const fjRoom = client.roomCode ? rooms.get(client.roomCode) : null;
-      if (!fjRoom || !client.playerId || fjRoom.gamePhase !== "final-category") return;
+      const room = client.roomCode ? rooms.get(client.roomCode) : null;
+      if (!room || !client.playerId || room.gamePhase !== "final-category") return;
 
-      const fjPlayer = fjRoom.players.find((p) => p.id === client.playerId);
-      if (!fjPlayer) return;
+      const player = room.players.find((p) => p.id === client.playerId);
+      if (!player) return;
 
       const { wager } = message.payload || {};
-      const maxWager = Math.max(fjPlayer.score, 0);
+      const maxWager = Math.max(player.score, 1000);
       const parsed = typeof wager === "number" ? Math.floor(wager) : -1;
       if (parsed < 0 || parsed > maxWager) {
         sendError(client.ws, "Invalid wager amount");
         return;
       }
 
-      fjPlayer.finalWager = parsed;
-      broadcastRoom(fjRoom.roomCode);
+      player.finalWager = parsed;
+      broadcastRoom(room.roomCode);
       return;
     }
 
     if (message.type === "player:submitFinalAnswer") {
-      const fjRoom = client.roomCode ? rooms.get(client.roomCode) : null;
-      if (!fjRoom || !client.playerId || fjRoom.gamePhase !== "final-question") return;
+      const room = client.roomCode ? rooms.get(client.roomCode) : null;
+      if (!room || !client.playerId || room.gamePhase !== "final-question") return;
 
-      const fjPlayer = fjRoom.players.find((p) => p.id === client.playerId);
-      if (!fjPlayer) return;
+      const player = room.players.find((p) => p.id === client.playerId);
+      if (!player) return;
 
       const raw = String(message.payload?.answer || "").trim().slice(0, 120);
-      fjPlayer.finalAnswer = raw || "(no answer)";
+      player.finalAnswer = raw || "(no answer)";
       const rawDataUrl = String(message.payload?.finalAnswerDataUrl || "");
-      fjPlayer.finalAnswerDataUrl = rawDataUrl.startsWith("data:image/") && rawDataUrl.length < 65536
+      player.finalAnswerDataUrl = rawDataUrl.startsWith("data:image/") && rawDataUrl.length < 65536
         ? rawDataUrl : null;
-      broadcastRoom(fjRoom.roomCode);
+      broadcastRoom(room.roomCode);
       return;
     }
 
     if (message.type === "player:toggleNameDisplay") {
-      const tRoom = client.roomCode ? rooms.get(client.roomCode) : null;
-      if (!tRoom || !client.playerId) return;
-      const tPlayer = tRoom.players.find((p) => p.id === client.playerId);
-      if (!tPlayer || !tPlayer.nameSignatureDataUrl) return;
-      tPlayer.showNameSignature = !tPlayer.showNameSignature;
-      broadcastRoom(tRoom.roomCode);
+      const room = client.roomCode ? rooms.get(client.roomCode) : null;
+      if (!room || !client.playerId) return;
+      const player = room.players.find((p) => p.id === client.playerId);
+      if (!player || !player.nameSignatureDataUrl) return;
+      player.showNameSignature = !player.showNameSignature;
+      broadcastRoom(room.roomCode);
+      return;
+    }
+
+    if (message.type === "player:updateSignature") {
+      const room = client.roomCode ? rooms.get(client.roomCode) : null;
+      if (!room || !client.playerId) return;
+      const player = room.players.find((p) => p.id === client.playerId);
+      if (!player) return;
+      const rawSig = String(message.payload?.nameSignatureDataUrl || "");
+      player.nameSignatureDataUrl = rawSig.startsWith("data:image/") && rawSig.length < 65536
+        ? rawSig : null;
+      if (!player.nameSignatureDataUrl) {
+        player.showNameSignature = false;
+      }
+      broadcastRoom(room.roomCode);
       return;
     }
 

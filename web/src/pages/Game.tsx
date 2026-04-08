@@ -88,6 +88,7 @@ const Game: React.FC<GameProps> = ({ initialRoomCode, initialRoomState, boardSoc
   const [firstBuzzedPlayerId, setFirstBuzzedPlayerId] = useState<string | null>(null);
   const [answerDeadlineMs, setAnswerDeadlineMs] = useState<number | null>(null);
   const [buzzersOpen, setBuzzersOpen] = useState(false);
+  const [buzzerDeadlineMs, setBuzzerDeadlineMs] = useState<number | null>(null);
   const [lockedOutPlayerIds, setLockedOutPlayerIds] = useState<string[]>([]);
   const [revealedCategoryIds, setRevealedCategoryIds] = useState<string[]>([]);
   const [showDailyDoubleSplash, setShowDailyDoubleSplash] = useState(false);
@@ -195,6 +196,7 @@ const Game: React.FC<GameProps> = ({ initialRoomCode, initialRoomState, boardSoc
     setFirstBuzzedPlayerId(room.firstBuzzedPlayerId ?? null);
     setAnswerDeadlineMs(room.answerDeadlineMs ?? null);
     setBuzzersOpen(room.buzzersOpen ?? false);
+    setBuzzerDeadlineMs(room.buzzerDeadlineMs ?? null);
     setLockedOutPlayerIds(room.lockedOutPlayerIds ?? []);
     setRevealedCategoryIds(room.revealedCategoryIds ?? []);
     setGamePhase(room.gamePhase ?? "playing");
@@ -325,7 +327,13 @@ const Game: React.FC<GameProps> = ({ initialRoomCode, initialRoomState, boardSoc
         </div>
       )}
       <div className="round-indicator">
-        <span>{round === 1 ? "ROUND 1" : "DOUBLE JEOPARDY"}</span>
+        <span>
+          {gamePhase !== "playing"
+            ? "FINAL JEOPARDY"
+            : round === 1
+            ? "ROUND 1"
+            : "DOUBLE JEOPARDY"}
+        </span>
         <div className="board-room-controls">
           {generatedRoomCode && (
             <div className="board-room-code-pill">
@@ -363,6 +371,7 @@ const Game: React.FC<GameProps> = ({ initialRoomCode, initialRoomState, boardSoc
               dailyDoubleWager={dailyDoubleWager}
               boardKey={boardAnimKey}
               revealedCategoryIds={isSynced ? revealedCategoryIds : undefined}
+              buzzerDeadlineMs={buzzerDeadlineMs}
             />
           </div>
           <Scoreboard players={players} firstBuzzedPlayerId={firstBuzzedPlayerId} answerDeadlineMs={answerDeadlineMs} buzzersOpen={buzzersOpen} lockedOutPlayerIds={lockedOutPlayerIds} answerRevealed={answerRevealed} />

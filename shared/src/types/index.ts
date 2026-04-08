@@ -76,6 +76,7 @@ export interface RoomState {
     isDailyDoubleActive: boolean;
     dailyDoubleWager: number | null;
     answerDeadlineMs: number | null;
+    buzzerDeadlineMs: number | null;
     gamePhase: GamePhase;
     finalCategory: string | null;
     finalQuestion: string | null;

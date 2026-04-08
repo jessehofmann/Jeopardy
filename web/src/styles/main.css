@@ -1069,6 +1069,32 @@ body {
   text-shadow: 2px 2px 0 #000;
 }
 
+.modal-buzzer-timer {
+  position: absolute;
+  top: 2.5vh;
+  right: 3vw;
+  font-family: "Teko", "Arial Narrow", sans-serif;
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  font-weight: 700;
+  color: #FFD700;
+  text-shadow: 0 0 20px rgba(255, 215, 0, 0.6), 2px 2px 0 #000;
+  line-height: 1;
+  min-width: 2ch;
+  text-align: center;
+  transition: color 0.2s;
+}
+
+.modal-buzzer-timer.is-urgent {
+  color: #ff4444;
+  text-shadow: 0 0 20px rgba(255, 68, 68, 0.7), 2px 2px 0 #000;
+  animation: buzzer-pulse 0.4s ease-in-out infinite alternate;
+}
+
+@keyframes buzzer-pulse {
+  from { transform: scale(1); }
+  to { transform: scale(1.12); }
+}
+
 .modal-buzzed-player {
   position: absolute;
   top: 3vh;
@@ -1447,7 +1473,7 @@ body {
 
 .fj-card-answer-img {
   max-width: 100%;
-  max-height: clamp(40px, 7vh, 80px);
+  max-height: clamp(60px, 14vh, 160px);
   object-fit: contain;
 }
 

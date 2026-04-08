@@ -23,6 +23,7 @@ interface HostConsoleProps {
   onRevealFinalAnswer: (playerId: string) => void;
   onJudgeFinalAnswer: (playerId: string, correct: boolean) => void;
   onEndGame: () => void;
+  onRestartGame: () => void;
   onRevealCategory: (categoryId: string) => void;
   onOpenBuzzers: () => void;
 }
@@ -43,6 +44,7 @@ const HostConsole = ({
   onRevealFinalAnswer,
   onJudgeFinalAnswer,
   onEndGame,
+  onRestartGame,
   onRevealCategory,
   onOpenBuzzers,
 }: HostConsoleProps) => {
@@ -76,7 +78,7 @@ const HostConsole = ({
   const boardOwnerScore = boardOwner ? Math.max(boardOwner.score, 0) : 0;
   const wagerMax = Math.max(boardOwnerScore, roundMaxValue);
   const parsedWager = parseInt(wagerInput, 10);
-  const isWagerValid = !isNaN(parsedWager) && parsedWager >= 5 && parsedWager <= wagerMax;
+  const isWagerValid = !isNaN(parsedWager) && parsedWager >= 0 && parsedWager <= wagerMax;
 
   const selectedCategory = useMemo(
     () => catalog.find((category) => category.id === selectedCategoryId) ?? catalog[0],
@@ -264,6 +266,13 @@ const HostConsole = ({
                   </div>
                 ))}
               </div>
+              <button
+                className="primary-action"
+                style={{ marginTop: 20, width: "100%" }}
+                onClick={onRestartGame}
+              >
+                New Game (Same Players)
+              </button>
             </>
           )}
         </section>

@@ -26,6 +26,7 @@ const fallbackRoom: RoomState = {
   isDailyDoubleActive: false,
   dailyDoubleWager: null,
   answerDeadlineMs: null,
+  buzzerDeadlineMs: null,
   gamePhase: "playing",
   finalCategory: null,
   finalQuestion: null,
@@ -269,6 +270,10 @@ const App = () => {
     sendMessage("host:endGame");
   };
 
+  const restartGame = () => {
+    sendMessage("host:restartGame");
+  };
+
   const revealCategory = (categoryId: string) => {
     sendMessage("host:revealCategory", { categoryId });
   };
@@ -287,6 +292,11 @@ const App = () => {
 
   const toggleNameDisplay = () => {
     sendMessage("player:toggleNameDisplay");
+  };
+
+  const updateSignature = (nameSignatureDataUrl: string | null) => {
+    sendMessage("player:updateSignature", { nameSignatureDataUrl });
+    sessionRef.current.nameSignatureDataUrl = nameSignatureDataUrl;
   };
 
   const markPlayerBuzzed = () => {
@@ -332,6 +342,7 @@ const App = () => {
           onRevealFinalAnswer={revealFinalAnswer}
           onJudgeFinalAnswer={judgeFinalAnswer}
           onEndGame={endGame}
+          onRestartGame={restartGame}
           onRevealCategory={revealCategory}
           onOpenBuzzers={openBuzzers}
         />
@@ -348,6 +359,7 @@ const App = () => {
           onSubmitFinalWager={submitFinalWager}
           onSubmitFinalAnswer={submitFinalAnswer}
           onToggleNameDisplay={toggleNameDisplay}
+          onUpdateSignature={updateSignature}
         />
       )}
     </div>

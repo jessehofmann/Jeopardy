@@ -10,6 +10,7 @@ interface ClueModalProps {
   isDailyDouble?: boolean;
   dailyDoubleWager?: number | null;
   originRect?: DOMRect | null;
+  buzzerDeadlineMs?: number | null;
 }
 
 const ClueModal: React.FC<ClueModalProps> = ({
@@ -21,9 +22,25 @@ const ClueModal: React.FC<ClueModalProps> = ({
   isDailyDouble,
   dailyDoubleWager,
   originRect,
+  buzzerDeadlineMs,
 }) => {
   const [localShowAnswer, setLocalShowAnswer] = useState(false);
   const showAnswer = isSynced ? (answerRevealed ?? false) : localShowAnswer;
+  const [buzzerTimeLeft, setBuzzerTimeLeft] = useState<number | null>(null);
+
+  useEffect(() => {
+    if (!buzzerDeadlineMs) {
+      setBuzzerTimeLeft(null);
+      return;
+    }
+    const tick = () => {
+      const remaining = Math.max(0, Math.ceil((buzzerDeadlineMs - Date.now()) / 1000));
+      setBuzzerTimeLeft(remaining);
+    };
+    tick();
+    const interval = setInterval(tick, 100);
+    return () => clearInterval(interval);
+  }, [buzzerDeadlineMs]);
   const showDailyDouble = isDailyDouble ?? clue.isDailyDouble ?? false;
   const contentRef = useRef<HTMLDivElement>(null);
   const questionRef = useRef<HTMLDivElement>(null);
@@ -105,6 +122,11 @@ const ClueModal: React.FC<ClueModalProps> = ({
         ref={contentRef}
         className={`modal-content ${showDailyDouble ? "is-daily-double" : ""} ${originRect ? "zoom-from-tile" : ""}`}
       >
+        {isSynced && buzzerTimeLeft !== null && !firstBuzzedPlayerName && (
+          <div className={`modal-buzzer-timer ${buzzerTimeLeft <= 2 ? "is-urgent" : ""}`}>
+            {buzzerTimeLeft}
+          </div>
+        )}
         {showDailyDouble && (
           <div className="modal-dd-header">
             <div className="modal-dd-label">Daily Double!</div>

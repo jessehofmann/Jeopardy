@@ -179,6 +179,10 @@ const App: React.FC = () => {
     setPage("menu");
   };
 
+  const pendingCustomBoardName = pendingCustomBoard
+    ? ((pendingCustomBoard as any).name || "Custom Board") as string
+    : null;
+
   return (
     <>
       {!audioUnlocked && (
@@ -194,7 +198,7 @@ const App: React.FC = () => {
           onStartGame={handleStartGame}
           onHowToPlay={() => setShowHowToPlay(true)}
           onCustomBoard={() => setPage("customboard")}
-          pendingCustomBoardName={pendingCustomBoard ? ((pendingCustomBoard as any).name || "Custom Board") : null}
+          pendingCustomBoardName={pendingCustomBoardName}
           isStartingGame={isStartingGame}
           startGameError={startGameError}
         />
@@ -216,7 +220,7 @@ const App: React.FC = () => {
       )}
       {page === "customboard" && (
         <CustomBoardPage
-          pendingBoardName={pendingCustomBoard ? ((pendingCustomBoard as any).name || "Custom Board") : null}
+          pendingBoardName={pendingCustomBoardName}
           onLoad={(raw) => { setPendingCustomBoard(raw); setPage("menu"); }}
           onClear={() => setPendingCustomBoard(null)}
           onBack={() => setPage("menu")}

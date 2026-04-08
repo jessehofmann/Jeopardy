@@ -15,6 +15,7 @@ interface BoardProps {
   boardKey?: string | number | null;
   revealedCategoryIds?: string[];
   onRevealCategory?: (categoryId: string) => void;
+  buzzerDeadlineMs?: number | null;
 }
 
 
@@ -30,6 +31,7 @@ const Board: React.FC<BoardProps> = ({
   boardKey,
   revealedCategoryIds,
   onRevealCategory,
+  buzzerDeadlineMs,
 }) => {
   const [selectedClue, setSelectedClue] = useState<Clue | null>(null);
   const [originRect, setOriginRect] = useState<DOMRect | null>(null);
@@ -157,6 +159,7 @@ const Board: React.FC<BoardProps> = ({
           isDailyDouble={!allowManualPick ? isDailyDoubleActive : selectedClue.isDailyDouble}
           dailyDoubleWager={dailyDoubleWager}
           originRect={originRect}
+          buzzerDeadlineMs={buzzerDeadlineMs}
         />
       )}
     </>

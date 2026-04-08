@@ -56,13 +56,6 @@ const FinalJeopardy: React.FC<FinalJeopardyProps> = ({
     return () => audio.stopFinalJeopardy();
   }, [gamePhase]);
 
-  // Stop think music when timer runs out
-  useEffect(() => {
-    if (timeLeft <= 0) {
-      audio.stopFinalJeopardy();
-    }
-  }, [timeLeft]);
-
   // Play correct/wrong sounds as each player's answer is revealed
   useEffect(() => {
     if (gamePhase !== "final-reveal") {
