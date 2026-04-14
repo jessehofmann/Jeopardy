@@ -9,6 +9,7 @@ interface ScoreboardProps {
   buzzersOpen?: boolean;
   lockedOutPlayerIds?: string[];
   answerRevealed?: boolean;
+  boardOwnerPlayerId?: string | null;
 }
 
 const ANSWER_TIMER_MS = 5000;
@@ -84,7 +85,7 @@ const SnakeBorder: React.FC<{ progress: number }> = ({ progress }) => {
   );
 };
 
-const Scoreboard: React.FC<ScoreboardProps> = ({ players, firstBuzzedPlayerId, answerDeadlineMs, buzzersOpen, lockedOutPlayerIds, answerRevealed }) => {
+const Scoreboard: React.FC<ScoreboardProps> = ({ players, firstBuzzedPlayerId, answerDeadlineMs, buzzersOpen, lockedOutPlayerIds, answerRevealed, boardOwnerPlayerId }) => {
   const [timedOut, setTimedOut] = useState(false);
   const [answerProgress, setAnswerProgress] = useState(0);
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -170,28 +171,33 @@ const Scoreboard: React.FC<ScoreboardProps> = ({ players, firstBuzzedPlayerId, a
         const isBuzzed = player.id === firstBuzzedPlayerId;
         const isActive = isBuzzed && !timedOut;
         const isLockedOut = lockedOutPlayerIds?.includes(player.id) ?? false;
+        const isBoardOwner = boardOwnerPlayerId != null && player.id === boardOwnerPlayerId;
         // Show snake while counting down; freeze at 1 (fully drained) when timed out
         const snakeProgress = isBuzzed ? (timedOut ? 1 : answerProgress) : null;
 
         return (
           <div
             key={player.id}
-            className={`player-score${isActive ? " is-answering" : ""}${isLockedOut ? " is-locked-out" : ""}`}
+            className={`player-score${isActive ? " is-answering" : ""}${isLockedOut ? " is-locked-out" : ""}${isBoardOwner ? " is-board-owner" : ""}`}
             style={snakeProgress !== null ? { border: `${BW}px solid transparent`, position: "relative", overflow: "visible" } : undefined}
           >
             {snakeProgress !== null && <SnakeBorder progress={snakeProgress} />}
-            {player.showNameSignature && player.nameSignatureDataUrl ? (
-              <img src={player.nameSignatureDataUrl} className="player-name-sig" alt={player.name} />
-            ) : (
-              <div className="player-name">{player.name}</div>
-            )}
-            <div className="player-points">
-              {player.score < 0 ? `-$${Math.abs(player.score)}` : `$${player.score}`}
+            <div className="player-score-zone-name">
+              {player.showNameSignature && player.nameSignatureDataUrl ? (
+                <img src={player.nameSignatureDataUrl} className="player-name-sig" alt={player.name} />
+              ) : (
+                <div className="player-name">{player.name}</div>
+              )}
             </div>
-            {isLockedOut && <div className="player-locked-out">✕ Locked Out</div>}
-            {player.isConnected === false && (
-              <div className="player-connection-state">Disconnected</div>
-            )}
+            <div className="player-score-zone-points">
+              <div className="player-points">
+                {player.score < 0 ? `-$${Math.abs(player.score)}` : `$${player.score}`}
+              </div>
+              {isLockedOut && <div className="player-locked-out">✕ Locked Out</div>}
+              {player.isConnected === false && (
+                <div className="player-connection-state">Disconnected</div>
+              )}
+            </div>
           </div>
         );
       })}

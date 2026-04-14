@@ -18,7 +18,12 @@ const timesUp = makeAudio("/assets/sounds/Times%20up.mp3");
 const wrongAnswer = makeAudio("/assets/sounds/Wrong%20Answer.mp3");
 const finalJeopardy = makeAudio("/assets/sounds/FinalJeopardyMusic.mp3");
 
+const allElements = [theme, boardFill, dailyDouble, correct, timesUp, wrongAnswer, finalJeopardy];
+
+let _muted = false;
+
 function play(el: HTMLAudioElement) {
+  if (_muted) return;
   el.currentTime = 0;
   el.play().catch(() => {});
 }
@@ -30,7 +35,7 @@ function stop(el: HTMLAudioElement) {
 
 export const audio = {
   playTheme: () => play(theme),
-  ensureThemePlaying: () => { if (theme.paused) play(theme); },
+  ensureThemePlaying: () => { if (!_muted && theme.paused) play(theme); },
   stopTheme: () => stop(theme),
   playBoardFill: () => play(boardFill),
   getBoardFillDuration: () => boardFillDurationMs,
@@ -40,4 +45,11 @@ export const audio = {
   playWrongAnswer: () => play(wrongAnswer),
   playFinalJeopardy: () => play(finalJeopardy),
   stopFinalJeopardy: () => stop(finalJeopardy),
+  getMuted: () => _muted,
+  setMuted: (muted: boolean) => {
+    _muted = muted;
+    if (muted) {
+      allElements.forEach(el => el.pause());
+    }
+  },
 };

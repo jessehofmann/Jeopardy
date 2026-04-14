@@ -289,6 +289,10 @@ const App = () => {
     sendMessage("host:setBuzzersOpen", { isOpen: true });
   };
 
+  const skipToRound2 = () => {
+    sendMessage("host:updateBoardState", { roundLabel: "Round 2 - Double Jeopardy" });
+  };
+
   const submitFinalWager = (wager: number) => {
     sendMessage("player:submitFinalWager", { wager });
   };
@@ -332,7 +336,35 @@ const App = () => {
         />
       )}
 
-      {screen === "host" && (
+      {(screen === "host" || screen === "player") && !room.boardIsReady && (
+        <div className="waiting-screen">
+          <div className="waiting-title">{screen === "host" ? "Host Console" : "Lobby"}</div>
+          <div className="waiting-room-code">Room: {room.roomCode}</div>
+          <div className="waiting-role-badge">{screen === "host" ? "HOST" : playerName}</div>
+          {screen === "host" ? (
+            <div className="waiting-instructions">
+              <div className="waiting-instructions-title">How to host</div>
+              <ol className="waiting-instructions-list">
+                <li>Open <strong>jeopardy-main.vercel.app</strong> on the big screen and enter your room code to create the board.</li>
+                <li>Wait for contestants to join using this companion app, then press <strong>Begin Game</strong> on the board.</li>
+                <li>Select clues from the board on this phone, open buzzers when ready, and score answers.</li>
+              </ol>
+            </div>
+          ) : (
+            <div className="waiting-instructions">
+              <div className="waiting-instructions-title">How to play</div>
+              <ol className="waiting-instructions-list">
+                <li>When a clue is read aloud, hit <strong>Buzz In</strong> as fast as you can to answer first.</li>
+                <li>Answer in the form of a question — <em>"What is…"</em> or <em>"Who is…"</em></li>
+                <li>The host will mark your answer correct or incorrect. Correct answers add the clue value; wrong answers subtract it.</li>
+              </ol>
+            </div>
+          )}
+          <button className="waiting-leave-btn" onClick={leaveRoom}>Leave Room</button>
+        </div>
+      )}
+
+      {screen === "host" && room.boardIsReady && (
         <HostConsole
           room={room}
           onBack={leaveRoom}
@@ -352,10 +384,12 @@ const App = () => {
           onRestartGame={restartGame}
           onRevealCategory={revealCategory}
           onOpenBuzzers={openBuzzers}
+          onSkipToRound2={skipToRound2}
+          onCloseRoom={leaveRoom}
         />
       )}
 
-      {screen === "player" && (
+      {screen === "player" && room.boardIsReady && (
         <PlayerController
           room={room}
           playerId={playerId}

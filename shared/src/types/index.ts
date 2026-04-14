@@ -84,5 +84,6 @@ export interface RoomState {
     finalAnswerShown: boolean;
     finalQuestionDeadlineMs: number | null;
     customBoard?: CustomBoard | null;
+    boardIsReady?: boolean;
     players: RoomPlayer[];
 }

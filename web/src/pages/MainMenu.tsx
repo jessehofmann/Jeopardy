@@ -2,6 +2,7 @@ import React, { useState } from "react";
 
 interface MainMenuProps {
   onStartGame: (roomCode: string) => void;
+  onRejoinGame: (roomCode: string) => void;
   onHowToPlay: () => void;
   onCustomBoard: () => void;
   pendingCustomBoardName: string | null;
@@ -9,10 +10,11 @@ interface MainMenuProps {
   startGameError: string;
 }
 
-const MainMenu: React.FC<MainMenuProps> = ({ onStartGame, onHowToPlay, onCustomBoard, pendingCustomBoardName, isStartingGame, startGameError }) => {
+const MainMenu: React.FC<MainMenuProps> = ({ onStartGame, onRejoinGame, onHowToPlay, onCustomBoard, pendingCustomBoardName, isStartingGame, startGameError }) => {
   const [roomCode, setRoomCode] = useState("");
   const normalizedRoomCode = roomCode.toUpperCase().replace(/[^A-Z0-9]/g, "").slice(0, 4);
-  const canStartGame = normalizedRoomCode.length === 4 && !isStartingGame;
+  const canAct = normalizedRoomCode.length === 4 && !isStartingGame;
+  const roomInUse = startGameError === "That room code is already in use";
 
   return (
     <div className="main-menu">
@@ -39,9 +41,15 @@ const MainMenu: React.FC<MainMenuProps> = ({ onStartGame, onHowToPlay, onCustomB
         {isStartingGame && <div className="menu-room-status">Starting room...</div>}
       </div>
       <div className="menu-buttons">
-        <button className="menu-button" disabled={!canStartGame} onClick={() => onStartGame(normalizedRoomCode)}>
-          {isStartingGame ? "STARTING..." : "NEW GAME"}
-        </button>
+        {roomInUse ? (
+          <button className="menu-button rejoin" disabled={!canAct} onClick={() => onRejoinGame(normalizedRoomCode)}>
+            {isStartingGame ? "REJOINING..." : "REJOIN GAME"}
+          </button>
+        ) : (
+          <button className="menu-button" disabled={!canAct} onClick={() => onStartGame(normalizedRoomCode)}>
+            {isStartingGame ? "STARTING..." : "NEW GAME"}
+          </button>
+        )}
         <button
           className={`menu-button secondary${pendingCustomBoardName ? " is-active" : ""}`}
           onClick={onCustomBoard}

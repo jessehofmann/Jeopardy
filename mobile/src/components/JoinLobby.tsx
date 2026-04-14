@@ -21,6 +21,9 @@ const JoinLobby = ({ defaultRoomCode, onJoinAsHost, onJoinRoom }: JoinLobbyProps
         <div className="join-header">
           <h2>Enter Room</h2>
           <p>Enter the room code and your name, then sign to join.</p>
+          <div className="join-board-link">
+            Board: <a href="https://jeopardy-main.vercel.app" target="_blank" rel="noopener noreferrer" className="join-board-url">jeopardy-main.vercel.app</a>
+          </div>
         </div>
 
         <label className="field-label" htmlFor="room-code">Room Code</label>

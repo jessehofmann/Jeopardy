@@ -41,10 +41,40 @@ const App: React.FC = () => {
   const boardSocketRef = useRef<WebSocket | null>(null);
   const lobbyListenerRef = useRef<((event: MessageEvent) => void) | null>(null);
 
+  const [muted, setMuted] = useState(false);
+  const [isFullscreen, setIsFullscreen] = useState(false);
+
   const handleUnlockAudio = () => {
     setAudioUnlocked(true);
     audio.playTheme();
   };
+
+  const handleToggleMute = () => {
+    const next = !muted;
+    setMuted(next);
+    audio.setMuted(next);
+    if (!next) {
+      if (page === "menu" || page === "lobby") {
+        audio.ensureThemePlaying();
+      }
+    }
+  };
+
+  const handleToggleFullscreen = () => {
+    if (!document.fullscreenElement) {
+      document.documentElement.requestFullscreen().catch(() => {});
+      setIsFullscreen(true);
+    } else {
+      document.exitFullscreen().catch(() => {});
+      setIsFullscreen(false);
+    }
+  };
+
+  useEffect(() => {
+    const onFsChange = () => setIsFullscreen(Boolean(document.fullscreenElement));
+    document.addEventListener("fullscreenchange", onFsChange);
+    return () => document.removeEventListener("fullscreenchange", onFsChange);
+  }, []);
 
   useEffect(() => {
     if (!audioUnlocked) return;
@@ -170,7 +200,58 @@ const App: React.FC = () => {
       boardSocketRef.current.removeEventListener("message", lobbyListenerRef.current);
       lobbyListenerRef.current = null;
     }
+    boardSocketRef.current?.send(JSON.stringify({ type: "board:ready" }));
     setPage("game");
+  };
+
+  const handleRejoinGame = (nextRoomCode: string) => {
+    const normalizedRoomCode = nextRoomCode.trim().toUpperCase();
+    cleanupBoardSession();
+    setIsStartingGame(true);
+    setStartGameError("");
+
+    const socket = new WebSocket(wsUrl);
+
+    const removeListeners = () => {
+      socket.removeEventListener("open", handleOpen);
+      socket.removeEventListener("message", handleMessage);
+      socket.removeEventListener("close", handleClose);
+    };
+
+    const handleOpen = () => {
+      socket.send(JSON.stringify({ type: "board:rejoinRoom", payload: { roomCode: normalizedRoomCode } }));
+    };
+
+    const handleMessage = (event: MessageEvent) => {
+      let message: { type?: string; payload?: any } = {};
+      try { message = JSON.parse(String(event.data)); } catch { return; }
+
+      if (message.type === "board:roomCreated") {
+        removeListeners();
+        boardSocketRef.current = socket;
+        const room: RoomState | null = message.payload?.room ?? null;
+        setInitialRoomState(room);
+        setRoomCode(message.payload?.roomCode ?? normalizedRoomCode);
+        setIsStartingGame(false);
+        setPage("game");
+        return;
+      }
+      if (message.type === "error") {
+        removeListeners();
+        setStartGameError(message.payload?.message || "Could not rejoin room.");
+        setIsStartingGame(false);
+        socket.close();
+      }
+    };
+
+    const handleClose = () => {
+      removeListeners();
+      if (!boardSocketRef.current) setIsStartingGame(false);
+    };
+
+    socket.addEventListener("open", handleOpen);
+    socket.addEventListener("message", handleMessage);
+    socket.addEventListener("close", handleClose);
   };
 
   const handleBackToMenu = () => {
@@ -185,6 +266,24 @@ const App: React.FC = () => {
 
   return (
     <>
+      {audioUnlocked && (
+        <div className="top-right-controls">
+          <button
+            className={`top-ctrl-btn${muted ? " is-muted" : ""}`}
+            onClick={handleToggleMute}
+            title={muted ? "Unmute" : "Mute"}
+          >
+            {muted ? "🔇" : "🔊"}
+          </button>
+          <button
+            className={`top-ctrl-btn${isFullscreen ? " is-active" : ""}`}
+            onClick={handleToggleFullscreen}
+            title={isFullscreen ? "Exit Fullscreen" : "Fullscreen"}
+          >
+            ⤢
+          </button>
+        </div>
+      )}
       {!audioUnlocked && (
         <div className="audio-unlock-overlay" onClick={handleUnlockAudio}>
           <div className="audio-unlock-content">
@@ -196,6 +295,7 @@ const App: React.FC = () => {
       {page === "menu" && (
         <MainMenu
           onStartGame={handleStartGame}
+          onRejoinGame={handleRejoinGame}
           onHowToPlay={() => setShowHowToPlay(true)}
           onCustomBoard={() => setPage("customboard")}
           pendingCustomBoardName={pendingCustomBoardName}

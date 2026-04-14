@@ -20,6 +20,7 @@ body {
 /* MAIN MENU */
 .main-menu {
   --menu-button-width: clamp(170px, 42vw, 320px);
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -28,6 +29,20 @@ body {
   gap: 8px;
   padding: 24px 16px;
   background: radial-gradient(ellipse at center, #0a0acd 0%, #04047a 100%);
+}
+
+.main-menu-companion-hint {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  font-size: 0.72rem;
+  color: rgba(255, 255, 255, 0.45);
+  letter-spacing: 0.02em;
+}
+
+.main-menu-companion-url {
+  color: rgba(255, 215, 0, 0.7);
+  font-weight: 600;
 }
 
 .logo-container {
@@ -647,6 +662,16 @@ body {
   margin: 0;
 }
 
+.menu-button.rejoin {
+  background: linear-gradient(180deg, #4af, #06c 100%);
+  color: #fff;
+  border: 3px solid #4af;
+}
+
+.menu-button.rejoin:hover {
+  background: linear-gradient(180deg, #7df, #09f 100%);
+}
+
 /* Active state for custom board button on main menu */
 .menu-button.secondary.is-active {
   background: rgba(255, 215, 0, 0.15);
@@ -686,12 +711,19 @@ body {
   text-transform: uppercase;
 }
 
+.game-top-bar {
+  position: fixed;
+  top: 10px;
+  right: 102px;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
 .back-button {
-  position: absolute;
-  right: 16px;
-  top: 50%;
-  transform: translateY(-50%);
-  padding: 6px 16px;
+  padding: 0 14px;
+  height: 40px;
   font-family: "Teko", "Arial Narrow", sans-serif;
   font-size: 0.9rem;
   font-weight: 700;
@@ -699,7 +731,7 @@ body {
   background: linear-gradient(180deg, #FFD700 0%, #b8860b 100%);
   color: #060CE9;
   border: 2px solid #b8860b;
-  border-radius: 4px;
+  border-radius: 6px;
   cursor: pointer;
   transition: all 0.2s ease;
 }
@@ -709,11 +741,10 @@ body {
 }
 
 .board-owner-pill {
-  position: absolute;
-  right: 118px;
-  top: 50%;
-  transform: translateY(-50%);
-  padding: 4px 10px;
+  padding: 0 10px;
+  height: 40px;
+  display: flex;
+  align-items: center;
   border-radius: 6px;
   border: 2px solid rgba(255, 215, 0, 0.5);
   background: rgba(2, 6, 66, 0.85);
@@ -722,6 +753,7 @@ body {
   font-size: 0.88rem;
   letter-spacing: 1px;
   text-transform: uppercase;
+  white-space: nowrap;
 }
 
 .board-room-controls {
@@ -807,7 +839,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 2000;
+  z-index: 10001;
   animation: fadeOut 0.5s ease 2s forwards;
 }
 
@@ -932,13 +964,38 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 4px;
   min-width: 160px;
+  height: 88px;
+  overflow: hidden;
   border: 2px solid #FFD700;
   border-radius: 4px;
   padding: 8px 16px;
   background-color: rgba(0,0,0,0.2);
   transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.player-score-zone-name {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.player-score-zone-points {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.player-score.is-board-owner {
+  box-shadow: 0 0 12px 3px rgba(255, 215, 0, 0.7), inset 0 0 8px rgba(255, 215, 0, 0.12);
+  border-color: #FFD700;
 }
 
 .player-score.is-answering {
@@ -1398,16 +1455,43 @@ body {
   border-radius: 12px;
   border: 2px solid rgba(255,255,255,0.15);
   background: rgba(8, 18, 60, 0.7);
-  padding: clamp(12px, 2vh, 28px) clamp(12px, 1.5vw, 22px);
+  padding: clamp(8px, 1.5vh, 20px) clamp(12px, 1.5vw, 22px);
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  gap: clamp(6px, 1vh, 14px);
   text-align: center;
   transition: all 0.4s ease;
   animation: fjSlideUp 0.5s ease both;
   overflow: hidden;
+}
+
+.fj-card-zone-name {
+  height: clamp(40px, 7vh, 72px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  flex-shrink: 0;
+}
+
+.fj-card-zone-answer {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 0;
+  padding: clamp(4px, 0.8vh, 10px) 0;
+}
+
+.fj-card-zone-scores {
+  height: clamp(52px, 9vh, 90px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  flex-shrink: 0;
 }
 
 .fj-reveal-card.is-hidden {
@@ -1485,6 +1569,7 @@ body {
   flex: 1;
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 
 /* ── Game over ──────────────────────────────────────────── */
@@ -1577,7 +1662,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 1500;
+  z-index: 10001;
   cursor: pointer;
   animation: ddSplashFadeOut 0.6s ease 2.9s forwards;
 }
@@ -1769,4 +1854,45 @@ body {
 @keyframes audio-pulse {
   0%, 100% { transform: scale(1); box-shadow: 0 4px 24px rgba(255, 215, 0, 0.4); }
   50% { transform: scale(1.05); box-shadow: 0 6px 36px rgba(255, 215, 0, 0.7); }
+}
+
+/* TOP-RIGHT CONTROL BUTTONS (mute + fullscreen) */
+.top-right-controls {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  z-index: 9999;
+  display: flex;
+  gap: 6px;
+}
+
+.top-ctrl-btn {
+  background: rgba(4, 4, 122, 0.72);
+  border: 2px solid rgba(255, 215, 0, 0.35);
+  border-radius: 6px;
+  color: white;
+  font-size: 1.25rem;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  backdrop-filter: blur(6px);
+  transition: background 0.15s, border-color 0.15s, opacity 0.15s;
+  opacity: 0.65;
+}
+.top-ctrl-btn:hover {
+  opacity: 1;
+  background: rgba(6, 12, 200, 0.92);
+  border-color: rgba(255, 215, 0, 0.8);
+}
+.top-ctrl-btn.is-active {
+  border-color: rgba(255, 215, 0, 0.9);
+  opacity: 0.9;
+}
+.top-ctrl-btn.is-muted {
+  opacity: 0.9;
+  background: rgba(30, 30, 30, 0.82);
+  border-color: rgba(255, 80, 80, 0.6);
 }

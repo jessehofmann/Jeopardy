@@ -19,8 +19,10 @@ interface HostConsoleProps {
   onJudgeFinalAnswer: (playerId: string, correct: boolean) => void;
   onEndGame: () => void;
   onRestartGame: () => void;
+  onCloseRoom: () => void;
   onRevealCategory: (categoryId: string) => void;
   onOpenBuzzers: () => void;
+  onSkipToRound2: () => void;
 }
 
 const HostConsole = ({
@@ -40,8 +42,10 @@ const HostConsole = ({
   onJudgeFinalAnswer,
   onEndGame,
   onRestartGame,
+  onCloseRoom,
   onRevealCategory,
   onOpenBuzzers,
+  onSkipToRound2,
 }: HostConsoleProps) => {
   const isInFinalJeopardy = room.gamePhase !== "playing";
   const isRoundTwo = room.roundLabel.toLowerCase().includes("double") || room.roundLabel.toLowerCase().includes("round 2");
@@ -66,6 +70,7 @@ const HostConsole = ({
   const [selectedCategoryId, setSelectedCategoryId] = useState<string>(catalog[0]?.id ?? "");
   const [wagerInput, setWagerInput] = useState<string>("");
   const [buzzerTimerSeconds, setBuzzerTimerSeconds] = useState<number>(5);
+  const [confirmSkip, setConfirmSkip] = useState<null | "round2" | "final">(null);
 
   const roundMaxValue = isRoundTwo ? 2000 : 1000;
   const boardOwner = room.players.find((p) => p.id === room.boardOwnerPlayerId) ?? null;
@@ -202,12 +207,12 @@ const HostConsole = ({
               <p className="panel-label">Final Jeopardy · Judge Answers</p>
               {room.finalAnswer && (
                 <div className="host-fj-correct-answer-row">
-                  {room.finalAnswerShown
-                    ? <p className="host-fj-correct-answer">✓ {room.finalAnswer}</p>
-                    : <button className="primary-action" style={{ marginBottom: "8px" }} onClick={onShowFinalAnswer}>
-                        Reveal Correct Answer on Screen
-                      </button>
-                  }
+                  {!room.finalAnswerShown && (
+                    <button className="primary-action" style={{ marginBottom: "8px" }} onClick={onShowFinalAnswer}>
+                      Reveal Correct Answer on Screen
+                    </button>
+                  )}
+                  <p className="host-fj-correct-answer">✓ {room.finalAnswer}</p>
                 </div>
               )}
               <div className="host-fj-judge-list">
@@ -277,6 +282,13 @@ const HostConsole = ({
                 onClick={onRestartGame}
               >
                 New Game (Same Players)
+              </button>
+              <button
+                className="host-close-room-btn"
+                style={{ marginTop: 10, width: "100%" }}
+                onClick={onCloseRoom}
+              >
+                Close Room
               </button>
             </>
           )}
@@ -502,9 +514,35 @@ const HostConsole = ({
               <span className="host-settings-unit">sec</span>
             </div>
           </div>
-          <button className="host-fj-start-button host-fj-skip-bottom" onClick={handleStartFinalJeopardy}>
-            Skip to Final Jeopardy →
-          </button>
+          <div className="host-skip-row">
+            {!isRoundTwo && (
+              <button className="host-fj-start-button host-skip-round2" onClick={() => setConfirmSkip("round2")}>
+                Skip to Round 2 →
+              </button>
+            )}
+            <button className="host-fj-start-button host-fj-skip-bottom" onClick={() => setConfirmSkip("final")}>
+              Skip to Final Jeopardy →
+            </button>
+          </div>
+        </div>
+      )}
+
+      {confirmSkip && (
+        <div className="host-confirm-overlay">
+          <div className="host-confirm-dialog">
+            <div className="host-confirm-title">
+              {confirmSkip === "round2" ? "Skip to Round 2?" : "Skip to Final Jeopardy?"}
+            </div>
+            <div className="host-confirm-subtitle">This cannot be undone.</div>
+            <div className="host-confirm-buttons">
+              <button className="host-confirm-yes" onClick={() => {
+                if (confirmSkip === "round2") onSkipToRound2();
+                else handleStartFinalJeopardy();
+                setConfirmSkip(null);
+              }}>Yes, Skip</button>
+              <button className="host-confirm-cancel" onClick={() => setConfirmSkip(null)}>Cancel</button>
+            </div>
+          </div>
         </div>
       )}
     </main>

@@ -233,44 +233,49 @@ const FinalJeopardy: React.FC<FinalJeopardyProps> = ({
                   : "is-answering"
               }`}
             >
-              {player.nameSignatureDataUrl ? (
-                <img
-                  src={player.nameSignatureDataUrl}
-                  className="fj-card-name-sig"
-                  alt={player.name}
-                />
-              ) : (
-                <div className="fj-card-name">{player.name}</div>
-              )}
-              {!player.finalAnswerRevealed ? (
-                <div className="fj-card-hidden">?</div>
-              ) : (
-                <>
-                  {player.finalAnswerDataUrl ? (
-                    <img
-                      src={player.finalAnswerDataUrl}
-                      className="fj-card-answer-img"
-                      alt="answer"
-                    />
-                  ) : (
-                    <div className="fj-card-answer">
-                      {player.finalAnswer ?? "(no answer)"}
+              {/* Name zone — fixed height, always at top */}
+              <div className="fj-card-zone-name">
+                {player.nameSignatureDataUrl ? (
+                  <img
+                    src={player.nameSignatureDataUrl}
+                    className="fj-card-name-sig"
+                    alt={player.name}
+                  />
+                ) : (
+                  <div className="fj-card-name">{player.name}</div>
+                )}
+              </div>
+              {/* Answer zone — fills middle, centers content */}
+              <div className="fj-card-zone-answer">
+                {!player.finalAnswerRevealed ? (
+                  <div className="fj-card-hidden">?</div>
+                ) : player.finalAnswerDataUrl ? (
+                  <img
+                    src={player.finalAnswerDataUrl}
+                    className="fj-card-answer-img"
+                    alt="answer"
+                  />
+                ) : (
+                  <div className="fj-card-answer">
+                    {player.finalAnswer ?? "(no answer)"}
+                  </div>
+                )}
+              </div>
+              {/* Score zone — fixed height at bottom, empty until judged */}
+              <div className="fj-card-zone-scores">
+                {player.finalRevealed && (
+                  <>
+                    <div className={`fj-card-delta ${player.finalAnswerCorrect ? "is-positive" : "is-negative"}`}>
+                      {player.finalAnswerCorrect ? "+" : "−"}${Math.abs(player.finalWager ?? 0).toLocaleString()}
                     </div>
-                  )}
-                  {player.finalRevealed && (
-                    <>
-                      <div className={`fj-card-delta ${player.finalAnswerCorrect ? "is-positive" : "is-negative"}`}>
-                        {player.finalAnswerCorrect ? "+" : "−"}${Math.abs(player.finalWager ?? 0).toLocaleString()}
-                      </div>
-                      <div className="fj-card-total">
-                        {player.score < 0
-                          ? `-$${Math.abs(player.score).toLocaleString()}`
-                          : `$${player.score.toLocaleString()}`}
-                      </div>
-                    </>
-                  )}
-                </>
-              )}
+                    <div className="fj-card-total">
+                      {player.score < 0
+                        ? `-$${Math.abs(player.score).toLocaleString()}`
+                        : `$${player.score.toLocaleString()}`}
+                    </div>
+                  </>
+                )}
+              </div>
             </div>
           ))}
         </div>

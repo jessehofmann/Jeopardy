@@ -180,6 +180,7 @@ function createRoomServer() {
       finalAnswerShown: room.finalAnswerShown ?? false,
       finalQuestionDeadlineMs: room.gamePhase === "final-question" ? (room._finalQuestionDeadlineMs ?? null) : null,
       customBoard: room.customBoard ?? null,
+      boardIsReady: room.boardIsReady ?? false,
       players,
     };
   }
@@ -245,6 +246,7 @@ function createRoomServer() {
       _finalAnswer: null,
       finalAnswerShown: false,
       customBoard: null,
+      boardIsReady: false,
       players: [],
       playerConnectionById: new Map(),
       connections: new Set([clientId]),
@@ -270,6 +272,32 @@ function createRoomServer() {
 
     send(client.ws, "board:roomCreated", { roomCode, room: toRoomState(roomCode) });
     return { ok: true, roomCode };
+  }
+
+  function rejoinRoomAsBoard(clientId, roomCode) {
+    const room = rooms.get(roomCode);
+    if (!room) {
+      return { ok: false, message: "Room not found" };
+    }
+
+    // Remove old board client from connections if still present
+    if (room.boardId && room.boardId !== clientId) {
+      room.connections.delete(room.boardId);
+    }
+
+    room.boardId = clientId;
+    room.connections.add(clientId);
+
+    const client = clients.get(clientId);
+    if (!client) {
+      return { ok: false, message: "Board client not found" };
+    }
+
+    client.roomCode = roomCode;
+    client.role = "board";
+
+    send(client.ws, "board:roomCreated", { roomCode, room: toRoomState(roomCode) });
+    return { ok: true };
   }
 
   function joinRoomAsHost(clientId, roomCode) {
@@ -816,8 +844,22 @@ function createRoomServer() {
     }
 
     if (message.type === "host:endGame") {
-      room.gamePhase = "game-over";
-      broadcastRoom(room.roomCode);
+      const endRoomCode = room.roomCode;
+      for (const connectedId of room.connections) {
+        const connected = clients.get(connectedId);
+        if (connected) {
+          connected.roomCode = null;
+          connected.role = null;
+          connected.playerId = null;
+          sendError(connected.ws, "Room closed.");
+        }
+      }
+      if (room._buzzerTimer != null) {
+        clearTimeout(room._buzzerTimer);
+        room._buzzerTimer = null;
+      }
+      clearAnswerTimer(room);
+      rooms.delete(endRoomCode);
       return;
     }
 
@@ -1012,18 +1054,31 @@ function createRoomServer() {
     room.connections.delete(clientId);
 
     if (role === "board") {
-      closeRoom(roomCode);
+      // Keep the room alive so the board can reconnect (unless nobody else is in the room)
+      if (room.connections.size === 0) {
+        closeRoom(roomCode);
+        return;
+      }
+      broadcastRoom(roomCode);
       return;
     }
 
     if (role === "host") {
       room.hostId = null;
+      if (room.connections.size === 0) {
+        closeRoom(roomCode);
+        return;
+      }
       broadcastRoom(roomCode);
       return;
     }
 
     if (role === "player" && playerId) {
       detachPlayerFromRoom(room, playerId);
+      if (room.connections.size === 0) {
+        closeRoom(roomCode);
+        return;
+      }
       broadcastRoom(roomCode);
     }
   }
@@ -1085,6 +1140,25 @@ function createRoomServer() {
       const result = createRoomForBoard(clientId, message.payload || {});
       if (!result.ok) {
         sendError(client.ws, result.message);
+      }
+      return;
+    }
+
+    if (message.type === "board:rejoinRoom") {
+      const roomCode = String(message.payload?.roomCode || "").toUpperCase().trim();
+      const result = rejoinRoomAsBoard(clientId, roomCode);
+      if (!result.ok) {
+        sendError(client.ws, result.message);
+      }
+      return;
+    }
+
+    if (message.type === "board:ready") {
+      const roomCode = client.roomCode;
+      const room = rooms.get(roomCode);
+      if (room) {
+        room.boardIsReady = true;
+        broadcastRoom(roomCode);
       }
       return;
     }

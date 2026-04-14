@@ -36,7 +36,9 @@ const Lobby: React.FC<LobbyProps> = ({ roomCode, roomState, onBegin }) => {
       <div className="lobby-room-code-block">
         <div className="lobby-room-code-label">ROOM CODE</div>
         <div className="lobby-room-code">{roomCode}</div>
-        <div className="lobby-room-code-hint">Open the companion app and enter this code to join</div>
+        <div className="lobby-room-code-hint">
+          Open <strong>jeopardy-companion.vercel.app</strong> and enter this code to join
+        </div>
       </div>
 
       <div className="lobby-status-panel">

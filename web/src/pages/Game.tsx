@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import Board from "../components/Board";
 import FinalJeopardy from "../components/FinalJeopardy";
 import Scoreboard from "../components/Scoreboard";
@@ -79,8 +79,13 @@ const Game: React.FC<GameProps> = ({ initialRoomCode, initialRoomState, boardSoc
   const [selectedClueId, setSelectedClueId] = useState<string | null>(null);
   const [generatedRoomCode, setGeneratedRoomCode] = useState<string | null>(initialRoomCode || null);
   const [connectionStatus, setConnectionStatus] = useState(boardSocket ? "" : "Disconnected");
+  const [reconnectAttempt, setReconnectAttempt] = useState(0);
+  const activeSocketRef = useRef<WebSocket | null>(boardSocket);
+  const reconnectTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const MAX_RECONNECT_ATTEMPTS = 8;
   const [isHostConnected, setIsHostConnected] = useState(false);
   const [boardOwnerPlayerName, setBoardOwnerPlayerName] = useState<string | null>(null);
+  const [boardOwnerPlayerId, setBoardOwnerPlayerId] = useState<string | null>(null);
   const [answerRevealed, setAnswerRevealed] = useState(false);
   const [firstBuzzedPlayerName, setFirstBuzzedPlayerName] = useState<string | null>(null);
   const [isDailyDoubleActive, setIsDailyDoubleActive] = useState(false);
@@ -117,10 +122,10 @@ const Game: React.FC<GameProps> = ({ initialRoomCode, initialRoomState, boardSoc
   }, [isDailyDoubleActive]);
 
 
-  // Play correct sound when a player's score increases during gameplay
+  // Play correct sound when a player's score increases due to a clue answer (not manual adjustment)
   useEffect(() => {
     const prevScores = prevPlayerScoresRef.current;
-    if (gamePhase === "playing") {
+    if (gamePhase === "playing" && selectedClueId) {
       for (const player of players) {
         const prev = prevScores[player.id];
         if (prev !== undefined && player.score > prev) {
@@ -129,7 +134,14 @@ const Game: React.FC<GameProps> = ({ initialRoomCode, initialRoomState, boardSoc
       }
     }
     prevPlayerScoresRef.current = Object.fromEntries(players.map((p) => [p.id, p.score]));
-  }, [players, gamePhase]);
+  }, [players, gamePhase, selectedClueId]);
+
+  const wsUrl = useMemo(() => {
+    const envUrl = import.meta.env.VITE_WS_URL;
+    if (envUrl) return envUrl;
+    const protocol = window.location.protocol === "https:" ? "wss" : "ws";
+    return `${protocol}://${window.location.host}/ws`;
+  }, []);
 
   const createCatalogs = (seed: string) =>
     createBoardCatalogsWithExcludes(seed, 6, round1ExcludeClueIds, round2ExcludeClueIds);
@@ -191,6 +203,7 @@ const Game: React.FC<GameProps> = ({ initialRoomCode, initialRoomState, boardSoc
     setCategories(applyAnsweredToCategories(base, room.answeredClueIds || []));
     setIsHostConnected(room.isHostConnected ?? false);
     setBoardOwnerPlayerName(room.boardOwnerPlayerName ?? null);
+    setBoardOwnerPlayerId(room.boardOwnerPlayerId ?? null);
     setSelectedClueId(room.selectedClueId || null);
     setAnswerRevealed(room.answerRevealed ?? false);
     setFirstBuzzedPlayerName(room.firstBuzzedPlayerName ?? null);
@@ -243,13 +256,7 @@ const Game: React.FC<GameProps> = ({ initialRoomCode, initialRoomState, boardSoc
     );
   }, [boardSeed, round1ExcludeClueIds, round2ExcludeClueIds]);
 
-  useEffect(() => {
-    if (!boardSocket) {
-      setIsSynced(false);
-      setConnectionStatus("Disconnected");
-      return;
-    }
-
+  const attachSocketListeners = (socket: WebSocket, roomCode: string, attempt: number) => {
     const handleMessage = (event: MessageEvent) => {
       let message: { type?: string; payload?: any; serverTimestamp?: number } = {};
       try {
@@ -263,25 +270,69 @@ const Game: React.FC<GameProps> = ({ initialRoomCode, initialRoomState, boardSoc
         return;
       }
 
+      if (message.type === "board:roomCreated" && message.payload?.room) {
+        setIsSynced(true);
+        setGeneratedRoomCode(roomCode);
+        setConnectionStatus("");
+        setReconnectAttempt(0);
+        handleRemoteRoomState(message.payload.room, undefined);
+        return;
+      }
+
       if (message.type === "error") {
-        setConnectionStatus(message.payload?.message || "Server error");
+        const errText = message.payload?.message || "Server error";
+        setConnectionStatus(errText);
+        if (errText.includes("Room closed")) {
+          onBackToMenu();
+        }
       }
     };
 
     const handleClose = () => {
       setIsSynced(false);
-      setGeneratedRoomCode(null);
       setConnectionStatus("Disconnected");
+      if (attempt < MAX_RECONNECT_ATTEMPTS) {
+        scheduleReconnect(roomCode, attempt + 1);
+      }
     };
 
-    boardSocket.addEventListener("message", handleMessage);
-    boardSocket.addEventListener("close", handleClose);
+    socket.addEventListener("message", handleMessage);
+    socket.addEventListener("close", handleClose);
+  };
+
+  const scheduleReconnect = (roomCode: string, attempt: number) => {
+    if (reconnectTimerRef.current) clearTimeout(reconnectTimerRef.current);
+    const delayMs = Math.min(500 * Math.pow(2, attempt - 1), 16000);
+    setReconnectAttempt(attempt);
+    setConnectionStatus(`Reconnecting… (${attempt}/${MAX_RECONNECT_ATTEMPTS})`);
+
+    reconnectTimerRef.current = setTimeout(() => {
+      const socket = new WebSocket(wsUrl);
+      activeSocketRef.current = socket;
+
+      socket.addEventListener("open", () => {
+        socket.send(JSON.stringify({ type: "board:rejoinRoom", payload: { roomCode } }));
+      });
+
+      attachSocketListeners(socket, roomCode, attempt);
+    }, delayMs);
+  };
+
+  useEffect(() => {
+    if (!boardSocket) {
+      setIsSynced(false);
+      setConnectionStatus("Disconnected");
+      return;
+    }
+
+    activeSocketRef.current = boardSocket;
+    const roomCode = initialRoomCode;
+    attachSocketListeners(boardSocket, roomCode, 0);
 
     return () => {
-      boardSocket.removeEventListener("message", handleMessage);
-      boardSocket.removeEventListener("close", handleClose);
+      if (reconnectTimerRef.current) clearTimeout(reconnectTimerRef.current);
     };
-  }, [boardSocket, round, boardSeed]);
+  }, [boardSocket]);
 
   const handleClueAnswered = (clueId: string) => {
     if (isSynced) {
@@ -346,8 +397,10 @@ const Game: React.FC<GameProps> = ({ initialRoomCode, initialRoomState, boardSoc
             </div>
           )}
         </div>
-        <div className="board-owner-pill">Owner: {boardOwnerPlayerName ?? "Unassigned"}</div>
         {displayStatus && <div className="board-connection-pill">{displayStatus}</div>}
+      </div>
+      <div className="game-top-bar">
+        <div className="board-owner-pill">Owner: {boardOwnerPlayerName ?? "Unassigned"}</div>
         <button className="back-button" onClick={onBackToMenu}>MENU</button>
       </div>
       {gamePhase === "playing" ? (
@@ -377,7 +430,7 @@ const Game: React.FC<GameProps> = ({ initialRoomCode, initialRoomState, boardSoc
               buzzerDeadlineMs={buzzerDeadlineMs}
             />
           </div>
-          <Scoreboard players={players} firstBuzzedPlayerId={firstBuzzedPlayerId} answerDeadlineMs={answerDeadlineMs} buzzersOpen={buzzersOpen} lockedOutPlayerIds={lockedOutPlayerIds} answerRevealed={answerRevealed} />
+          <Scoreboard players={players} firstBuzzedPlayerId={firstBuzzedPlayerId} answerDeadlineMs={answerDeadlineMs} buzzersOpen={buzzersOpen} lockedOutPlayerIds={lockedOutPlayerIds} answerRevealed={answerRevealed} boardOwnerPlayerId={boardOwnerPlayerId} />
         </>
       ) : (
         <FinalJeopardy
