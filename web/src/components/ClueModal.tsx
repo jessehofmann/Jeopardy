@@ -45,10 +45,43 @@ const ClueModal: React.FC<ClueModalProps> = ({
   const contentRef = useRef<HTMLDivElement>(null);
   const questionRef = useRef<HTMLDivElement>(null);
   const questionWrapperRef = useRef<HTMLDivElement>(null);
+  const returnFocusRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
     setLocalShowAnswer(false);
   }, [clue.id]);
+
+  // Dialog semantics: only the standalone (non-networked) board owns keyboard
+  // dismissal — on the synced audience display the host drives the clue.
+  useEffect(() => {
+    if (isSynced) return;
+    returnFocusRef.current = document.activeElement as HTMLElement | null;
+    contentRef.current?.focus();
+
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        onClose();
+        return;
+      }
+      if (e.key !== "Tab") return;
+      const focusables = contentRef.current?.querySelectorAll<HTMLElement>("button, [href], [tabindex]:not([tabindex='-1'])");
+      if (!focusables || focusables.length === 0) return;
+      const first = focusables[0];
+      const last = focusables[focusables.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    };
+    document.addEventListener("keydown", onKeyDown);
+    return () => {
+      document.removeEventListener("keydown", onKeyDown);
+      returnFocusRef.current?.focus?.();
+    };
+  }, [isSynced, onClose]);
 
   // Fit question text to fill available screen space
   useEffect(() => {
@@ -102,6 +135,7 @@ const ClueModal: React.FC<ClueModalProps> = ({
   useLayoutEffect(() => {
     const el = contentRef.current;
     if (!el || !originRect) return;
+    if (window.matchMedia?.("(prefers-reduced-motion: reduce)").matches) return;
 
     const modalRect = el.getBoundingClientRect();
     if (!modalRect.width || !modalRect.height) return;
@@ -139,6 +173,10 @@ const ClueModal: React.FC<ClueModalProps> = ({
       <div
         ref={contentRef}
         className={`modal-content ${showDailyDouble ? "is-daily-double" : ""}`}
+        role="dialog"
+        aria-modal="true"
+        aria-label={showDailyDouble ? "Daily Double clue" : `Clue for $${clue.value}`}
+        tabIndex={-1}
       >
         {isSynced && buzzerTimeLeft !== null && !firstBuzzedPlayerName && (
           <div className={`modal-buzzer-timer ${buzzerTimeLeft <= 2 ? "is-urgent" : ""}`}>

@@ -144,12 +144,24 @@ const Board: React.FC<BoardProps> = ({
             const clue = category.clues[rowIndex];
             const isRevealed = !revealedCategoryIds || revealedCategoryIds.includes(category.id);
             const isFilled = filledCells.has(clue.id) || boardKey === undefined;
+            const isPickable = allowManualPick && isRevealed && allCategoriesRevealed && !clue.isAnswered;
             return (
               <div
                 key={clue.id}
                 data-clue-id={clue.id}
                 className={`clue-cell${clue.isAnswered ? " answered" : ""}${isFilled ? " is-filled" : ""}${!isRevealed ? " is-hidden-cat" : ""}`}
                 onClick={(e) => isRevealed && handleClueClick(clue, e)}
+                role={isPickable ? "button" : undefined}
+                tabIndex={isPickable ? 0 : undefined}
+                aria-label={isPickable ? `${category.name}, $${clue.value}` : undefined}
+                aria-disabled={clue.isAnswered || undefined}
+                onKeyDown={(e) => {
+                  if (isPickable && (e.key === "Enter" || e.key === " ")) {
+                    e.preventDefault();
+                    setOriginRect((e.currentTarget as HTMLDivElement).getBoundingClientRect());
+                    setSelectedClue(clue);
+                  }
+                }}
               >
                 {isFilled && !clue.isAnswered && `$${clue.value}`}
               </div>

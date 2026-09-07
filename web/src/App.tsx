@@ -297,10 +297,12 @@ const App: React.FC = () => {
         </div>
       )}
       {!audioUnlocked && (
-        <div className="audio-unlock-overlay" onClick={handleUnlockAudio}>
+        <div className="audio-unlock-overlay">
           <div className="audio-unlock-content">
             <img className="audio-unlock-logo" src="/assets/images/JeopardyLogo.png" alt="Jeopardy!" />
-            <button className="audio-unlock-button">CLICK TO START</button>
+            <button className="audio-unlock-button" onClick={handleUnlockAudio} autoFocus>
+              CLICK TO START
+            </button>
           </div>
         </div>
       )}
