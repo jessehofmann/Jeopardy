@@ -132,7 +132,10 @@ const FinalJeopardy: React.FC<FinalJeopardyProps> = ({
   if (gamePhase === "game-over") {
     return (
       <div className="fj-container fj-game-over" key={phaseKey}>
-        <div className="fj-gameover-title">Game Over</div>
+        <div className="fj-title-lockup">
+          <span className="fj-eyebrow">Final Results</span>
+          <h2 className="fj-gameover-title">Game Over</h2>
+        </div>
         <div className="fj-leaderboard">
           {sortedPlayers.map((player, index) => (
             <div key={player.id} className={`fj-lb-row rank-${Math.min(index + 1, 4)}`}>
@@ -140,6 +143,7 @@ const FinalJeopardy: React.FC<FinalJeopardyProps> = ({
                 {ordinal(index + 1)}
               </span>
               <span className="fj-lb-name">{player.name}</span>
+              {index === 0 && <span className="fj-lb-badge">Winner</span>}
               <span className={`fj-lb-score${player.score < 0 ? " is-negative" : ""}`}>
                 {player.score < 0
                   ? `-$${Math.abs(player.score).toLocaleString()}`
