@@ -219,14 +219,10 @@ const HostConsole = ({
                 ))}
               </div>
               <div className="host-actions-grid" style={{ marginTop: "18px" }}>
-                <button
-                  className="primary-action"
-                  disabled={!room.players.every((p) => p.finalWager != null)}
-                  onClick={onRevealFinalQuestion}
-                >
+                <button className="primary-action" onClick={onRevealFinalQuestion}>
                   {room.players.every((p) => p.finalWager != null)
                     ? "Reveal Question"
-                    : `Waiting for wagers… (${room.players.filter((p) => p.finalWager != null).length}/${room.players.length})`}
+                    : `Reveal Question anyway (${room.players.filter((p) => p.finalWager != null).length}/${room.players.length} wagered)`}
                 </button>
               </div>
             </>
@@ -252,14 +248,10 @@ const HostConsole = ({
                 ))}
               </div>
               <div className="host-actions-grid" style={{ marginTop: "18px" }}>
-                <button
-                  className="primary-action"
-                  disabled={!room.players.every((p) => p.finalAnswer != null)}
-                  onClick={onRevealFinalAnswers}
-                >
+                <button className="primary-action" onClick={onRevealFinalAnswers}>
                   {room.players.every((p) => p.finalAnswer != null)
                     ? "Reveal Answers"
-                    : `Waiting for answers… (${room.players.filter((p) => p.finalAnswer != null).length}/${room.players.length})`}
+                    : `Reveal Answers anyway (${room.players.filter((p) => p.finalAnswer != null).length}/${room.players.length} in)`}
                 </button>
               </div>
             </>

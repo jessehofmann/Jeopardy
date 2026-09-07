@@ -238,6 +238,7 @@ function createRoomServer() {
       _answerTimer: null,
       _answerDeadlineMs: null,
       _finalQuestionDeadlineMs: null,
+      _finalQuestionTimer: null,
       isDailyDoubleActive: false,
       dailyDoubleWager: null,
       gamePhase: "playing",
@@ -800,14 +801,21 @@ function createRoomServer() {
       if (room.gamePhase !== "final-category") return;
       room.gamePhase = "final-question";
       room._finalQuestionDeadlineMs = Date.now() + 30000;
+      // Safety net: if a contestant never submits, auto-advance ~2s after the
+      // deadline so the host is never stranded on a permanently-disabled button.
+      clearFinalQuestionTimer(room);
+      room._finalQuestionTimer = setTimeout(() => {
+        room._finalQuestionTimer = null;
+        finalizeFinalQuestion(room);
+        broadcastRoom(room.roomCode);
+      }, 32000);
       broadcastRoom(room.roomCode);
       return;
     }
 
     if (message.type === "host:revealFinalAnswers") {
       if (room.gamePhase !== "final-question") return;
-      room.gamePhase = "final-reveal";
-      room._finalQuestionDeadlineMs = null;
+      finalizeFinalQuestion(room);
       broadcastRoom(room.roomCode);
       return;
     }
@@ -918,6 +926,7 @@ function createRoomServer() {
       room._finalQuestionDeadlineMs = null;
       room._buzzerDeadlineMs = null;
       clearAnswerTimer(room);
+      clearFinalQuestionTimer(room);
       closeBuzzers(room);
 
       room.players = room.players.map((p) => ({
@@ -1049,6 +1058,26 @@ function createRoomServer() {
     }, 30000);
   }
 
+  function clearFinalQuestionTimer(room) {
+    if (room._finalQuestionTimer != null) {
+      clearTimeout(room._finalQuestionTimer);
+      room._finalQuestionTimer = null;
+    }
+  }
+
+  // Move out of the answering phase: fill in any missing answers, then judge.
+  function finalizeFinalQuestion(room) {
+    if (room.gamePhase !== "final-question") return;
+    clearFinalQuestionTimer(room);
+    room.players = room.players.map((p) => ({
+      ...p,
+      finalWager: typeof p.finalWager === "number" ? p.finalWager : 0,
+      finalAnswer: p.finalAnswer != null ? p.finalAnswer : "(no answer)",
+    }));
+    room.gamePhase = "final-reveal";
+    room._finalQuestionDeadlineMs = null;
+  }
+
   function cancelRoomCloseTimer(room) {
     if (room._emptyTimer != null) {
       clearTimeout(room._emptyTimer);
@@ -1071,6 +1100,7 @@ function createRoomServer() {
       room._buzzerTimer = null;
     }
     clearAnswerTimer(room);
+    clearFinalQuestionTimer(room);
 
     for (const connectedId of room.connections) {
       const connected = clients.get(connectedId);
