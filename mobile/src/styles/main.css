@@ -289,9 +289,27 @@ button {
 
 .host-clue-status {
   margin: 8px 0 4px;
-  font-size: 0.95rem;
+  font-size: 1.1rem;
   font-weight: 700;
   color: var(--c-accent);
+}
+
+/* Keep the judge / advance buttons reachable without scrolling the clue back
+   into view — the host is thumbing this one-handed during play. */
+.host-clue-preview .host-actions-grid {
+  position: sticky;
+  bottom: 8px;
+  z-index: 5;
+  padding: 10px;
+  margin-left: -10px;
+  margin-right: -10px;
+  border-radius: 16px;
+  background: rgba(8, 18, 71, 0.92);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 -6px 24px rgba(3, 7, 32, 0.55);
+}
+.host-clue-preview .host-actions-grid button {
+  min-height: 52px;
 }
 
 .host-undo-btn {
@@ -490,6 +508,7 @@ button {
   color: #e5ebff;
   font-weight: 700;
   padding: 12px 10px;
+  min-height: var(--tap);
   text-transform: uppercase;
   letter-spacing: 0.04em;
 }
@@ -512,7 +531,9 @@ button {
   background: rgba(26, 44, 136, 0.48);
   color: #f4d55f;
   font-weight: 700;
+  font-size: 1.05rem;
   padding: 10px 6px;
+  min-height: 56px;
 }
 
 .host-clue-button:disabled {
@@ -682,8 +703,32 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: min(100%, 380px);
+  width: min(100%, 420px);
   align-self: center;
+}
+
+/* Buzzers open (or already buzzed): collapse secondary chrome so the button
+   owns the screen — this is the only thing a contestant should be looking at. */
+.player-card.is-live .player-meta,
+.player-card.is-live .player-score-label {
+  display: none;
+}
+.player-card.is-live .player-score-display {
+  margin: 0;
+}
+.player-card.is-live .player-score-value {
+  font-size: 1.4rem;
+}
+.player-card.is-live .buzzer-wrapper {
+  width: min(100%, 520px);
+}
+.player-card.is-live .buzzer-button {
+  font-size: clamp(2.4rem, 9vw, 4rem);
+}
+.player-card.is-live h1,
+.player-card.is-live .player-name-sig {
+  font-size: 1.3rem;
+  max-height: 44px;
 }
 
 .buzzer-wrapper::before,

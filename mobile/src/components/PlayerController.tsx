@@ -234,7 +234,7 @@ const PlayerController = ({
 
       {/* ── Regular buzzer view ── */}
       {room.gamePhase === "playing" && (
-        <section className="player-card">
+        <section className={`player-card${room.buzzersOpen || hasBuzzed ? " is-live" : ""}`}>
           <p className="eyebrow">You are playing as</p>
           {showingSig ? (
             <img
