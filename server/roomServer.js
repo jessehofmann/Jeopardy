@@ -196,7 +196,14 @@ function createRoomServer() {
     const roomState = toRoomState(roomCode);
     for (const clientId of room.connections) {
       const client = clients.get(clientId);
-      if (client) {
+      if (!client) {
+        continue;
+      }
+      // The host needs the Final Jeopardy clue while players are still wagering;
+      // everyone else only sees it once it is officially revealed.
+      if (clientId === room.hostId && room.gamePhase === "final-category" && room._finalQuestion) {
+        send(client.ws, "room:state", { room: { ...roomState, finalQuestion: room._finalQuestion } });
+      } else {
         send(client.ws, "room:state", { room: roomState });
       }
     }

@@ -481,6 +481,17 @@ test("Final Jeopardy clue can be swapped before wagering", () => {
   assert.equal(server.toRoomState("FJRR").finalCategory, "SECOND");
 });
 
+test("host sees the Final Jeopardy clue while wagering; players do not", () => {
+  const server = createRoomServer();
+  const { host, p1 } = startGameWithTwoPlayers(server, "FJHQ");
+
+  sendMessage(host, "host:startFinalJeopardy", { category: "PRESIDENTS", question: "He was the 35th president", answer: "JFK" });
+
+  assert.equal(lastMessageOfType(host, "room:state").payload.room.gamePhase, "final-category");
+  assert.equal(lastMessageOfType(host, "room:state").payload.room.finalQuestion, "He was the 35th president");
+  assert.equal(lastMessageOfType(p1, "room:state").payload.room.finalQuestion, null);
+});
+
 test("clue value comes from the clue id, not a tampered payload", () => {
   const server = createRoomServer();
   const { host, p1 } = startGameWithTwoPlayers(server, "TMPR");
