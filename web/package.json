@@ -5,7 +5,8 @@
   "main": "src/App.tsx",
   "scripts": {
     "start": "vite",
-    "build": "vite build"
+    "build": "vite build",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "@types/react": "^19.2.14",

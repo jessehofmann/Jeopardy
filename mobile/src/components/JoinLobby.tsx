@@ -9,12 +9,18 @@ interface JoinLobbyProps {
 }
 
 const JoinLobby = ({ defaultRoomCode, onJoinAsHost, onJoinRoom }: JoinLobbyProps) => {
-  const [roomCode, setRoomCode] = useState(defaultRoomCode);
+  // Room codes are drawn from an alphabet with no O/I/0/1 (they read ambiguously).
+  const cleanCode = (v: string) =>
+    v.toUpperCase().replace(/[^A-HJ-NP-Z2-9]/g, "").slice(0, 4);
+  const hadAmbiguous = (v: string) => /[OI01]/i.test(v);
+
+  const [codeHint, setCodeHint] = useState(false);
+  const [roomCode, setRoomCode] = useState(cleanCode(defaultRoomCode));
   const [playerName, setPlayerName] = useState("");
   const [nameSignature, setNameSignature] = useState<string | null>(null);
   const [hostRoomCode, setHostRoomCode] = useState("");
 
-  const canJoin = roomCode.trim().length === 4 && playerName.trim().length > 0 && nameSignature !== null;
+  const canJoin = roomCode.trim().length === 4 && playerName.trim().length > 0;
 
   return (
     <main className="landing-layout">
@@ -31,11 +37,19 @@ const JoinLobby = ({ defaultRoomCode, onJoinAsHost, onJoinRoom }: JoinLobbyProps
         <input
           id="room-code"
           className="room-code-input"
+          inputMode="text"
+          autoCapitalize="characters"
           maxLength={4}
           value={roomCode}
-          onChange={(e) => setRoomCode(e.target.value.toUpperCase())}
+          onChange={(e) => {
+            setCodeHint(hadAmbiguous(e.target.value));
+            setRoomCode(cleanCode(e.target.value));
+          }}
           placeholder="ABCD"
         />
+        {codeHint && (
+          <p className="join-code-hint">Room codes never use the letters O or I, or the digits 0 or 1.</p>
+        )}
 
         <label className="field-label" htmlFor="player-name">Your Name</label>
         <input
@@ -48,7 +62,7 @@ const JoinLobby = ({ defaultRoomCode, onJoinAsHost, onJoinRoom }: JoinLobbyProps
         />
 
         <SignaturePad
-          label="Sign your name to join"
+          label="Sign your name (optional)"
           onChange={setNameSignature}
         />
 
@@ -71,14 +85,16 @@ const JoinLobby = ({ defaultRoomCode, onJoinAsHost, onJoinRoom }: JoinLobbyProps
         <input
           id="host-room-code"
           className="room-code-input"
+          autoCapitalize="characters"
           maxLength={4}
           value={hostRoomCode}
-          onChange={(e) => setHostRoomCode(e.target.value.toUpperCase())}
+          onChange={(e) => setHostRoomCode(cleanCode(e.target.value))}
           placeholder="ABCD"
         />
         <div className="hero-actions">
           <button
             className="primary-action"
+            disabled={hostRoomCode.length !== 4}
             onClick={() => onJoinAsHost(hostRoomCode)}
           >
             Join as Host

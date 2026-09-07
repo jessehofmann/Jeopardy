@@ -10,9 +10,12 @@ interface MainMenuProps {
   isStartingGame: boolean;
   startGameError: string;
   apiBase: string;
+  resumeRoom: string | null;
+  onResume: (roomCode: string) => void;
+  onDismissResume: () => void;
 }
 
-const MainMenu: React.FC<MainMenuProps> = ({ onStartGame, onRejoinGame, onHowToPlay, onCustomBoard, pendingCustomBoardName, isStartingGame, startGameError, apiBase }) => {
+const MainMenu: React.FC<MainMenuProps> = ({ onStartGame, onRejoinGame, onHowToPlay, onCustomBoard, pendingCustomBoardName, isStartingGame, startGameError, apiBase, resumeRoom, onResume, onDismissResume }) => {
   const [roomCode, setRoomCode] = useState(randomRoomCode);
   const [roomExists, setRoomExists] = useState(false);
   const normalizedRoomCode = roomCode.toUpperCase().replace(/[^A-Z0-9]/g, "").slice(0, 4);
@@ -39,6 +42,18 @@ const MainMenu: React.FC<MainMenuProps> = ({ onStartGame, onRejoinGame, onHowToP
           alt="Jeopardy logo"
         />
       </div>
+      {resumeRoom && resumeRoom !== normalizedRoomCode && (
+        <div className="menu-resume-banner">
+          <span>Resume game in room <strong>{resumeRoom}</strong>?</span>
+          <div className="menu-resume-actions">
+            <button className="menu-button rejoin" disabled={isStartingGame} onClick={() => onResume(resumeRoom)}>
+              {isStartingGame ? "RESUMING…" : "RESUME"}
+            </button>
+            <button className="menu-resume-dismiss" onClick={onDismissResume} aria-label="Dismiss">✕</button>
+          </div>
+        </div>
+      )}
+
       <div className="menu-room-panel">
         <label className="menu-room-label" htmlFor="menu-room-code">
           {isRejoin ? "Rejoin this room" : "Your room code — players use it to join"}

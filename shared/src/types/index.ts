@@ -11,6 +11,8 @@ export interface Player {
 export interface RoomPlayer extends Player {
     status: PlayerStatus;
     isConnected: boolean;
+    /** Kicked by the host — kept (with score) so the kick can be undone. */
+    isRemoved?: boolean;
     nameSignatureDataUrl?: string | null;
     showNameSignature?: boolean;
     finalWager?: number | null;
@@ -85,5 +87,7 @@ export interface RoomState {
     finalQuestionDeadlineMs: number | null;
     customBoard?: CustomBoard | null;
     boardIsReady?: boolean;
+    /** True when the host's last correct/incorrect ruling can still be undone. */
+    canUndoRuling?: boolean;
     players: RoomPlayer[];
 }

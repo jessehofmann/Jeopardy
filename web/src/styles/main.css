@@ -57,6 +57,39 @@ body {
   margin-bottom: 4px;
 }
 
+.menu-resume-banner {
+  width: min(320px, 82vw);
+  margin-bottom: 12px;
+  padding: 12px 14px;
+  border: 2px solid rgba(120, 200, 255, 0.6);
+  border-radius: 8px;
+  background: rgba(10, 40, 90, 0.55);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-size: 0.9rem;
+  color: #e6f2ff;
+}
+.menu-resume-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.menu-resume-actions .menu-button {
+  width: auto;
+  flex: 1;
+}
+.menu-resume-dismiss {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: rgba(255, 255, 255, 0.7);
+  border-radius: 6px;
+  width: 36px;
+  height: 36px;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
 .menu-room-panel {
   display: flex;
   flex-direction: column;
@@ -1032,7 +1065,7 @@ body {
   flex-direction: column;
   align-items: center;
   min-width: clamp(104px, 14vw, 180px);
-  height: clamp(58px, 9vh, 92px);
+  height: clamp(64px, 10vh, 100px);
   overflow: hidden;
   border: 2px solid var(--c-gold);
   border-radius: 4px;
@@ -1047,7 +1080,7 @@ body {
   align-items: center;
   justify-content: center;
   width: 100%;
-  min-height: 0;
+  min-height: 1.6rem;
   overflow: hidden;
 }
 
@@ -1079,8 +1112,10 @@ body {
 
 .player-name-sig {
   max-width: 100%;
-  max-height: 2.8rem;
+  max-height: 100%;
   object-fit: contain;
+  /* White ink on transparent — shadow keeps it readable on the dark card */
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.6));
 }
 
 .player-points {
@@ -1123,6 +1158,24 @@ body {
   display: flex;
   flex-direction: column;
   overflow: hidden;
+}
+
+.board-round-complete {
+  position: absolute;
+  left: 50%;
+  bottom: 16px;
+  transform: translateX(-50%);
+  padding: 10px 22px;
+  border-radius: 999px;
+  background: rgba(4, 4, 122, 0.9);
+  border: 2px solid var(--c-gold);
+  color: var(--c-gold);
+  font-family: var(--font-barlow);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-size: clamp(0.75rem, 1.6vh, 1.05rem);
+  white-space: nowrap;
 }
 
 /* CLUE MODAL */
@@ -1329,6 +1382,38 @@ body {
   gap: 16px;
   flex-wrap: wrap;
   justify-content: center;
+}
+
+/* Compact standings so the audience keeps track of the game during Final */
+.fj-standings {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 18px;
+  justify-content: center;
+  margin-top: clamp(16px, 4vh, 40px);
+  padding-top: clamp(10px, 2vh, 20px);
+  border-top: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+.fj-standing {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.fj-standing-name {
+  font-family: var(--font-text);
+  font-size: clamp(0.7rem, 1.5vh, 1rem);
+  letter-spacing: 1px;
+  color: rgba(255, 255, 255, 0.7);
+  text-transform: uppercase;
+}
+
+.fj-standing-score {
+  font-family: var(--font-teko);
+  font-size: clamp(1rem, 2.4vh, 1.7rem);
+  font-weight: 700;
+  color: var(--c-gold);
 }
 
 .fj-player-chip {
@@ -1596,6 +1681,7 @@ body {
   max-width: 100%;
   max-height: clamp(32px, 5vh, 56px);
   object-fit: contain;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.5));
 }
 
 .fj-card-answer {
@@ -1929,7 +2015,23 @@ body {
   right: 10px;
   z-index: 9999;
   display: flex;
+  align-items: center;
   gap: 6px;
+}
+
+.top-ctrl-volume {
+  width: 90px;
+  height: 40px;
+  accent-color: var(--c-gold);
+  cursor: pointer;
+  opacity: 0.65;
+  transition: opacity 0.15s;
+}
+.top-ctrl-volume:hover {
+  opacity: 1;
+}
+@media (max-width: 640px) {
+  .top-ctrl-volume { width: 64px; }
 }
 
 .top-ctrl-btn {

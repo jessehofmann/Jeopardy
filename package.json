@@ -13,7 +13,9 @@
     "build:web": "npm --prefix web run build",
     "test": "npm --prefix shared test && npm --prefix server test",
     "test:catalog": "npm --prefix shared test",
-    "test:catalog:strict": "node shared/scripts/validate-catalog.mjs --strict"
+    "test:catalog:strict": "npm --prefix shared run test:strict",
+    "typecheck": "npm --prefix web run typecheck && npm --prefix mobile run typecheck",
+    "catalog:sample": "npm --prefix shared run sample --"
   },
   "devDependencies": {
     "concurrently": "^9.2.1"

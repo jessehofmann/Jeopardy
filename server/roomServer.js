@@ -144,6 +144,7 @@ function createRoomServer() {
     const players = room.players.map((player) => ({
       ...player,
       isConnected: player.isConnected !== false,
+      isRemoved: player.isRemoved === true,
     }));
 
     return {
@@ -181,6 +182,7 @@ function createRoomServer() {
       finalQuestionDeadlineMs: room.gamePhase === "final-question" ? (room._finalQuestionDeadlineMs ?? null) : null,
       customBoard: room.customBoard ?? null,
       boardIsReady: room.boardIsReady ?? false,
+      canUndoRuling: Boolean(room._lastRuling),
       players,
     };
   }
@@ -349,6 +351,7 @@ function createRoomServer() {
           ? "ready"
           : "locked";
       existingPlayer.isConnected = true;
+      existingPlayer.isRemoved = false; // a rejoin cancels a prior kick
 
       const reconnectingClient = clients.get(clientId);
       if (!reconnectingClient) {
@@ -489,6 +492,66 @@ function createRoomServer() {
     }));
   }
 
+  // ─── Undo a ruling ──────────────────────────────────────────────────────────
+  // Correct/Incorrect touch score, board owner, lockouts, buzzers and the
+  // reveal flag all at once. Rather than reverse each by hand, snapshot the
+  // relevant fields just before a ruling; "Undo" restores that snapshot.
+  function snapshotForUndo(room) {
+    return {
+      scores: room.players.map((p) => ({ id: p.id, score: p.score })),
+      boardOwnerPlayerId: room.boardOwnerPlayerId,
+      answerRevealed: room.answerRevealed,
+      buzzersOpen: room.buzzersOpen,
+      firstBuzzedPlayerId: room.firstBuzzedPlayerId,
+      lockedOutPlayerIds: [...(room.lockedOutPlayerIds || [])],
+      selectedClueId: room.selectedClueId,
+      selectedClueValue: room.selectedClueValue,
+      isDailyDoubleActive: room.isDailyDoubleActive,
+      dailyDoubleWager: room.dailyDoubleWager,
+    };
+  }
+
+  function recordRuling(room) {
+    room._lastRuling = snapshotForUndo(room);
+  }
+
+  function restoreRuling(room) {
+    const snap = room._lastRuling;
+    if (!snap) return false;
+    const byId = new Map(snap.scores.map((s) => [s.id, s.score]));
+    room.players = room.players.map((p) =>
+      byId.has(p.id) ? { ...p, score: byId.get(p.id) } : p
+    );
+    room.boardOwnerPlayerId = snap.boardOwnerPlayerId;
+    room.answerRevealed = snap.answerRevealed;
+    room.firstBuzzedPlayerId = snap.firstBuzzedPlayerId;
+    room.lockedOutPlayerIds = [...snap.lockedOutPlayerIds];
+    room.selectedClueId = snap.selectedClueId;
+    room.selectedClueValue = snap.selectedClueValue;
+    room.isDailyDoubleActive = snap.isDailyDoubleActive;
+    room.dailyDoubleWager = snap.dailyDoubleWager;
+    clearAnswerTimer(room);
+    if (snap.buzzersOpen && room.selectedClueId) {
+      openBuzzers(room);
+    } else {
+      closeBuzzers(room);
+      room.players = room.players.map((p) => ({
+        ...p,
+        status: p.id === room.firstBuzzedPlayerId ? "buzzed" : "locked",
+      }));
+    }
+    room._lastRuling = null;
+    return true;
+  }
+
+  // Generated ids look like "r1-the-solar-system-600-2" — round prefix, category
+  // slug, dollar value, option index. Returns 0 for anything else (custom
+  // boards, tests) so the caller falls back to the supplied value.
+  function clueValueFromId(clueId) {
+    const m = /^r[12]-.+-(\d+)-\d+$/.exec(String(clueId));
+    return m ? parseInt(m[1], 10) : 0;
+  }
+
   function handleHostControl(client, message) {
     const room = rooms.get(client.roomCode);
     if (!room || client.role !== "host") {
@@ -499,12 +562,71 @@ function createRoomServer() {
     if (message.type === "host:updateScore") {
       const { playerId, delta } = message.payload || {};
       const player = room.players.find((item) => item.id === playerId);
-      if (!player || typeof delta !== "number") {
+      if (!player || typeof delta !== "number" || !Number.isFinite(delta)) {
         sendError(client.ws, "Invalid score update");
         return;
       }
 
-      player.score += delta;
+      // Guard against fat-fingered edits: cap a single step and the running total.
+      const step = Math.max(-100000, Math.min(100000, Math.round(delta)));
+      player.score = Math.max(-1000000, Math.min(1000000, player.score + step));
+      broadcastRoom(room.roomCode);
+      return;
+    }
+
+    if (message.type === "host:undoRuling") {
+      if (!restoreRuling(room)) {
+        sendError(client.ws, "Nothing to undo");
+        return;
+      }
+      broadcastRoom(room.roomCode);
+      return;
+    }
+
+    if (message.type === "host:reopenClue") {
+      if (room.gamePhase !== "playing") return;
+      if (room.selectedClueId) {
+        sendError(client.ws, "Close the current clue first");
+        return;
+      }
+      const clueId = room.answeredClueIds[room.answeredClueIds.length - 1];
+      if (!clueId) {
+        sendError(client.ws, "No clue to reopen");
+        return;
+      }
+      room.answeredClueIds = room.answeredClueIds.slice(0, -1);
+      room.selectedClueId = clueId;
+      room.selectedClueValue = clueValueFromId(clueId);
+      room.answerRevealed = false;
+      room.firstBuzzedPlayerId = null;
+      room.lockedOutPlayerIds = [];
+      room.isDailyDoubleActive = false;
+      room.dailyDoubleWager = null;
+      room._lastRuling = null;
+      clearAnswerTimer(room);
+      closeBuzzers(room);
+      broadcastRoom(room.roomCode);
+      return;
+    }
+
+    if (message.type === "host:awardClue") {
+      if (!room.selectedClueId || room.selectedClueValue <= 0) {
+        sendError(client.ws, "No active clue to award");
+        return;
+      }
+      const { playerId } = message.payload || {};
+      const player = room.players.find((p) => p.id === playerId);
+      if (!player) {
+        sendError(client.ws, "Unknown player");
+        return;
+      }
+      recordRuling(room);
+      clearAnswerTimer(room);
+      player.score += room.selectedClueValue;
+      room.boardOwnerPlayerId = player.id;
+      room.firstBuzzedPlayerId = null;
+      room.answerRevealed = true;
+      closeBuzzers(room);
       broadcastRoom(room.roomCode);
       return;
     }
@@ -583,10 +705,17 @@ function createRoomServer() {
       }
 
       room.selectedClueId = clueId.trim();
-      room.selectedClueValue = typeof clueValue === "number" ? clueValue : 0;
+      // Trust the value encoded in the clue id (r{round}-{cat}-{value}-{opt})
+      // over the client-supplied number; fall back to the payload for custom
+      // boards whose ids don't carry a numeric segment.
+      const idValue = clueValueFromId(room.selectedClueId);
+      room.selectedClueValue = idValue > 0
+        ? idValue
+        : (typeof clueValue === "number" && clueValue >= 0 ? Math.floor(clueValue) : 0);
       room.answerRevealed = false;
       room.firstBuzzedPlayerId = null;
       room.lockedOutPlayerIds = [];
+      room._lastRuling = null;
       if (typeof buzzerDurationMs === "number" && buzzerDurationMs >= 1000) {
         room.buzzerDurationMs = Math.min(Math.floor(buzzerDurationMs), 30000);
       }
@@ -629,6 +758,7 @@ function createRoomServer() {
         return;
       }
 
+      recordRuling(room);
       clearAnswerTimer(room);
 
       if (room.isDailyDoubleActive) {
@@ -664,7 +794,7 @@ function createRoomServer() {
 
       // Check if any eligible players remain — if not, just close buzzers
       const allLockedOut = room.players
-        .filter((p) => p.isConnected !== false)
+        .filter((p) => p.isConnected !== false && !p.isRemoved)
         .every((p) => room.lockedOutPlayerIds.includes(p.id));
 
       if (allLockedOut) {
@@ -678,6 +808,7 @@ function createRoomServer() {
     }
 
     if (message.type === "host:revealAnswer") {
+      if (!room.answerRevealed) recordRuling(room);
       clearAnswerTimer(room);
       if (!room.answerRevealed) {
         if (room.isDailyDoubleActive) {
@@ -718,6 +849,7 @@ function createRoomServer() {
       room.lockedOutPlayerIds = [];
       room.isDailyDoubleActive = false;
       room.dailyDoubleWager = null;
+      room._lastRuling = null;
       room.players = room.players.map((player) => ({ ...player, status: "locked" }));
       broadcastRoom(room.roomCode);
       return;
@@ -755,8 +887,9 @@ function createRoomServer() {
     }
 
     if (message.type === "host:startFinalJeopardy") {
-      if (room.gamePhase !== "playing") {
-        sendError(client.ws, "Final Jeopardy already started");
+      // "playing" starts it; "final-category" swaps the clue before wagering.
+      if (room.gamePhase !== "playing" && room.gamePhase !== "final-category") {
+        sendError(client.ws, "Final Jeopardy already underway");
         return;
       }
 
@@ -855,28 +988,66 @@ function createRoomServer() {
     }
 
     if (message.type === "host:endGame") {
-      const endRoomCode = room.roomCode;
-      for (const connectedId of room.connections) {
-        const connected = clients.get(connectedId);
-        if (connected) {
-          connected.roomCode = null;
-          connected.role = null;
-          connected.playerId = null;
-          sendError(connected.ws, "Room closed.");
-        }
-      }
-      if (room._buzzerTimer != null) {
-        clearTimeout(room._buzzerTimer);
-        room._buzzerTimer = null;
-      }
+      // Show the final scoreboard rather than tearing the room down, so scores
+      // stay visible and "New Game (same players)" is still possible.
       clearAnswerTimer(room);
-      rooms.delete(endRoomCode);
+      clearFinalQuestionTimer(room);
+      closeBuzzers(room);
+      room.selectedClueId = null;
+      room.selectedClueValue = 0;
+      room.answerRevealed = false;
+      room.isDailyDoubleActive = false;
+      room.dailyDoubleWager = null;
+      room._lastRuling = null;
+      room.gamePhase = "game-over";
+      broadcastRoom(room.roomCode);
+      return;
+    }
+
+    if (message.type === "host:closeRoom") {
+      closeRoom(room.roomCode);
+      return;
+    }
+
+    if (message.type === "host:setBoardOwner") {
+      const { playerId } = message.payload || {};
+      const player = room.players.find((p) => p.id === playerId && !p.isRemoved);
+      if (!player) {
+        sendError(client.ws, "Unknown player");
+        return;
+      }
+      room.boardOwnerPlayerId = player.id;
+      broadcastRoom(room.roomCode);
+      return;
+    }
+
+    if (message.type === "host:voidDailyDouble") {
+      if (!room.isDailyDoubleActive) return;
+      recordRuling(room);
+      room.isDailyDoubleActive = false;
+      room.dailyDoubleWager = null;
+      room.answerRevealed = true;
+      closeBuzzers(room);
+      broadcastRoom(room.roomCode);
+      return;
+    }
+
+    if (message.type === "host:resetLockouts") {
+      if (!room.selectedClueId) return;
+      recordRuling(room);
+      room.lockedOutPlayerIds = [];
+      if (!room.answerRevealed && !room.firstBuzzedPlayerId && !room.isDailyDoubleActive) {
+        openBuzzers(room);
+      }
+      broadcastRoom(room.roomCode);
       return;
     }
 
     if (message.type === "host:kickPlayer") {
       const targetId = message.payload?.playerId;
       if (!targetId) return;
+      const target = room.players.find((p) => p.id === targetId);
+      if (!target) return;
       const targetClientId = room.playerConnectionById.get(targetId);
       if (targetClientId) {
         const targetClient = clients.get(targetClientId);
@@ -889,16 +1060,28 @@ function createRoomServer() {
         room.connections.delete(targetClientId);
       }
       room.playerConnectionById.delete(targetId);
-      room.players = room.players.filter((p) => p.id !== targetId);
+      // Soft-remove: keep the record (and score) so an accidental kick can be
+      // undone with "Restore", and a rejoin by the same name comes right back.
+      target.isRemoved = true;
+      target.isConnected = false;
+      target.status = "locked";
       if (room.boardOwnerPlayerId === targetId) {
-        room.boardOwnerPlayerId = room.players[0]?.id ?? null;
-        room.boardOwnerPlayerName = room.players[0]?.name ?? null;
+        const next = room.players.find((p) => !p.isRemoved);
+        room.boardOwnerPlayerId = next?.id ?? null;
       }
       if (room.firstBuzzedPlayerId === targetId) {
         room.firstBuzzedPlayerId = null;
-        room.firstBuzzedPlayerName = null;
       }
       room.lockedOutPlayerIds = room.lockedOutPlayerIds.filter((id) => id !== targetId);
+      broadcastRoom(room.roomCode);
+      return;
+    }
+
+    if (message.type === "host:restorePlayer") {
+      const target = room.players.find((p) => p.id === message.payload?.playerId);
+      if (!target || !target.isRemoved) return;
+      target.isRemoved = false;
+      if (!room.boardOwnerPlayerId) room.boardOwnerPlayerId = target.id;
       broadcastRoom(room.roomCode);
       return;
     }
@@ -1023,6 +1206,7 @@ function createRoomServer() {
       if (!room.firstBuzzedPlayerId || room.answerRevealed) return;
 
       // Auto-mark incorrect: deduct points, lock player out, reopen for others
+      recordRuling(room);
       const buzzedId = room.firstBuzzedPlayerId;
       if (room.selectedClueValue > 0) {
         const player = room.players.find((p) => p.id === buzzedId);
@@ -1034,7 +1218,7 @@ function createRoomServer() {
       room.firstBuzzedPlayerId = null;
 
       const allLockedOut = room.players
-        .filter((p) => p.isConnected !== false)
+        .filter((p) => p.isConnected !== false && !p.isRemoved)
         .every((p) => room.lockedOutPlayerIds.includes(p.id));
 
       if (allLockedOut) {
@@ -1051,11 +1235,18 @@ function createRoomServer() {
 
   function scheduleRoomClose(room, roomCode) {
     if (room._emptyTimer != null) return; // already scheduled
+    // A lobby that empties out can go quickly; a room with a game in progress
+    // gets a long grace so a host whose phone slept can walk back in.
+    const gameInProgress =
+      room.gamePhase !== "playing" ||
+      Boolean(room.selectedClueId) ||
+      (room.answeredClueIds && room.answeredClueIds.length > 0);
+    const delay = gameInProgress ? 5 * 60 * 1000 : 30 * 1000;
     room._emptyTimer = setTimeout(() => {
       if (rooms.has(roomCode)) {
         closeRoom(roomCode);
       }
-    }, 30000);
+    }, delay);
   }
 
   function clearFinalQuestionTimer(room) {
@@ -1228,6 +1419,19 @@ function createRoomServer() {
       return;
     }
 
+    // Lightweight flood guard: a sliding 10s window, generous enough for normal
+    // play (rapid score taps, buzzer mashing) but a ceiling on abuse.
+    const now = Date.now();
+    if (!client._msgWindowStart || now - client._msgWindowStart > 10000) {
+      client._msgWindowStart = now;
+      client._msgCount = 0;
+    }
+    client._msgCount += 1;
+    if (client._msgCount > 120) {
+      if (client._msgCount === 121) sendError(client.ws, "Slow down");
+      return;
+    }
+
     if (message.type === "board:createRoom") {
       const result = createRoomForBoard(clientId, message.payload || {});
       if (!result.ok) {
@@ -1317,6 +1521,30 @@ function createRoomServer() {
       const rawDataUrl = String(message.payload?.finalAnswerDataUrl || "");
       player.finalAnswerDataUrl = rawDataUrl.startsWith("data:image/") && rawDataUrl.length < 65536
         ? rawDataUrl : null;
+      broadcastRoom(room.roomCode);
+      return;
+    }
+
+    if (message.type === "player:updateName") {
+      const room = client.roomCode ? rooms.get(client.roomCode) : null;
+      if (!room || !client.playerId) return;
+      const player = room.players.find((p) => p.id === client.playerId);
+      if (!player) return;
+
+      if (!String(message.payload?.name || "").trim()) {
+        sendError(client.ws, "Name can't be empty");
+        return;
+      }
+      const nextName = normalizePlayerName(message.payload?.name);
+      const clash = room.players.find(
+        (p) => p.id !== player.id && p.name.toLowerCase() === nextName.toLowerCase()
+      );
+      if (clash) {
+        sendError(client.ws, "That name is already in use in this room");
+        return;
+      }
+
+      player.name = nextName;
       broadcastRoom(room.roomCode);
       return;
     }

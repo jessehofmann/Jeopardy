@@ -1,0 +1,38 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      - name: Install dependencies
+        run: |
+          npm install
+          npm install --prefix web
+          npm install --prefix mobile
+          npm install --prefix server
+          npm install --prefix shared
+
+      - name: Catalog validation + generation (strict)
+        run: npm run test:catalog:strict
+
+      - name: Server tests
+        run: npm --prefix server test
+
+      - name: Typecheck web + mobile
+        run: npm run typecheck
+
+      - name: Build web + companion
+        run: |
+          npm run build:web
+          npm run build:companion

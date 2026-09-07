@@ -8,6 +8,51 @@ interface SignaturePadProps {
 
 const CANVAS_W = 600;
 const CANVAS_H = 200;
+
+/**
+ * Exports the drawing cropped to its ink bounding box (plus a small margin), so
+ * downstream `object-fit: contain` displays the strokes filling their box
+ * instead of a tiny sliver floating in 600x200 of mostly-empty canvas — which,
+ * in the small scoreboard cells, was getting clipped ("names cut off").
+ */
+function exportTrimmed(canvas: HTMLCanvasElement): string {
+  const ctx = canvas.getContext("2d")!;
+  let data: Uint8ClampedArray;
+  try {
+    data = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
+  } catch {
+    return canvas.toDataURL("image/png");
+  }
+  let minX = canvas.width;
+  let minY = canvas.height;
+  let maxX = -1;
+  let maxY = -1;
+  for (let y = 0; y < canvas.height; y += 1) {
+    for (let x = 0; x < canvas.width; x += 1) {
+      if (data[(y * canvas.width + x) * 4 + 3] !== 0) {
+        if (x < minX) minX = x;
+        if (x > maxX) maxX = x;
+        if (y < minY) minY = y;
+        if (y > maxY) maxY = y;
+      }
+    }
+  }
+  if (maxX < 0) return canvas.toDataURL("image/png"); // nothing drawn
+
+  const margin = 12;
+  minX = Math.max(0, minX - margin);
+  minY = Math.max(0, minY - margin);
+  maxX = Math.min(canvas.width - 1, maxX + margin);
+  maxY = Math.min(canvas.height - 1, maxY + margin);
+  const w = maxX - minX + 1;
+  const h = maxY - minY + 1;
+
+  const out = document.createElement("canvas");
+  out.width = w;
+  out.height = h;
+  out.getContext("2d")!.drawImage(canvas, minX, minY, w, h, 0, 0, w, h);
+  return out.toDataURL("image/png");
+}
 const SignaturePad = ({
   onChange,
   inkColor = "white",
@@ -60,7 +105,7 @@ const SignaturePad = ({
   const endDraw = () => {
     if (!isDrawing.current) return;
     isDrawing.current = false;
-    onChange(canvasRef.current!.toDataURL("image/png"));
+    onChange(exportTrimmed(canvasRef.current!));
   };
 
   const clear = () => {
