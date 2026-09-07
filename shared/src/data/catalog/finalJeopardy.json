@@ -1,0 +1,216 @@
+[
+  {
+    "category": "WORLD HISTORY",
+    "question": "Signed by King John in 1215, this document was the first to establish that even a king must answer to the law",
+    "answer": "Magna Carta"
+  },
+  {
+    "category": "SCIENCE & NATURE",
+    "question": "The only metal that is liquid at standard room temperature, its chemical symbol is Hg",
+    "answer": "Mercury"
+  },
+  {
+    "category": "AMERICAN LITERATURE",
+    "question": "This Herman Melville novel opens with the line: 'Call me Ishmael'",
+    "answer": "Moby-Dick"
+  },
+  {
+    "category": "WORLD GEOGRAPHY",
+    "question": "Though Brazil's largest city is São Paulo, this city has served as its capital since 1960",
+    "answer": "Brasília"
+  },
+  {
+    "category": "THE ARTS",
+    "question": "Leonardo da Vinci painted this portrait, believed to depict Lisa Gherardini, between 1503 and 1519",
+    "answer": "The Mona Lisa"
+  },
+  {
+    "category": "U.S. PRESIDENTS",
+    "question": "Elected in 1884 and again in 1892, he was the first U.S. president to serve two non-consecutive terms in office",
+    "answer": "Grover Cleveland"
+  },
+  {
+    "category": "ASTRONOMY",
+    "question": "At about 4.24 light-years away, this is the closest known star to our solar system",
+    "answer": "Proxima Centauri"
+  },
+  {
+    "category": "CLASSIC FILM",
+    "question": "Orson Welles directed and starred in this 1941 film, widely regarded as one of the greatest movies ever made",
+    "answer": "Citizen Kane"
+  },
+  {
+    "category": "ANCIENT HISTORY",
+    "question": "Built for Pharaoh Khufu around 2560 BC, this structure was the tallest man-made structure on Earth for over 3,800 years",
+    "answer": "The Great Pyramid of Giza"
+  },
+  {
+    "category": "MUSIC",
+    "question": "Born Robyn Fenty in Barbados, this artist became one of the best-selling music artists in history",
+    "answer": "Rihanna",
+    "volatile": true
+  },
+  {
+    "category": "SHAKESPEARE",
+    "question": "This Shakespeare play contains the line 'To be, or not to be, that is the question'",
+    "answer": "Hamlet"
+  },
+  {
+    "category": "THE ANIMAL KINGDOM",
+    "question": "The only order of mammals capable of true sustained flight",
+    "answer": "Bats (order Chiroptera)"
+  },
+  {
+    "category": "WORLD LEADERS",
+    "question": "She served as Prime Minister of the United Kingdom from 1979 to 1990, the first woman to hold that office",
+    "answer": "Margaret Thatcher"
+  },
+  {
+    "category": "MATHEMATICS",
+    "question": "Named after a Greek mathematician, this theorem states that in a right triangle the square of the hypotenuse equals the sum of the squares of the other two sides",
+    "answer": "The Pythagorean theorem"
+  },
+  {
+    "category": "INVENTIONS",
+    "question": "Alexander Graham Bell is credited with patenting this invention in 1876",
+    "answer": "The telephone"
+  },
+  {
+    "category": "MYTHOLOGY",
+    "question": "In Greek mythology, this hero performed 12 labors as penance, including slaying the Nemean lion and capturing Cerberus from the underworld",
+    "answer": "Hercules (Heracles)"
+  },
+  {
+    "category": "WORLD LITERATURE",
+    "question": "Miguel de Cervantes wrote this 1605 Spanish novel, widely considered the first modern novel, about a man who believes himself to be a knight-errant",
+    "answer": "Don Quixote"
+  },
+  {
+    "category": "AMERICAN HISTORY",
+    "question": "This 1944 Supreme Court case upheld the constitutionality of Japanese American internment during World War II; it was formally overturned in 2018",
+    "answer": "Korematsu v. United States"
+  },
+  {
+    "category": "SCIENCE",
+    "question": "James Watson and Francis Crick described this molecule's double-helix structure in a 1953 paper in Nature, using X-ray data provided by Rosalind Franklin",
+    "answer": "DNA"
+  },
+  {
+    "category": "CLASSIC TELEVISION",
+    "question": "This AMC series, starring Bryan Cranston as a mild-mannered chemistry teacher who builds a drug empire, won 16 Emmy Awards including two for Outstanding Drama Series",
+    "answer": "Breaking Bad"
+  },
+  {
+    "category": "SPORTS HISTORY",
+    "question": "On October 3, 1951, Bobby Thomson hit a three-run home run off Ralph Branca in the ninth inning, winning the pennant for the New York Giants; it is known as 'The Shot Heard Round the World'",
+    "answer": "The 1951 National League pennant race"
+  },
+  {
+    "category": "GEOGRAPHY",
+    "question": "This Russian lake, the world's deepest and most ancient, holds roughly one-fifth of all the liquid fresh water on the surface of the Earth",
+    "answer": "Lake Baikal"
+  },
+  {
+    "category": "CLASSICAL MUSIC",
+    "question": "Ludwig van Beethoven composed his monumental Ninth Symphony, including the 'Ode to Joy' finale, after he had become completely this",
+    "answer": "Deaf"
+  },
+  {
+    "category": "BROADWAY",
+    "question": "This 1979 Stephen Sondheim musical, set in Victorian London, follows a vengeful barber and his neighbor Mrs. Lovett, who bakes his victims into meat pies",
+    "answer": "Sweeney Todd: The Demon Barber of Fleet Street"
+  },
+  {
+    "category": "WORLD GEOGRAPHY",
+    "question": "This African country is home to both the world's largest hot desert to the north and a tropical rainforest to the south, and is Africa's most populous nation",
+    "answer": "Nigeria",
+    "volatile": true
+  },
+  {
+    "category": "PHYSICS",
+    "question": "Albert Einstein's Special Theory of Relativity, published in 1905, is summarized by the famous equation relating energy, mass, and this constant",
+    "answer": "The speed of light (E=mc²)"
+  },
+  {
+    "category": "THE PRESIDENCY",
+    "question": "Four U.S. presidents were assassinated in office: Lincoln, Garfield, McKinley, and this president, who was killed in Dallas, Texas in 1963",
+    "answer": "John F. Kennedy"
+  },
+  {
+    "category": "LITERATURE",
+    "question": "In 1851, this author wrote a letter saying his new novel would be 'a book of the horrible texture of real life'; that book was Moby-Dick",
+    "answer": "Herman Melville"
+  },
+  {
+    "category": "FILM HISTORY",
+    "question": "Gone with the Wind, still the all-time domestic box office champion when adjusted for inflation, was set primarily in this U.S. state during the Civil War",
+    "answer": "Georgia",
+    "volatile": true
+  },
+  {
+    "category": "ECONOMICS",
+    "question": "Adam Smith's 1776 work laying the theoretical foundations of modern capitalism and the free market is known by this title",
+    "answer": "The Wealth of Nations"
+  },
+  {
+    "category": "WORLD HISTORY",
+    "question": "The Berlin Conference of 1884–1885 formalized the division of Africa among European powers; this process of seizing African territory for colonies became known as this",
+    "answer": "The Scramble for Africa"
+  },
+  {
+    "category": "POP CULTURE",
+    "question": "She surpassed Elvis Presley's record for the most weeks at #1 on the Billboard Hot 100, with her 2022 album 'Midnights' and the 10-week chart-topper 'Anti-Hero'",
+    "answer": "Taylor Swift",
+    "volatile": true
+  },
+  {
+    "category": "SCIENCE",
+    "question": "Albert Einstein's general theory of relativity predicted this phenomenon — confirmed in 2015 by LIGO detectors — in which accelerating masses create ripples in the fabric of spacetime",
+    "answer": "Gravitational waves"
+  },
+  {
+    "category": "AMERICAN HISTORY",
+    "question": "The Emancipation Proclamation took effect on January 1, 1863, but enslaved people in Texas didn't learn of their freedom until June 19, 1865 — a date now celebrated as this federal holiday",
+    "answer": "Juneteenth"
+  },
+  {
+    "category": "WORLD GEOGRAPHY",
+    "question": "This country, the world's largest by land area, spans 11 time zones and shares borders with 14 other nations",
+    "answer": "Russia"
+  },
+  {
+    "category": "LITERATURE",
+    "question": "Mary Shelley wrote this 1818 novel — often cited as the first science fiction novel — about a scientist who creates a living creature from dead tissue and is horrified by his creation",
+    "answer": "Frankenstein"
+  },
+  {
+    "category": "FILM",
+    "question": "Steven Spielberg's 1993 film depicting the Holocaust and the rescue of over 1,200 Jewish workers by a German industrialist won seven Academy Awards including Best Picture",
+    "answer": "Schindler's List"
+  },
+  {
+    "category": "CLASSICAL MUSIC",
+    "question": "This Austrian composer, who died at just 35, wrote over 600 works including 41 symphonies, 27 piano concertos, and the operas Don Giovanni and The Magic Flute",
+    "answer": "Wolfgang Amadeus Mozart"
+  },
+  {
+    "category": "TECHNOLOGY",
+    "question": "This open-source operating system kernel, created by Linus Torvalds in 1991 as a hobby project, now powers the majority of the world's servers, all Android phones, and most supercomputers",
+    "answer": "Linux"
+  },
+  {
+    "category": "SPORTS",
+    "question": "Michael Jordan led the Chicago Bulls to six NBA championships in two separate three-peats — the first in 1991, 1992, 1993, and the second after a brief baseball retirement in this trio of years",
+    "answer": "1996, 1997, 1998"
+  },
+  {
+    "category": "MYTHOLOGY",
+    "question": "In Arthurian legend, the Knights of the Round Table quested for this sacred object, said to be the cup used by Jesus at the Last Supper and believed to grant eternal youth or divine grace",
+    "answer": "The Holy Grail"
+  },
+  {
+    "category": "ANCIENT HISTORY",
+    "question": "This Macedonian king, tutored by Aristotle, conquered an empire stretching from Greece to northwestern India before dying in Babylon in 323 BC at age 32",
+    "answer": "Alexander the Great"
+  }
+]

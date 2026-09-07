@@ -306,6 +306,7 @@ function createRoomServer() {
       return { ok: false, message: "Room not found" };
     }
 
+    cancelRoomCloseTimer(room);
     room.connections.add(clientId);
     room.hostId = clientId;
 
@@ -337,6 +338,7 @@ function createRoomServer() {
         return { ok: false, message: "That name is already in use in this room" };
       }
 
+      cancelRoomCloseTimer(room);
       room.connections.add(clientId);
       room.playerConnectionById.set(existingPlayer.id, clientId);
 
@@ -389,6 +391,7 @@ function createRoomServer() {
       showNameSignature: false,
     };
 
+    cancelRoomCloseTimer(room);
     room.players.push(player);
     room.playerConnectionById.set(player.id, clientId);
     room.connections.add(clientId);
@@ -863,6 +866,35 @@ function createRoomServer() {
       return;
     }
 
+    if (message.type === "host:kickPlayer") {
+      const targetId = message.payload?.playerId;
+      if (!targetId) return;
+      const targetClientId = room.playerConnectionById.get(targetId);
+      if (targetClientId) {
+        const targetClient = clients.get(targetClientId);
+        if (targetClient) {
+          sendError(targetClient.ws, "You were removed from the game.");
+          targetClient.roomCode = null;
+          targetClient.role = null;
+          targetClient.playerId = null;
+        }
+        room.connections.delete(targetClientId);
+      }
+      room.playerConnectionById.delete(targetId);
+      room.players = room.players.filter((p) => p.id !== targetId);
+      if (room.boardOwnerPlayerId === targetId) {
+        room.boardOwnerPlayerId = room.players[0]?.id ?? null;
+        room.boardOwnerPlayerName = room.players[0]?.name ?? null;
+      }
+      if (room.firstBuzzedPlayerId === targetId) {
+        room.firstBuzzedPlayerId = null;
+        room.firstBuzzedPlayerName = null;
+      }
+      room.lockedOutPlayerIds = room.lockedOutPlayerIds.filter((id) => id !== targetId);
+      broadcastRoom(room.roomCode);
+      return;
+    }
+
     if (message.type === "host:restartGame") {
       // Reset game state but keep room, players, and connections
       room.gamePhase = "playing";
@@ -1008,12 +1040,32 @@ function createRoomServer() {
     broadcastRoom(room.roomCode);
   }
 
+  function scheduleRoomClose(room, roomCode) {
+    if (room._emptyTimer != null) return; // already scheduled
+    room._emptyTimer = setTimeout(() => {
+      if (rooms.has(roomCode)) {
+        closeRoom(roomCode);
+      }
+    }, 30000);
+  }
+
+  function cancelRoomCloseTimer(room) {
+    if (room._emptyTimer != null) {
+      clearTimeout(room._emptyTimer);
+      room._emptyTimer = null;
+    }
+  }
+
   function closeRoom(roomCode) {
     const room = rooms.get(roomCode);
     if (!room) {
       return;
     }
 
+    if (room._emptyTimer != null) {
+      clearTimeout(room._emptyTimer);
+      room._emptyTimer = null;
+    }
     if (room._buzzerTimer != null) {
       clearTimeout(room._buzzerTimer);
       room._buzzerTimer = null;
@@ -1069,6 +1121,11 @@ function createRoomServer() {
         closeRoom(roomCode);
         return;
       }
+      // Only board remains — schedule close if no one rejoins within 30s
+      const hasOtherUsers = [...room.connections].some((id) => id !== room.boardId);
+      if (!hasOtherUsers) {
+        scheduleRoomClose(room, roomCode);
+      }
       broadcastRoom(roomCode);
       return;
     }
@@ -1078,6 +1135,11 @@ function createRoomServer() {
       if (room.connections.size === 0) {
         closeRoom(roomCode);
         return;
+      }
+      // Only board remains — schedule close if no one rejoins within 30s
+      const hasOtherUsers = [...room.connections].some((id) => id !== room.boardId);
+      if (!hasOtherUsers) {
+        scheduleRoomClose(room, roomCode);
       }
       broadcastRoom(roomCode);
     }

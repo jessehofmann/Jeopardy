@@ -20,6 +20,7 @@ interface HostConsoleProps {
   onEndGame: () => void;
   onRestartGame: () => void;
   onCloseRoom: () => void;
+  onKickPlayer: (playerId: string) => void;
   onRevealCategory: (categoryId: string) => void;
   onOpenBuzzers: () => void;
   onSkipToRound2: () => void;
@@ -43,6 +44,7 @@ const HostConsole = ({
   onEndGame,
   onRestartGame,
   onCloseRoom,
+  onKickPlayer,
   onRevealCategory,
   onOpenBuzzers,
   onSkipToRound2,
@@ -71,6 +73,8 @@ const HostConsole = ({
   const [wagerInput, setWagerInput] = useState<string>("");
   const [buzzerTimerSeconds, setBuzzerTimerSeconds] = useState<number>(5);
   const [confirmSkip, setConfirmSkip] = useState<null | "round2" | "final">(null);
+  const [confirmEndGame, setConfirmEndGame] = useState(false);
+  const [confirmKick, setConfirmKick] = useState<{ id: string; name: string } | null>(null);
 
   const roundMaxValue = isRoundTwo ? 2000 : 1000;
   const boardOwner = room.players.find((p) => p.id === room.boardOwnerPlayerId) ?? null;
@@ -255,7 +259,7 @@ const HostConsole = ({
               </div>
               {room.players.every((p) => p.finalRevealed) && (
                 <div className="host-actions-grid" style={{ marginTop: "14px" }}>
-                  <button className="primary-action" onClick={onEndGame}>End Game</button>
+                  <button className="primary-action" onClick={() => setConfirmEndGame(true)}>End Game</button>
                 </div>
               )}
             </>
@@ -478,7 +482,10 @@ const HostConsole = ({
                 className={`host-score-card ${room.boardOwnerPlayerId === player.id ? "is-owner" : ""}`}
                 key={player.id}
               >
-                <div className="host-score-name">{player.name}</div>
+                <div className="host-score-name-row">
+                  <div className="host-score-name">{player.name}</div>
+                  <button className="host-kick-btn" onClick={() => setConfirmKick({ id: player.id, name: player.name })} title="Remove player">✕</button>
+                </div>
                 <div className="host-score-points">
                   {player.score < 0 ? `-$${Math.abs(player.score)}` : `$${player.score}`}
                 </div>
@@ -541,6 +548,32 @@ const HostConsole = ({
                 setConfirmSkip(null);
               }}>Yes, Skip</button>
               <button className="host-confirm-cancel" onClick={() => setConfirmSkip(null)}>Cancel</button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {confirmEndGame && (
+        <div className="host-confirm-overlay">
+          <div className="host-confirm-dialog">
+            <div className="host-confirm-title">End Game?</div>
+            <div className="host-confirm-subtitle">This will close the room for all players.</div>
+            <div className="host-confirm-buttons">
+              <button className="host-confirm-yes" onClick={() => { onEndGame(); setConfirmEndGame(false); }}>End Game</button>
+              <button className="host-confirm-cancel" onClick={() => setConfirmEndGame(false)}>Cancel</button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {confirmKick && (
+        <div className="host-confirm-overlay">
+          <div className="host-confirm-dialog">
+            <div className="host-confirm-title">Remove {confirmKick.name}?</div>
+            <div className="host-confirm-subtitle">They will be disconnected from the game.</div>
+            <div className="host-confirm-buttons">
+              <button className="host-confirm-yes" onClick={() => { onKickPlayer(confirmKick.id); setConfirmKick(null); }}>Remove</button>
+              <button className="host-confirm-cancel" onClick={() => setConfirmKick(null)}>Cancel</button>
             </div>
           </div>
         </div>

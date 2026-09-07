@@ -95,6 +95,15 @@ const App: React.FC = () => {
     return `${protocol}://${window.location.host}/ws`;
   }, []);
 
+  // Derive HTTP base from wsUrl for room-check API calls
+  const apiBase = useMemo(() => {
+    const envUrl = import.meta.env.VITE_WS_URL;
+    if (envUrl) {
+      return envUrl.replace(/^wss:/, "https:").replace(/^ws:/, "http:").replace(/\/ws$/, "");
+    }
+    return ""; // same origin, Vite proxies /rooms in dev
+  }, []);
+
   const cleanupBoardSession = () => {
     if (lobbyListenerRef.current && boardSocketRef.current) {
       boardSocketRef.current.removeEventListener("message", lobbyListenerRef.current);
@@ -301,6 +310,7 @@ const App: React.FC = () => {
           pendingCustomBoardName={pendingCustomBoardName}
           isStartingGame={isStartingGame}
           startGameError={startGameError}
+          apiBase={apiBase}
         />
       )}
       {page === "lobby" && lobbyRoomState && (

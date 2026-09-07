@@ -11,7 +11,9 @@
     "start:all": "concurrently -k -n SERVER,WEB,COMPANION -c green,cyan,magenta \"npm run start:server\" \"npm run start:web\" \"npm run start:companion\"",
     "build:companion": "npm --prefix mobile run build",
     "build:web": "npm --prefix web run build",
-    "test": "npm --prefix server test"
+    "test": "npm --prefix shared test && npm --prefix server test",
+    "test:catalog": "npm --prefix shared test",
+    "test:catalog:strict": "node shared/scripts/validate-catalog.mjs --strict"
   },
   "devDependencies": {
     "concurrently": "^9.2.1"
