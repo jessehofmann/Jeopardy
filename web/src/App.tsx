@@ -20,8 +20,8 @@ function getRecentClueHistory() {
 
     const parsed = JSON.parse(raw);
     return {
-      round1: Array.isArray(parsed?.round1) ? parsed.round1.map((id) => String(id)) : [],
-      round2: Array.isArray(parsed?.round2) ? parsed.round2.map((id) => String(id)) : [],
+      round1: Array.isArray(parsed?.round1) ? parsed.round1.map((id: unknown) => String(id)) : [],
+      round2: Array.isArray(parsed?.round2) ? parsed.round2.map((id: unknown) => String(id)) : [],
     };
   } catch {
     return { round1: [] as string[], round2: [] as string[] };
