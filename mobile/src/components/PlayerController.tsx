@@ -3,6 +3,12 @@ import type { RoomState } from "../types";
 import SignaturePad from "./SignaturePad";
 import Icon from "./Icon";
 
+const ordinalPlace = (n: number) => {
+  const s = ["th", "st", "nd", "rd"];
+  const v = n % 100;
+  return n + (s[(v - 20) % 10] || s[v] || s[0]);
+};
+
 const vibrate = (pattern: number | number[]) => {
   try {
     navigator.vibrate?.(pattern);
@@ -148,9 +154,24 @@ const PlayerController = ({
     if (room.isDailyDoubleActive) return "Daily Double! The board owner is answering.";
     if (isLockedOut) return "You answered incorrectly — locked out until the next clue.";
     if (hasBuzzed) return "Buzz sent. Wait for the host to call on you.";
-    if (!room.buzzersOpen) return "Host has the buzzers locked.";
+    if (!room.buzzersOpen) {
+      return room.selectedClueId && !room.answerRevealed
+        ? "Get ready — buzzers open any second."
+        : "Host has the buzzers locked.";
+    }
     return "Buzzers are open. Tap as soon as you know it.";
-  }, [hasBuzzed, isLockedOut, room.buzzersOpen, room.isDailyDoubleActive]);
+  }, [hasBuzzed, isLockedOut, room.buzzersOpen, room.isDailyDoubleActive, room.selectedClueId, room.answerRevealed]);
+
+  const getReady = Boolean(
+    room.selectedClueId && !room.buzzersOpen && !room.answerRevealed &&
+    !hasBuzzed && !isLockedOut && !room.isDailyDoubleActive
+  );
+
+  const myRank = useMemo(() => {
+    const active = room.players.filter((p) => !p.isRemoved).sort((a, b) => b.score - a.score);
+    const idx = active.findIndex((p) => p.id === playerId);
+    return idx >= 0 && active.length > 1 ? { place: idx + 1, of: active.length } : null;
+  }, [room.players, playerId]);
 
   const handleLockWager = () => {
     if (!isWagerValid) return;
@@ -301,17 +322,20 @@ const PlayerController = ({
                 : "$0"}
             </span>
           </div>
+          {myRank && (
+            <p className="player-rank-line">{ordinalPlace(myRank.place)} of {myRank.of}</p>
+          )}
           {room.selectedClueValue > 0 && !room.answerRevealed && (
             <p className="player-clue-value">${room.selectedClueValue.toLocaleString()} clue in play</p>
           )}
           <p className="player-status-copy" aria-live="polite">{statusText}</p>
-          <div className={`buzzer-wrapper${!hasBuzzed && !isLocked ? " is-active" : ""}${hasBuzzed ? " is-buzzed" : ""}${isLockedOut ? " is-locked-out" : ""}`}>
+          <div className={`buzzer-wrapper${!hasBuzzed && !isLocked ? " is-active" : ""}${hasBuzzed ? " is-buzzed" : ""}${isLockedOut ? " is-locked-out" : ""}${getReady ? " is-get-ready" : ""}`}>
             <button
               className={`buzzer-button${hasBuzzed || isLocked ? " is-disabled" : ""}${isLockedOut ? " is-locked-out" : ""}`}
               disabled={hasBuzzed || isLocked}
               onClick={handleBuzz}
             >
-              {hasBuzzed ? "BUZZED!" : isLockedOut ? "LOCKED OUT" : "BUZZ IN"}
+              {hasBuzzed ? "BUZZED!" : isLockedOut ? "LOCKED OUT" : getReady ? "GET READY" : "BUZZ IN"}
             </button>
           </div>
           {(hasBuzzed || room.buzzersOpen) && !isLockedOut && (
@@ -476,6 +500,29 @@ const PlayerController = ({
           ) : (
             <div className="player-fj-locked">
               <p className="player-fj-instruction">Waiting for your answer to be revealed...</p>
+            </div>
+          )}
+
+          {room.players.some((p) => p.finalRevealed) && (
+            <div className="player-fj-standings">
+              {[...room.players]
+                .filter((p) => !p.isRemoved)
+                .sort((a, b) => b.score - a.score)
+                .map((p, i) => (
+                  <div
+                    key={p.id}
+                    className={`player-fj-standing${p.id === playerId ? " is-me" : ""}`}
+                  >
+                    <span className="player-fj-standing-rank">{i + 1}</span>
+                    <span className="player-fj-standing-name">{p.name}</span>
+                    <span className="player-fj-standing-score">
+                      {p.score < 0
+                        ? `-$${Math.abs(p.score).toLocaleString()}`
+                        : `$${p.score.toLocaleString()}`}
+                      {p.finalRevealed ? "" : " …"}
+                    </span>
+                  </div>
+                ))}
             </div>
           )}
         </section>

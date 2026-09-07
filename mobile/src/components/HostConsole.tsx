@@ -29,6 +29,10 @@ interface HostConsoleProps {
   onUndoRuling: () => void;
   onReopenClue: () => void;
   onAwardClue: (playerId: string) => void;
+  onResetLockouts: () => void;
+  onVoidDailyDouble: () => void;
+  onSetBoardOwner: (playerId: string) => void;
+  onRestorePlayer: (playerId: string) => void;
 }
 
 const HostConsole = ({
@@ -57,6 +61,10 @@ const HostConsole = ({
   onUndoRuling,
   onReopenClue,
   onAwardClue,
+  onResetLockouts,
+  onVoidDailyDouble,
+  onSetBoardOwner,
+  onRestorePlayer,
 }: HostConsoleProps) => {
   const isInFinalJeopardy = room.gamePhase !== "playing";
   const isRoundTwo = room.roundLabel.toLowerCase().includes("double") || room.roundLabel.toLowerCase().includes("round 2");
@@ -136,6 +144,7 @@ const HostConsole = ({
   const hasBuzzedPlayer = Boolean(room.firstBuzzedPlayerId);
   const wagerSubmitted = room.dailyDoubleWager != null; // 0 is a valid wager
 
+  const activePlayers = room.players.filter((p) => !p.isRemoved);
   const answeredSet = new Set(room.answeredClueIds);
   const totalCluesThisRound = catalog.reduce((n, c) => n + c.clues.length, 0);
   const cluesLeft = catalog.reduce(
@@ -199,14 +208,17 @@ const HostConsole = ({
               ? [{ key: "next", label: "Next Clue", onClick: onCloseClue, variant: "primary" }]
               : [];
 
-  const handleStartFinalJeopardy = () => {
+  const [fjNonce, setFjNonce] = useState(0);
+  const handleStartFinalJeopardy = (reroll = false) => {
     const customFJ = room.customBoard?.finalJeopardy;
-    if (customFJ) {
+    if (customFJ && !reroll) {
       onStartFinalJeopardy(customFJ.category, customFJ.question, customFJ.answer);
-    } else {
-      const fj = pickFinalJeopardyClue(seed);
-      onStartFinalJeopardy(fj.category, fj.question, fj.answer);
+      return;
     }
+    const nextNonce = reroll ? fjNonce + 1 : fjNonce;
+    if (reroll) setFjNonce(nextNonce);
+    const fj = pickFinalJeopardyClue(nextNonce ? `${seed}:${nextNonce}` : seed);
+    onStartFinalJeopardy(fj.category, fj.question, fj.answer);
   };
 
   return (
@@ -241,7 +253,7 @@ const HostConsole = ({
               )}
               <p className="host-fj-phase-note">Players are wagering...</p>
               <div className="host-fj-player-chips">
-                {room.players.map((p) => (
+                {activePlayers.map((p) => (
                   <div key={p.id} className={`host-fj-chip ${p.finalWager != null ? "is-ready" : ""}`}>
                     <span>{p.name}</span>
                     <span>{p.finalWager != null ? "✓" : "…"}</span>
@@ -250,11 +262,20 @@ const HostConsole = ({
               </div>
               <div className="host-actions-grid" style={{ marginTop: "18px" }}>
                 <button className="primary-action" onClick={onRevealFinalQuestion}>
-                  {room.players.every((p) => p.finalWager != null)
+                  {activePlayers.every((p) => p.finalWager != null)
                     ? "Reveal Question"
-                    : `Reveal Question anyway (${room.players.filter((p) => p.finalWager != null).length}/${room.players.length} wagered)`}
+                    : `Reveal Question anyway (${activePlayers.filter((p) => p.finalWager != null).length}/${activePlayers.length} wagered)`}
                 </button>
               </div>
+              {!room.customBoard?.finalJeopardy && (
+                <button
+                  className="host-undo-btn"
+                  style={{ margin: "10px auto 0" }}
+                  onClick={() => handleStartFinalJeopardy(true)}
+                >
+                  <Icon name="undo" size={14} /> Different clue
+                </button>
+              )}
             </>
           )}
 
@@ -270,7 +291,7 @@ const HostConsole = ({
               )}
               <p className="host-fj-phase-note">Players are writing answers...</p>
               <div className="host-fj-player-chips">
-                {room.players.map((p) => (
+                {activePlayers.map((p) => (
                   <div key={p.id} className={`host-fj-chip ${p.finalAnswer != null ? "is-ready" : ""}`}>
                     <span>{p.name}</span>
                     <span>{p.finalAnswer != null ? "✓" : "…"}</span>
@@ -279,9 +300,9 @@ const HostConsole = ({
               </div>
               <div className="host-actions-grid" style={{ marginTop: "18px" }}>
                 <button className="primary-action" onClick={onRevealFinalAnswers}>
-                  {room.players.every((p) => p.finalAnswer != null)
+                  {activePlayers.every((p) => p.finalAnswer != null)
                     ? "Reveal Answers"
-                    : `Reveal Answers anyway (${room.players.filter((p) => p.finalAnswer != null).length}/${room.players.length} in)`}
+                    : `Reveal Answers anyway (${activePlayers.filter((p) => p.finalAnswer != null).length}/${activePlayers.length} in)`}
                 </button>
               </div>
             </>
@@ -301,7 +322,7 @@ const HostConsole = ({
                 </div>
               )}
               <div className="host-fj-judge-list">
-                {room.players.map((p) => (
+                {activePlayers.map((p) => (
                   <div key={p.id} className={`host-fj-judge-card ${p.finalRevealed ? (p.finalAnswerCorrect ? "is-correct" : "is-incorrect") : ""}`}>
                     <div className="host-fj-judge-header">
                       <span className="host-fj-judge-name">{p.name}</span>
@@ -338,7 +359,7 @@ const HostConsole = ({
                   </div>
                 ))}
               </div>
-              {room.players.every((p) => p.finalRevealed) && (
+              {activePlayers.every((p) => p.finalRevealed) && (
                 <div className="host-actions-grid" style={{ marginTop: "14px" }}>
                   <button className="primary-action" onClick={() => setConfirmEndGame(true)}>End Game</button>
                 </div>
@@ -377,6 +398,21 @@ const HostConsole = ({
               </button>
             </>
           )}
+        </section>
+      )}
+
+      {/* ── Round complete prompt ── */}
+      {!isInFinalJeopardy && !hasActiveClue && cluesLeft === 0 && totalCluesThisRound > 0 && (
+        <section className="panel host-round-complete">
+          <p className="panel-label">{isRoundTwo ? "Double Jeopardy complete" : "Round 1 complete"}</p>
+          <h2>Every clue has been played.</h2>
+          <button
+            className="primary-action"
+            style={{ width: "100%", marginTop: 12 }}
+            onClick={() => (isRoundTwo ? setConfirmSkip("final") : onSkipToRound2())}
+          >
+            {isRoundTwo ? "Start Final Jeopardy →" : "Start Round 2 →"}
+          </button>
         </section>
       )}
 
@@ -512,6 +548,23 @@ const HostConsole = ({
                   onChange={(e) => setWagerInput(e.target.value)}
                   placeholder="Enter wager amount"
                 />
+                <div className="host-dd-presets">
+                  {[
+                    { label: "True DD", value: Math.max(previewClue.clue.value, boardOwnerScore) },
+                    { label: `$${previewClue.clue.value}`, value: previewClue.clue.value },
+                    { label: "Half", value: Math.floor(wagerMax / 2) },
+                    { label: "Max", value: wagerMax },
+                  ].map((preset) => (
+                    <button
+                      key={preset.label}
+                      type="button"
+                      className="host-dd-preset"
+                      onClick={() => setWagerInput(String(preset.value))}
+                    >
+                      {preset.label}
+                    </button>
+                  ))}
+                </div>
               </div>
             )}
 
@@ -531,7 +584,7 @@ const HostConsole = ({
                 <div className="host-award-row">
                   <span className="host-award-label">Award to</span>
                   <div className="host-award-buttons">
-                    {room.players.map((p) => (
+                    {activePlayers.map((p) => (
                       <button
                         key={p.id}
                         className="host-award-btn"
@@ -570,6 +623,19 @@ const HostConsole = ({
                 <Icon name="undo" size={14} /> Undo last ruling
               </button>
             )}
+
+            <div className="host-clue-escape-hatches">
+              {room.isDailyDoubleActive && !room.answerRevealed && (
+                <button className="host-mini-btn" onClick={onVoidDailyDouble}>
+                  Void Daily Double
+                </button>
+              )}
+              {!room.isDailyDoubleActive && room.lockedOutPlayerIds.length > 0 && !room.answerRevealed && (
+                <button className="host-mini-btn" onClick={onResetLockouts}>
+                  Reset lockouts ({room.lockedOutPlayerIds.length})
+                </button>
+              )}
+            </div>
           </div>
         )}
       </section>
@@ -586,20 +652,28 @@ const HostConsole = ({
         </div>
 
         <div className="host-scoreboard">
-          {room.players.map((player) => {
+          {room.players.filter((p) => !p.isRemoved).map((player) => {
             const adjustValue = hasActiveClue && room.selectedClueValue > 0
               ? room.selectedClueValue
               : 100;
             const adjustLabel = hasActiveClue && room.selectedClueValue > 0
               ? `$${adjustValue}`
               : "100";
+            const isOwner = room.boardOwnerPlayerId === player.id;
             return (
-              <div
-                className={`host-score-card ${room.boardOwnerPlayerId === player.id ? "is-owner" : ""}`}
-                key={player.id}
-              >
+              <div className={`host-score-card ${isOwner ? "is-owner" : ""}`} key={player.id}>
                 <div className="host-score-name-row">
                   <div className="host-score-name">{player.name}</div>
+                  {!isOwner && (
+                    <button
+                      className="host-owner-btn"
+                      onClick={() => onSetBoardOwner(player.id)}
+                      aria-label={`Give the board to ${player.name}`}
+                      title="Make board owner"
+                    >
+                      <Icon name="star" size={13} />
+                    </button>
+                  )}
                   <button className="host-kick-btn" onClick={() => setConfirmKick({ id: player.id, name: player.name })} aria-label={`Remove ${player.name}`}><Icon name="close" size={14} /></button>
                 </div>
                 <div className="host-score-points">
@@ -613,6 +687,17 @@ const HostConsole = ({
             );
           })}
         </div>
+
+        {room.players.some((p) => p.isRemoved) && (
+          <div className="host-removed-list">
+            <span className="host-award-label">Removed</span>
+            {room.players.filter((p) => p.isRemoved).map((p) => (
+              <button key={p.id} className="host-mini-btn" onClick={() => onRestorePlayer(p.id)}>
+                Restore {p.name} (${Math.abs(p.score)})
+              </button>
+            ))}
+          </div>
+        )}
       </section>
 
       {!isInFinalJeopardy && (

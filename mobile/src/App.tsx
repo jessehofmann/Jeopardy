@@ -60,6 +60,29 @@ interface SessionCredentials {
 const MAX_RECONNECT_ATTEMPTS = 6;
 const RECONNECT_BASE_MS = 500;
 
+const SESSION_KEY = "jeopardy.companion.session.v1";
+const blankSession = (): SessionCredentials => ({
+  role: null, roomCode: "", playerName: "Contestant", playerId: null, nameSignatureDataUrl: null,
+});
+function loadSession(): SessionCredentials {
+  try {
+    const raw = localStorage.getItem(SESSION_KEY);
+    if (raw) {
+      const s = JSON.parse(raw);
+      if (s && (s.role === "host" || s.role === "player") && typeof s.roomCode === "string" && s.roomCode) {
+        return { ...blankSession(), ...s };
+      }
+    }
+  } catch { /* ignore */ }
+  return blankSession();
+}
+function saveSession(s: SessionCredentials) {
+  try {
+    if (s.role && s.roomCode) localStorage.setItem(SESSION_KEY, JSON.stringify(s));
+    else localStorage.removeItem(SESSION_KEY);
+  } catch { /* ignore */ }
+}
+
 const App = () => {
   const socketRef = useRef<WebSocket | null>(null);
   const [screen, setScreen] = useState<CompanionScreen>("landing");
@@ -81,9 +104,11 @@ const App = () => {
   // Reconnection state
   const reconnectAttemptRef = useRef(0);
   const reconnectTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const sessionRef = useRef<SessionCredentials>({
-    role: null, roomCode: "", playerName: "Contestant", playerId: null, nameSignatureDataUrl: null,
-  });
+  const sessionRef = useRef<SessionCredentials>(loadSession());
+  const setSession = (next: SessionCredentials) => {
+    sessionRef.current = next;
+    saveSession(next);
+  };
 
   const currentPlayer = useMemo(() => room.players.find((player) => player.id === playerId) ?? null, [playerId, room.players]);
 
@@ -172,7 +197,7 @@ const App = () => {
         }
         if (message.payload?.playerId) {
           setPlayerId(message.payload.playerId);
-          sessionRef.current.playerId = message.payload.playerId;
+          setSession({ ...sessionRef.current, playerId: message.payload.playerId });
         }
         setScreen("player");
         setServerMessage(`Joined room ${message.payload?.roomCode ?? ""}.`);
@@ -196,11 +221,12 @@ const App = () => {
       if (message.type === "error") {
         const text = message.payload?.message || "Server error";
         setServerMessage(text);
-        if (text.includes("Room closed")) {
+        if (text.includes("Room closed") || text.includes("removed from the game") || text.includes("Room not found")) {
           setScreen("landing");
           setRoom(fallbackRoom);
           setPlayerId(null);
-          sessionRef.current = { role: null, roomCode: "", playerName: "Contestant", playerId: null, nameSignatureDataUrl: null };
+          setSession(blankSession());
+          reconnectAttemptRef.current = MAX_RECONNECT_ATTEMPTS;
         }
       }
     });
@@ -215,14 +241,14 @@ const App = () => {
   }, []);
 
   const handleJoinAsHost = (roomCode: string) => {
-    sessionRef.current = { role: "host", roomCode, playerName: "Host", playerId: null, nameSignatureDataUrl: null };
+    setSession({ role: "host", roomCode, playerName: "Host", playerId: null, nameSignatureDataUrl: null });
     sendMessage("host:joinRoom", { roomCode });
   };
 
   const handleJoinRoom = (nextRoomCode: string, nextPlayerName: string, nameSignatureDataUrl: string | null) => {
     const name = nextPlayerName || "Contestant";
     setPlayerName(name);
-    sessionRef.current = { role: "player", roomCode: nextRoomCode, playerName: name, playerId: null, nameSignatureDataUrl };
+    setSession({ role: "player", roomCode: nextRoomCode, playerName: name, playerId: null, nameSignatureDataUrl });
     sendMessage("player:joinRoom", {
       roomCode: nextRoomCode,
       playerName: nextPlayerName,
@@ -277,6 +303,22 @@ const App = () => {
     for (const categoryId of categoryIds) {
       sendMessage("host:revealCategory", { categoryId });
     }
+  };
+
+  const resetLockouts = () => {
+    sendMessage("host:resetLockouts");
+  };
+
+  const voidDailyDouble = () => {
+    sendMessage("host:voidDailyDouble");
+  };
+
+  const setBoardOwner = (targetPlayerId: string) => {
+    sendMessage("host:setBoardOwner", { playerId: targetPlayerId });
+  };
+
+  const restorePlayer = (targetPlayerId: string) => {
+    sendMessage("host:restorePlayer", { playerId: targetPlayerId });
   };
 
   const startFinalJeopardy = (category: string, question: string, answer: string) => {
@@ -341,21 +383,30 @@ const App = () => {
 
   const updateSignature = (nameSignatureDataUrl: string | null) => {
     sendMessage("player:updateSignature", { nameSignatureDataUrl });
-    sessionRef.current.nameSignatureDataUrl = nameSignatureDataUrl;
+    setSession({ ...sessionRef.current, nameSignatureDataUrl });
   };
 
   const updateName = (name: string) => {
     sendMessage("player:updateName", { name });
     setPlayerName(name);
-    sessionRef.current.playerName = name;
+    setSession({ ...sessionRef.current, playerName: name });
   };
 
   const markPlayerBuzzed = () => {
     sendMessage("player:buzz");
   };
 
+  const closeRoom = () => {
+    sendMessage("host:closeRoom");
+    setSession(blankSession());
+    setScreen("landing");
+    setPlayerId(null);
+    setRoom(fallbackRoom);
+  };
+
   const leaveRoom = () => {
-    sessionRef.current = { role: null, roomCode: "", playerName: "Contestant", playerId: null, nameSignatureDataUrl: null };
+    setSession(blankSession());
+    reconnectAttemptRef.current = MAX_RECONNECT_ATTEMPTS;
     sendMessage("session:leave");
     setScreen("landing");
     setPlayerId(null);
@@ -429,11 +480,15 @@ const App = () => {
           onRevealAllCategories={revealAllCategories}
           onOpenBuzzers={openBuzzers}
           onSkipToRound2={skipToRound2}
-          onCloseRoom={leaveRoom}
+          onCloseRoom={closeRoom}
           onKickPlayer={kickPlayer}
           onUndoRuling={undoRuling}
           onReopenClue={reopenClue}
           onAwardClue={awardClue}
+          onResetLockouts={resetLockouts}
+          onVoidDailyDouble={voidDailyDouble}
+          onSetBoardOwner={setBoardOwner}
+          onRestorePlayer={restorePlayer}
         />
       )}
 
