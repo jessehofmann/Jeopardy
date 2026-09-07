@@ -99,6 +99,40 @@ body {
   color: rgba(220, 231, 255, 0.52);
 }
 
+.menu-room-input-row {
+  display: flex;
+  gap: 8px;
+  align-items: stretch;
+}
+
+.menu-room-input-row .menu-room-input {
+  flex: 1;
+}
+
+.menu-room-shuffle {
+  flex-shrink: 0;
+  width: 48px;
+  border-radius: var(--r-md);
+  border: 2px solid rgba(255, 215, 0, 0.72);
+  background: rgba(4, 6, 55, 0.92);
+  color: var(--c-gold);
+  font-size: 1.4rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: background var(--dur-fast);
+}
+
+.menu-room-shuffle:hover {
+  background: rgba(255, 215, 0, 0.14);
+}
+
+.menu-room-hint {
+  text-align: center;
+  font-size: 0.78rem;
+  color: rgba(220, 231, 255, 0.7);
+  margin: 0;
+}
+
 .menu-room-status {
   min-height: 18px;
   text-align: center;
@@ -332,6 +366,19 @@ body {
   justify-content: center;
   align-items: center;
   overflow: hidden;
+}
+
+.lobby-join-block {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(16px, 4vw, 40px);
+  flex-wrap: wrap;
+}
+
+.lobby-qr {
+  flex-shrink: 0;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
 }
 
 .lobby-room-code-block {

@@ -2,6 +2,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import JoinLobby from "./components/JoinLobby";
 import HostConsole from "./components/HostConsole";
 import PlayerController from "./components/PlayerController";
+import { BOARD_URL, roomCodeFromUrl } from "./config";
 import type { CompanionScreen, RoomState } from "./types";
 
 const fallbackRoom: RoomState = {
@@ -334,7 +335,7 @@ const App = () => {
 
       {screen === "landing" && (
         <JoinLobby
-          defaultRoomCode={room.roomCode === "----" ? "" : room.roomCode}
+          defaultRoomCode={room.roomCode === "----" ? roomCodeFromUrl() : room.roomCode}
           onJoinAsHost={handleJoinAsHost}
           onJoinRoom={handleJoinRoom}
         />
@@ -349,7 +350,7 @@ const App = () => {
             <div className="waiting-instructions">
               <div className="waiting-instructions-title">How to host</div>
               <ol className="waiting-instructions-list">
-                <li>Open <strong>jeopardy-main.vercel.app</strong> on the big screen and enter your room code to create the board.</li>
+                <li>Open <strong>{BOARD_URL}</strong> on the big screen and enter your room code to create the board.</li>
                 <li>Wait for contestants to join using this companion app, then press <strong>Begin Game</strong> on the board.</li>
                 <li>Select clues from the board on this phone, open buzzers when ready, and score answers.</li>
               </ol>

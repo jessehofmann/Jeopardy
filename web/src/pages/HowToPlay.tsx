@@ -36,8 +36,8 @@ const HowToPlay: React.FC<HowToPlayProps> = ({ onClose }) => {
 
           <div className="htp-section">
             <h2>SETUP</h2>
-            <p>One device (TV or laptop) runs the board — open the game at the URL shown in the room and click <strong>New Game</strong> with a 4-letter room code you choose.</p>
-            <p>Everyone else opens the companion app on their phone. The host joins with the same room code using <strong>Join as Host</strong>. Players join with their name using <strong>Join as Player</strong>.</p>
+            <p>One device (TV or laptop) runs the board. Click <strong>New Game</strong> — a room code is filled in for you, or type your own.</p>
+            <p>Everyone else opens the companion app on their phone — scan the QR code on the lobby screen, or type the room code. The host joins with <strong>Join as Host</strong>; players join with their name.</p>
           </div>
 
           <div className="htp-section">
