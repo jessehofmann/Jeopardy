@@ -34,6 +34,7 @@ const Board: React.FC<BoardProps> = ({
   buzzerDeadlineMs,
 }) => {
   const [selectedClue, setSelectedClue] = useState<Clue | null>(null);
+  const [selectedClueCategory, setSelectedClueCategory] = useState<string | null>(null);
   const [originRect, setOriginRect] = useState<DOMRect | null>(null);
   const prevSelectedClueIdRef = useRef<string | null>(null);
   const [filledCells, setFilledCells] = useState<Set<string>>(new Set());
@@ -115,6 +116,7 @@ const Board: React.FC<BoardProps> = ({
         const tileEl = document.querySelector<HTMLElement>(`[data-clue-id="${selectedClueId}"]`);
         setOriginRect(tileEl ? tileEl.getBoundingClientRect() : null);
         setSelectedClue(clue);
+        setSelectedClueCategory(category.name);
         prevSelectedClueIdRef.current = selectedClueId;
         return;
       }
@@ -123,12 +125,13 @@ const Board: React.FC<BoardProps> = ({
 
   const allCategoriesRevealed = !revealedCategoryIds || revealedCategoryIds.length >= categories.length;
 
-  const handleClueClick = (clue: Clue, e: React.MouseEvent<HTMLDivElement>) => {
+  const handleClueClick = (clue: Clue, categoryName: string, e: React.MouseEvent<HTMLDivElement>) => {
     if (!allowManualPick) return;
     if (!allCategoriesRevealed) return;
     if (!clue.isAnswered) {
       setOriginRect((e.currentTarget as HTMLDivElement).getBoundingClientRect());
       setSelectedClue(clue);
+      setSelectedClueCategory(categoryName);
     }
   };
 
@@ -165,7 +168,7 @@ const Board: React.FC<BoardProps> = ({
                 key={clue.id}
                 data-clue-id={clue.id}
                 className={`clue-cell${clue.isAnswered ? " answered" : ""}${isFilled ? " is-filled" : ""}${!isRevealed ? " is-hidden-cat" : ""}`}
-                onClick={(e) => isRevealed && handleClueClick(clue, e)}
+                onClick={(e) => isRevealed && handleClueClick(clue, category.name, e)}
                 role={isPickable ? "button" : undefined}
                 tabIndex={isPickable ? 0 : undefined}
                 aria-label={isPickable ? `${category.name}, $${clue.value}` : undefined}
@@ -175,6 +178,7 @@ const Board: React.FC<BoardProps> = ({
                     e.preventDefault();
                     setOriginRect((e.currentTarget as HTMLDivElement).getBoundingClientRect());
                     setSelectedClue(clue);
+                    setSelectedClueCategory(category.name);
                   }
                 }}
               >
@@ -195,6 +199,7 @@ const Board: React.FC<BoardProps> = ({
           dailyDoubleWager={dailyDoubleWager}
           originRect={originRect}
           buzzerDeadlineMs={buzzerDeadlineMs}
+          categoryName={selectedClueCategory}
         />
       )}
     </>
