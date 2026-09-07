@@ -57,6 +57,39 @@ body {
   margin-bottom: 4px;
 }
 
+.menu-resume-banner {
+  width: min(320px, 82vw);
+  margin-bottom: 12px;
+  padding: 12px 14px;
+  border: 2px solid rgba(120, 200, 255, 0.6);
+  border-radius: 8px;
+  background: rgba(10, 40, 90, 0.55);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-size: 0.9rem;
+  color: #e6f2ff;
+}
+.menu-resume-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.menu-resume-actions .menu-button {
+  width: auto;
+  flex: 1;
+}
+.menu-resume-dismiss {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: rgba(255, 255, 255, 0.7);
+  border-radius: 6px;
+  width: 36px;
+  height: 36px;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
 .menu-room-panel {
   display: flex;
   flex-direction: column;
@@ -1125,6 +1158,24 @@ body {
   display: flex;
   flex-direction: column;
   overflow: hidden;
+}
+
+.board-round-complete {
+  position: absolute;
+  left: 50%;
+  bottom: 16px;
+  transform: translateX(-50%);
+  padding: 10px 22px;
+  border-radius: 999px;
+  background: rgba(4, 4, 122, 0.9);
+  border: 2px solid var(--c-gold);
+  color: var(--c-gold);
+  font-family: var(--font-barlow);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-size: clamp(0.75rem, 1.6vh, 1.05rem);
+  white-space: nowrap;
 }
 
 /* CLUE MODAL */

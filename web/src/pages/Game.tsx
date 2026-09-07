@@ -156,6 +156,11 @@ const Game: React.FC<GameProps> = ({ initialRoomCode, initialRoomState, boardSoc
     return () => clearTimeout(timer);
   }, [round]);
 
+  const dismissRoundBanner = () => {
+    setShowRoundBanner(false);
+    setBoardAnimKey((k) => (k === null ? round : k));
+  };
+
   const applyAnsweredToCategories = (base: Category[], answeredClueIds: string[]) => {
     const answeredSet = new Set(answeredClueIds);
     return base.map((category) => ({
@@ -222,10 +227,12 @@ const Game: React.FC<GameProps> = ({ initialRoomCode, initialRoomState, boardSoc
     setFinalAnswerShown(room.finalAnswerShown ?? false);
     setFinalQuestionDeadlineMs(adjDeadline(room.finalQuestionDeadlineMs));
     setPlayers(
-      (room.players || []).map((player) => ({
-        ...player,
-        isConnected: player.isConnected !== false,
-      }))
+      (room.players || [])
+        .filter((player) => !player.isRemoved)
+        .map((player) => ({
+          ...player,
+          isConnected: player.isConnected !== false,
+        }))
     );
   };
 
@@ -378,7 +385,14 @@ const Game: React.FC<GameProps> = ({ initialRoomCode, initialRoomState, boardSoc
   return (
     <div className="game-container">
       {showRoundBanner && (
-        <div className="round-banner">
+        <div
+          className="round-banner"
+          onClick={dismissRoundBanner}
+          role="button"
+          tabIndex={0}
+          onKeyDown={(e) => (e.key === "Enter" || e.key === " ") && dismissRoundBanner()}
+          title="Tap to continue"
+        >
           <h2>{round === 1 ? "ROUND 1" : "ROUND 2 - DOUBLE JEOPARDY!"}</h2>
         </div>
       )}
@@ -443,6 +457,13 @@ const Game: React.FC<GameProps> = ({ initialRoomCode, initialRoomState, boardSoc
               revealedCategoryIds={isSynced ? revealedCategoryIds : undefined}
               buzzerDeadlineMs={buzzerDeadlineMs}
             />
+            {isSynced && !selectedClueId && !showRoundBanner &&
+              categories.length > 0 &&
+              categories.every((c) => c.clues.every((cl) => cl.isAnswered)) && (
+                <div className="board-round-complete">
+                  {round === 1 ? "Round 1 complete" : "Double Jeopardy complete"} — waiting for the host
+                </div>
+              )}
           </div>
           <Scoreboard players={players} firstBuzzedPlayerId={firstBuzzedPlayerId} answerDeadlineMs={answerDeadlineMs} buzzersOpen={buzzersOpen} lockedOutPlayerIds={lockedOutPlayerIds} answerRevealed={answerRevealed} boardOwnerPlayerId={boardOwnerPlayerId} />
         </>

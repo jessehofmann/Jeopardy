@@ -42,7 +42,7 @@ const HowToPlay: React.FC<HowToPlayProps> = ({ onClose }) => {
 
           <div className="htp-section">
             <h2>BEFORE THE ROUND STARTS</h2>
-            <p>The host reveals categories one by one from the Host Console. The board shows a blank tile until a category is revealed — keeping it a surprise for players.</p>
+            <p>The host reveals categories from the Host Console — one at a time for suspense, or all at once. The board shows a blank tile until a category is revealed.</p>
             <p>Once all categories are revealed, the host picks a clue by selecting a category then a dollar value.</p>
           </div>
 
@@ -60,7 +60,7 @@ const HowToPlay: React.FC<HowToPlayProps> = ({ onClose }) => {
           <div className="htp-section">
             <h2>ROUND 1</h2>
             <p>Six categories, five clues each. Clue values: <strong>$200 · $400 · $600 · $800 · $1,000</strong>.</p>
-            <p>One clue is a <strong>Daily Double</strong> — only the player who owns the board (the last correct answerer) can wager any amount up to their score or the round maximum.</p>
+            <p>One clue is a <strong>Daily Double</strong> — only the player who owns the board (the last correct answerer) can wager, anywhere from $0 up to the higher of their score or the round maximum.</p>
           </div>
 
           <div className="htp-section">
@@ -72,7 +72,7 @@ const HowToPlay: React.FC<HowToPlayProps> = ({ onClose }) => {
             <h2>FINAL JEOPARDY</h2>
             <p>All players still in the game participate, regardless of score.</p>
             <ol>
-              <li>The <strong>category</strong> is revealed. Players submit a private wager (up to their current score) on their phone.</li>
+              <li>The <strong>category</strong> is revealed. Players submit a private wager on their phone — up to the higher of their score or $1,000, so no one is locked out.</li>
               <li>Once all wagers are in, the host reveals the <strong>question</strong>. Players write their answer on their phone and submit.</li>
               <li>The host reveals each player's answer one at a time and marks it correct or incorrect. Wagers are added or subtracted accordingly.</li>
               <li>Highest score wins!</li>
@@ -90,7 +90,7 @@ const HowToPlay: React.FC<HowToPlayProps> = ({ onClose }) => {
             <p>Hidden randomly in each round. When a Daily Double is selected:</p>
             <ul>
               <li>Only the <strong>board owner</strong> can answer (the last player to answer correctly).</li>
-              <li>The host enters the wager — minimum $5, maximum the higher of the player's score or the round top value.</li>
+              <li>The host enters the wager — anywhere from $0 to the higher of the player's score or the round's top value.</li>
               <li>No buzzing — the board owner answers directly and the host marks correct or incorrect.</li>
             </ul>
           </div>

@@ -11,6 +11,26 @@ import "./styles/main.css";
 
 type Page = "menu" | "lobby" | "game" | "customboard";
 const CLUE_HISTORY_KEY = "jeopardy.clueHistory.v1";
+const LAST_ROOM_KEY = "jeopardy.board.lastRoom.v1";
+const LAST_ROOM_TTL_MS = 6 * 60 * 60 * 1000;
+
+function readLastRoom(): string | null {
+  try {
+    const raw = localStorage.getItem(LAST_ROOM_KEY);
+    if (!raw) return null;
+    const { code, ts } = JSON.parse(raw);
+    if (typeof code === "string" && code.length === 4 && Date.now() - ts < LAST_ROOM_TTL_MS) {
+      return code;
+    }
+  } catch { /* ignore */ }
+  return null;
+}
+function writeLastRoom(code: string | null) {
+  try {
+    if (code) localStorage.setItem(LAST_ROOM_KEY, JSON.stringify({ code, ts: Date.now() }));
+    else localStorage.removeItem(LAST_ROOM_KEY);
+  } catch { /* ignore */ }
+}
 
 function getRecentClueHistory() {
   try {
@@ -39,6 +59,7 @@ const App: React.FC = () => {
   const [showHowToPlay, setShowHowToPlay] = useState(false);
   const [pendingCustomBoard, setPendingCustomBoard] = useState<unknown>(null);
   const [lobbyRoomState, setLobbyRoomState] = useState<RoomState | null>(null);
+  const [resumeRoom, setResumeRoom] = useState<string | null>(() => readLastRoom());
   const boardSocketRef = useRef<WebSocket | null>(null);
   const lobbyListenerRef = useRef<((event: MessageEvent) => void) | null>(null);
 
@@ -224,6 +245,8 @@ const App: React.FC = () => {
       lobbyListenerRef.current = null;
     }
     boardSocketRef.current?.send(JSON.stringify({ type: "board:ready" }));
+    writeLastRoom(roomCode);
+    setResumeRoom(null);
     setPage("game");
   };
 
@@ -256,6 +279,8 @@ const App: React.FC = () => {
         setInitialRoomState(room);
         setRoomCode(message.payload?.roomCode ?? normalizedRoomCode);
         setIsStartingGame(false);
+        writeLastRoom(message.payload?.roomCode ?? normalizedRoomCode);
+        setResumeRoom(null);
         setPage("game");
         return;
       }
@@ -339,6 +364,9 @@ const App: React.FC = () => {
           isStartingGame={isStartingGame}
           startGameError={startGameError}
           apiBase={apiBase}
+          resumeRoom={resumeRoom}
+          onResume={(code) => handleRejoinGame(code)}
+          onDismissResume={() => { setResumeRoom(null); writeLastRoom(null); }}
         />
       )}
       {page === "lobby" && lobbyRoomState && (
