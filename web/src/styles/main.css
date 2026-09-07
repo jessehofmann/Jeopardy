@@ -1158,11 +1158,13 @@ body {
 }
 
 .player-name-sig {
-  max-width: 100%;
-  /* Hard cap so a tall signature can't stretch the podium card */
+  /* Fill the name zone exactly, then let object-fit letterbox the ink inside —
+     never taller/wider than the slot, so nothing gets clipped. */
+  width: 100%;
+  height: 100%;
   max-height: clamp(26px, 4.5vh, 46px);
-  width: auto;
   object-fit: contain;
+  object-position: center;
   /* White ink on transparent — shadow keeps it readable on the dark card */
   filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.6));
 }
