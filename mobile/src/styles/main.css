@@ -1103,6 +1103,65 @@ button {
   padding: 0;
 }
 
+/* Tappable name/signature block — the primary way to edit your name */
+.player-name-display {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  margin: 6px auto 0;
+  padding: 6px 14px 8px;
+  background: transparent;
+  border: 1px dashed rgba(145, 169, 255, 0.4);
+  border-radius: var(--r-md);
+  color: inherit;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+}
+.player-name-display:active {
+  background: rgba(73, 101, 210, 0.28);
+  border-color: rgba(145, 169, 255, 0.75);
+}
+.player-name-display h1 {
+  margin: 0;
+}
+.player-name-display .player-name-sig {
+  margin: 0;
+}
+
+.player-name-edit-hint {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--c-accent);
+}
+
+.player-name-swap {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  align-self: center;
+  margin: 8px auto 0;
+  background: rgba(73, 101, 210, 0.3);
+  border: 1px solid rgba(145, 169, 255, 0.5);
+  border-radius: var(--r-pill);
+  color: #d8e4ff;
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 7px 16px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.player-name-swap:active {
+  background: rgba(73, 101, 210, 0.5);
+}
+
 .name-display-toggle {
   align-self: center;
   background: rgba(73, 101, 210, 0.35);

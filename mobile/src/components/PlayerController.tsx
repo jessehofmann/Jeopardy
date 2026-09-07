@@ -251,7 +251,7 @@ const PlayerController = ({
             )}
             {myPlayer?.nameSignatureDataUrl && onToggleNameDisplay && (
               <button className="name-display-toggle" onClick={onToggleNameDisplay} type="button">
-                {myPlayer.showNameSignature ? "Show Text Name" : "Show Handwritten Name"}
+                {myPlayer.showNameSignature ? "Show typed name on the board" : "Show signature on the board"}
               </button>
             )}
             {onUpdateSignature && (
@@ -303,14 +303,40 @@ const PlayerController = ({
       {room.gamePhase === "playing" && (
         <section className={`player-card${room.buzzersOpen || hasBuzzed ? " is-live" : ""}`}>
           <p className="eyebrow">You are playing as</p>
-          {showingSig ? (
-            <img
-              src={myPlayer!.nameSignatureDataUrl!}
-              className="player-name-sig"
-              alt={playerName}
-            />
+          {(onUpdateName || onUpdateSignature || onToggleNameDisplay) ? (
+            <button
+              type="button"
+              className="player-name-display"
+              onClick={() => setShowSettings(true)}
+              aria-label="Edit your name"
+            >
+              {showingSig ? (
+                <img
+                  src={myPlayer!.nameSignatureDataUrl!}
+                  className="player-name-sig"
+                  alt={playerName}
+                />
+              ) : (
+                <h1>{playerName}</h1>
+              )}
+              <span className="player-name-edit-hint">
+                <Icon name="edit" size={13} /> Edit
+              </span>
+            </button>
+          ) : showingSig ? (
+            <img src={myPlayer!.nameSignatureDataUrl!} className="player-name-sig" alt={playerName} />
           ) : (
             <h1>{playerName}</h1>
+          )}
+          {myPlayer?.nameSignatureDataUrl && onToggleNameDisplay && (
+            <button
+              type="button"
+              className="player-name-swap"
+              onClick={onToggleNameDisplay}
+            >
+              <Icon name="swap" size={13} />
+              {myPlayer.showNameSignature ? "Show typed name" : "Show signature"}
+            </button>
           )}
           <div className={`player-score-display${scoreFlash ? ` flash-${scoreFlash}` : ""}`}>
             <span className="player-score-label">Score</span>
