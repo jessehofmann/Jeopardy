@@ -1,0 +1,1917 @@
+[
+  {
+    "id": "science",
+    "name": "Science",
+    "cluesByValue": {
+      "400": [
+        {
+          "question": "Making up about 78% of Earth's atmosphere, this colorless gas is its most abundant component",
+          "answer": "Nitrogen"
+        },
+        {
+          "question": "Derived from the Latin word 'ferrum,' this is the chemical symbol for iron on the periodic table",
+          "answer": "Fe"
+        },
+        {
+          "question": "Elements in the same vertical column of the periodic table, sharing similar chemical behavior, are said to belong to the same one of these",
+          "answer": "A group"
+        }
+      ],
+      "800": [
+        {
+          "question": "Albert Einstein described this force as a curvature in spacetime; it also keeps planets locked in their orbits around stars",
+          "answer": "Gravity"
+        },
+        {
+          "question": "Evangelista Torricelli invented this instrument in 1643 to measure atmospheric pressure",
+          "answer": "Barometer"
+        },
+        {
+          "question": "This English naturalist laid out evolution by natural selection in his 1859 book 'On the Origin of Species'",
+          "answer": "Charles Darwin"
+        }
+      ],
+      "1200": [
+        {
+          "question": "Unlike ionic bonds, this type of chemical bond involves the sharing of electron pairs between two atoms",
+          "answer": "Covalent bond"
+        },
+        {
+          "question": "His three laws of motion, published in Principia Mathematica in 1687, form the foundation of classical mechanics",
+          "answer": "Isaac Newton"
+        },
+        {
+          "question": "Running from 0 to 14, this logarithmic scale measures how acidic or basic a solution is",
+          "answer": "pH"
+        }
+      ],
+      "1600": [
+        {
+          "question": "Known as the powerhouse of the cell, this organelle generates most of a cell's supply of ATP through cellular respiration",
+          "answer": "Mitochondria"
+        },
+        {
+          "question": "James Chadwick discovered this neutrally charged subatomic particle residing in the atomic nucleus in 1932",
+          "answer": "Neutron"
+        },
+        {
+          "question": "The second-lightest and second-most-abundant element in the universe, it was detected in the sun's spectrum before it was found on Earth",
+          "answer": "Helium"
+        }
+      ],
+      "2000": [
+        {
+          "question": "Denoted by the letter c, this is the speed of light in a vacuum, measured in meters per second, to the nearest integer",
+          "answer": "299,792,458"
+        },
+        {
+          "question": "This branch of physics, developed in the early 20th century, governs the behavior of matter and energy at subatomic scales",
+          "answer": "Quantum mechanics"
+        },
+        {
+          "question": "This Russian chemist arranged the known elements by atomic weight in 1869, leaving gaps for elements not yet discovered",
+          "answer": "Dmitri Mendeleev"
+        }
+      ]
+    }
+  },
+  {
+    "id": "history",
+    "name": "History",
+    "group": "history",
+    "cluesByValue": {
+      "400": [
+        {
+          "question": "This South American empire, centered on its capital Cusco, built the mountain citadel of Machu Picchu in 15th-century Peru",
+          "answer": "The Inca"
+        },
+        {
+          "question": "After defeating Mark Antony and Cleopatra, this grandnephew of Julius Caesar became Rome's first emperor",
+          "answer": "Augustus"
+        },
+        {
+          "question": "One of the Seven Wonders of the ancient world, this towering beacon on the island of Pharos guided ships into a great Egyptian harbor for centuries",
+          "answer": "The Lighthouse of Alexandria"
+        }
+      ],
+      "800": [
+        {
+          "question": "The assassination of Archduke Franz Ferdinand in Sarajevo set off a chain of events that started this global conflict in 1914",
+          "answer": "World War I"
+        },
+        {
+          "question": "Through nonviolent civil disobedience, including the famous Salt March of 1930, this leader guided India toward independence from Britain",
+          "answer": "Mahatma Gandhi"
+        },
+        {
+          "question": "This Corsican-born general crowned himself Emperor of the French in 1804 and met final defeat at Waterloo in 1815",
+          "answer": "Napoleon Bonaparte"
+        }
+      ],
+      "1200": [
+        {
+          "question": "Named for the French palace where it was signed in 1919, this treaty formally ended World War I and forced heavy reparations on Germany",
+          "answer": "The Treaty of Versailles"
+        },
+        {
+          "question": "He led the Soviet Union from 1924 until his death in 1953, serving as its paramount leader through most of World War II",
+          "answer": "Joseph Stalin"
+        },
+        {
+          "question": "The Declaration of the Rights of Man and the storming of the Bastille were early milestones of this decade-long upheaval that began in 1789",
+          "answer": "The French Revolution"
+        }
+      ],
+      "1600": [
+        {
+          "question": "Spanning over 4,000 miles, this ancient network of trade routes connected China, Central Asia, and Europe for centuries",
+          "answer": "The Silk Road"
+        },
+        {
+          "question": "Nicknamed the Iron Lady, she became Britain's first female Prime Minister when her Conservative Party won in 1979",
+          "answer": "Margaret Thatcher"
+        },
+        {
+          "question": "Roman legions built this 73-mile stone wall across northern Britain around 122 AD under the emperor it's named for",
+          "answer": "Hadrian's Wall"
+        }
+      ],
+      "2000": [
+        {
+          "question": "The fall of Constantinople to Ottoman forces in this year is often cited as marking the end of the Middle Ages",
+          "answer": "1453"
+        },
+        {
+          "question": "Despite lasting only 15 years, this dynasty unified China in 221 BCE and ultimately gave the country its name",
+          "answer": "The Qin Dynasty"
+        },
+        {
+          "question": "This 1648 set of treaties ended the Thirty Years' War and is often taken as the birth of the modern system of sovereign states",
+          "answer": "The Peace of Westphalia"
+        }
+      ]
+    }
+  },
+  {
+    "id": "geography",
+    "name": "Geography",
+    "group": "geo",
+    "cluesByValue": {
+      "400": [
+        {
+          "question": "Home to over 4.5 billion people, this continent accounts for roughly 30% of Earth's total land area",
+          "answer": "Asia"
+        },
+        {
+          "question": "Stretching over 4,300 miles along the western coast of South America, it is the world's longest continental mountain range",
+          "answer": "The Andes"
+        },
+        {
+          "question": "This is the only continent that lies in all four hemispheres: northern, southern, eastern, and western",
+          "answer": "Africa"
+        }
+      ],
+      "800": [
+        {
+          "question": "Covering roughly 3.6 million square miles, this desert dominates most of North Africa and is the world's largest hot desert",
+          "answer": "The Sahara"
+        },
+        {
+          "question": "One of the two defining rivers of ancient Mesopotamia, this river flows through the Iraqi capital of Baghdad",
+          "answer": "The Tigris"
+        },
+        {
+          "question": "The exposed shoreline of this hypersaline lake, bordered by Israel and Jordan, is the lowest dry land on Earth",
+          "answer": "The Dead Sea"
+        }
+      ],
+      "1200": [
+        {
+          "question": "Though Auckland is larger, this harbor city on the North Island has served as New Zealand's capital since 1865",
+          "answer": "Wellington"
+        },
+        {
+          "question": "Opened in 1869 and connecting the Mediterranean Sea to the Red Sea, it is one of the world's most heavily used shipping lanes",
+          "answer": "The Suez Canal"
+        },
+        {
+          "question": "Only about 8 miles wide at its narrowest, this strait is the sole natural passage between the Mediterranean and the Atlantic",
+          "answer": "The Strait of Gibraltar"
+        }
+      ],
+      "1600": [
+        {
+          "question": "Surrounded entirely by open ocean in the North Atlantic, this is the only sea on Earth with no land boundaries whatsoever",
+          "answer": "The Sargasso Sea"
+        },
+        {
+          "question": "In 2019 the capital of Kazakhstan was renamed Nur-Sultan; in 2022 it reverted to this earlier name, which it holds today",
+          "answer": "Astana"
+        },
+        {
+          "question": "Diversion of its feeder rivers for Soviet cotton farming shrank this Central Asian lake, once the world's fourth largest, to a fraction of its size",
+          "answer": "The Aral Sea"
+        }
+      ],
+      "2000": [
+        {
+          "question": "Japan sits at the convergence of several tectonic plates, but the majority of its islands rest atop this one",
+          "answer": "The Eurasian Plate"
+        },
+        {
+          "question": "This imaginary line of latitude at approximately 23.5 degrees north marks the northernmost point where the sun can appear directly overhead",
+          "answer": "The Tropic of Cancer"
+        },
+        {
+          "question": "In 1991 Nigeria moved its capital from the crowded port of Lagos to this purpose-built city near the country's center",
+          "answer": "Abuja"
+        }
+      ]
+    }
+  },
+  {
+    "id": "pop-culture",
+    "name": "Pop Culture",
+    "group": "screen",
+    "cluesByValue": {
+      "400": [
+        {
+          "question": "This Canadian rapper's 2015 'Hotline Bling' video, full of stiff dance moves, spawned countless memes",
+          "answer": "Drake"
+        },
+        {
+          "question": "George Lucas created this space opera franchise, featuring Jedi knights and their eternal battle against the dark side of the Force",
+          "answer": "Star Wars"
+        },
+        {
+          "question": "This company mailed rental DVDs in red envelopes starting in 1998 before reinventing itself around streaming video",
+          "answer": "Netflix"
+        }
+      ],
+      "800": [
+        {
+          "question": "This Canadian comedian provided the distinctive Scottish accent for the lovable ogre in the 2001 DreamWorks animated film",
+          "answer": "Mike Myers"
+        },
+        {
+          "question": "This Korean Netflix series, in which cash-strapped contestants risk their lives in children's games, became the platform's most-watched non-English show after its 2021 debut",
+          "answer": "Squid Game",
+          "volatile": true
+        },
+        {
+          "question": "J.K. Rowling's seven novels about a boy wizard and his friends became the best-selling book series in history",
+          "answer": "Harry Potter",
+          "volatile": true
+        }
+      ],
+      "1200": [
+        {
+          "question": "His 2015 concept album 'To Pimp a Butterfly' is widely considered one of the greatest rap albums of all time",
+          "answer": "Kendrick Lamar"
+        },
+        {
+          "question": "Kevin Spacey starred as ruthless congressman Frank Underwood in this political drama that was Netflix's first major original hit",
+          "answer": "House of Cards"
+        },
+        {
+          "question": "Nicknamed the 'King of Pop,' he released the best-selling album of all time in 1982 and debuted the moonwalk in 1983",
+          "answer": "Michael Jackson",
+          "volatile": true
+        }
+      ],
+      "1600": [
+        {
+          "question": "His non-linear crime anthology featuring John Travolta, Samuel L. Jackson, and Uma Thurman won the Palme d'Or at Cannes in 1994",
+          "answer": "Quentin Tarantino"
+        },
+        {
+          "question": "With hits spanning five decades, from 'Like a Virgin' to 'Vogue,' this pop icon has sold over 300 million records worldwide",
+          "answer": "Madonna"
+        },
+        {
+          "question": "This Comedy Central animated series about four crudely drawn Colorado fourth-graders has aired since 1997",
+          "answer": "South Park"
+        }
+      ],
+      "2000": [
+        {
+          "question": "Released in 1995, this Pixar film about a cowboy doll and a space-ranger action figure was the world's first fully computer-animated feature film",
+          "answer": "Toy Story"
+        },
+        {
+          "question": "This German-British composer created the iconic low brass 'BRAAAM' sound featured in the Inception trailer and scored The Dark Knight trilogy",
+          "answer": "Hans Zimmer"
+        },
+        {
+          "question": "Beginning as a 1996 Game Boy title about catching pocket monsters, this Japanese property is the highest-grossing media franchise of all time",
+          "answer": "Pokémon"
+        }
+      ]
+    }
+  },
+  {
+    "id": "sports",
+    "name": "Sports",
+    "cluesByValue": {
+      "400": [
+        {
+          "question": "Olympic swimming events take place in a pool of this length, measured in meters",
+          "answer": "50"
+        },
+        {
+          "question": "This South American nation has lifted the FIFA World Cup trophy a record five times, more than any other country",
+          "answer": "Brazil"
+        },
+        {
+          "question": "The oldest of golf's four majors, this championship is played on seaside links courses and run by the R&A",
+          "answer": "The Open Championship"
+        }
+      ],
+      "800": [
+        {
+          "question": "When a team takes the field in baseball, it places exactly this many players in defensive positions",
+          "answer": "9"
+        },
+        {
+          "question": "Achieved by rolling 12 consecutive strikes, this is the maximum possible score in a game of ten-pin bowling",
+          "answer": "300"
+        },
+        {
+          "question": "This American gymnast won four golds at the 2016 Rio Games and has more world-championship medals than anyone in the sport's history",
+          "answer": "Simone Biles"
+        }
+      ],
+      "1200": [
+        {
+          "question": "Played at Roland Garros on red clay courts each spring, this Grand Slam tournament is synonymous with Rafael Nadal's record dominance",
+          "answer": "The French Open"
+        },
+        {
+          "question": "A standard soccer match consists of two 45-minute halves, for this total number of minutes of regulation play",
+          "answer": "90"
+        },
+        {
+          "question": "This chess piece moves any number of unobstructed squares diagonally, so it stays on one color for the whole game",
+          "answer": "The bishop"
+        }
+      ],
+      "1600": [
+        {
+          "question": "He proclaimed himself 'The Greatest' and backed it up with three heavyweight championship reigns and a 56-5 professional record",
+          "answer": "Muhammad Ali"
+        },
+        {
+          "question": "This Midwestern city lends its name to a 500-mile auto race held annually at its famous Speedway on Memorial Day weekend",
+          "answer": "Indianapolis"
+        },
+        {
+          "question": "First played in January 1967, this NFL title game draws over 100 million U.S. television viewers each year",
+          "answer": "The Super Bowl"
+        }
+      ],
+      "2000": [
+        {
+          "question": "Each May at Churchill Downs in Louisville, thoroughbreds compete in this first leg of the Triple Crown, nicknamed the Run for the Roses",
+          "answer": "The Kentucky Derby"
+        },
+        {
+          "question": "In cricket, a batsman who is dismissed without scoring a single run is said to have scored this, named after the egg-shaped zero",
+          "answer": "Duck"
+        },
+        {
+          "question": "Contested at the Olympics since 1964, this Japanese martial art whose name means 'gentle way' scores points for throws and pins",
+          "answer": "Judo"
+        }
+      ]
+    }
+  },
+  {
+    "id": "literature",
+    "name": "Literature",
+    "cluesByValue": {
+      "400": [
+        {
+          "question": "This American author drew on his own seafaring experiences to write his 1851 novel about Captain Ahab's obsession with a white whale",
+          "answer": "Herman Melville"
+        },
+        {
+          "question": "An Oxford professor of Anglo-Saxon, he built the languages and world of Middle-earth for his 1937 novel about the hobbit Bilbo Baggins",
+          "answer": "J.R.R. Tolkien"
+        },
+        {
+          "question": "This Victorian novelist gave the world Ebenezer Scrooge, Oliver Twist, and Pip in 'Great Expectations'",
+          "answer": "Charles Dickens"
+        }
+      ],
+      "800": [
+        {
+          "question": "This Nobel Prize-winning author set her harrowing 1987 novel about slavery's legacy in post-Civil War Ohio",
+          "answer": "Toni Morrison"
+        },
+        {
+          "question": "This 19th century Russian master explored guilt and redemption through the story of the student-murderer Raskolnikov",
+          "answer": "Fyodor Dostoevsky"
+        },
+        {
+          "question": "This Chilean poet won the 1971 Nobel Prize in Literature for work ranging from passionate love sonnets to odes to socks and onions",
+          "answer": "Pablo Neruda"
+        }
+      ],
+      "1200": [
+        {
+          "question": "A master of the macabre, this American writer published his haunting poem about a mysterious bird's midnight visit in 1845",
+          "answer": "Edgar Allan Poe"
+        },
+        {
+          "question": "This Italian poet wrote his epic three-part journey through Hell, Purgatory, and Paradise in the early 14th century",
+          "answer": "Dante Alighieri"
+        },
+        {
+          "question": "A traveling salesman named Gregor Samsa wakes up transformed into a monstrous insect in this Franz Kafka novella",
+          "answer": "The Metamorphosis"
+        }
+      ],
+      "1600": [
+        {
+          "question": "This Russian count's sweeping 1869 novel follows five aristocratic families through Napoleon's invasion of Russia",
+          "answer": "Leo Tolstoy"
+        },
+        {
+          "question": "This Irish-French playwright's 1953 absurdist drama, in which two men wait endlessly for someone who never arrives, is a cornerstone of the Theatre of the Absurd",
+          "answer": "Samuel Beckett"
+        },
+        {
+          "question": "This ancient Athenian playwright wrote more than 120 tragedies, of which 'Oedipus Rex' and 'Antigone' survive",
+          "answer": "Sophocles"
+        }
+      ],
+      "2000": [
+        {
+          "question": "This Irish modernist writer's 1922 novel, set over a single day in Dublin, is considered one of the most important works in the English language",
+          "answer": "James Joyce"
+        },
+        {
+          "question": "This Nobel laureate used multiple narrators and stream of consciousness to tell the story of the declining Compson family in the American South",
+          "answer": "William Faulkner"
+        },
+        {
+          "question": "This Nigerian author's 1958 novel 'Things Fall Apart,' about the Igbo man Okonkwo, is the most widely read work of modern African literature",
+          "answer": "Chinua Achebe"
+        }
+      ]
+    }
+  },
+  {
+    "id": "technology",
+    "name": "Technology",
+    "cluesByValue": {
+      "400": [
+        {
+          "question": "Developers use this defined set of endpoints and rules, abbreviated to three letters, to let one software program exchange data with another",
+          "answer": "API (Application Programming Interface)"
+        },
+        {
+          "question": "This company's Azure is the world's second-largest cloud platform; it also owns LinkedIn, GitHub, and the Xbox brand",
+          "answer": "Microsoft",
+          "volatile": true
+        },
+        {
+          "question": "Founded by Larry Ellison in 1977, this company became the dominant vendor of enterprise relational database software",
+          "answer": "Oracle"
+        }
+      ],
+      "800": [
+        {
+          "question": "Your browser uses this foundational application-layer protocol to request and receive web pages from servers across the internet",
+          "answer": "HTTP"
+        },
+        {
+          "question": "Unlike traditional hard drives, this type of storage device uses flash memory chips and contains no moving mechanical parts",
+          "answer": "Solid State Drive"
+        },
+        {
+          "question": "This base-2 number system, using only 0 and 1, is how digital computers represent all data at the lowest level",
+          "answer": "Binary"
+        }
+      ],
+      "1200": [
+        {
+          "question": "Web developers use this stylesheet language to control the visual presentation — colors, fonts, and layout — of HTML documents",
+          "answer": "CSS"
+        },
+        {
+          "question": "Abbreviated to four letters, this lightweight, human-readable data interchange format is the backbone of most modern web APIs",
+          "answer": "JSON (JavaScript Object Notation)"
+        },
+        {
+          "question": "Bitcoin runs on this kind of distributed, append-only ledger, in which records are grouped into cryptographically linked blocks",
+          "answer": "Blockchain"
+        }
+      ],
+      "1600": [
+        {
+          "question": "Released in 1993 by NCSA, this was the first browser to display images inline with text, making the web accessible to a general audience",
+          "answer": "Mosaic"
+        },
+        {
+          "question": "Programmers use this type of software environment to write, test, and debug code all in one place, often with syntax highlighting and version control integration",
+          "answer": "Integrated Development Environment"
+        },
+        {
+          "question": "For her 1843 notes on Charles Babbage's Analytical Engine, Ada Lovelace is often called the first person of this profession",
+          "answer": "Computer programmer"
+        }
+      ],
+      "2000": [
+        {
+          "question": "Like people waiting in line at a store, this data structure processes elements in strict first-in, first-out order",
+          "answer": "Queue"
+        },
+        {
+          "question": "In Unix-like systems, this two-letter command displays the names of files and subdirectories within a given directory",
+          "answer": "ls"
+        },
+        {
+          "question": "Published in 1977 and named for its three MIT inventors, this public-key cryptosystem secures much of internet communication",
+          "answer": "RSA"
+        }
+      ]
+    }
+  },
+  {
+    "id": "food",
+    "name": "Food and Drink",
+    "cluesByValue": {
+      "400": [
+        {
+          "question": "Naples, a city in this country, is widely credited as the birthplace of the modern pizza in the 18th century",
+          "answer": "Italy"
+        },
+        {
+          "question": "Tofu, tempeh, and miso all begin their lives as this legume, a staple crop of East Asian cuisine",
+          "answer": "Soybean"
+        },
+        {
+          "question": "This thick, spicy-sweet fermented chili paste is a cornerstone of Korean cooking, stirred into bibimbap and stews",
+          "answer": "Gochujang"
+        }
+      ],
+      "800": [
+        {
+          "question": "In a professional kitchen, this three-word French term covers all the chopping, measuring, and arranging of ingredients done before service begins",
+          "answer": "Mise en place"
+        },
+        {
+          "question": "Short-grained and starchy, this Italian rice variety is the traditional choice for a slow-cooked, creamy risotto",
+          "answer": "Arborio rice"
+        },
+        {
+          "question": "The 'holy trinity' of Cajun and Creole cooking is bell pepper, celery, and this pungent bulb",
+          "answer": "Onion"
+        }
+      ],
+      "1200": [
+        {
+          "question": "A classic mojito blends fresh lime juice, sugar, mint leaves, soda water, and this distilled sugarcane spirit",
+          "answer": "Rum"
+        },
+        {
+          "question": "This rich French emulsion sauce, made from clarified butter, egg yolks, and lemon juice, is the star of eggs Benedict",
+          "answer": "Hollandaise"
+        },
+        {
+          "question": "In ceviche, raw fish is 'cooked' not with heat but with the acid of this green citrus fruit",
+          "answer": "Lime"
+        }
+      ],
+      "1600": [
+        {
+          "question": "Parmigiano-Reggiano is produced exclusively in this Italian region, whose name is also associated with prosciutto di Parma",
+          "answer": "Emilia-Romagna"
+        },
+        {
+          "question": "Unlike sushi, this Japanese preparation consists of thinly sliced raw fish or seafood served without rice",
+          "answer": "Sashimi"
+        },
+        {
+          "question": "Prized as the priciest cured ham on the planet, jamón ibérico de bellota comes from acorn-fed black pigs raised in this country",
+          "answer": "Spain"
+        }
+      ],
+      "2000": [
+        {
+          "question": "The sour, tangy flavor of kimchi and other fermented vegetables is produced by this process, which converts sugars into lactic acid",
+          "answer": "Lactic acid fermentation"
+        },
+        {
+          "question": "Consisting of hundreds of thin, buttery layers created by repeatedly folding dough with butter, this pastry forms the flaky base of a mille-feuille",
+          "answer": "Puff pastry"
+        },
+        {
+          "question": "A blend of sodium bicarbonate and a dry acid, this leavening agent fizzes once when it gets wet and again from oven heat",
+          "answer": "Baking powder"
+        }
+      ]
+    }
+  },
+  {
+    "id": "mythology-r2",
+    "name": "Gods & Legends",
+    "cluesByValue": {
+      "400": [
+        {
+          "question": "This Greek goddess of wisdom and war strategy sprang fully armored from the head of Zeus",
+          "answer": "Athena"
+        },
+        {
+          "question": "According to Greek myth, this king's golden touch brought him misery when he could no longer eat or embrace his daughter",
+          "answer": "King Midas"
+        },
+        {
+          "question": "This son of the sun god Helios drove the sun chariot and nearly scorched the Earth before Zeus struck him down with a thunderbolt",
+          "answer": "Phaethon"
+        }
+      ],
+      "800": [
+        {
+          "question": "Janus, the Roman god of beginnings and doorways, has two faces — giving us the name of this month",
+          "answer": "January"
+        },
+        {
+          "question": "In Norse mythology, this giant wolf — bound by a magical ribbon — is prophesied to break free and swallow Odin at Ragnarök",
+          "answer": "Fenrir"
+        },
+        {
+          "question": "Wearing winged sandals and carrying a herald's staff, this Greek messenger god escorts the dead to the underworld",
+          "answer": "Hermes"
+        }
+      ],
+      "1200": [
+        {
+          "question": "This Egyptian queen of the gods — wife of Osiris, mother of Horus — represents motherhood and magic",
+          "answer": "Isis"
+        },
+        {
+          "question": "Tantalus was condemned to stand in water beneath fruit trees but could never eat or drink; his suffering gave us this English word",
+          "answer": "Tantalize"
+        },
+        {
+          "question": "Murdered and cut to pieces by his brother Set, this Egyptian god was restored by Isis and became lord of the underworld",
+          "answer": "Osiris"
+        }
+      ],
+      "1600": [
+        {
+          "question": "After his friend Enkidu dies, the Sumerian king of Uruk sets out to find the secret of immortality in this ancient Mesopotamian poem, among the oldest surviving works of literature",
+          "answer": "The Epic of Gilgamesh"
+        },
+        {
+          "question": "In Aztec mythology, this plumed serpent god was associated with wind, learning, and the planet Venus as the morning star",
+          "answer": "Quetzalcóatl"
+        },
+        {
+          "question": "This shape-shifting trickster of Norse myth contrives the death of Balder and is bound beneath a venom-dripping serpent until Ragnarök",
+          "answer": "Loki"
+        }
+      ],
+      "2000": [
+        {
+          "question": "The Valkyries of Norse mythology chose the slain warriors who would go to Valhalla versus those who went to this goddess's realm",
+          "answer": "Hel"
+        },
+        {
+          "question": "In Hindu mythology, this deity of destruction and transformation — often depicted with a third eye — also performs the Tandava cosmic dance",
+          "answer": "Shiva"
+        },
+        {
+          "question": "This blue-skinned Hindu deity, an avatar of Vishnu, counsels the warrior Arjuna in the Bhagavad Gita",
+          "answer": "Krishna"
+        }
+      ]
+    }
+  },
+  {
+    "id": "oscar-winners",
+    "name": "Oscar Winners",
+    "cluesByValue": {
+      "400": [
+        {
+          "question": "This 1997 film tied the all-time record with 11 Academy Awards, including Best Picture and Best Director for James Cameron; it was set on a doomed ocean liner",
+          "answer": "Titanic"
+        },
+        {
+          "question": "Jack Nicholson and Helen Hunt won lead acting Oscars for this 1997 James L. Brooks comedy about a misanthropic novelist, a waitress, and a little dog",
+          "answer": "As Good as It Gets"
+        },
+        {
+          "question": "This 1982 fantasy film directed by Steven Spielberg about a boy who befriends a stranded alien won four Academy Awards",
+          "answer": "E.T. the Extra-Terrestrial"
+        }
+      ],
+      "800": [
+        {
+          "question": "Daniel Day-Lewis holds the record for the most Best Actor Oscars, winning three times; his first was for this film about a paralyzed Irish writer",
+          "answer": "My Left Foot",
+          "volatile": true
+        },
+        {
+          "question": "The first animated film ever nominated for Best Picture at the Oscars was this 1991 Disney fairy tale",
+          "answer": "Beauty and the Beast"
+        },
+        {
+          "question": "Katharine Hepburn holds the record for the most competitive acting Oscars, with four wins in this category",
+          "answer": "Best Actress",
+          "volatile": true
+        }
+      ],
+      "1200": [
+        {
+          "question": "Hattie McDaniel became the first African American to win an Academy Award, for this 1939 epic set during the Civil War",
+          "answer": "Gone with the Wind"
+        },
+        {
+          "question": "This film swept all five top Oscar categories in 1991 — Picture, Director, Actor, Actress, and Screenplay — a feat achieved only twice before",
+          "answer": "The Silence of the Lambs"
+        },
+        {
+          "question": "This 1975 Miloš Forman film set in a psychiatric ward swept all five top Oscars, with Jack Nicholson and Louise Fletcher winning the acting awards",
+          "answer": "One Flew Over the Cuckoo's Nest"
+        }
+      ],
+      "1600": [
+        {
+          "question": "Marlon Brando refused his Best Actor Oscar for 'The Godfather' and sent this activist to decline the award on his behalf",
+          "answer": "Sacheen Littlefeather"
+        },
+        {
+          "question": "Parasite became the first non-English-language film to win the Best Picture Oscar at the 92nd Academy Awards in 2020; it was directed by this filmmaker",
+          "answer": "Bong Joon-ho"
+        },
+        {
+          "question": "At the 2017 ceremony this musical was mistakenly announced as Best Picture before the award was corrected to 'Moonlight'",
+          "answer": "La La Land"
+        }
+      ],
+      "2000": [
+        {
+          "question": "Peter Jackson's Lord of the Rings trilogy swept all 11 of its nominated categories for this concluding film in 2004",
+          "answer": "The Return of the King"
+        },
+        {
+          "question": "The first sound film to win Best Picture, it defeated The Jazz Singer in 1928; it was about soldiers in World War I",
+          "answer": "Wings"
+        },
+        {
+          "question": "Steven Spielberg won his first Best Director Oscar for this 1993 film about a German industrialist who saved more than 1,000 Jews from the Holocaust",
+          "answer": "Schindler's List"
+        }
+      ]
+    }
+  },
+  {
+    "id": "rock-legends",
+    "name": "Rock Legends",
+    "cluesByValue": {
+      "400": [
+        {
+          "question": "This guitarist, known for playing a left-handed Fender Stratocaster, redefined rock with 'Purple Haze' and 'Voodoo Child'",
+          "answer": "Jimi Hendrix"
+        },
+        {
+          "question": "Led Zeppelin's 'Stairway to Heaven' opens with a gentle arpeggio on this instrument before the full band enters",
+          "answer": "Acoustic guitar"
+        },
+        {
+          "question": "This British band, fronted by Mick Jagger and Keith Richards, called themselves the 'World's Greatest Rock and Roll Band'",
+          "answer": "The Rolling Stones"
+        }
+      ],
+      "800": [
+        {
+          "question": "Nirvana's landmark 1991 album 'Nevermind,' which kicked off the grunge era, featured this lead single with its iconic distorted guitar riff",
+          "answer": "Smells Like Teen Spirit"
+        },
+        {
+          "question": "This arena rock band, featuring Freddie Mercury, is behind the anthemic songs 'We Will Rock You' and 'We Are the Champions'",
+          "answer": "Queen"
+        },
+        {
+          "question": "This distorted, angst-driven style of rock erupted from Seattle in the early 1990s with Pearl Jam, Soundgarden, and Alice in Chains",
+          "answer": "Grunge"
+        }
+      ],
+      "1200": [
+        {
+          "question": "The Who's 1969 rock opera 'Tommy' told the story of a 'deaf, dumb, and blind kid' who becomes a master of this carnival game",
+          "answer": "Pinball"
+        },
+        {
+          "question": "This Irish rock band's 1987 album 'The Joshua Tree' produced the hits 'With or Without You' and 'I Still Haven't Found What I'm Looking For'",
+          "answer": "U2"
+        },
+        {
+          "question": "Backed by the E Street Band, this New Jersey singer-songwriter broke through with the 1975 album 'Born to Run'",
+          "answer": "Bruce Springsteen"
+        }
+      ],
+      "1600": [
+        {
+          "question": "This 1979 Pink Floyd concept double album follows a rock star named Pink who isolates himself behind a metaphorical barrier; it became a 1982 Alan Parker film",
+          "answer": "The Wall"
+        },
+        {
+          "question": "Before going solo, this musician was the front man of the Pixies, whose stop-start 'quiet-loud' dynamic influenced Nirvana and much of 1990s alternative rock",
+          "answer": "Black Francis (Frank Black)"
+        },
+        {
+          "question": "Drummer Keith Moon and bassist John Entwistle powered this English band behind 'Baba O'Riley' and the rock opera 'Tommy'",
+          "answer": "The Who"
+        }
+      ],
+      "2000": [
+        {
+          "question": "The first rock and roll record is widely argued to be this 1951 song by Jackie Brenston and His Delta Cats featuring Ike Turner on piano",
+          "answer": "Rocket 88"
+        },
+        {
+          "question": "Joy Division's lead singer took his own life in 1980; the remaining members reconvened as this Manchester band, hitting the charts with 'Blue Monday'",
+          "answer": "New Order"
+        },
+        {
+          "question": "This English guitarist passed through the Yardbirds, Cream, and Derek and the Dominos before the solo hit 'Tears in Heaven'",
+          "answer": "Eric Clapton"
+        }
+      ]
+    }
+  },
+  {
+    "id": "american-history",
+    "name": "American History",
+    "group": "history",
+    "cluesByValue": {
+      "400": [
+        {
+          "question": "This 1803 land deal with France roughly doubled the size of the United States for around $15 million",
+          "answer": "The Louisiana Purchase"
+        },
+        {
+          "question": "The Emancipation Proclamation freed enslaved people in states in rebellion, but the 13th Amendment to the Constitution formally abolished slavery throughout the U.S. in this year",
+          "answer": "1865"
+        },
+        {
+          "question": "This series of economic programs launched by FDR between 1933 and 1939 aimed to lift the U.S. out of the Great Depression",
+          "answer": "The New Deal"
+        }
+      ],
+      "800": [
+        {
+          "question": "The internment of over 120,000 Japanese Americans during WWII was authorized by this executive order signed by FDR in 1942",
+          "answer": "Executive Order 9066"
+        },
+        {
+          "question": "This landmark 1954 Supreme Court case declared racial segregation in public schools unconstitutional",
+          "answer": "Brown v. Board of Education"
+        },
+        {
+          "question": "In 1773 colonists disguised as Mohawks dumped 342 chests of tea into a Massachusetts harbor to protest a British tax",
+          "answer": "The Boston Tea Party"
+        }
+      ],
+      "1200": [
+        {
+          "question": "The Battle of Gettysburg, the bloodiest battle of the Civil War, took place over three days in this year and is considered the war's turning point",
+          "answer": "1863"
+        },
+        {
+          "question": "The first permanent English settlement in North America, established in 1607, was named for King James I of England",
+          "answer": "Jamestown"
+        },
+        {
+          "question": "An 1848 discovery at Sutter's Mill drew some 300,000 'forty-niners' to California in search of this metal",
+          "answer": "Gold"
+        }
+      ],
+      "1600": [
+        {
+          "question": "Susan B. Anthony was arrested in 1872 for attempting to vote; she died before this constitutional amendment gave women the right to vote in 1920",
+          "answer": "The 19th Amendment"
+        },
+        {
+          "question": "Operation Overlord — the largest seaborne invasion in history — took place on the beaches of Normandy, France, on this date in 1944",
+          "answer": "June 6, 1944 (D-Day)"
+        },
+        {
+          "question": "A 1972 break-in at Democratic Party headquarters in a Washington office complex spiraled into this scandal that toppled Nixon",
+          "answer": "Watergate"
+        }
+      ],
+      "2000": [
+        {
+          "question": "The Trail of Tears refers to the forced relocation of five major Native American tribes following this 1830 federal law signed by Andrew Jackson",
+          "answer": "The Indian Removal Act"
+        },
+        {
+          "question": "After escaping slavery in 1838, this Maryland-born orator published the antislavery newspaper The North Star and later advised President Lincoln",
+          "answer": "Frederick Douglass"
+        },
+        {
+          "question": "Signed in 1944, this law gave returning veterans college tuition, cheap home loans, and unemployment pay, helping build the postwar middle class",
+          "answer": "The G.I. Bill"
+        }
+      ]
+    }
+  },
+  {
+    "id": "potent-potables",
+    "name": "Potent Potables",
+    "cluesByValue": {
+      "400": [
+        {
+          "question": "This bright orange Italian aperitif, bitter with notes of gentian and rhubarb, is combined with prosecco and soda to make a Spritz",
+          "answer": "Aperol"
+        },
+        {
+          "question": "A classic Old Fashioned is made with sugar, bitters, orange peel, a Luxardo cherry, and this spirit",
+          "answer": "Bourbon (or rye whiskey)"
+        },
+        {
+          "question": "Sparkling wine can only legally bear this name on its label if produced via the traditional method in a specific northeastern French region with chalky soils and a cool climate",
+          "answer": "Champagne"
+        }
+      ],
+      "800": [
+        {
+          "question": "A Negroni is a classic Italian cocktail containing equal parts gin, this red Italian bitters, and sweet vermouth",
+          "answer": "Campari"
+        },
+        {
+          "question": "This blue-agave spirit from the Jalisco region of Mexico is the base of a margarita",
+          "answer": "Tequila"
+        },
+        {
+          "question": "Juniper is the dominant botanical in this clear spirit, the base of a martini, a negroni, and a Tom Collins",
+          "answer": "Gin"
+        }
+      ],
+      "1200": [
+        {
+          "question": "Port wine is produced in the Douro Valley of this European country and gets its name from the city of Porto",
+          "answer": "Portugal"
+        },
+        {
+          "question": "By law, a whisky may be labeled 'Scotch' only if it is distilled and aged for at least three years in this country",
+          "answer": "Scotland"
+        },
+        {
+          "question": "This Irish liqueur, launched in 1974, blends triple-distilled whiskey with dairy cream and a hint of cocoa",
+          "answer": "Baileys Irish Cream"
+        }
+      ],
+      "1600": [
+        {
+          "question": "A Moscow Mule is traditionally served in a copper mug and contains vodka, lime juice, and this spicy non-alcoholic mixer",
+          "answer": "Ginger beer"
+        },
+        {
+          "question": "This Japanese rice wine, often served warm or chilled, has been brewed for over 2,000 years and averages around 15% alcohol by volume",
+          "answer": "Sake"
+        },
+        {
+          "question": "This fortified wine of Andalusia ranges from bone-dry fino, drunk chilled, to dark, nutty oloroso",
+          "answer": "Sherry"
+        }
+      ],
+      "2000": [
+        {
+          "question": "Absinthe, the 'Green Fairy' popular with 19th-century Parisian artists, is flavored with wormwood and this aromatic herb",
+          "answer": "Anise"
+        },
+        {
+          "question": "This dry, amber-colored French aperitif made from wine and herbs has its headquarters in Aix-en-Provence and bears a woman's name",
+          "answer": "Lillet"
+        },
+        {
+          "question": "A Bellini pairs white peach purée with this dry sparkling wine from Italy's Veneto region",
+          "answer": "Prosecco"
+        }
+      ]
+    }
+  },
+  {
+    "id": "famous-quotes",
+    "name": "Famous Quotes",
+    "cluesByValue": {
+      "400": [
+        {
+          "question": "This U.S. President said 'Ask not what your country can do for you — ask what you can do for your country' in his 1961 inaugural address",
+          "answer": "John F. Kennedy"
+        },
+        {
+          "question": "This civil rights leader declared 'I have a dream' during the March on Washington in 1963",
+          "answer": "Martin Luther King Jr."
+        },
+        {
+          "question": "Shakespeare's Hamlet muses 'To be, or not to be — that is the question' while contemplating this existential act",
+          "answer": "Suicide"
+        }
+      ],
+      "800": [
+        {
+          "question": "This British wartime leader said 'Never in the field of human conflict was so much owed by so many to so few' about the RAF pilots of the Battle of Britain",
+          "answer": "Winston Churchill"
+        },
+        {
+          "question": "Asked about his many failed attempts at the light bulb, this inventor reportedly said, 'I have not failed. I've just found 10,000 ways that won't ____'",
+          "answer": "Work"
+        },
+        {
+          "question": "Dedicating a battlefield cemetery in 1863, this president closed by hoping that 'government of the people, by the people, for the people, shall not perish'",
+          "answer": "Abraham Lincoln"
+        }
+      ],
+      "1200": [
+        {
+          "question": "'Elementary, my dear Watson' is attributed to this fictional detective, though the exact phrase never appears in Arthur Conan Doyle's stories",
+          "answer": "Sherlock Holmes"
+        },
+        {
+          "question": "Friedrich Nietzsche wrote 'God is dead. God remains dead. And we have killed him' in this 1882 philosophical work",
+          "answer": "The Gay Science"
+        },
+        {
+          "question": "Setting foot on the lunar surface in 1969, this astronaut radioed 'one small step for man, one giant leap for mankind'",
+          "answer": "Neil Armstrong"
+        }
+      ],
+      "1600": [
+        {
+          "question": "This Roman emperor and Stoic philosopher wrote 'You have power over your mind, not outside events. Realize this, and you will find strength' in his Meditations",
+          "answer": "Marcus Aurelius"
+        },
+        {
+          "question": "Oscar Wilde quipped 'I can resist everything except this,' according to his play Lady Windermere's Fan",
+          "answer": "Temptation"
+        },
+        {
+          "question": "As the conspirators stabbed him, Julius Caesar supposedly gasped 'Et tu?' at this trusted friend and senator",
+          "answer": "Brutus"
+        }
+      ],
+      "2000": [
+        {
+          "question": "This French philosopher and mathematician wrote 'I think, therefore I am' — cogito ergo sum — as the first principle of his Meditations on First Philosophy",
+          "answer": "René Descartes"
+        },
+        {
+          "question": "Maya Angelou wrote 'I've learned that people will forget what you said, people will forget what you did, but people will never forget how you made them ____'",
+          "answer": "Feel"
+        },
+        {
+          "question": "Denouncing the conspirator Catiline in the Roman Senate, this orator cried 'O tempora, o mores!' — 'Oh the times, oh the customs!'",
+          "answer": "Cicero"
+        }
+      ]
+    }
+  },
+  {
+    "id": "world-capitals",
+    "name": "World Capitals",
+    "group": "geo",
+    "cluesByValue": {
+      "400": [
+        {
+          "question": "Home to Big Ben and Buckingham Palace, this city on the Thames has served as England's capital for nearly 1,000 years",
+          "answer": "London"
+        },
+        {
+          "question": "At about 11,940 feet above sea level in the Andes, this seat of Bolivia's government is the highest capital city in the world",
+          "answer": "La Paz"
+        },
+        {
+          "question": "Despite Sydney being Australia's largest and most famous city, this planned capital has served as the seat of Australian government since 1927",
+          "answer": "Canberra"
+        }
+      ],
+      "800": [
+        {
+          "question": "Officially named Nay Pyi Taw since 2006, Myanmar moved its capital there from this city, which remains the country's largest",
+          "answer": "Yangon"
+        },
+        {
+          "question": "Queen Victoria chose this lumber town on a river as the compromise capital of the Province of Canada in 1857",
+          "answer": "Ottawa"
+        },
+        {
+          "question": "Vatican City is entirely surrounded by this capital, which has been the seat of a unified Italy since 1871",
+          "answer": "Rome"
+        }
+      ],
+      "1200": [
+        {
+          "question": "Reykjavik, the capital of Iceland, is the world's northernmost capital of a sovereign state and sits atop this geologic feature",
+          "answer": "The Mid-Atlantic Ridge"
+        },
+        {
+          "question": "Nauru, the world's smallest island nation, has no official capital, but this southern district — home to its parliament and airport — serves as the de facto seat of government",
+          "answer": "Yaren"
+        },
+        {
+          "question": "Known as Edo until 1868, this city became Japan's capital when the emperor relocated there from Kyoto",
+          "answer": "Tokyo"
+        }
+      ],
+      "1600": [
+        {
+          "question": "Sri Lanka has two capital cities: Sri Jayawardenepura Kotte (legislative) and this largest city, its commercial and de facto administrative center",
+          "answer": "Colombo"
+        },
+        {
+          "question": "After reunification in 1990, the Bundestag voted to move Germany's capital from Bonn back to this city",
+          "answer": "Berlin"
+        },
+        {
+          "question": "South Africa spreads its capital duties across three cities: Cape Town for the legislature, Bloemfontein for the courts, and this one for the executive",
+          "answer": "Pretoria"
+        }
+      ],
+      "2000": [
+        {
+          "question": "Pristina, Kosovo, honors this U.S. president — who ordered the 1999 NATO bombing campaign against Serbia — with a statue and a namesake boulevard",
+          "answer": "Bill Clinton"
+        },
+        {
+          "question": "Formerly known as Frunze under Soviet rule, this Kyrgyz capital took back its traditional name after independence in 1991",
+          "answer": "Bishkek"
+        },
+        {
+          "question": "When Brasília became Brazil's capital in 1960, it took the title from this coastal city famous for Carnival and Sugarloaf Mountain",
+          "answer": "Rio de Janeiro"
+        }
+      ]
+    }
+  },
+  {
+    "id": "the-business-world",
+    "name": "The Business World",
+    "cluesByValue": {
+      "400": [
+        {
+          "question": "Jeff Bezos founded this company in 1994 as an online bookstore; it is now the world's largest e-commerce platform",
+          "answer": "Amazon",
+          "volatile": true
+        },
+        {
+          "question": "Warren Buffett, the 'Oracle of Omaha,' spent decades as CEO of this Nebraska-based holding company that owns Geico, Dairy Queen, and dozens of other brands",
+          "answer": "Berkshire Hathaway"
+        },
+        {
+          "question": "This Silicon Valley company, founded in 1998 by Larry Page and Sergey Brin, has a name that's a play on the mathematical term 'googol'",
+          "answer": "Google"
+        }
+      ],
+      "800": [
+        {
+          "question": "Henry Ford didn't invent the automobile, but he did introduce this production method in 1913 that made cars affordable for ordinary Americans",
+          "answer": "The assembly line"
+        },
+        {
+          "question": "Elon Musk led the 2004 funding round for this electric vehicle company and later became its CEO; it is named for a Serbian-American electrical pioneer",
+          "answer": "Tesla"
+        },
+        {
+          "question": "Invented by an Atlanta pharmacist in 1886, this soft drink guards its 'Merchandise 7X' formula in a downtown vault",
+          "answer": "Coca-Cola"
+        }
+      ],
+      "1200": [
+        {
+          "question": "The maker of the Macintosh spent decades in a trademark dispute with The Beatles' record label, with which it shared a fruit-themed name and logo",
+          "answer": "Apple"
+        },
+        {
+          "question": "Founded in 1955, this fast-food company's 'Golden Arches' logo is said to be the most recognized symbol in the world after the Christian cross",
+          "answer": "McDonald's"
+        },
+        {
+          "question": "Published annually since 1955, this list ranks America's largest corporations by revenue and lends its name to a tier of blue-chip employers",
+          "answer": "The Fortune 500"
+        }
+      ],
+      "1600": [
+        {
+          "question": "Sam Walton opened the first store of this retail chain in Rogers, Arkansas in 1962 on the principle of offering the lowest possible prices every day",
+          "answer": "Walmart"
+        },
+        {
+          "question": "This Danish toy company, whose name means 'play well' in Danish, is the world's largest toy manufacturer by revenue",
+          "answer": "LEGO",
+          "volatile": true
+        },
+        {
+          "question": "Economist Joseph Schumpeter popularized this two-word phrase for the way capitalist innovation continually wrecks and remakes industries",
+          "answer": "Creative destruction"
+        }
+      ],
+      "2000": [
+        {
+          "question": "Though Steve Jobs is synonymous with Apple, this co-founder designed the Apple I circuit board by hand and is credited with building the first Apple computers",
+          "answer": "Steve Wozniak"
+        },
+        {
+          "question": "This oil supermajor, now headquartered in London, was formed by a 1907 merger of Royal Dutch Petroleum and a British transport-and-trading firm",
+          "answer": "Shell"
+        },
+        {
+          "question": "Chartered in 1602 to run the lucrative spice trade with Asia, this venture is widely considered the first business to sell shares to the general public",
+          "answer": "The Dutch East India Company"
+        }
+      ]
+    }
+  },
+  {
+    "id": "nobel-prize",
+    "name": "Nobel Prizes",
+    "cluesByValue": {
+      "400": [
+        {
+          "question": "This physicist, famous for E=mc², was awarded the Nobel Prize in Physics in 1921 for his discovery of the law of the photoelectric effect",
+          "answer": "Albert Einstein"
+        },
+        {
+          "question": "Mother Teresa received the Nobel Peace Prize in 1979 for her work with this religious order she founded to serve the poorest of the poor",
+          "answer": "The Missionaries of Charity"
+        },
+        {
+          "question": "This Polish-French physicist and chemist was the first woman to win a Nobel Prize and remains the only person to win Nobel Prizes in two different sciences",
+          "answer": "Marie Curie"
+        }
+      ],
+      "800": [
+        {
+          "question": "This South African civil rights leader was awarded the Nobel Peace Prize in 1993 alongside F.W. de Klerk for their peaceful dismantling of apartheid",
+          "answer": "Nelson Mandela"
+        },
+        {
+          "question": "This Colombian novelist won the 1982 Nobel Prize in Literature for magical realism works including 'One Hundred Years of Solitude'",
+          "answer": "Gabriel García Márquez"
+        },
+        {
+          "question": "This Danish physicist won the 1922 Nobel for a model of the atom in which electrons occupy fixed energy shells",
+          "answer": "Niels Bohr"
+        }
+      ],
+      "1200": [
+        {
+          "question": "Francis Crick, James Watson, and Rosalind Franklin discovered this molecule's double-helix structure; Crick and Watson won the 1962 Nobel for it",
+          "answer": "DNA"
+        },
+        {
+          "question": "Malala Yousafzai, who survived a Taliban assassination attempt, became the youngest Nobel Peace Prize laureate in 2014 at age this",
+          "answer": "17"
+        },
+        {
+          "question": "All the Nobel Prizes are presented in Stockholm except the Peace Prize, which is awarded each December in this Norwegian capital",
+          "answer": "Oslo"
+        }
+      ],
+      "1600": [
+        {
+          "question": "This Swedish chemist and engineer, who invented dynamite in 1867, left the bulk of his fortune to fund the five prizes that bear his name",
+          "answer": "Alfred Nobel"
+        },
+        {
+          "question": "This economist, who developed game theory, was depicted in the 2001 film 'A Beautiful Mind'; he won the Nobel Memorial Prize in Economics in 1994",
+          "answer": "John Nash"
+        },
+        {
+          "question": "This German physicist, whose constant is denoted h, won the 1918 Nobel for founding quantum theory",
+          "answer": "Max Planck"
+        }
+      ],
+      "2000": [
+        {
+          "question": "Richard Feynman received the Nobel Prize in Physics in 1965 for his contributions to the development of this theory, describing the quantum-mechanical interaction between light and matter",
+          "answer": "Quantum electrodynamics"
+        },
+        {
+          "question": "The Swedish Academy said Bob Dylan won the controversial 2016 Literature prize for new poetic expression within the great American tradition of this musical form",
+          "answer": "Song"
+        },
+        {
+          "question": "Because there is no Nobel Prize in mathematics, the field's top honor is often said to be this medal, awarded every four years to mathematicians under 40",
+          "answer": "The Fields Medal"
+        }
+      ]
+    }
+  },
+  {
+    "id": "double-meanings",
+    "name": "Double Meanings",
+    "cluesByValue": {
+      "400": [
+        {
+          "question": "This word can mean a sharp knock on a door OR a style of music pioneered by Grandmaster Flash and Run-DMC",
+          "answer": "Rap"
+        },
+        {
+          "question": "This word is a rotating spool that holds fishing line or film, AND it means to stagger dizzily",
+          "answer": "Reel"
+        },
+        {
+          "question": "In sales it's a persuasive presentation; in British sport it's the field of play; in music it's how high or low a note sounds",
+          "answer": "Pitch"
+        }
+      ],
+      "800": [
+        {
+          "question": "In baseball it means a batter is out; in labor disputes it means workers walk off the job; in bowling it means knocking down all ten pins",
+          "answer": "Strike"
+        },
+        {
+          "question": "This word is a fastener for papers or hair, AND a brisk pace, as in 'moving at a good ___'",
+          "answer": "Clip"
+        },
+        {
+          "question": "This three-letter word is a nocturnal flying mammal, AND the wooden club a batter swings in baseball",
+          "answer": "Bat"
+        }
+      ],
+      "1200": [
+        {
+          "question": "This five-letter word is a magic incantation, AND a stretch of time, as in a dry ___ of weather",
+          "answer": "Spell"
+        },
+        {
+          "question": "This word is a contest of speed, AND a group of people sharing a common ancestry, AND a strong tidal current",
+          "answer": "Race"
+        },
+        {
+          "question": "This four-letter word is a young cow, AND the fleshy muscle at the back of your lower leg",
+          "answer": "Calf"
+        }
+      ],
+      "1600": [
+        {
+          "question": "This word is a financial institution where you keep money AND the sloping land bordering a river",
+          "answer": "Bank"
+        },
+        {
+          "question": "This word is a metal grate for cooking over a fire, AND it means to subject someone to intense, aggressive questioning",
+          "answer": "Grill"
+        },
+        {
+          "question": "This word is a small burrowing mammal, AND a spy planted inside an enemy organization, AND a chemistry unit of amount",
+          "answer": "Mole"
+        }
+      ],
+      "2000": [
+        {
+          "question": "One of this homophone pair is a story passed down through generations; the other is the appendage that wags on an excited dog — same sound, different spellings",
+          "answer": "Tale and tail"
+        },
+        {
+          "question": "In mathematics, it describes a series that continues without end; in common usage, it means a looped ribbon symbol representing eternity",
+          "answer": "Infinity"
+        },
+        {
+          "question": "This word is the black suit of shovels on a deck of cards, AND a digging tool, AND bluntness, as in calling a ___ a ___",
+          "answer": "Spade"
+        }
+      ]
+    }
+  },
+  {
+    "id": "royalty",
+    "name": "Royalty",
+    "cluesByValue": {
+      "400": [
+        {
+          "question": "Known as 'The Sun King,' this French monarch built the Palace of Versailles and ruled France for over 72 years",
+          "answer": "Louis XIV"
+        },
+        {
+          "question": "Queen Elizabeth II reigned from 1952 to 2022; on her death her eldest son acceded to the British throne under this regnal name",
+          "answer": "Charles III"
+        },
+        {
+          "question": "Cleopatra VII was the last ruler of this ancient dynasty, which ruled Egypt for nearly 300 years after Alexander the Great's death",
+          "answer": "The Ptolemaic Dynasty"
+        }
+      ],
+      "800": [
+        {
+          "question": "Henry VIII famously broke with the Catholic Church to divorce this first of his six wives",
+          "answer": "Catherine of Aragon"
+        },
+        {
+          "question": "Reigning from 1837 to 1901, this British queen was grandmother to the rulers of Germany, Russia, and Spain, earning the nickname 'the grandmother of Europe'",
+          "answer": "Queen Victoria"
+        },
+        {
+          "question": "The 'Virgin Queen,' daughter of Henry VIII and Anne Boleyn, ruled England through the defeat of the Spanish Armada, from 1558 to 1603",
+          "answer": "Elizabeth I"
+        }
+      ],
+      "1200": [
+        {
+          "question": "This French-born marshal of Napoleon was elected heir to the Swedish throne in 1810 and founded the royal dynasty that still reigns in Sweden today",
+          "answer": "Jean-Baptiste Bernadotte (Charles XIV John)"
+        },
+        {
+          "question": "The last Tsar of Russia, Nicholas II, and his family were executed in this Ural Mountains city by Bolsheviks in 1918",
+          "answer": "Yekaterinburg"
+        },
+        {
+          "question": "On Christmas Day of the year 800, the Pope crowned this king of the Franks as the first Holy Roman Emperor",
+          "answer": "Charlemagne"
+        }
+      ],
+      "1600": [
+        {
+          "question": "Japan's current imperial house is the Yamato dynasty, making it the world's oldest continuous hereditary monarchy; the current emperor holds this name",
+          "answer": "Naruhito",
+          "volatile": true
+        },
+        {
+          "question": "Suleiman the Magnificent expanded the Ottoman Empire to its greatest territorial extent during his reign from 1520 to 1566; his empire's capital was this city",
+          "answer": "Constantinople (Istanbul)"
+        },
+        {
+          "question": "This Mughal emperor spent over two decades and a fortune building the Taj Mahal as a mausoleum for his wife Mumtaz Mahal",
+          "answer": "Shah Jahan"
+        }
+      ],
+      "2000": [
+        {
+          "question": "The Battle of Hastings in 1066 brought this Norman duke to power as King of England, fundamentally changing the English language by introducing French Norman words",
+          "answer": "William the Conqueror"
+        },
+        {
+          "question": "This Habsburg empress modernized Austria and is considered one of the most capable rulers of the 18th century; she was the only woman to rule the Habsburg dominions outright",
+          "answer": "Maria Theresa"
+        },
+        {
+          "question": "This 6th-century Byzantine emperor codified Roman law into what became known as his 'Code' and rebuilt the Hagia Sophia",
+          "answer": "Justinian I"
+        }
+      ]
+    }
+  },
+  {
+    "id": "tv-through-decades",
+    "name": "TV Through the Decades",
+    "group": "screen",
+    "cluesByValue": {
+      "400": [
+        {
+          "question": "Rachel, Monica, Phoebe, Ross, Chandler, and Joey hung out at the Central Perk coffeehouse in this 1994–2004 NBC sitcom",
+          "answer": "Friends"
+        },
+        {
+          "question": "Lucille Ball starred in this pioneering 1950s sitcom about a wacky housewife constantly scheming to get into show business",
+          "answer": "I Love Lucy"
+        },
+        {
+          "question": "Walter White's transformation from chemistry teacher to drug kingpin unfolds across five seasons of this AMC drama",
+          "answer": "Breaking Bad"
+        }
+      ],
+      "800": [
+        {
+          "question": "Rod Serling hosted and wrote most episodes of this anthology series that explored the uncanny and supernatural between 1959 and 1964",
+          "answer": "The Twilight Zone"
+        },
+        {
+          "question": "This HBO series, based on George R.R. Martin's novels, broke records with its Battle of the Bastards episode and its controversial final season",
+          "answer": "Game of Thrones"
+        },
+        {
+          "question": "Carroll O'Connor played the bigoted Queens loading-dock worker Archie Bunker in this boundary-pushing 1970s Norman Lear sitcom",
+          "answer": "All in the Family"
+        }
+      ],
+      "1200": [
+        {
+          "question": "Don Draper, the mysterious creative director of Sterling Cooper advertising agency, is the antihero of this AMC series set in 1960s New York",
+          "answer": "Mad Men"
+        },
+        {
+          "question": "Broadcast from 1989 to 1998, this NBC sitcom about four friends in New York was famously described as 'a show about nothing'",
+          "answer": "Seinfeld"
+        },
+        {
+          "question": "This Michael Crichton-created medical drama, set in a Chicago emergency room, made a star of George Clooney over its 1994–2009 run",
+          "answer": "ER"
+        }
+      ],
+      "1600": [
+        {
+          "question": "This British anthology series, created by Charlie Brooker, examines the dark side of technology and social media; each episode is a standalone story",
+          "answer": "Black Mirror"
+        },
+        {
+          "question": "'The Sopranos,' often called the greatest TV drama of all time, ended with this director's infamous cut-to-black in the final scene",
+          "answer": "David Chase"
+        },
+        {
+          "question": "This Fox animated series about a doughnut-loving nuclear plant safety inspector in Springfield has run since 1989",
+          "answer": "The Simpsons"
+        }
+      ],
+      "2000": [
+        {
+          "question": "The Wire, set in Baltimore and often called the greatest TV show ever made, was created by this former Baltimore Sun journalist and police reporter",
+          "answer": "David Simon"
+        },
+        {
+          "question": "This 1960s ABC series starred Adam West as a caped crusader and was famous for onscreen fight graphics like 'POW!,' 'BIFF!,' and 'ZAPP!'",
+          "answer": "Batman"
+        },
+        {
+          "question": "Sixteen castaways 'outwit, outplay, and outlast' one another for a million dollars in this CBS reality competition that premiered in 2000",
+          "answer": "Survivor"
+        }
+      ]
+    }
+  },
+  {
+    "id": "the-universe",
+    "name": "The Universe",
+    "cluesByValue": {
+      "400": [
+        {
+          "question": "Our solar system sits about two-thirds of the way out along the Orion Arm of this barred spiral galaxy",
+          "answer": "The Milky Way"
+        },
+        {
+          "question": "About 4.24 light-years away, this faint red dwarf is the closest known star to the Sun; its name is Latin for 'nearest'",
+          "answer": "Proxima Centauri"
+        },
+        {
+          "question": "This NASA space telescope, launched in 1990 and repaired by shuttle astronauts in 1993, provided the deepest and clearest images of the cosmos ever captured",
+          "answer": "The Hubble Space Telescope"
+        }
+      ],
+      "800": [
+        {
+          "question": "Jupiter's Great Red Spot is a storm that has persisted for at least 350 years; it is larger than this planet",
+          "answer": "Earth"
+        },
+        {
+          "question": "Light from the sun takes approximately eight minutes and twenty seconds to reach Earth, a distance of about 93 million of these units",
+          "answer": "Miles"
+        },
+        {
+          "question": "In 2006 the International Astronomical Union demoted this body to 'dwarf planet,' cutting the solar system's planet count to eight",
+          "answer": "Pluto"
+        }
+      ],
+      "1200": [
+        {
+          "question": "First proposed by Georges Lemaître in 1927, this cosmological model holds that the universe began from an extremely hot, dense singularity approximately 13.8 billion years ago",
+          "answer": "The Big Bang theory"
+        },
+        {
+          "question": "When a massive star exhausts its fuel and collapses, its outer layers explode outward in this dramatic event, briefly outshining its entire galaxy",
+          "answer": "A supernova"
+        },
+        {
+          "question": "The dwarf planet Ceres and countless rocky bodies orbit the Sun in this region between Mars and Jupiter",
+          "answer": "The asteroid belt"
+        }
+      ],
+      "1600": [
+        {
+          "question": "Pulsars are rapidly spinning neutron stars that emit beams of radio waves; the first was discovered in 1967 by this Northern Irish astrophysicist, who was a graduate student at the time",
+          "answer": "Jocelyn Bell Burnell"
+        },
+        {
+          "question": "The Chandrasekhar limit — about 1.4 solar masses — is the maximum mass of a stable white dwarf; stars above this limit collapse into a neutron star or this",
+          "answer": "A black hole"
+        },
+        {
+          "question": "The stretching of light toward longer wavelengths as a galaxy moves away from us, key evidence that the universe is expanding, is called this",
+          "answer": "Redshift"
+        }
+      ],
+      "2000": [
+        {
+          "question": "Dark matter makes up about 27% of the universe's total mass-energy, but it has never been directly detected — scientists infer its existence from this effect on visible matter",
+          "answer": "Gravitational lensing (gravitational effects)"
+        },
+        {
+          "question": "The Voyager 1 spacecraft, launched in 1977, crossed into interstellar space in 2012, making it the first human-made object to leave this",
+          "answer": "The heliosphere (the solar system)"
+        },
+        {
+          "question": "This 1543 treatise by Nicolaus Copernicus argued that the Earth and other planets revolve around the Sun",
+          "answer": "On the Revolutions of the Heavenly Spheres"
+        }
+      ]
+    }
+  },
+  {
+    "id": "crime-justice",
+    "name": "Crime & Justice",
+    "cluesByValue": {
+      "400": [
+        {
+          "question": "In U.S. law, this Fifth Amendment right protects accused persons from being compelled to testify against themselves in a criminal case",
+          "answer": "The right against self-incrimination (pleading the Fifth)"
+        },
+        {
+          "question": "Al Capone, the most feared gangster of Prohibition-era Chicago, was ultimately convicted in 1931 and imprisoned for this financial crime",
+          "answer": "Tax evasion"
+        },
+        {
+          "question": "Because a defendant is presumed 'innocent until proven guilty,' the burden of proof in a criminal trial rests entirely on this party",
+          "answer": "The prosecution"
+        }
+      ],
+      "800": [
+        {
+          "question": "This 1966 Supreme Court case established that police must inform suspects of their constitutional rights before questioning — producing the now-familiar warning read at arrests",
+          "answer": "Miranda v. Arizona"
+        },
+        {
+          "question": "Jurors' inflated expectations of slick forensic proof, blamed on television crime dramas, is nicknamed this two-word 'effect' after a CBS franchise",
+          "answer": "The CSI effect"
+        },
+        {
+          "question": "To convict in a criminal case, a jury must find the defendant guilty to this standard, stricter than the 'preponderance of evidence' used in civil suits",
+          "answer": "Beyond a reasonable doubt"
+        }
+      ],
+      "1200": [
+        {
+          "question": "This 1961 Supreme Court case held that evidence obtained through an illegal search cannot be used in court, extending the exclusionary rule to all U.S. states",
+          "answer": "Mapp v. Ohio"
+        },
+        {
+          "question": "The Innocence Project, co-founded by Barry Scheck in 1992, has freed over 375 wrongfully convicted people primarily through the use of this forensic technology",
+          "answer": "DNA testing"
+        },
+        {
+          "question": "This 1963 Supreme Court decision requires states to provide a lawyer, free of charge, to criminal defendants who cannot afford one",
+          "answer": "Gideon v. Wainwright"
+        }
+      ],
+      "1600": [
+        {
+          "question": "In English common law, this Latin phrase — meaning 'the body of the crime' — refers to the principle that a crime must be proven to have occurred before anyone can be convicted of it",
+          "answer": "Corpus delicti"
+        },
+        {
+          "question": "Alphonse Bertillon's system of identifying repeat offenders by 11 precise body measurements is also known by this general term for the measurement of the human body",
+          "answer": "Anthropometry"
+        },
+        {
+          "question": "In this common arrangement, a defendant pleads guilty to a lesser charge or fewer counts in exchange for a lighter sentence",
+          "answer": "A plea bargain"
+        }
+      ],
+      "2000": [
+        {
+          "question": "The Nuremberg trials, held from 1945–46, established the principle that individuals could be held criminally responsible for 'crimes against humanity' — a term first coined by this chief U.S. prosecutor",
+          "answer": "Robert H. Jackson"
+        },
+        {
+          "question": "The RICO Act of 1970 — used to prosecute organized crime — stands for this full phrase describing a pattern of illegal business activities",
+          "answer": "Racketeer Influenced and Corrupt Organizations"
+        },
+        {
+          "question": "Fingerprint classification sorts ridge patterns into three basic types: loops, whorls, and this arched form",
+          "answer": "Arches"
+        }
+      ]
+    }
+  },
+  {
+    "id": "the-2000s",
+    "name": "The 2000s",
+    "cluesByValue": {
+      "400": [
+        {
+          "question": "This 2003 Disney-Pixar film about a clownfish's father crossing the ocean to find his missing son spawned a 2016 sequel set in California",
+          "answer": "Finding Nemo"
+        },
+        {
+          "question": "Apple launched this music player in 2001 with the tagline 'A thousand songs in your pocket,' revolutionizing how people listened to music on the go",
+          "answer": "The iPod"
+        },
+        {
+          "question": "She won her fourth consecutive Grand Slam singles title in 2003 and spent most of the decade as the world's top-ranked women's tennis player",
+          "answer": "Serena Williams"
+        }
+      ],
+      "800": [
+        {
+          "question": "Mark Zuckerberg launched this social network in 2004 from his Harvard dorm room; within two years it was open to anyone over 13",
+          "answer": "Facebook"
+        },
+        {
+          "question": "Barack Obama won the 2008 U.S. presidential election, becoming the first African American president, defeating this Arizona senator and Vietnam War veteran",
+          "answer": "John McCain"
+        },
+        {
+          "question": "In 2005 this Louisiana city flooded catastrophically when its levees failed during Hurricane Katrina",
+          "answer": "New Orleans"
+        }
+      ],
+      "1200": [
+        {
+          "question": "The music file-sharing service Napster was shut down in 2001 following lawsuits from the recording industry; this heavy metal band was among its most vocal critics",
+          "answer": "Metallica"
+        },
+        {
+          "question": "Her 2008 album 'Fearless,' released when she was 18, made her the youngest artist ever to win the Grammy for Album of the Year",
+          "answer": "Taylor Swift"
+        },
+        {
+          "question": "Steve Jobs unveiled this touchscreen device in January 2007, calling it a phone, an iPod, and an internet communicator in one",
+          "answer": "The iPhone"
+        }
+      ],
+      "1600": [
+        {
+          "question": "The September 11 attacks led directly to the U.S. invasion of Afghanistan in 2001 and, far more controversially, of this other country in 2003",
+          "answer": "Iraq"
+        },
+        {
+          "question": "In September 2008 this 'fourth largest' U.S. investment bank filed the biggest bankruptcy in American history, sending the global financial crisis into free fall",
+          "answer": "Lehman Brothers"
+        },
+        {
+          "question": "Launched in 2003 by Tom Anderson and Chris DeWolfe, this was the dominant U.S. social network of the mid-2000s until Facebook overtook it",
+          "answer": "MySpace"
+        }
+      ],
+      "2000": [
+        {
+          "question": "Completed in 2003, this 13-year international research effort produced the first near-complete sequence of all ~3 billion base pairs of human DNA",
+          "answer": "The Human Genome Project"
+        },
+        {
+          "question": "This 2006 web platform, acquired by Google for $1.65 billion just 18 months after its founding, changed how video was shared and consumed online",
+          "answer": "YouTube"
+        },
+        {
+          "question": "Heath Ledger won a posthumous Oscar for playing the Joker in this 2008 Christopher Nolan Batman film",
+          "answer": "The Dark Knight"
+        }
+      ]
+    }
+  },
+  {
+    "id": "word-wizards",
+    "name": "Word Wizards",
+    "cluesByValue": {
+      "400": [
+        {
+          "question": "A word that reads the same forwards and backwards — like 'racecar,' 'level,' or 'noon' — is called this",
+          "answer": "A palindrome"
+        },
+        {
+          "question": "This literary device gives human qualities to non-human things — for example, 'the sun smiled down on us'",
+          "answer": "Personification"
+        },
+        {
+          "question": "NASA, laser, and scuba are all examples of this type of word, formed by pronouncing the initial letters of a longer phrase",
+          "answer": "Acronym"
+        }
+      ],
+      "800": [
+        {
+          "question": "'Their/there/they're' and 'to/too/two' are sets of these words — pronounced the same but spelled differently and carrying different meanings",
+          "answer": "Homophones"
+        },
+        {
+          "question": "In rhetoric, this device repeats the same word or phrase at the beginning of successive clauses — as in MLK's 'I have a dream, I have a dream, I have a dream'",
+          "answer": "Anaphora"
+        },
+        {
+          "question": "This figure of speech asserts a direct comparison with no 'like' or 'as' — 'all the world's a stage'",
+          "answer": "A metaphor"
+        }
+      ],
+      "1200": [
+        {
+          "question": "The word 'quiz,' meaning a short test, may derive from the Latin 'qui es?' meaning 'who are you?' — the entire study of word origins and histories is called this",
+          "answer": "Etymology"
+        },
+        {
+          "question": "An oxymoron combines two contradictory terms — like 'deafening silence' or 'bittersweet'; this related figure of speech uses two seemingly contradictory ideas in the same sentence for effect",
+          "answer": "Paradox"
+        },
+        {
+          "question": "A common noun that comes from a proper name — 'sandwich' from an earl, 'boycott' from a land agent — is called this",
+          "answer": "An eponym"
+        }
+      ],
+      "1600": [
+        {
+          "question": "This Greek rhetorical device — deliberately saying less than what is meant, often for irony — is used when someone says 'not bad' to mean 'excellent'",
+          "answer": "Litotes"
+        },
+        {
+          "question": "In this 1871 Lewis Carroll sequel, Humpty Dumpty explains a 'portmanteau' word as 'two meanings packed up into one word'",
+          "answer": "Through the Looking-Glass"
+        },
+        {
+          "question": "This grammatical term names an '-ing' verb form used as a noun, as 'swimming' in 'swimming is fun'",
+          "answer": "A gerund"
+        }
+      ],
+      "2000": [
+        {
+          "question": "In linguistics, this term describes the phenomenon where a word's meaning shifts gradually over time — for example, 'nice' once meant 'foolish' in Middle English",
+          "answer": "Semantic shift (semantic change)"
+        },
+        {
+          "question": "Tmesis is the grammatical term for inserting a word inside another word for emphasis — the most common English example being 'abso-bloody-lutely'; the inserted word is typically this type of word",
+          "answer": "An intensifier (expletive)"
+        },
+        {
+          "question": "'Peter Piper picked a peck of pickled peppers' is a tongue-twisting showcase of this repetition of initial consonant sounds",
+          "answer": "Alliteration"
+        }
+      ]
+    }
+  },
+  {
+    "id": "health-medicine",
+    "name": "Health & Medicine",
+    "cluesByValue": {
+      "400": [
+        {
+          "question": "This organ, located in the upper left abdomen, filters old red blood cells from the bloodstream and is sometimes removed after a traumatic injury",
+          "answer": "The spleen"
+        },
+        {
+          "question": "Produced by the pancreas, this hormone allows cells to absorb glucose from the bloodstream — its deficiency or inefficiency causes diabetes",
+          "answer": "Insulin"
+        },
+        {
+          "question": "A BMI of 30 or above is classified as this condition, which is associated with increased risk of heart disease, type 2 diabetes, and certain cancers",
+          "answer": "Obesity"
+        }
+      ],
+      "800": [
+        {
+          "question": "The RICE method — Rest, Ice, Compression, Elevation — is a first-aid treatment for this common sports injury involving torn fibers in a muscle or ligament",
+          "answer": "A sprain or strain"
+        },
+        {
+          "question": "An MRI (Magnetic Resonance Imaging) machine creates detailed images of the body's interior using powerful magnets and radio waves, with no exposure to this type of radiation used in X-rays",
+          "answer": "Ionizing radiation"
+        },
+        {
+          "question": "These two bean-shaped organs, one on each side of the spine, filter waste from the blood to form urine",
+          "answer": "The kidneys"
+        }
+      ],
+      "1200": [
+        {
+          "question": "The myelin sheath, a fatty coating around nerve fibers, speeds signal transmission; its progressive destruction causes this autoimmune disease affecting movement and coordination",
+          "answer": "Multiple sclerosis"
+        },
+        {
+          "question": "This type of lymphocyte, which matures in the thymus, coordinates the adaptive immune response and is the main cell destroyed by HIV",
+          "answer": "T cell (T lymphocyte)"
+        },
+        {
+          "question": "A healthy adult's heart at rest beats within this range of times per minute",
+          "answer": "60 to 100"
+        }
+      ],
+      "1600": [
+        {
+          "question": "Discovered in 1928 by Alexander Fleming and developed by Howard Florey and Ernst Chain, the first true antibiotic was extracted from this mold genus",
+          "answer": "Penicillium"
+        },
+        {
+          "question": "This inflammatory condition, in which the body's immune system attacks the lining of the joints, is the most common autoimmune form of arthritis",
+          "answer": "Rheumatoid arthritis"
+        },
+        {
+          "question": "The skin manufactures this fat-soluble nutrient on exposure to sunlight; a shortage of it causes rickets in children",
+          "answer": "Vitamin D"
+        }
+      ],
+      "2000": [
+        {
+          "question": "Jennifer Doudna and Emmanuelle Charpentier shared the 2020 Nobel Prize in Chemistry for developing this precise 'genetic scissors' gene-editing tool",
+          "answer": "CRISPR-Cas9"
+        },
+        {
+          "question": "A selective barrier of tightly packed capillary cells shields this organ from most bloodstream drugs, complicating treatment of Alzheimer's and Parkinson's",
+          "answer": "The brain"
+        },
+        {
+          "question": "Statin drugs lower blood levels of this waxy, fat-like substance to cut the risk of heart attack and stroke",
+          "answer": "Cholesterol"
+        }
+      ]
+    }
+  }
+]

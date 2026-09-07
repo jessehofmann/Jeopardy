@@ -2,6 +2,10 @@
   "name": "jeopardy-shared",
   "version": "1.0.0",
   "description": "Shared models and types for Jeopardy game",
+  "type": "module",
   "main": "src/index.ts",
+  "scripts": {
+    "test": "node scripts/validate-catalog.mjs && node scripts/check-generation.mjs"
+  },
   "dependencies": {}
 }
