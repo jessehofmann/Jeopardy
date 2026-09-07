@@ -401,3 +401,95 @@ test("host score edits are capped to a sane range", () => {
   const room = server.toRoomState("CLMP");
   assert.ok(room.players.find((p) => p.name === "A").score <= 1000000);
 });
+
+test("ending the game shows the final scoreboard instead of closing the room", () => {
+  const server = createRoomServer();
+  const { host } = startGameWithTwoPlayers(server, "ENDG");
+
+  sendMessage(host, "host:endGame");
+  assert.equal(server.rooms.has("ENDG"), true);
+  assert.equal(server.toRoomState("ENDG").gamePhase, "game-over");
+
+  sendMessage(host, "host:restartGame");
+  assert.equal(server.toRoomState("ENDG").gamePhase, "playing");
+
+  sendMessage(host, "host:closeRoom");
+  assert.equal(server.rooms.has("ENDG"), false);
+});
+
+test("a kicked player is soft-removed and can be restored or rejoin", () => {
+  const server = createRoomServer();
+  const { host } = startGameWithTwoPlayers(server, "KICK");
+  const bId = server.toRoomState("KICK").players.find((p) => p.name === "B").id;
+  sendMessage(host, "host:updateScore", { playerId: bId, delta: 800 });
+
+  sendMessage(host, "host:kickPlayer", { playerId: bId });
+  let b = server.toRoomState("KICK").players.find((p) => p.id === bId);
+  assert.equal(b.isRemoved, true);
+  assert.equal(b.score, 800, "score is preserved");
+
+  sendMessage(host, "host:restorePlayer", { playerId: bId });
+  b = server.toRoomState("KICK").players.find((p) => p.id === bId);
+  assert.equal(b.isRemoved, false);
+
+  // …and a rejoin by the same name also un-removes.
+  sendMessage(host, "host:kickPlayer", { playerId: bId });
+  const rejoin = connectClient(server);
+  sendMessage(rejoin, "player:joinRoom", { roomCode: "KICK", playerName: "B" });
+  b = server.toRoomState("KICK").players.find((p) => p.id === bId);
+  assert.equal(b.isRemoved, false);
+  assert.equal(b.score, 800);
+});
+
+test("host can void a Daily Double and reset lockouts", () => {
+  const server = createRoomServer();
+  const { host, p1 } = startGameWithTwoPlayers(server, "VOID");
+
+  sendMessage(host, "host:selectClue", { clueId: "r1-science-800-0", clueLabel: "x", roundLabel: "Round 1", clueValue: 800, isDailyDouble: true });
+  let room = server.toRoomState("VOID");
+  assert.equal(room.isDailyDoubleActive, true);
+  assert.equal(room.selectedClueValue, 800);
+
+  sendMessage(host, "host:voidDailyDouble");
+  room = server.toRoomState("VOID");
+  assert.equal(room.isDailyDoubleActive, false);
+  assert.equal(room.answerRevealed, true);
+
+  sendMessage(host, "host:closeClue");
+  sendMessage(host, "host:selectClue", { clueId: "r1-science-1000-0", clueLabel: "x", roundLabel: "Round 1", clueValue: 1000 });
+  sendMessage(host, "host:setBuzzersOpen", { isOpen: true });
+  sendMessage(p1, "player:buzz");
+  sendMessage(host, "host:markIncorrect");
+  room = server.toRoomState("VOID");
+  assert.ok(room.lockedOutPlayerIds.length >= 1);
+
+  sendMessage(host, "host:resetLockouts");
+  room = server.toRoomState("VOID");
+  assert.equal(room.lockedOutPlayerIds.length, 0);
+  assert.equal(room.buzzersOpen, true);
+});
+
+test("Final Jeopardy clue can be swapped before wagering", () => {
+  const server = createRoomServer();
+  const { host } = startGameWithTwoPlayers(server, "FJRR");
+
+  sendMessage(host, "host:startFinalJeopardy", { category: "FIRST", question: "q1", answer: "a1" });
+  assert.equal(server.toRoomState("FJRR").finalCategory, "FIRST");
+
+  sendMessage(host, "host:startFinalJeopardy", { category: "SECOND", question: "q2", answer: "a2" });
+  assert.equal(server.toRoomState("FJRR").gamePhase, "final-category");
+  assert.equal(server.toRoomState("FJRR").finalCategory, "SECOND");
+});
+
+test("clue value comes from the clue id, not a tampered payload", () => {
+  const server = createRoomServer();
+  const { host, p1 } = startGameWithTwoPlayers(server, "TMPR");
+
+  sendMessage(host, "host:selectClue", { clueId: "r1-science-200-0", clueLabel: "x", roundLabel: "Round 1", clueValue: 999999 });
+  assert.equal(server.toRoomState("TMPR").selectedClueValue, 200);
+
+  sendMessage(host, "host:setBuzzersOpen", { isOpen: true });
+  sendMessage(p1, "player:buzz");
+  sendMessage(host, "host:revealAnswer");
+  assert.equal(server.toRoomState("TMPR").players.find((p) => p.name === "A").score, 200);
+});

@@ -144,6 +144,7 @@ function createRoomServer() {
     const players = room.players.map((player) => ({
       ...player,
       isConnected: player.isConnected !== false,
+      isRemoved: player.isRemoved === true,
     }));
 
     return {
@@ -350,6 +351,7 @@ function createRoomServer() {
           ? "ready"
           : "locked";
       existingPlayer.isConnected = true;
+      existingPlayer.isRemoved = false; // a rejoin cancels a prior kick
 
       const reconnectingClient = clients.get(clientId);
       if (!reconnectingClient) {
@@ -542,12 +544,12 @@ function createRoomServer() {
     return true;
   }
 
-  // Round 1 ids look like "r1-the-solar-system-600-2"; value is the numeric
-  // second-to-last segment.
+  // Generated ids look like "r1-the-solar-system-600-2" — round prefix, category
+  // slug, dollar value, option index. Returns 0 for anything else (custom
+  // boards, tests) so the caller falls back to the supplied value.
   function clueValueFromId(clueId) {
-    const parts = String(clueId).split("-");
-    const v = parseInt(parts[parts.length - 2], 10);
-    return Number.isFinite(v) ? v : 0;
+    const m = /^r[12]-.+-(\d+)-\d+$/.exec(String(clueId));
+    return m ? parseInt(m[1], 10) : 0;
   }
 
   function handleHostControl(client, message) {
@@ -703,7 +705,13 @@ function createRoomServer() {
       }
 
       room.selectedClueId = clueId.trim();
-      room.selectedClueValue = typeof clueValue === "number" ? clueValue : 0;
+      // Trust the value encoded in the clue id (r{round}-{cat}-{value}-{opt})
+      // over the client-supplied number; fall back to the payload for custom
+      // boards whose ids don't carry a numeric segment.
+      const idValue = clueValueFromId(room.selectedClueId);
+      room.selectedClueValue = idValue > 0
+        ? idValue
+        : (typeof clueValue === "number" && clueValue >= 0 ? Math.floor(clueValue) : 0);
       room.answerRevealed = false;
       room.firstBuzzedPlayerId = null;
       room.lockedOutPlayerIds = [];
@@ -786,7 +794,7 @@ function createRoomServer() {
 
       // Check if any eligible players remain — if not, just close buzzers
       const allLockedOut = room.players
-        .filter((p) => p.isConnected !== false)
+        .filter((p) => p.isConnected !== false && !p.isRemoved)
         .every((p) => room.lockedOutPlayerIds.includes(p.id));
 
       if (allLockedOut) {
@@ -879,8 +887,9 @@ function createRoomServer() {
     }
 
     if (message.type === "host:startFinalJeopardy") {
-      if (room.gamePhase !== "playing") {
-        sendError(client.ws, "Final Jeopardy already started");
+      // "playing" starts it; "final-category" swaps the clue before wagering.
+      if (room.gamePhase !== "playing" && room.gamePhase !== "final-category") {
+        sendError(client.ws, "Final Jeopardy already underway");
         return;
       }
 
@@ -979,28 +988,66 @@ function createRoomServer() {
     }
 
     if (message.type === "host:endGame") {
-      const endRoomCode = room.roomCode;
-      for (const connectedId of room.connections) {
-        const connected = clients.get(connectedId);
-        if (connected) {
-          connected.roomCode = null;
-          connected.role = null;
-          connected.playerId = null;
-          sendError(connected.ws, "Room closed.");
-        }
-      }
-      if (room._buzzerTimer != null) {
-        clearTimeout(room._buzzerTimer);
-        room._buzzerTimer = null;
-      }
+      // Show the final scoreboard rather than tearing the room down, so scores
+      // stay visible and "New Game (same players)" is still possible.
       clearAnswerTimer(room);
-      rooms.delete(endRoomCode);
+      clearFinalQuestionTimer(room);
+      closeBuzzers(room);
+      room.selectedClueId = null;
+      room.selectedClueValue = 0;
+      room.answerRevealed = false;
+      room.isDailyDoubleActive = false;
+      room.dailyDoubleWager = null;
+      room._lastRuling = null;
+      room.gamePhase = "game-over";
+      broadcastRoom(room.roomCode);
+      return;
+    }
+
+    if (message.type === "host:closeRoom") {
+      closeRoom(room.roomCode);
+      return;
+    }
+
+    if (message.type === "host:setBoardOwner") {
+      const { playerId } = message.payload || {};
+      const player = room.players.find((p) => p.id === playerId && !p.isRemoved);
+      if (!player) {
+        sendError(client.ws, "Unknown player");
+        return;
+      }
+      room.boardOwnerPlayerId = player.id;
+      broadcastRoom(room.roomCode);
+      return;
+    }
+
+    if (message.type === "host:voidDailyDouble") {
+      if (!room.isDailyDoubleActive) return;
+      recordRuling(room);
+      room.isDailyDoubleActive = false;
+      room.dailyDoubleWager = null;
+      room.answerRevealed = true;
+      closeBuzzers(room);
+      broadcastRoom(room.roomCode);
+      return;
+    }
+
+    if (message.type === "host:resetLockouts") {
+      if (!room.selectedClueId) return;
+      recordRuling(room);
+      room.lockedOutPlayerIds = [];
+      if (!room.answerRevealed && !room.firstBuzzedPlayerId && !room.isDailyDoubleActive) {
+        openBuzzers(room);
+      }
+      broadcastRoom(room.roomCode);
       return;
     }
 
     if (message.type === "host:kickPlayer") {
       const targetId = message.payload?.playerId;
       if (!targetId) return;
+      const target = room.players.find((p) => p.id === targetId);
+      if (!target) return;
       const targetClientId = room.playerConnectionById.get(targetId);
       if (targetClientId) {
         const targetClient = clients.get(targetClientId);
@@ -1013,16 +1060,28 @@ function createRoomServer() {
         room.connections.delete(targetClientId);
       }
       room.playerConnectionById.delete(targetId);
-      room.players = room.players.filter((p) => p.id !== targetId);
+      // Soft-remove: keep the record (and score) so an accidental kick can be
+      // undone with "Restore", and a rejoin by the same name comes right back.
+      target.isRemoved = true;
+      target.isConnected = false;
+      target.status = "locked";
       if (room.boardOwnerPlayerId === targetId) {
-        room.boardOwnerPlayerId = room.players[0]?.id ?? null;
-        room.boardOwnerPlayerName = room.players[0]?.name ?? null;
+        const next = room.players.find((p) => !p.isRemoved);
+        room.boardOwnerPlayerId = next?.id ?? null;
       }
       if (room.firstBuzzedPlayerId === targetId) {
         room.firstBuzzedPlayerId = null;
-        room.firstBuzzedPlayerName = null;
       }
       room.lockedOutPlayerIds = room.lockedOutPlayerIds.filter((id) => id !== targetId);
+      broadcastRoom(room.roomCode);
+      return;
+    }
+
+    if (message.type === "host:restorePlayer") {
+      const target = room.players.find((p) => p.id === message.payload?.playerId);
+      if (!target || !target.isRemoved) return;
+      target.isRemoved = false;
+      if (!room.boardOwnerPlayerId) room.boardOwnerPlayerId = target.id;
       broadcastRoom(room.roomCode);
       return;
     }
@@ -1159,7 +1218,7 @@ function createRoomServer() {
       room.firstBuzzedPlayerId = null;
 
       const allLockedOut = room.players
-        .filter((p) => p.isConnected !== false)
+        .filter((p) => p.isConnected !== false && !p.isRemoved)
         .every((p) => room.lockedOutPlayerIds.includes(p.id));
 
       if (allLockedOut) {
