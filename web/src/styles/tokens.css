@@ -39,22 +39,29 @@
   --c-rank-silver: #adb5bd;
   --c-rank-bronze: #cd7f32;
 
+  --c-score-negative: #e2453c;   /* podium total when a contestant is in the hole */
+
   /* ---- Surfaces ---- */
   --surface-panel: rgba(2, 6, 66, 0.85);
   --surface-scrim: rgba(0, 0, 0, 0.75);
-  --board-cell: linear-gradient(180deg, #0a0acd 0%, #060CE9 100%);
+  --c-blue-cell: #060CE9;         /* flat board-tile fill (no gradient) */
+  --board-cell: var(--c-blue-cell);
   --menu-bg: radial-gradient(ellipse at center, #0a0acd 0%, #04047a 100%);
 
-  /* ---- Type ---- (exact current stacks; consolidation is a separate, eyes-on change) */
-  --font-teko: "Teko", "Arial Narrow", sans-serif;
-  --font-bebas: "Bebas Neue", "Teko", "Arial Narrow", sans-serif;
-  --font-barlow: "Barlow Condensed", "Arial Narrow", sans-serif;
-  --font-text: "Montserrat", "Arial Narrow", Arial, sans-serif;
-  --font-serif: "Merriweather", Georgia, serif;
+  /* Gold "bevel" gradient for text fills (board values, podium scores). */
+  --gradient-gold-text: linear-gradient(180deg, var(--c-gold-bright) 0%, var(--c-gold) 45%, var(--c-gold-shadow) 100%);
+  /* Diffuse shadow for clue / question text — replaces the old hard 3px offset. */
+  --shadow-clue: 0 3px 14px rgba(0, 0, 0, 0.55);
 
-  /* Semantic aliases for new rules. */
-  --font-display: var(--font-teko);
-  --font-condensed: var(--font-barlow);
+  /* ---- Type ---- Three faces: display (compressed), clue (slab serif), UI.
+     The old --font-* names are kept and repointed so component rules don't churn. */
+  --font-display: "Anton", "Teko", "Arial Narrow", sans-serif;  /* logo, values, DD, FJ title */
+  --font-teko: "Teko", "Arial Narrow", sans-serif;              /* mid-size UI: buttons, scores, countdowns */
+  --font-text: "Montserrat", "Arial Narrow", Arial, sans-serif; /* labels, banners, podium names */
+  --font-serif: "Bitter", Georgia, serif;                       /* clue + category text */
+  --font-bebas: var(--font-serif);                              /* was Bebas — categories now match clues */
+  --font-barlow: var(--font-text);                              /* was Barlow Condensed — folded into UI face */
+  --font-condensed: var(--font-text);
 
   /* ---- Space / radius / motion ---- */
   --r-sm: 4px;

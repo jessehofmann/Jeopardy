@@ -178,7 +178,7 @@ const Board: React.FC<BoardProps> = ({
                   }
                 }}
               >
-                {isFilled && !clue.isAnswered && `$${clue.value}`}
+                {isFilled && <span className="clue-cell-value">${clue.value}</span>}
               </div>
             );
           })

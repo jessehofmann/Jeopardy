@@ -27,6 +27,8 @@
   --c-warn: #ff9c1a;
 
   --c-blue: #060CE9;
+  --c-score-negative: #e2453c;
+  --gradient-gold-text: linear-gradient(180deg, var(--c-gold-soft) 0%, var(--c-gold) 45%, var(--c-gold-deep) 100%);
 
   /* ---- Radius / motion ---- */
   --r-sm: 8px;

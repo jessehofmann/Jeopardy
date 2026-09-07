@@ -118,7 +118,7 @@ const FinalJeopardy: React.FC<FinalJeopardyProps> = ({
       {sortedPlayers.map((player) => (
         <div key={player.id} className="fj-standing">
           <span className="fj-standing-name">{player.name}</span>
-          <span className="fj-standing-score">
+          <span className={`fj-standing-score${player.score < 0 ? " is-negative" : ""}`}>
             {player.score < 0
               ? `-$${Math.abs(player.score).toLocaleString()}`
               : `$${player.score.toLocaleString()}`}
@@ -140,7 +140,7 @@ const FinalJeopardy: React.FC<FinalJeopardyProps> = ({
                 {ordinal(index + 1)}
               </span>
               <span className="fj-lb-name">{player.name}</span>
-              <span className="fj-lb-score">
+              <span className={`fj-lb-score${player.score < 0 ? " is-negative" : ""}`}>
                 {player.score < 0
                   ? `-$${Math.abs(player.score).toLocaleString()}`
                   : `$${player.score.toLocaleString()}`}
@@ -285,7 +285,7 @@ const FinalJeopardy: React.FC<FinalJeopardyProps> = ({
                     <div className={`fj-card-delta ${player.finalAnswerCorrect ? "is-positive" : "is-negative"}`}>
                       {player.finalAnswerCorrect ? "+" : "−"}${Math.abs(player.finalWager ?? 0).toLocaleString()}
                     </div>
-                    <div className="fj-card-total">
+                    <div className={`fj-card-total${player.score < 0 ? " is-negative" : ""}`}>
                       {player.score < 0
                         ? `-$${Math.abs(player.score).toLocaleString()}`
                         : `$${player.score.toLocaleString()}`}

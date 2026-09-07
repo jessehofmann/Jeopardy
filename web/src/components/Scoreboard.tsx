@@ -190,7 +190,7 @@ const Scoreboard: React.FC<ScoreboardProps> = ({ players, firstBuzzedPlayerId, a
               )}
             </div>
             <div className="player-score-zone-points">
-              <div className="player-points">
+              <div className={`player-points${player.score < 0 ? " is-negative" : ""}`}>
                 {player.score < 0 ? `-$${Math.abs(player.score)}` : `$${player.score}`}
               </div>
               {isLockedOut && <div className="player-locked-out">✕ Locked Out</div>}

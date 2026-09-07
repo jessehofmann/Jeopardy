@@ -393,7 +393,7 @@ const Game: React.FC<GameProps> = ({ initialRoomCode, initialRoomState, boardSoc
           onKeyDown={(e) => (e.key === "Enter" || e.key === " ") && dismissRoundBanner()}
           title="Tap to continue"
         >
-          <h2>{round === 1 ? "ROUND 1" : "ROUND 2 - DOUBLE JEOPARDY!"}</h2>
+          <h2>{round === 1 ? "ROUND 1" : "DOUBLE JEOPARDY!"}</h2>
         </div>
       )}
       <div className="round-indicator">

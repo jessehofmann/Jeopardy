@@ -27,15 +27,25 @@ const ClueModal: React.FC<ClueModalProps> = ({
   const [localShowAnswer, setLocalShowAnswer] = useState(false);
   const showAnswer = isSynced ? (answerRevealed ?? false) : localShowAnswer;
   const [buzzerTimeLeft, setBuzzerTimeLeft] = useState<number | null>(null);
+  const [buzzerFrac, setBuzzerFrac] = useState(1);
+  const buzzerTotalRef = useRef<number | null>(null);
+
+  const BUZZER_LIGHTS = 9;
 
   useEffect(() => {
     if (!buzzerDeadlineMs) {
       setBuzzerTimeLeft(null);
+      buzzerTotalRef.current = null;
+      setBuzzerFrac(1);
       return;
     }
     const tick = () => {
-      const remaining = Math.max(0, Math.ceil((buzzerDeadlineMs - Date.now()) / 1000));
-      setBuzzerTimeLeft(remaining);
+      const msLeft = Math.max(0, buzzerDeadlineMs - Date.now());
+      if (buzzerTotalRef.current == null) {
+        buzzerTotalRef.current = Math.max(msLeft, 1000);
+      }
+      setBuzzerTimeLeft(Math.ceil(msLeft / 1000));
+      setBuzzerFrac(Math.min(1, msLeft / buzzerTotalRef.current));
     };
     tick();
     const interval = setInterval(tick, 100);
@@ -179,9 +189,18 @@ const ClueModal: React.FC<ClueModalProps> = ({
         tabIndex={-1}
       >
         {isSynced && buzzerTimeLeft !== null && !firstBuzzedPlayerName && (
-          <div className={`modal-buzzer-timer ${buzzerTimeLeft <= 2 ? "is-urgent" : ""}`}>
-            {buzzerTimeLeft}
-          </div>
+          <>
+            <div className={`modal-buzzer-timer ${buzzerTimeLeft <= 2 ? "is-urgent" : ""}`}>
+              {buzzerTimeLeft}
+            </div>
+            <div className="modal-buzzer-lights" aria-hidden="true">
+              {Array.from({ length: BUZZER_LIGHTS }, (_, i) => {
+                // Lights extinguish left→right: the rightmost stay lit longest.
+                const litCount = Math.ceil(buzzerFrac * BUZZER_LIGHTS);
+                return <i key={i} className={i >= BUZZER_LIGHTS - litCount ? "" : "is-off"} />;
+              })}
+            </div>
+          </>
         )}
         {showDailyDouble && (
           <div className="modal-dd-header">
