@@ -212,5 +212,295 @@
     "category": "ANCIENT HISTORY",
     "question": "This Macedonian king, tutored by Aristotle, conquered an empire stretching from Greece to northwestern India before dying in Babylon in 323 BC at age 32",
     "answer": "Alexander the Great"
+  },
+  {
+    "category": "THE U.S. CONSTITUTION",
+    "question": "This is the only amendment to the Constitution that has been repealed by a later amendment",
+    "answer": "The 18th Amendment (Prohibition)"
+  },
+  {
+    "category": "WORLD CAPITALS",
+    "question": "Planned from scratch and inaugurated in 1960, this city replaced Rio de Janeiro as its nation's seat of government",
+    "answer": "Brasilia"
+  },
+  {
+    "category": "ANCIENT CIVILIZATIONS",
+    "question": "This script, used for over 3,000 years across the Near East, was written by pressing a reed stylus into wet clay",
+    "answer": "Cuneiform"
+  },
+  {
+    "category": "EUROPEAN HISTORY",
+    "question": "Signed in 1648, these treaties ended the Thirty Years' War and are often cited as the origin of the modern sovereign state",
+    "answer": "The Peace of Westphalia"
+  },
+  {
+    "category": "BRITISH MONARCHS",
+    "question": "Reigning from 1727 to 1760, this Hanover-born king was the last British monarch to be born outside Britain and the last to lead troops into battle",
+    "answer": "George II"
+  },
+  {
+    "category": "SCIENTISTS",
+    "question": "In 1905, his 'miracle year', this patent clerk published papers on the photoelectric effect, Brownian motion, and special relativity",
+    "answer": "Albert Einstein"
+  },
+  {
+    "category": "MODERN INVENTIONS",
+    "question": "Volvo engineer Nils Bohlin's 1959 three-point design of this car safety device was released as an open patent to save lives",
+    "answer": "The seat belt"
+  },
+  {
+    "category": "CLASSICAL MYTHOLOGY",
+    "question": "In Greek myth this Titan is condemned to hold up the sky at the western edge of the world",
+    "answer": "Atlas"
+  },
+  {
+    "category": "AMERICAN AUTHORS",
+    "question": "Published in 1960 and narrated by a young girl nicknamed Scout, her Pulitzer-winning novel was set in Depression-era Alabama",
+    "answer": "Harper Lee"
+  },
+  {
+    "category": "ASTRONOMY",
+    "question": "This is the term for the point in a planet's orbit at which it is closest to the Sun",
+    "answer": "Perihelion"
+  },
+  {
+    "category": "FAMOUS PAINTINGS",
+    "question": "This 1893 work by a Norwegian artist exists in four versions and one was stolen from an Oslo museum in 2004",
+    "answer": "The Scream"
+  },
+  {
+    "category": "THE COLD WAR",
+    "question": "This defensive line of fortifications, built by France in the 1930s and outflanked by Germany in 1940, is a byword for a failed strategy",
+    "answer": "The Maginot Line"
+  },
+  {
+    "category": "GEOLOGY",
+    "question": "This supercontinent, whose name means 'all earth', assembled about 335 million years ago and began breaking apart in the Jurassic",
+    "answer": "Pangaea"
+  },
+  {
+    "category": "WORLD LITERATURE",
+    "question": "This 1967 novel by a Colombian author chronicles seven generations of the Buendia family in the town of Macondo",
+    "answer": "One Hundred Years of Solitude"
+  },
+  {
+    "category": "FILM DIRECTORS",
+    "question": "This Japanese director's 1954 film about a village hiring warriors was remade in Hollywood as a Western",
+    "answer": "Akira Kurosawa"
+  },
+  {
+    "category": "JAZZ",
+    "question": "This trumpeter and bandleader recorded the landmark modal-jazz album 'Kind of Blue' in 1959",
+    "answer": "Miles Davis"
+  },
+  {
+    "category": "MATHEMATICS",
+    "question": "This Swiss mathematician, the most prolific in history, introduced the notation for the base of the natural logarithm and 'f(x)'",
+    "answer": "Leonhard Euler"
+  },
+  {
+    "category": "EXPLORATION",
+    "question": "In December 1911 this explorer's team beat Robert Scott to the South Pole by about five weeks",
+    "answer": "Roald Amundsen"
+  },
+  {
+    "category": "THE PERIODIC TABLE",
+    "question": "Of the naturally occurring elements, this one with atomic number 92 has the highest atomic number",
+    "answer": "Uranium"
+  },
+  {
+    "category": "SHAKESPEARE",
+    "question": "The shortest of Shakespeare's tragedies, it is also the only one set chiefly in Scotland",
+    "answer": "Macbeth"
+  },
+  {
+    "category": "WORLD CAPITALS",
+    "question": "This capital city sits at about 7,500 feet elevation in a valley that was once a lake, on the site of an Aztec island city",
+    "answer": "Mexico City"
+  },
+  {
+    "category": "U.S. GEOGRAPHY",
+    "question": "Named for a French king, this is the only U.S. state whose legal system derives from the Napoleonic Code rather than English common law",
+    "answer": "Louisiana"
+  },
+  {
+    "category": "THE OSCARS",
+    "question": "Only three films have won all five of the 'big' Academy Awards; the first was this 1934 Frank Capra comedy",
+    "answer": "It Happened One Night"
+  },
+  {
+    "category": "SCIENCE",
+    "question": "This scientist's namesake number, roughly 6 x 10 to the 23rd, is the count of atoms in 12 grams of carbon-12",
+    "answer": "Amedeo Avogadro"
+  },
+  {
+    "category": "CLASSICAL MUSIC",
+    "question": "Left unfinished at the composer's 1791 death, this choral Mass for the dead was completed by his pupil Sussmayr",
+    "answer": "Mozart's Requiem"
+  },
+  {
+    "category": "AMERICAN HISTORY",
+    "question": "This 1803 land purchase from France roughly doubled the size of the United States for about 3 cents an acre",
+    "answer": "The Louisiana Purchase"
+  },
+  {
+    "category": "MYTHOLOGY",
+    "question": "In Norse myth this event, whose name means 'twilight of the gods', is a foretold battle that destroys and renews the world",
+    "answer": "Ragnarok"
+  },
+  {
+    "category": "BODIES OF WATER",
+    "question": "The saltiest open body of water on Earth, its surface is also the lowest land elevation, over 1,400 feet below sea level",
+    "answer": "The Dead Sea"
+  },
+  {
+    "category": "LITERATURE",
+    "question": "This 1925 novel narrated by Nick Carraway ends with boats borne back ceaselessly into the past",
+    "answer": "The Great Gatsby"
+  },
+  {
+    "category": "BRITISH HISTORY",
+    "question": "This 1605 plot to blow up Parliament is commemorated every November 5th with bonfires and fireworks",
+    "answer": "The Gunpowder Plot"
+  },
+  {
+    "category": "ELEMENTS",
+    "question": "This element, number 6, forms diamonds, graphite, and the backbone of all known life",
+    "answer": "Carbon"
+  },
+  {
+    "category": "PRESIDENTS",
+    "question": "The only person to resign the U.S. presidency did so, effective at noon, in August 1974",
+    "answer": "Richard Nixon"
+  },
+  {
+    "category": "ART MOVEMENTS",
+    "question": "This early-20th-century movement of Braque and Picasso fractured objects into geometric planes seen from multiple angles",
+    "answer": "Cubism"
+  },
+  {
+    "category": "ANATOMY",
+    "question": "This is the largest artery in the human body, carrying oxygenated blood away from the left ventricle",
+    "answer": "The aorta"
+  },
+  {
+    "category": "WORLD LEADERS",
+    "question": "This leader of India's independence movement was assassinated in New Delhi in January 1948",
+    "answer": "Mohandas Gandhi"
+  },
+  {
+    "category": "SHAKESPEARE",
+    "question": "This character, Prince of Denmark's late father, appears as a ghost demanding revenge",
+    "answer": "King Hamlet"
+  },
+  {
+    "category": "ASTRONOMY",
+    "question": "This closest star system to our own, about 4.2 light-years away, contains the star Proxima",
+    "answer": "Alpha Centauri"
+  },
+  {
+    "category": "EXPLORERS",
+    "question": "This English navigator vanished with his son after being set adrift by a mutinous crew in the Canadian bay that bears his name",
+    "answer": "Henry Hudson"
+  },
+  {
+    "category": "MUSICALS",
+    "question": "This longest-running Broadway show, based on a Gaston Leroux novel, closed in 2023 after 35 years",
+    "answer": "The Phantom of the Opera"
+  },
+  {
+    "category": "GEOLOGY",
+    "question": "This geological period, the last before the present one, ended about 11,700 years ago with the retreat of the ice sheets",
+    "answer": "The Pleistocene"
+  },
+  {
+    "category": "ANCIENT HISTORY",
+    "question": "This wonder of the ancient world, a towering beacon on the island of Pharos, guided ships into an Egyptian harbor for over 1,500 years",
+    "answer": "The Lighthouse of Alexandria"
+  },
+  {
+    "category": "U.S. STATES",
+    "question": "Admitted in 1959, this is the only U.S. state made up entirely of islands",
+    "answer": "Hawaii"
+  },
+  {
+    "category": "NOBEL PRIZES",
+    "question": "This physicist declined to patent the X-ray and won the first Nobel Prize in Physics in 1901",
+    "answer": "Wilhelm Rontgen"
+  },
+  {
+    "category": "RIVERS",
+    "question": "This river flows through ten countries and its delta empties into the Black Sea across Romania and Ukraine",
+    "answer": "The Danube"
+  },
+  {
+    "category": "FILM",
+    "question": "This 1972 crime saga adapted from a Mario Puzo novel opens with the words 'I believe in America'",
+    "answer": "The Godfather"
+  },
+  {
+    "category": "THE HUMAN BRAIN",
+    "question": "This band of nerve fibers connects the brain's two hemispheres and is sometimes cut to treat severe epilepsy",
+    "answer": "The corpus callosum"
+  },
+  {
+    "category": "WORLD WAR I",
+    "question": "The war was triggered in June 1914 by the assassination of this archduke in Sarajevo",
+    "answer": "Franz Ferdinand"
+  },
+  {
+    "category": "MATHEMATICS",
+    "question": "This Greek's 'Elements', a geometry textbook used for over 2,000 years, is the most influential math book ever written",
+    "answer": "Euclid"
+  },
+  {
+    "category": "PAINTERS",
+    "question": "This Dutch master of light painted only about 34 known works, including 'Girl with a Pearl Earring'",
+    "answer": "Johannes Vermeer"
+  },
+  {
+    "category": "THE CONSTITUTION",
+    "question": "This document, the first constitution of the United States, was replaced in 1789 because it left the central government too weak",
+    "answer": "The Articles of Confederation"
+  },
+  {
+    "category": "OPERA",
+    "question": "In this Puccini opera, the tenor sings 'Nessun dorma' the night before he must guess three riddles or die",
+    "answer": "Turandot"
+  },
+  {
+    "category": "ANIMALS",
+    "question": "This is the only mammal capable of true sustained flight",
+    "answer": "The bat"
+  },
+  {
+    "category": "EUROPEAN CAPITALS",
+    "question": "This capital straddling the Danube was formed in 1873 by uniting three towns, one of them Buda",
+    "answer": "Budapest"
+  },
+  {
+    "category": "INVENTORS",
+    "question": "This Serbian-American's work on alternating current and induction motors powered the modern electrical grid",
+    "answer": "Nikola Tesla"
+  },
+  {
+    "category": "POETRY",
+    "question": "This 19th-century English poet's 'The Charge of the Light Brigade' commemorates a doomed Crimean War cavalry action",
+    "answer": "Alfred, Lord Tennyson"
+  },
+  {
+    "category": "WORLD GEOGRAPHY",
+    "question": "This strait between Morocco and Spain connects the Atlantic Ocean with the Mediterranean Sea",
+    "answer": "The Strait of Gibraltar"
+  },
+  {
+    "category": "SCIENTISTS",
+    "question": "This English naturalist waited more than 20 years after his voyage on the Beagle before publishing 'On the Origin of Species'",
+    "answer": "Charles Darwin"
+  },
+  {
+    "category": "CLASSIC TV",
+    "question": "This variety show host introduced the Beatles to 73 million American viewers in February 1964",
+    "answer": "Ed Sullivan"
   }
 ]
