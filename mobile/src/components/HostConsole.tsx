@@ -245,6 +245,12 @@ const HostConsole = ({
             <>
               <p className="panel-label">Final Jeopardy</p>
               <h2 className="host-fj-category">{room.finalCategory}</h2>
+              {room.finalQuestion && (
+                <div className="host-fj-clue-preview">
+                  <span className="host-fj-clue-preview-label">Clue (host only) — read aloud after the reveal:</span>
+                  <p className="host-fj-clue-preview-text">{room.finalQuestion}</p>
+                </div>
+              )}
               {room.finalAnswer && (
                 <div className="host-fj-answer-spoiler">
                   <span className="host-fj-answer-spoiler-label">Correct Answer (host only):</span>

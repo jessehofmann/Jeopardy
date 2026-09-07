@@ -118,7 +118,7 @@ const FinalJeopardy: React.FC<FinalJeopardyProps> = ({
       {sortedPlayers.map((player) => (
         <div key={player.id} className="fj-standing">
           <span className="fj-standing-name">{player.name}</span>
-          <span className="fj-standing-score">
+          <span className={`fj-standing-score${player.score < 0 ? " is-negative" : ""}`}>
             {player.score < 0
               ? `-$${Math.abs(player.score).toLocaleString()}`
               : `$${player.score.toLocaleString()}`}
@@ -132,7 +132,10 @@ const FinalJeopardy: React.FC<FinalJeopardyProps> = ({
   if (gamePhase === "game-over") {
     return (
       <div className="fj-container fj-game-over" key={phaseKey}>
-        <div className="fj-gameover-title">Game Over</div>
+        <div className="fj-title-lockup">
+          <span className="fj-eyebrow">Final Results</span>
+          <h2 className="fj-gameover-title">Game Over</h2>
+        </div>
         <div className="fj-leaderboard">
           {sortedPlayers.map((player, index) => (
             <div key={player.id} className={`fj-lb-row rank-${Math.min(index + 1, 4)}`}>
@@ -140,7 +143,8 @@ const FinalJeopardy: React.FC<FinalJeopardyProps> = ({
                 {ordinal(index + 1)}
               </span>
               <span className="fj-lb-name">{player.name}</span>
-              <span className="fj-lb-score">
+              {index === 0 && <span className="fj-lb-badge">Winner</span>}
+              <span className={`fj-lb-score${player.score < 0 ? " is-negative" : ""}`}>
                 {player.score < 0
                   ? `-$${Math.abs(player.score).toLocaleString()}`
                   : `$${player.score.toLocaleString()}`}
@@ -165,7 +169,7 @@ const FinalJeopardy: React.FC<FinalJeopardyProps> = ({
           <div className="fj-category-name">{finalCategory}</div>
         </div>
         <div className="fj-wager-status">
-          <p className="fj-wager-label">Players are wagering...</p>
+          <p className="fj-wager-label">Players are wagering</p>
           <div className="fj-player-chips">
             {players.map((player) => (
               <div
@@ -174,7 +178,7 @@ const FinalJeopardy: React.FC<FinalJeopardyProps> = ({
               >
                 <span className="fj-chip-name">{player.name}</span>
                 <span className="fj-chip-status">
-                  {player.finalWager != null ? "✓" : "…"}
+                  {player.finalWager != null ? "✓" : "·"}
                 </span>
               </div>
             ))}
@@ -285,7 +289,7 @@ const FinalJeopardy: React.FC<FinalJeopardyProps> = ({
                     <div className={`fj-card-delta ${player.finalAnswerCorrect ? "is-positive" : "is-negative"}`}>
                       {player.finalAnswerCorrect ? "+" : "−"}${Math.abs(player.finalWager ?? 0).toLocaleString()}
                     </div>
-                    <div className="fj-card-total">
+                    <div className={`fj-card-total${player.score < 0 ? " is-negative" : ""}`}>
                       {player.score < 0
                         ? `-$${Math.abs(player.score).toLocaleString()}`
                         : `$${player.score.toLocaleString()}`}

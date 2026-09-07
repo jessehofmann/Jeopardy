@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Teko:wght@500;700&family=Bebas+Neue&family=Barlow+Condensed:wght@500;600;700&family=Montserrat:wght@600;700&family=Merriweather:wght@700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Anton&family=Teko:wght@500;700&family=Bitter:wght@700;800&family=Montserrat:wght@600;700&display=swap");
 @import "./tokens.css";
 
 * {
@@ -187,7 +187,7 @@ body {
 }
 
 .jeopardy-logo {
-  font-family: var(--font-teko);
+  font-family: var(--font-display);
   font-size: 9rem;
   font-weight: 700;
   color: var(--c-gold);
@@ -799,11 +799,15 @@ body {
 .game-top-bar {
   position: fixed;
   top: 10px;
-  right: 102px;
+  right: 200px; /* clears .top-right-controls (mute + volume + fullscreen) */
   z-index: 9999;
   display: flex;
   align-items: center;
   gap: 6px;
+}
+
+@media (max-width: 640px) {
+  .game-top-bar { right: 168px; }
 }
 
 .back-button {
@@ -942,16 +946,35 @@ body {
   animation: fadeOut 0.5s ease 2s forwards;
 }
 
-.round-banner h2 {
-  font-family: var(--font-teko);
-  font-size: 5rem;
+.round-banner-lockup {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(8px, 1.6vh, 18px);
+  padding: clamp(14px, 3vh, 34px) clamp(28px, 6vw, 72px);
+  border-top: 3px solid var(--c-gold);
+  border-bottom: 3px solid var(--c-gold);
+  animation: zoomIn 0.4s var(--ease-emph);
+}
+
+.round-banner-eyebrow {
+  font-family: var(--font-text);
+  font-size: clamp(0.7rem, 1.7vh, 1.1rem);
   font-weight: 700;
+  letter-spacing: 0.44em;
+  text-transform: uppercase;
+  color: rgba(255, 215, 0, 0.7);
+  padding-left: 0.44em;
+}
+
+.round-banner h2 {
+  font-family: var(--font-display);
+  font-size: clamp(2.6rem, 9vw, 6rem);
+  font-weight: 400;
   color: var(--c-gold);
-  text-shadow:
-    3px 3px 0px var(--c-gold-shadow),
-    0 0 40px rgba(255, 215, 0, 0.8);
-  letter-spacing: 4px;
-  animation: zoomIn 0.4s ease;
+  text-shadow: 0 4px 22px rgba(0, 0, 0, 0.55);
+  letter-spacing: 2px;
+  line-height: 0.9;
 }
 
 @keyframes zoomIn {
@@ -974,45 +997,50 @@ body {
 }
 
 .category-header {
-  opacity: 0;
-  transform: scaleY(0.4);
-  transition: none;
-  background: linear-gradient(180deg, var(--c-blue-panel) 0%, var(--c-blue) 100%);
+  background: var(--c-blue-deep);
   border: 3px solid #000;
+  border-bottom: 3px solid var(--c-gold);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
   padding: 8px 10px 6px;
-  font-family: "Bebas Neue", var(--font-barlow);
-  font-size: clamp(0.85rem, 2.7vh, 2rem);
-  font-weight: 400;
+  font-family: var(--font-bebas);
+  font-size: clamp(0.8rem, 2.5vh, 1.7rem);
+  font-weight: 800;
   color: white;
   text-transform: uppercase;
-  letter-spacing: 0.4px;
-  line-height: 0.9;
+  letter-spacing: 0.2px;
+  line-height: 1;
   min-height: clamp(36px, 8vh, 82px);
-  text-shadow: 0 1px 2px rgba(0,0,0,0.7);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
 }
 
 .clue-cell {
   opacity: 0;
   transform: scaleY(0.4);
-  background: linear-gradient(180deg, var(--c-blue-panel) 0%, var(--c-blue) 100%);
+  background: var(--c-blue-cell);
   border: 3px solid #000;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.07);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: var(--font-teko);
+  font-family: var(--font-display);
   font-size: clamp(1rem, 4vh, 2.6rem);
-  font-weight: 700;
   color: var(--c-gold);
   cursor: pointer;
   transition: background 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
   min-height: clamp(42px, 10.5vh, 104px);
-  text-shadow:
-    2px 2px 0px var(--c-gold-shadow),
-    0 0 10px rgba(255, 215, 0, 0.3);
+}
+
+.clue-cell-value {
+  background: var(--gradient-gold-text);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 2px 0 rgba(0, 0, 0, 0.55));
+  letter-spacing: 0.5px;
 }
 
 .category-header.is-filled {
@@ -1037,15 +1065,20 @@ body {
 }
 
 .clue-cell:hover:not(.answered) {
-  background: linear-gradient(180deg, var(--c-blue-bright) 0%, var(--c-blue-panel) 100%);
+  background: var(--c-blue-bright);
   transform: scale(1.03);
-  box-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
+  box-shadow: 0 0 16px rgba(255, 215, 0, 0.3);
 }
 
 .clue-cell.answered {
-  background: linear-gradient(180deg, #040870 0%, #030660 100%);
-  color: transparent;
+  background: var(--c-blue-deeper);
   cursor: default;
+}
+
+/* Answered tiles keep the value faintly ghosted so players can read what's left. */
+.clue-cell.answered .clue-cell-value {
+  filter: none;
+  opacity: 0.1;
 }
 
 /* SCOREBOARD */
@@ -1061,26 +1094,29 @@ body {
 }
 
 .player-score {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   min-width: clamp(104px, 14vw, 180px);
   height: clamp(64px, 10vh, 100px);
+  min-height: 0;
+  flex: 0 0 auto;
   overflow: hidden;
-  border: 2px solid var(--c-gold);
+  border: 2px solid rgba(150, 170, 255, 0.28);
   border-radius: 4px;
   padding: 8px 16px;
-  background-color: rgba(0,0,0,0.2);
+  background: linear-gradient(180deg, #0b0f8a 0%, #05063f 100%);
   transition: border-color 0.2s, box-shadow 0.2s;
 }
 
 .player-score-zone-name {
-  flex: 1;
+  flex: 1 1 0;
+  min-height: 0;
   display: flex;
   align-items: center;
   justify-content: center;
   width: 100%;
-  min-height: 1.6rem;
   overflow: hidden;
 }
 
@@ -1094,8 +1130,19 @@ body {
 }
 
 .player-score.is-board-owner {
-  box-shadow: 0 0 12px 3px rgba(255, 215, 0, 0.7), inset 0 0 8px rgba(255, 215, 0, 0.12);
   border-color: var(--c-gold);
+  box-shadow: inset 0 3px 0 0 var(--c-gold);
+}
+
+/* Small selector mark instead of a glow that halos the whole scoreboard. */
+.player-score.is-board-owner::after {
+  content: "\25B2";
+  position: absolute;
+  top: 2px;
+  right: 6px;
+  font-size: 0.7rem;
+  line-height: 1;
+  color: var(--c-gold);
 }
 
 .player-score.is-answering {
@@ -1111,9 +1158,13 @@ body {
 }
 
 .player-name-sig {
-  max-width: 100%;
-  max-height: 100%;
+  /* Fill the name zone exactly, then let object-fit letterbox the ink inside —
+     never taller/wider than the slot, so nothing gets clipped. */
+  width: 100%;
+  height: 100%;
+  max-height: clamp(26px, 4.5vh, 46px);
   object-fit: contain;
+  object-position: center;
   /* White ink on transparent — shadow keeps it readable on the dark card */
   filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.6));
 }
@@ -1124,6 +1175,12 @@ body {
   font-weight: 700;
   color: var(--c-gold);
   text-shadow: 1px 1px 0px var(--c-gold-shadow);
+}
+
+/* Negative totals read red, as on the show. */
+.player-points.is-negative {
+  color: var(--c-score-negative);
+  text-shadow: none;
 }
 
 .player-score.is-locked-out {
@@ -1200,14 +1257,12 @@ body {
 
 .modal-question {
   font-family: var(--font-serif);
-  font-weight: 700;
+  font-weight: 800;
   color: var(--c-ink);
-  line-height: 1.08;
+  line-height: 1.14;
   text-transform: uppercase;
   text-align: center;
-  text-shadow:
-    3px 3px 0 #000,
-    0 0 10px rgba(0, 0, 0, 0.25);
+  text-shadow: var(--shadow-clue);
   /* width and font-size set by JS */
   overflow: hidden;
 }
@@ -1226,7 +1281,7 @@ body {
   font-size: clamp(1.8rem, 2.8vw, 3rem);
   font-weight: 700;
   color: var(--c-gold-answer);
-  text-shadow: 2px 2px 0 #000;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
 }
 
 .modal-buzzer-timer {
@@ -1253,6 +1308,31 @@ body {
 @keyframes buzzer-pulse {
   from { transform: scale(1); }
   to { transform: scale(1.12); }
+}
+
+/* Row of buzz-window lights that extinguish left→right as the timer drains. */
+.modal-buzzer-lights {
+  position: absolute;
+  left: 50%;
+  bottom: 2.5vh;
+  transform: translateX(-50%);
+  display: flex;
+  gap: clamp(4px, 0.7vw, 9px);
+  pointer-events: none;
+}
+
+.modal-buzzer-lights i {
+  width: clamp(20px, 2.4vw, 40px);
+  height: clamp(8px, 1vw, 14px);
+  border-radius: 2px;
+  background: #fff;
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.85), 0 0 4px #cfe0ff;
+  transition: background 0.2s ease, box-shadow 0.2s ease;
+}
+
+.modal-buzzer-lights i.is-off {
+  background: rgba(255, 255, 255, 0.12);
+  box-shadow: none;
 }
 
 .modal-buzzed-player {
@@ -1298,43 +1378,9 @@ body {
 }
 
 /* ── Category phase ─────────────────────────────────────── */
-.fj-title-lockup {
-  text-align: center;
-  line-height: 0.9;
-  animation: fjZoomIn 0.5s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
 @keyframes fjZoomIn {
   from { transform: scale(0.5); opacity: 0; }
   to   { transform: scale(1);   opacity: 1; }
-}
-
-.fj-eyebrow {
-  font-family: var(--font-barlow);
-  font-size: clamp(1rem, 2.5vh, 2.2rem);
-  font-weight: 700;
-  letter-spacing: 8px;
-  color: rgba(255, 215, 0, 0.75);
-  text-transform: uppercase;
-}
-
-.fj-big-title {
-  font-family: var(--font-teko);
-  font-size: clamp(4rem, 14vh, 11rem);
-  font-weight: 700;
-  color: var(--c-gold);
-  letter-spacing: 4px;
-  text-transform: uppercase;
-  text-shadow:
-    4px 4px 0 var(--c-gold-shadow),
-    8px 8px 0 var(--c-gold-shadow-2),
-    0 0 60px rgba(255, 215, 0, 0.8),
-    0 0 120px rgba(255, 215, 0, 0.4);
-}
-
-.fj-category-reveal {
-  text-align: center;
-  animation: fjSlideUp 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.2s both;
 }
 
 @keyframes fjSlideUp {
@@ -1342,23 +1388,74 @@ body {
   to   { transform: translateY(0);    opacity: 1; }
 }
 
-.fj-category-label {
-  font-family: var(--font-barlow);
-  font-size: clamp(0.8rem, 1.8vh, 1.4rem);
+/* Title card — matches the round-banner treatment: gold rules, quiet wordmark */
+.fj-title-lockup {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(4px, 1vh, 10px);
+  padding: clamp(10px, 2.4vh, 26px) clamp(28px, 7vw, 90px);
+  border-top: 3px solid var(--c-gold);
+  border-bottom: 3px solid var(--c-gold);
+  line-height: 0.9;
+  animation: fjZoomIn 0.5s var(--ease-emph);
+}
+
+.fj-eyebrow {
+  font-family: var(--font-text);
+  font-size: clamp(0.72rem, 1.6vh, 1.15rem);
   font-weight: 700;
-  letter-spacing: 5px;
-  color: rgba(255, 255, 255, 0.55);
+  letter-spacing: 0.44em;
+  padding-left: 0.44em;
+  color: var(--c-gold-dim);
   text-transform: uppercase;
-  margin-bottom: 4px;
+}
+
+.fj-big-title {
+  font-family: var(--font-display);
+  font-size: clamp(3.4rem, 12vh, 9rem);
+  font-weight: 400;
+  color: var(--c-gold);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-shadow: 0 4px 22px rgba(0, 0, 0, 0.55);
+}
+
+/* The category itself sits in the classic blue-and-gold FJ card */
+.fj-category-reveal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  text-align: center;
+  padding: clamp(14px, 3vh, 30px) clamp(24px, 6vw, 72px);
+  background: linear-gradient(180deg, var(--c-blue-panel) 0%, var(--c-blue-deep) 100%);
+  border: 3px solid var(--c-gold);
+  border-radius: 6px;
+  box-shadow: 0 12px 44px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  animation: fjSlideUp 0.5s var(--ease-emph) 0.2s both;
+}
+
+.fj-category-label {
+  font-family: var(--font-text);
+  font-size: clamp(0.7rem, 1.5vh, 1.1rem);
+  font-weight: 700;
+  letter-spacing: 0.32em;
+  padding-left: 0.32em;
+  color: var(--c-text-dim);
+  text-transform: uppercase;
+  margin: 0;
 }
 
 .fj-category-name {
-  font-family: var(--font-bebas);
-  font-size: clamp(2.5rem, 7vh, 6.5rem);
+  font-family: var(--font-serif);
+  font-weight: 800;
+  font-size: clamp(2rem, 6vh, 5rem);
   color: #fff;
-  letter-spacing: 3px;
+  letter-spacing: 1px;
+  line-height: 1.05;
   text-transform: uppercase;
-  text-shadow: 2px 2px 0 #000, 0 0 40px rgba(255,255,255,0.2);
+  text-shadow: 0 3px 14px rgba(0, 0, 0, 0.5);
 }
 
 .fj-wager-status {
@@ -1366,14 +1463,15 @@ body {
   flex-direction: column;
   align-items: center;
   gap: 14px;
-  animation: fjSlideUp 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.35s both;
+  animation: fjSlideUp 0.5s var(--ease-emph) 0.35s both;
 }
 
 .fj-wager-label {
-  font-family: var(--font-barlow);
-  font-size: clamp(0.85rem, 1.8vh, 1.4rem);
-  letter-spacing: 3px;
-  color: rgba(255,255,255,0.6);
+  font-family: var(--font-text);
+  font-size: clamp(0.8rem, 1.7vh, 1.2rem);
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  color: var(--c-text-dim);
   text-transform: uppercase;
 }
 
@@ -1414,6 +1512,12 @@ body {
   font-size: clamp(1rem, 2.4vh, 1.7rem);
   font-weight: 700;
   color: var(--c-gold);
+}
+
+.fj-standing-score.is-negative,
+.fj-card-total.is-negative,
+.fj-lb-score.is-negative {
+  color: var(--c-score-negative);
 }
 
 .fj-player-chip {
@@ -1575,7 +1679,7 @@ body {
 }
 
 .fj-correct-label {
-  font-family: "Barlow Condensed", sans-serif;
+  font-family: var(--font-barlow);
   font-size: clamp(0.8rem, 1.6vh, 1.2rem);
   font-weight: 700;
   letter-spacing: 3px;
@@ -1727,81 +1831,91 @@ body {
 
 /* ── Game over ──────────────────────────────────────────── */
 .fj-game-over {
-  background: radial-gradient(ellipse at 50% 30%, #1a0a3a 0%, #050010 100%);
+  gap: clamp(16px, 4vh, 44px);
+  background: radial-gradient(ellipse at 50% 26%, #140a44 0%, #04030f 100%);
 }
 
 .fj-gameover-title {
-  font-family: var(--font-teko);
-  font-size: clamp(3rem, 10vh, 9rem);
-  font-weight: 700;
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 11vh, 8.5rem);
+  font-weight: 400;
   color: var(--c-gold);
-  letter-spacing: 5px;
+  letter-spacing: 2px;
   text-transform: uppercase;
-  text-shadow:
-    4px 4px 0 var(--c-gold-shadow),
-    0 0 60px rgba(255, 215, 0, 0.7);
-  animation: fjZoomIn 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  text-shadow: 0 4px 22px rgba(0, 0, 0, 0.55);
 }
 
 .fj-leaderboard {
   display: flex;
   flex-direction: column;
-  gap: clamp(8px, 1.2vh, 16px);
+  gap: clamp(6px, 1vh, 12px);
   width: 100%;
-  max-width: 700px;
-  animation: fjSlideUp 0.5s ease 0.2s both;
+  max-width: 720px;
+  animation: fjSlideUp 0.5s var(--ease-emph) 0.2s both;
 }
 
 .fj-lb-row {
   display: flex;
   align-items: center;
-  gap: 20px;
-  padding: clamp(10px, 1.5vh, 18px) 28px;
-  border-radius: 10px;
-  border: 2px solid rgba(255,255,255,0.12);
-  background: rgba(8, 18, 60, 0.6);
+  gap: clamp(12px, 2vw, 22px);
+  padding: clamp(10px, 1.5vh, 18px) clamp(16px, 3vw, 28px);
+  border-radius: 8px;
+  border: 1px solid rgba(150, 170, 255, 0.18);
+  background: rgba(8, 16, 52, 0.55);
 }
 
 .fj-lb-row.rank-1 {
-  border-color: var(--c-gold);
-  background: rgba(255, 215, 0, 0.1);
-  box-shadow: 0 0 30px rgba(255, 215, 0, 0.25);
+  border: 2px solid var(--c-gold);
+  background: linear-gradient(90deg, rgba(255, 215, 0, 0.16) 0%, rgba(255, 215, 0, 0.04) 100%);
+  box-shadow: 0 10px 34px rgba(0, 0, 0, 0.4);
 }
-.fj-lb-row.rank-2 { border-color: var(--c-rank-silver); }
-.fj-lb-row.rank-3 { border-color: var(--c-rank-bronze); }
 
 .fj-lb-rank {
   font-family: var(--font-teko);
-  font-size: clamp(1.2rem, 2.8vh, 2.2rem);
+  font-size: clamp(1.1rem, 2.6vh, 2rem);
   font-weight: 700;
-  color: rgba(255,255,255,0.5);
-  width: 60px;
+  color: rgba(255, 255, 255, 0.45);
+  width: clamp(44px, 8vw, 64px);
+  flex-shrink: 0;
   text-transform: uppercase;
 }
 
 .fj-lb-row.rank-1 .fj-lb-rank { color: var(--c-gold); }
-.fj-lb-row.rank-2 .fj-lb-rank { color: var(--c-rank-silver); }
-.fj-lb-row.rank-3 .fj-lb-rank { color: var(--c-rank-bronze); }
-.fj-lb-row.rank-4 .fj-lb-rank,
-.fj-lb-row.rank-4 { border-color: rgba(255,255,255,0.2); }
-.fj-lb-row.rank-4 .fj-lb-rank { color: rgba(255,255,255,0.55); }
 
 .fj-lb-name {
   flex: 1;
+  min-width: 0;
   font-family: var(--font-text);
-  font-size: clamp(1.1rem, 2.4vh, 2rem);
+  font-size: clamp(1.05rem, 2.3vh, 1.9rem);
   font-weight: 700;
   color: #fff;
-  letter-spacing: 2px;
+  letter-spacing: 1.5px;
   text-transform: uppercase;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.fj-lb-badge {
+  flex-shrink: 0;
+  font-family: var(--font-text);
+  font-size: clamp(0.6rem, 1.3vh, 0.8rem);
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #2c2200;
+  background: var(--gradient-gold-text);
+  padding: 3px 10px;
+  border-radius: var(--r-pill);
 }
 
 .fj-lb-score {
   font-family: var(--font-teko);
-  font-size: clamp(1.6rem, 3.2vh, 2.8rem);
+  font-size: clamp(1.5rem, 3vh, 2.6rem);
   font-weight: 700;
   color: var(--c-gold);
   letter-spacing: 1px;
+  flex-shrink: 0;
 }
 
 /* DAILY DOUBLE SPLASH */
@@ -1839,7 +1953,7 @@ body {
 }
 
 .dd-splash-label {
-  font-family: var(--font-teko);
+  font-family: var(--font-display);
   font-size: clamp(5rem, 14vw, 13rem);
   font-weight: 700;
   color: var(--c-gold);
@@ -1907,7 +2021,7 @@ body {
 }
 
 .modal-dd-label {
-  font-family: var(--font-teko);
+  font-family: var(--font-display);
   font-size: clamp(3rem, 7vw, 7rem);
   font-weight: 700;
   color: var(--c-gold);
