@@ -319,18 +319,23 @@ button {
 .host-kick-btn {
   background: transparent;
   border: none;
-  color: rgba(255, 100, 100, 0.5);
-  font-size: 0.75rem;
-  padding: 2px 4px;
+  color: var(--c-danger-soft);
+  opacity: 0.55;
+  min-width: var(--tap);
+  min-height: var(--tap);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
   flex-shrink: 0;
-  line-height: 1;
-  border-radius: 4px;
-  transition: color 0.15s;
+  border-radius: var(--r-sm);
+  transition: opacity var(--dur-fast), background var(--dur-fast);
 }
 
-.host-kick-btn:hover {
-  color: rgba(255, 80, 80, 0.9);
+.host-kick-btn:hover,
+.host-kick-btn:active {
+  opacity: 1;
+  background: rgba(248, 113, 113, 0.14);
 }
 
 .host-score-points {
@@ -503,7 +508,9 @@ button {
 }
 
 .host-dd-badge {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   margin: 4px auto 8px;
   padding: 6px 16px;
   border-radius: 999px;

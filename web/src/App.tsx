@@ -6,6 +6,7 @@ import HowToPlay from "./pages/HowToPlay";
 import CustomBoardPage from "./pages/CustomBoardPage";
 import type { RoomState } from "./types";
 import { audio } from "./audio";
+import Icon from "./components/Icon";
 import "./styles/main.css";
 
 type Page = "menu" | "lobby" | "game" | "customboard";
@@ -280,16 +281,18 @@ const App: React.FC = () => {
           <button
             className={`top-ctrl-btn${muted ? " is-muted" : ""}`}
             onClick={handleToggleMute}
-            title={muted ? "Unmute" : "Mute"}
+            aria-label={muted ? "Unmute" : "Mute"}
+            aria-pressed={muted}
           >
-            {muted ? "🔇" : "🔊"}
+            <Icon name={muted ? "volume-off" : "volume"} />
           </button>
           <button
             className={`top-ctrl-btn${isFullscreen ? " is-active" : ""}`}
             onClick={handleToggleFullscreen}
-            title={isFullscreen ? "Exit Fullscreen" : "Fullscreen"}
+            aria-label={isFullscreen ? "Exit fullscreen" : "Enter fullscreen"}
+            aria-pressed={isFullscreen}
           >
-            ⤢
+            <Icon name={isFullscreen ? "fullscreen-exit" : "fullscreen"} />
           </button>
         </div>
       )}

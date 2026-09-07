@@ -1,6 +1,7 @@
 import { useMemo, useState } from "react";
 import type { RoomState } from "../types";
 import { generateGameCatalogs, pickFinalJeopardyClue } from "../data/clueCatalog";
+import Icon from "./Icon";
 
 interface HostConsoleProps {
   room: RoomState;
@@ -376,7 +377,7 @@ const HostConsole = ({
           <div className="host-clue-preview">
             <p className="panel-label">Active Clue</p>
             {previewClue.clue.isDailyDouble && (
-              <div className="host-dd-badge">⭐ Daily Double</div>
+              <div className="host-dd-badge"><Icon name="star" size={16} /> Daily Double</div>
             )}
             <h3>{previewClue.categoryName} for ${previewClue.clue.value}</h3>
 
@@ -484,7 +485,7 @@ const HostConsole = ({
               >
                 <div className="host-score-name-row">
                   <div className="host-score-name">{player.name}</div>
-                  <button className="host-kick-btn" onClick={() => setConfirmKick({ id: player.id, name: player.name })} title="Remove player">✕</button>
+                  <button className="host-kick-btn" onClick={() => setConfirmKick({ id: player.id, name: player.name })} aria-label={`Remove ${player.name}`}><Icon name="close" size={14} /></button>
                 </div>
                 <div className="host-score-points">
                   {player.score < 0 ? `-$${Math.abs(player.score)}` : `$${player.score}`}
