@@ -43,7 +43,20 @@ const App: React.FC = () => {
   const lobbyListenerRef = useRef<((event: MessageEvent) => void) | null>(null);
 
   const [muted, setMuted] = useState(false);
+  const [volume, setVolume] = useState(() => audio.getVolume());
   const [isFullscreen, setIsFullscreen] = useState(false);
+
+  const handleVolumeChange = (next: number) => {
+    setVolume(next);
+    audio.setVolume(next);
+    if (next > 0 && muted) {
+      setMuted(false);
+      audio.setMuted(false);
+    }
+    if (next > 0 && (page === "menu" || page === "lobby")) {
+      audio.ensureThemePlaying();
+    }
+  };
 
   const handleUnlockAudio = () => {
     setAudioUnlocked(true);
@@ -286,6 +299,16 @@ const App: React.FC = () => {
           >
             <Icon name={muted ? "volume-off" : "volume"} />
           </button>
+          <input
+            className="top-ctrl-volume"
+            type="range"
+            min={0}
+            max={1}
+            step={0.05}
+            value={muted ? 0 : volume}
+            onChange={(e) => handleVolumeChange(Number(e.target.value))}
+            aria-label="Volume"
+          />
           <button
             className={`top-ctrl-btn${isFullscreen ? " is-active" : ""}`}
             onClick={handleToggleFullscreen}

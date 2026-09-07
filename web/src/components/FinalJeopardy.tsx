@@ -113,6 +113,21 @@ const FinalJeopardy: React.FC<FinalJeopardyProps> = ({
 
   const sortedPlayers = [...players].sort((a, b) => b.score - a.score);
 
+  const standingsStrip = (
+    <div className="fj-standings" aria-label="Current standings">
+      {sortedPlayers.map((player) => (
+        <div key={player.id} className="fj-standing">
+          <span className="fj-standing-name">{player.name}</span>
+          <span className="fj-standing-score">
+            {player.score < 0
+              ? `-$${Math.abs(player.score).toLocaleString()}`
+              : `$${player.score.toLocaleString()}`}
+          </span>
+        </div>
+      ))}
+    </div>
+  );
+
   // ── Game Over ──────────────────────────────────────────────────────────────
   if (gamePhase === "game-over") {
     return (
@@ -165,6 +180,7 @@ const FinalJeopardy: React.FC<FinalJeopardyProps> = ({
             ))}
           </div>
         </div>
+        {standingsStrip}
       </div>
     );
   }
@@ -199,6 +215,7 @@ const FinalJeopardy: React.FC<FinalJeopardyProps> = ({
             ))}
           </div>
         </div>
+        {standingsStrip}
       </div>
     );
   }

@@ -423,7 +423,7 @@ const Game: React.FC<GameProps> = ({ initialRoomCode, initialRoomState, boardSoc
             <div className="dd-splash" onClick={() => setShowDailyDoubleSplash(false)}>
               <div className="dd-splash-content">
                 <div className="dd-splash-label">Daily Double!</div>
-                {dailyDoubleWager != null && dailyDoubleWager > 0 && (
+                {dailyDoubleWager != null && (
                   <div className="dd-splash-wager">${dailyDoubleWager.toLocaleString()}</div>
                 )}
               </div>
