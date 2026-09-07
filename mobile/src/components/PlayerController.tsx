@@ -1,6 +1,15 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import type { RoomState } from "../types";
 import SignaturePad from "./SignaturePad";
+import Icon from "./Icon";
+
+const vibrate = (pattern: number | number[]) => {
+  try {
+    navigator.vibrate?.(pattern);
+  } catch {
+    /* not supported / blocked — no-op */
+  }
+};
 
 interface PlayerControllerProps {
   room: RoomState;
@@ -27,9 +36,14 @@ const PlayerController = ({
   onToggleNameDisplay,
   onUpdateSignature,
 }: PlayerControllerProps) => {
-  const hasBuzzed = playerStatus === "buzzed";
+  // Optimistic buzz: flip the button the instant it's tapped, before the
+  // server round-trip confirms, so feedback doesn't depend on latency.
+  const [optimisticBuzz, setOptimisticBuzz] = useState(false);
+  const hasBuzzed = playerStatus === "buzzed" || optimisticBuzz;
   const isLockedOut = Boolean(playerId && room.lockedOutPlayerIds?.includes(playerId));
   const isLocked = !room.buzzersOpen || isLockedOut;
+  const [showSettings, setShowSettings] = useState(false);
+  const prevBuzzersOpenRef = useRef(room.buzzersOpen);
   const myPlayer = useMemo(
     () => room.players.find((p) => p.id === playerId) ?? null,
     [room.players, playerId]
@@ -87,6 +101,29 @@ const PlayerController = ({
     }
   }, [myPlayer?.finalWager]);
 
+  // Clear the optimistic buzz once the server catches up (or the clue moves on).
+  useEffect(() => {
+    if (playerStatus === "buzzed" || !room.buzzersOpen || isLockedOut) {
+      setOptimisticBuzz(false);
+    }
+  }, [playerStatus, room.buzzersOpen, isLockedOut]);
+
+  // Light haptic pulse the moment buzzers open, so heads-down players feel it.
+  useEffect(() => {
+    const was = prevBuzzersOpenRef.current;
+    prevBuzzersOpenRef.current = room.buzzersOpen;
+    if (!was && room.buzzersOpen && !isLockedOut && !room.isDailyDoubleActive) {
+      vibrate(40);
+    }
+  }, [room.buzzersOpen, isLockedOut, room.isDailyDoubleActive]);
+
+  const handleBuzz = () => {
+    if (hasBuzzed || isLocked) return;
+    setOptimisticBuzz(true);
+    vibrate([0, 30, 20, 30]);
+    onBuzz();
+  };
+
   const statusText = useMemo(() => {
     if (room.isDailyDoubleActive) return "Daily Double! The board owner is answering.";
     if (isLockedOut) return "You answered incorrectly — locked out for this clue.";
@@ -129,7 +166,46 @@ const PlayerController = ({
       <header className="player-header">
         <button className="ghost-action" onClick={onBack}>Leave</button>
         <div className="room-badge">Room {room.roomCode}</div>
+        {room.gamePhase === "playing" && (onToggleNameDisplay || onUpdateSignature) && (
+          <button
+            className="ghost-action player-settings-btn"
+            onClick={() => setShowSettings(true)}
+            aria-label="Name settings"
+          >
+            <Icon name="settings" size={18} />
+          </button>
+        )}
       </header>
+
+      {/* ── Name / signature settings sheet ── */}
+      {showSettings && (
+        <div className="name-edit-overlay" onClick={() => setShowSettings(false)}>
+          <div className="name-edit-card" onClick={(e) => e.stopPropagation()}>
+            <p className="eyebrow" style={{ marginBottom: 12 }}>Your Name</p>
+            {myPlayer?.nameSignatureDataUrl && onToggleNameDisplay && (
+              <button className="name-display-toggle" onClick={onToggleNameDisplay} type="button">
+                {myPlayer.showNameSignature ? "Show Text Name" : "Show Handwritten Name"}
+              </button>
+            )}
+            {onUpdateSignature && (
+              <button
+                className="name-edit-btn"
+                onClick={() => { setShowSettings(false); setShowNameEdit(true); }}
+                type="button"
+              >
+                {myPlayer?.nameSignatureDataUrl ? "Change Signature" : "Add Signature"}
+              </button>
+            )}
+            <button
+              className="ghost-action"
+              style={{ marginTop: 8 }}
+              onClick={() => setShowSettings(false)}
+            >
+              Done
+            </button>
+          </div>
+        </div>
+      )}
 
       {/* ── Name signature editor overlay ── */}
       {showNameEdit && (
@@ -179,17 +255,19 @@ const PlayerController = ({
                 : "$0"}
             </span>
           </div>
-          <p className="player-status-copy">{statusText}</p>
+          <p className="player-status-copy" aria-live="polite">{statusText}</p>
           <div className={`buzzer-wrapper${!hasBuzzed && !isLocked ? " is-active" : ""}${hasBuzzed ? " is-buzzed" : ""}${isLockedOut ? " is-locked-out" : ""}`}>
             <button
               className={`buzzer-button${hasBuzzed || isLocked ? " is-disabled" : ""}${isLockedOut ? " is-locked-out" : ""}`}
               disabled={hasBuzzed || isLocked}
-              onClick={onBuzz}
+              onClick={handleBuzz}
             >
               {hasBuzzed ? "BUZZED!" : isLockedOut ? "LOCKED OUT" : "BUZZ IN"}
             </button>
           </div>
-          <p className="player-question-reminder">Remember: answer in the form of a question</p>
+          {(hasBuzzed || room.buzzersOpen) && !isLockedOut && (
+            <p className="player-question-reminder">Answer in the form of a question</p>
+          )}
           <div className="player-meta">
             <div>
               <span className="meta-label">Round</span>
@@ -199,18 +277,6 @@ const PlayerController = ({
               <span className="meta-label">Board Owner</span>
               <strong>{room.boardOwnerPlayerName ?? "Unassigned"}</strong>
             </div>
-          </div>
-          <div className="player-name-controls">
-            {myPlayer?.nameSignatureDataUrl && onToggleNameDisplay && (
-              <button className="name-display-toggle" onClick={onToggleNameDisplay} type="button">
-                {myPlayer.showNameSignature ? "Show Text Name" : "Show Handwritten Name"}
-              </button>
-            )}
-            {onUpdateSignature && (
-              <button className="name-edit-btn" onClick={() => setShowNameEdit(true)} type="button">
-                {myPlayer?.nameSignatureDataUrl ? "Change Signature" : "Add Signature"}
-              </button>
-            )}
           </div>
         </section>
       )}
