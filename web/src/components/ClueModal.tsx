@@ -186,7 +186,7 @@ const ClueModal: React.FC<ClueModalProps> = ({
         {showDailyDouble && (
           <div className="modal-dd-header">
             <div className="modal-dd-label">Daily Double!</div>
-            {dailyDoubleWager != null && dailyDoubleWager > 0 && (
+            {dailyDoubleWager != null && (
               <div className="modal-dd-wager">Wager: ${dailyDoubleWager.toLocaleString()}</div>
             )}
           </div>

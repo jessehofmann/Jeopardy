@@ -419,7 +419,7 @@ const Game: React.FC<GameProps> = ({ initialRoomCode, initialRoomState, boardSoc
             <Board
               categories={categories}
               onClueAnswered={handleClueAnswered}
-              selectedClueId={showDailyDoubleSplash || (isDailyDoubleActive && !dailyDoubleWager) ? null : selectedClueId}
+              selectedClueId={showDailyDoubleSplash || (isDailyDoubleActive && dailyDoubleWager == null) ? null : selectedClueId}
               allowManualPick={!isSynced}
               answerRevealed={answerRevealed}
               firstBuzzedPlayerName={firstBuzzedPlayerName}

@@ -263,6 +263,63 @@ button {
   margin-top: 18px;
 }
 
+/* A lone action reads better full width; only split when there are two. */
+.host-clue-preview .host-actions-grid:not(.is-split) {
+  grid-template-columns: 1fr;
+}
+
+.host-clue-status {
+  margin: 8px 0 4px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--c-accent);
+}
+
+.host-undo-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(147, 168, 255, 0.16);
+  border: 1px solid rgba(147, 168, 255, 0.4);
+  color: var(--c-accent);
+  border-radius: var(--r-pill);
+  padding: 6px 12px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  min-height: 36px;
+}
+.host-undo-btn:active {
+  background: rgba(147, 168, 255, 0.3);
+}
+
+/* Correct / Incorrect are the game's highest-consequence taps — make them
+   unmistakable and hard to fat-finger. */
+.host-judge-btn {
+  border: 2px solid;
+  border-radius: 16px;
+  padding: 18px;
+  font-weight: 800;
+  font-size: 1.05rem;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+.host-judge-btn.is-correct {
+  background: rgba(134, 239, 172, 0.16);
+  border-color: var(--c-positive);
+  color: var(--c-positive);
+}
+.host-judge-btn.is-correct:active {
+  background: rgba(134, 239, 172, 0.3);
+}
+.host-judge-btn.is-wrong {
+  background: rgba(248, 113, 113, 0.14);
+  border-color: var(--c-danger);
+  color: var(--c-danger-soft);
+}
+.host-judge-btn.is-wrong:active {
+  background: rgba(248, 113, 113, 0.26);
+}
+
 .roster-panel {
   margin-top: 18px;
 }

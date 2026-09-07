@@ -76,6 +76,17 @@ const HostConsole = ({
   const [confirmSkip, setConfirmSkip] = useState<null | "round2" | "final">(null);
   const [confirmEndGame, setConfirmEndGame] = useState(false);
   const [confirmKick, setConfirmKick] = useState<{ id: string; name: string } | null>(null);
+  const [lastAdjust, setLastAdjust] = useState<{ playerId: string; name: string; delta: number } | null>(null);
+
+  const adjustScore = (playerId: string, name: string, delta: number) => {
+    onUpdateScore(playerId, delta);
+    setLastAdjust({ playerId, name, delta });
+  };
+  const undoLastAdjust = () => {
+    if (!lastAdjust) return;
+    onUpdateScore(lastAdjust.playerId, -lastAdjust.delta);
+    setLastAdjust(null);
+  };
 
   const roundMaxValue = isRoundTwo ? 2000 : 1000;
   const boardOwner = room.players.find((p) => p.id === room.boardOwnerPlayerId) ?? null;
@@ -104,6 +115,59 @@ const HostConsole = ({
   const previewClue = selectedOrActiveClue;
   const hasActiveClue = Boolean(room.selectedClueId);
   const hasBuzzedPlayer = Boolean(room.firstBuzzedPlayerId);
+  const wagerSubmitted = room.dailyDoubleWager != null; // 0 is a valid wager
+
+  const submitDailyDoubleWager = () => {
+    if (!isWagerValid) return;
+    onSetDailyDoubleWager(parsedWager);
+    setWagerInput("");
+  };
+
+  // The host clue flow as one explicit state, instead of a stack of
+  // overlapping `&&` conditions. Each phase declares its own status line and
+  // action buttons.
+  type ClueAction = { key: string; label: string; onClick: () => void; variant: "primary" | "correct" | "wrong" | "neutral"; disabled?: boolean };
+  const cluePhase = !hasActiveClue
+    ? null
+    : room.isDailyDoubleActive
+      ? (room.answerRevealed ? "dd-done" : wagerSubmitted ? "dd-answering" : "dd-wager")
+      : room.answerRevealed
+        ? "done"
+        : hasBuzzedPlayer
+          ? "buzzed"
+          : room.buzzersOpen
+            ? "buzzers-open"
+            : "reading";
+
+  const buzzedName = room.players.find((p) => p.id === room.firstBuzzedPlayerId)?.name ?? "Player";
+  const clueStatus: Record<string, string> = {
+    "dd-wager": `${room.boardOwnerPlayerName ?? "Player"} is setting a wager`,
+    "dd-answering": `${room.boardOwnerPlayerName ?? "Player"} is answering the Daily Double`,
+    "dd-done": "Daily Double scored — move on",
+    reading: "Read the clue aloud, then open the buzzers",
+    "buzzers-open": "Buzzers open — waiting for a buzz",
+    buzzed: `${buzzedName} buzzed in first`,
+    done: "Answer shown — move on",
+  };
+
+  const clueActions: ClueAction[] =
+    cluePhase === "dd-wager"
+      ? [{ key: "dd-send", label: "Set Wager & Reveal", onClick: submitDailyDoubleWager, variant: "primary", disabled: !isWagerValid }]
+      : cluePhase === "dd-answering" || cluePhase === "buzzed"
+        ? [
+            { key: "wrong", label: "Incorrect", onClick: onMarkIncorrect, variant: "wrong" },
+            { key: "right", label: "Correct", onClick: onRevealAnswer, variant: "correct" },
+          ]
+        : cluePhase === "reading"
+          ? [
+              { key: "open", label: "Open Buzzers", onClick: onOpenBuzzers, variant: "primary" },
+              { key: "skip", label: "Skip to Answer", onClick: onRevealAnswer, variant: "neutral" },
+            ]
+          : cluePhase === "buzzers-open"
+            ? [{ key: "reveal", label: "Reveal Answer (no buzz)", onClick: onRevealAnswer, variant: "neutral" }]
+            : cluePhase === "done" || cluePhase === "dd-done"
+              ? [{ key: "next", label: "Next Clue", onClick: onCloseClue, variant: "primary" }]
+              : [];
 
   const handleStartFinalJeopardy = () => {
     const customFJ = room.customBoard?.finalJeopardy;
@@ -113,12 +177,6 @@ const HostConsole = ({
       const fj = pickFinalJeopardyClue(seed);
       onStartFinalJeopardy(fj.category, fj.question, fj.answer);
     }
-  };
-
-  const submitDailyDoubleWager = () => {
-    if (!isWagerValid) return;
-    onSetDailyDoubleWager(parsedWager);
-    setWagerInput("");
   };
 
   return (
@@ -397,18 +455,17 @@ const HostConsole = ({
             )}
             <h3>{previewClue.categoryName} for ${previewClue.clue.value}</h3>
 
-            {/* Active daily double, wager not yet set: show wager input */}
-            {hasActiveClue && room.isDailyDoubleActive && !room.dailyDoubleWager && (
+            {cluePhase && <p className="host-clue-status">{clueStatus[cluePhase]}</p>}
+
+            {cluePhase === "dd-wager" && (
               <div className="host-dd-wager-section">
-                <p className="host-dd-wager-owner">
-                  {room.boardOwnerPlayerName ?? "Player"} is wagering
-                </p>
                 <p className="host-dd-wager-range">
-                  $0 — ${wagerMax.toLocaleString()}
+                  Wager $0 – ${wagerMax.toLocaleString()}
                 </p>
                 <input
                   className="host-dd-wager-input"
                   type="number"
+                  inputMode="numeric"
                   min={0}
                   max={wagerMax}
                   value={wagerInput}
@@ -418,61 +475,34 @@ const HostConsole = ({
               </div>
             )}
 
-            {/* Active daily double: show confirmed wager */}
-            {hasActiveClue && room.isDailyDoubleActive && (room.dailyDoubleWager ?? 0) > 0 && (
+            {wagerSubmitted && room.isDailyDoubleActive && (
               <p className="host-dd-active-wager">
                 Wager: ${(room.dailyDoubleWager ?? 0).toLocaleString()}
               </p>
             )}
 
-            {!room.isDailyDoubleActive && (
-              <p className="host-first-buzz">
-                {room.firstBuzzedPlayerId
-                  ? `${room.players.find((player) => player.id === room.firstBuzzedPlayerId)?.name ?? "Player"} buzzed first`
-                  : hasActiveClue && room.buzzersOpen
-                  ? "Buzzers open — waiting for buzz..."
-                  : hasActiveClue
-                  ? "Read the clue, then open buzzers"
-                  : ""}
-              </p>
-            )}
-
             <p className="host-preview-question">{previewClue.clue.question}</p>
             <p className="host-preview-answer">Answer: {previewClue.clue.answer}</p>
-            <div className="host-actions-grid">
-              {hasActiveClue && room.isDailyDoubleActive && !room.dailyDoubleWager && !room.answerRevealed && (
+
+            <div className={`host-actions-grid${clueActions.length > 1 ? " is-split" : ""}`}>
+              {clueActions.map((a) => (
                 <button
-                  className="primary-action host-dd-send-button"
-                  disabled={!isWagerValid}
-                  onClick={submitDailyDoubleWager}
+                  key={a.key}
+                  className={
+                    a.variant === "primary"
+                      ? "primary-action"
+                      : a.variant === "correct"
+                        ? "host-judge-btn is-correct"
+                        : a.variant === "wrong"
+                          ? "host-judge-btn is-wrong"
+                          : "secondary-action"
+                  }
+                  disabled={a.disabled}
+                  onClick={a.onClick}
                 >
-                  Set Wager &amp; Reveal
+                  {a.label}
                 </button>
-              )}
-              {hasActiveClue && room.isDailyDoubleActive && room.dailyDoubleWager && !room.answerRevealed && (
-                <>
-                  <button className="secondary-action" onClick={onMarkIncorrect}>Incorrect</button>
-                  <button className="secondary-action" onClick={onRevealAnswer}>Correct</button>
-                </>
-              )}
-              {hasActiveClue && !room.isDailyDoubleActive && !room.buzzersOpen && !hasBuzzedPlayer && !room.answerRevealed && (
-                <button className="primary-action" onClick={onOpenBuzzers}>Open Buzzers</button>
-              )}
-              {hasActiveClue && !room.isDailyDoubleActive && hasBuzzedPlayer && !room.answerRevealed && (
-                <button className="secondary-action" onClick={onMarkIncorrect}>Incorrect</button>
-              )}
-              {hasActiveClue && !room.isDailyDoubleActive && hasBuzzedPlayer && !room.answerRevealed && (
-                <button className="secondary-action" onClick={onRevealAnswer}>Correct</button>
-              )}
-              {hasActiveClue && !room.isDailyDoubleActive && room.buzzersOpen && !hasBuzzedPlayer && !room.answerRevealed && (
-                <button className="secondary-action" onClick={onRevealAnswer}>Reveal Answer</button>
-              )}
-              {hasActiveClue && !room.isDailyDoubleActive && !room.buzzersOpen && !hasBuzzedPlayer && !room.answerRevealed && (
-                <button className="secondary-action" onClick={onRevealAnswer}>Skip to Answer</button>
-              )}
-              {hasActiveClue && room.answerRevealed && (
-                <button className="secondary-action" onClick={onCloseClue}>Next Clue</button>
-              )}
+              ))}
             </div>
           </div>
         )}
@@ -481,9 +511,12 @@ const HostConsole = ({
 
       <section className="panel roster-panel">
         <div className="roster-header">
-          <div>
-            <p className="panel-label">Scores</p>
-          </div>
+          <p className="panel-label">Scores</p>
+          {lastAdjust && (
+            <button className="host-undo-btn" onClick={undoLastAdjust}>
+              <Icon name="undo" size={14} /> Undo {lastAdjust.delta < 0 ? "−" : "+"}${Math.abs(lastAdjust.delta)} · {lastAdjust.name}
+            </button>
+          )}
         </div>
 
         <div className="host-scoreboard">
@@ -507,8 +540,8 @@ const HostConsole = ({
                   {player.score < 0 ? `-$${Math.abs(player.score)}` : `$${player.score}`}
                 </div>
                 <div className="host-score-adjust">
-                  <button className="score-adjust-button" onClick={() => onUpdateScore(player.id, -adjustValue)}>−{adjustLabel}</button>
-                  <button className="score-adjust-button" onClick={() => onUpdateScore(player.id, adjustValue)}>+{adjustLabel}</button>
+                  <button className="score-adjust-button" onClick={() => adjustScore(player.id, player.name, -adjustValue)} aria-label={`Subtract $${adjustValue} from ${player.name}`}>−{adjustLabel}</button>
+                  <button className="score-adjust-button" onClick={() => adjustScore(player.id, player.name, adjustValue)} aria-label={`Add $${adjustValue} to ${player.name}`}>+{adjustLabel}</button>
                 </div>
               </div>
             );
