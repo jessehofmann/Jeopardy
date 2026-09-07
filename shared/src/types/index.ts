@@ -85,5 +85,7 @@ export interface RoomState {
     finalQuestionDeadlineMs: number | null;
     customBoard?: CustomBoard | null;
     boardIsReady?: boolean;
+    /** True when the host's last correct/incorrect ruling can still be undone. */
+    canUndoRuling?: boolean;
     players: RoomPlayer[];
 }
