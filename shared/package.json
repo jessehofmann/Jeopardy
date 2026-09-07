@@ -5,7 +5,9 @@
   "type": "module",
   "main": "src/index.ts",
   "scripts": {
-    "test": "node scripts/validate-catalog.mjs && node scripts/check-generation.mjs"
+    "test": "node scripts/validate-catalog.mjs && node scripts/check-generation.mjs",
+    "test:strict": "node scripts/validate-catalog.mjs --strict && node scripts/check-generation.mjs",
+    "sample": "node scripts/sample-board.mjs"
   },
   "dependencies": {}
 }
