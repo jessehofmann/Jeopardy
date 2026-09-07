@@ -876,8 +876,22 @@ body {
   position: absolute;
   bottom: -21px;
   left: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
   font-size: 0.72rem;
   color: #d8e8ff;
+}
+
+.board-connection-retry {
+  background: rgba(255, 215, 0, 0.16);
+  border: 1px solid rgba(255, 215, 0, 0.5);
+  color: var(--c-gold);
+  border-radius: var(--r-pill);
+  padding: 2px 10px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  cursor: pointer;
 }
 
 /* ROUND BANNER */

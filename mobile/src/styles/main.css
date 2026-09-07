@@ -41,11 +41,30 @@ button {
 
 .connection-banner {
   width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
   text-align: center;
   padding: 8px 12px;
+  padding-top: calc(8px + env(safe-area-inset-top));
   font-size: 0.85rem;
   letter-spacing: 0.04em;
   border-bottom: 1px solid rgba(145, 169, 255, 0.22);
+}
+
+.connection-retry-btn {
+  flex-shrink: 0;
+  background: rgba(255, 255, 255, 0.16);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  color: inherit;
+  border-radius: var(--r-pill);
+  padding: 4px 14px;
+  font-weight: 700;
+  font-size: 0.8rem;
+}
+.connection-retry-btn:active {
+  background: rgba(255, 255, 255, 0.3);
 }
 
 .connection-banner.is-online {
