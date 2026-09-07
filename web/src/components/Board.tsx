@@ -47,6 +47,15 @@ const Board: React.FC<BoardProps> = ({
     }
 
     audio.playBoardFill();
+
+    // Reduced motion: reveal the whole board at once, skip the staggered fill.
+    if (window.matchMedia?.("(prefers-reduced-motion: reduce)").matches) {
+      const every = new Set<string>();
+      for (const cat of categories) for (const clue of cat.clues) every.add(clue.id);
+      setFilledCells(every);
+      return;
+    }
+
     const duration = Math.max(500, audio.getBoardFillDuration() - 1000);
 
     // Collect clue cell IDs only — category headers appear immediately
