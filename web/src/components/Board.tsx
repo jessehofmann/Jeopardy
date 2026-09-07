@@ -57,11 +57,17 @@ const Board: React.FC<BoardProps> = ({
       }
     }
 
-    // Fisher-Yates shuffle
-    for (let i = allIds.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [allIds[i], allIds[j]] = [allIds[j], allIds[i]];
-    }
+    // Deterministic scramble: hash(clueId + boardKey) so every client fills the
+    // board in the same order (matches the deterministic board seed).
+    const hash = (str: string) => {
+      let h = 2166136261;
+      for (let i = 0; i < str.length; i++) {
+        h ^= str.charCodeAt(i);
+        h = Math.imul(h, 16777619);
+      }
+      return h >>> 0;
+    };
+    allIds.sort((a, b) => hash(a + boardKey) - hash(b + boardKey));
 
     const staggerMs = duration / allIds.length;
     const timers: ReturnType<typeof setTimeout>[] = [];

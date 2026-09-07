@@ -335,15 +335,31 @@ const HostConsole = ({
             )}
 
             <div className="host-category-strip" role="tablist" aria-label="Select category">
-              {catalog.map((category) => (
-                <button
-                  key={category.id}
-                  className={`host-category-chip ${selectedCategory?.id === category.id ? "is-selected" : ""}`}
-                  onClick={() => setSelectedCategoryId(category.id)}
-                >
-                  {category.name}
-                </button>
-              ))}
+              {catalog.map((category, i) => {
+                const selected = selectedCategory?.id === category.id;
+                return (
+                  <button
+                    key={category.id}
+                    type="button"
+                    role="tab"
+                    aria-selected={selected}
+                    tabIndex={selected || (!selectedCategory && i === 0) ? 0 : -1}
+                    className={`host-category-chip ${selected ? "is-selected" : ""}`}
+                    onClick={() => setSelectedCategoryId(category.id)}
+                    onKeyDown={(e) => {
+                      const delta = e.key === "ArrowRight" ? 1 : e.key === "ArrowLeft" ? -1 : 0;
+                      if (!delta) return;
+                      e.preventDefault();
+                      const next = catalog[(i + delta + catalog.length) % catalog.length];
+                      setSelectedCategoryId(next.id);
+                      const strip = e.currentTarget.parentElement;
+                      (strip?.children[(i + delta + catalog.length) % catalog.length] as HTMLElement)?.focus();
+                    }}
+                  >
+                    {category.name}
+                  </button>
+                );
+              })}
             </div>
 
             {!catalog.every((cat) => (room.revealedCategoryIds ?? []).includes(cat.id)) && (
@@ -388,12 +404,12 @@ const HostConsole = ({
                   {room.boardOwnerPlayerName ?? "Player"} is wagering
                 </p>
                 <p className="host-dd-wager-range">
-                  Min: $5 — Max: ${wagerMax.toLocaleString()}
+                  $0 — ${wagerMax.toLocaleString()}
                 </p>
                 <input
                   className="host-dd-wager-input"
                   type="number"
-                  min={5}
+                  min={0}
                   max={wagerMax}
                   value={wagerInput}
                   onChange={(e) => setWagerInput(e.target.value)}

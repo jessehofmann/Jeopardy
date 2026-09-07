@@ -37,14 +37,14 @@ body {
   position: absolute;
   top: 12px;
   right: 16px;
-  font-size: 0.72rem;
-  color: rgba(255, 255, 255, 0.45);
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.72);
   letter-spacing: 0.02em;
 }
 
 .main-menu-companion-url {
-  color: rgba(255, 215, 0, 0.7);
-  font-weight: 600;
+  color: var(--c-gold-bright);
+  font-weight: 700;
 }
 
 .logo-container {
@@ -1823,7 +1823,6 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  cursor: pointer;
 }
 
 .audio-unlock-content {
