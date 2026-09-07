@@ -1378,43 +1378,9 @@ body {
 }
 
 /* ── Category phase ─────────────────────────────────────── */
-.fj-title-lockup {
-  text-align: center;
-  line-height: 0.9;
-  animation: fjZoomIn 0.5s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
 @keyframes fjZoomIn {
   from { transform: scale(0.5); opacity: 0; }
   to   { transform: scale(1);   opacity: 1; }
-}
-
-.fj-eyebrow {
-  font-family: var(--font-barlow);
-  font-size: clamp(1rem, 2.5vh, 2.2rem);
-  font-weight: 700;
-  letter-spacing: 8px;
-  color: rgba(255, 215, 0, 0.75);
-  text-transform: uppercase;
-}
-
-.fj-big-title {
-  font-family: var(--font-display);
-  font-size: clamp(4rem, 14vh, 11rem);
-  font-weight: 700;
-  color: var(--c-gold);
-  letter-spacing: 4px;
-  text-transform: uppercase;
-  text-shadow:
-    4px 4px 0 var(--c-gold-shadow),
-    8px 8px 0 var(--c-gold-shadow-2),
-    0 0 60px rgba(255, 215, 0, 0.8),
-    0 0 120px rgba(255, 215, 0, 0.4);
-}
-
-.fj-category-reveal {
-  text-align: center;
-  animation: fjSlideUp 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.2s both;
 }
 
 @keyframes fjSlideUp {
@@ -1422,23 +1388,74 @@ body {
   to   { transform: translateY(0);    opacity: 1; }
 }
 
-.fj-category-label {
-  font-family: var(--font-barlow);
-  font-size: clamp(0.8rem, 1.8vh, 1.4rem);
+/* Title card — matches the round-banner treatment: gold rules, quiet wordmark */
+.fj-title-lockup {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(4px, 1vh, 10px);
+  padding: clamp(10px, 2.4vh, 26px) clamp(28px, 7vw, 90px);
+  border-top: 3px solid var(--c-gold);
+  border-bottom: 3px solid var(--c-gold);
+  line-height: 0.9;
+  animation: fjZoomIn 0.5s var(--ease-emph);
+}
+
+.fj-eyebrow {
+  font-family: var(--font-text);
+  font-size: clamp(0.72rem, 1.6vh, 1.15rem);
   font-weight: 700;
-  letter-spacing: 5px;
-  color: rgba(255, 255, 255, 0.55);
+  letter-spacing: 0.44em;
+  padding-left: 0.44em;
+  color: var(--c-gold-dim);
   text-transform: uppercase;
-  margin-bottom: 4px;
+}
+
+.fj-big-title {
+  font-family: var(--font-display);
+  font-size: clamp(3.4rem, 12vh, 9rem);
+  font-weight: 400;
+  color: var(--c-gold);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-shadow: 0 4px 22px rgba(0, 0, 0, 0.55);
+}
+
+/* The category itself sits in the classic blue-and-gold FJ card */
+.fj-category-reveal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  text-align: center;
+  padding: clamp(14px, 3vh, 30px) clamp(24px, 6vw, 72px);
+  background: linear-gradient(180deg, var(--c-blue-panel) 0%, var(--c-blue-deep) 100%);
+  border: 3px solid var(--c-gold);
+  border-radius: 6px;
+  box-shadow: 0 12px 44px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  animation: fjSlideUp 0.5s var(--ease-emph) 0.2s both;
+}
+
+.fj-category-label {
+  font-family: var(--font-text);
+  font-size: clamp(0.7rem, 1.5vh, 1.1rem);
+  font-weight: 700;
+  letter-spacing: 0.32em;
+  padding-left: 0.32em;
+  color: var(--c-text-dim);
+  text-transform: uppercase;
+  margin: 0;
 }
 
 .fj-category-name {
-  font-family: var(--font-bebas);
-  font-size: clamp(2.5rem, 7vh, 6.5rem);
+  font-family: var(--font-serif);
+  font-weight: 800;
+  font-size: clamp(2rem, 6vh, 5rem);
   color: #fff;
-  letter-spacing: 3px;
+  letter-spacing: 1px;
+  line-height: 1.05;
   text-transform: uppercase;
-  text-shadow: 2px 2px 0 #000, 0 0 40px rgba(255,255,255,0.2);
+  text-shadow: 0 3px 14px rgba(0, 0, 0, 0.5);
 }
 
 .fj-wager-status {
@@ -1446,14 +1463,15 @@ body {
   flex-direction: column;
   align-items: center;
   gap: 14px;
-  animation: fjSlideUp 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.35s both;
+  animation: fjSlideUp 0.5s var(--ease-emph) 0.35s both;
 }
 
 .fj-wager-label {
-  font-family: var(--font-barlow);
-  font-size: clamp(0.85rem, 1.8vh, 1.4rem);
-  letter-spacing: 3px;
-  color: rgba(255,255,255,0.6);
+  font-family: var(--font-text);
+  font-size: clamp(0.8rem, 1.7vh, 1.2rem);
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  color: var(--c-text-dim);
   text-transform: uppercase;
 }
 

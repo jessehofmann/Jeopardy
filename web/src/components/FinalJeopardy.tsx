@@ -165,7 +165,7 @@ const FinalJeopardy: React.FC<FinalJeopardyProps> = ({
           <div className="fj-category-name">{finalCategory}</div>
         </div>
         <div className="fj-wager-status">
-          <p className="fj-wager-label">Players are wagering...</p>
+          <p className="fj-wager-label">Players are wagering</p>
           <div className="fj-player-chips">
             {players.map((player) => (
               <div
@@ -174,7 +174,7 @@ const FinalJeopardy: React.FC<FinalJeopardyProps> = ({
               >
                 <span className="fj-chip-name">{player.name}</span>
                 <span className="fj-chip-status">
-                  {player.finalWager != null ? "✓" : "…"}
+                  {player.finalWager != null ? "✓" : "·"}
                 </span>
               </div>
             ))}

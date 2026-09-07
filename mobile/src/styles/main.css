@@ -1246,6 +1246,32 @@ button {
   margin: 8px 0 14px;
 }
 
+.host-fj-clue-preview {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  background: rgba(147, 168, 255, 0.1);
+  border: 1px solid var(--c-panel-border);
+  border-radius: 10px;
+  padding: 10px 14px;
+  margin: 8px 0 10px;
+}
+
+.host-fj-clue-preview-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--c-accent);
+}
+
+.host-fj-clue-preview-text {
+  margin: 0;
+  font-size: 1.05rem;
+  line-height: 1.5;
+  font-weight: 600;
+  color: var(--c-text);
+}
+
 .host-fj-answer-spoiler-label {
   font-size: 0.7rem;
   text-transform: uppercase;
