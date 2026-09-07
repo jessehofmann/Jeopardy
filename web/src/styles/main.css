@@ -935,8 +935,9 @@ body {
 .board {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
-  gap: 6px;
+  gap: clamp(3px, 0.6vh, 6px);
   flex: 1;
+  min-height: 0;
 }
 
 .category-header {
@@ -951,32 +952,31 @@ body {
   text-align: center;
   padding: 8px 10px 6px;
   font-family: "Bebas Neue", var(--font-barlow);
-  font-size: 2rem;
+  font-size: clamp(0.85rem, 2.7vh, 2rem);
   font-weight: 400;
   color: white;
   text-transform: uppercase;
   letter-spacing: 0.4px;
-  line-height: 0.88;
-  min-height: 80px;
+  line-height: 0.9;
+  min-height: clamp(36px, 8vh, 82px);
   text-shadow: 0 1px 2px rgba(0,0,0,0.7);
 }
 
 .clue-cell {
   opacity: 0;
   transform: scaleY(0.4);
-  transition: none;
   background: linear-gradient(180deg, var(--c-blue-panel) 0%, var(--c-blue) 100%);
   border: 3px solid #000;
   display: flex;
   align-items: center;
   justify-content: center;
   font-family: var(--font-teko);
-  font-size: 2.4rem;
+  font-size: clamp(1rem, 4vh, 2.6rem);
   font-weight: 700;
   color: var(--c-gold);
   cursor: pointer;
-  transition: all 0.15s ease;
-  min-height: 100px;
+  transition: background 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
+  min-height: clamp(42px, 10.5vh, 104px);
   text-shadow:
     2px 2px 0px var(--c-gold-shadow),
     0 0 10px rgba(255, 215, 0, 0.3);
@@ -1019,8 +1019,9 @@ body {
 .scoreboard {
   display: flex;
   justify-content: center;
-  gap: 20px;
-  padding: 10px;
+  flex-wrap: wrap;
+  gap: clamp(8px, 1.5vw, 20px);
+  padding: clamp(6px, 1vh, 10px);
   background: linear-gradient(180deg, var(--c-blue-deep) 0%, var(--c-blue-deeper) 100%);
   border-top: 3px solid var(--c-gold);
   border-radius: 4px;
@@ -1030,8 +1031,8 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-width: 160px;
-  height: 88px;
+  min-width: clamp(104px, 14vw, 180px);
+  height: clamp(58px, 9vh, 92px);
   overflow: hidden;
   border: 2px solid var(--c-gold);
   border-radius: 4px;
