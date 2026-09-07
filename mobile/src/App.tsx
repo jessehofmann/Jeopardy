@@ -277,6 +277,10 @@ const App = () => {
     sendMessage("host:endGame");
   };
 
+  const kickPlayer = (playerId: string) => {
+    sendMessage("host:kickPlayer", { playerId });
+  };
+
   const restartGame = () => {
     sendMessage("host:restartGame");
   };
@@ -386,6 +390,7 @@ const App = () => {
           onOpenBuzzers={openBuzzers}
           onSkipToRound2={skipToRound2}
           onCloseRoom={leaveRoom}
+          onKickPlayer={kickPlayer}
         />
       )}
 

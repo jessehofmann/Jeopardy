@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 interface MainMenuProps {
   onStartGame: (roomCode: string) => void;
@@ -8,13 +8,26 @@ interface MainMenuProps {
   pendingCustomBoardName: string | null;
   isStartingGame: boolean;
   startGameError: string;
+  apiBase: string;
 }
 
-const MainMenu: React.FC<MainMenuProps> = ({ onStartGame, onRejoinGame, onHowToPlay, onCustomBoard, pendingCustomBoardName, isStartingGame, startGameError }) => {
+const MainMenu: React.FC<MainMenuProps> = ({ onStartGame, onRejoinGame, onHowToPlay, onCustomBoard, pendingCustomBoardName, isStartingGame, startGameError, apiBase }) => {
   const [roomCode, setRoomCode] = useState("");
+  const [roomExists, setRoomExists] = useState(false);
   const normalizedRoomCode = roomCode.toUpperCase().replace(/[^A-Z0-9]/g, "").slice(0, 4);
   const canAct = normalizedRoomCode.length === 4 && !isStartingGame;
-  const roomInUse = startGameError === "That room code is already in use";
+  const isRejoin = roomExists || startGameError === "That room code is already in use";
+
+  useEffect(() => {
+    setRoomExists(false);
+    if (normalizedRoomCode.length !== 4) return;
+    const controller = new AbortController();
+    fetch(`${apiBase}/rooms/${normalizedRoomCode}`, { signal: controller.signal })
+      .then((r) => r.json())
+      .then((data) => setRoomExists(Boolean(data?.exists)))
+      .catch(() => {});
+    return () => controller.abort();
+  }, [normalizedRoomCode, apiBase]);
 
   return (
     <div className="main-menu">
@@ -41,7 +54,7 @@ const MainMenu: React.FC<MainMenuProps> = ({ onStartGame, onRejoinGame, onHowToP
         {isStartingGame && <div className="menu-room-status">Starting room...</div>}
       </div>
       <div className="menu-buttons">
-        {roomInUse ? (
+        {isRejoin ? (
           <button className="menu-button rejoin" disabled={!canAct} onClick={() => onRejoinGame(normalizedRoomCode)}>
             {isStartingGame ? "REJOINING..." : "REJOIN GAME"}
           </button>

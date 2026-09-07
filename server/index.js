@@ -3,8 +3,19 @@ const { WebSocketServer } = require("ws");
 const { createRoomServer } = require("./roomServer");
 
 function startServer({ port = Number(process.env.PORT || 8080) } = {}) {
-  // Plain HTTP server — handles the health check probe from Fly.io / load balancers
+  // Plain HTTP server — handles health checks and room status queries
   const httpServer = http.createServer((req, res) => {
+    res.setHeader("Access-Control-Allow-Origin", "*");
+
+    const roomMatch = req.url && req.url.match(/^\/rooms\/([A-Z0-9]{4})$/i);
+    if (roomMatch) {
+      const code = roomMatch[1].toUpperCase();
+      const exists = roomServer.rooms.has(code);
+      res.writeHead(200, { "Content-Type": "application/json" });
+      res.end(JSON.stringify({ exists }));
+      return;
+    }
+
     res.writeHead(200, { "Content-Type": "text/plain" });
     res.end("OK");
   });

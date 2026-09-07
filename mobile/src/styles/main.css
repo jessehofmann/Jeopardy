@@ -294,10 +294,39 @@ button {
   box-shadow: 0 0 0 2px rgba(255, 215, 0, 0.2), 0 0 20px rgba(255, 215, 0, 0.28);
 }
 
+.host-score-name-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4px;
+}
+
 .host-score-name {
   font-size: 1rem;
   font-weight: 700;
   color: #eef3ff;
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.host-kick-btn {
+  background: transparent;
+  border: none;
+  color: rgba(255, 100, 100, 0.5);
+  font-size: 0.75rem;
+  padding: 2px 4px;
+  cursor: pointer;
+  flex-shrink: 0;
+  line-height: 1;
+  border-radius: 4px;
+  transition: color 0.15s;
+}
+
+.host-kick-btn:hover {
+  color: rgba(255, 80, 80, 0.9);
 }
 
 .host-score-points {
