@@ -30,9 +30,7 @@ jobs:
         run: npm --prefix server test
 
       - name: Typecheck web + mobile
-        run: |
-          npm --prefix web exec tsc -- --noEmit
-          npm --prefix mobile exec tsc -- --noEmit
+        run: npm run typecheck
 
       - name: Build web + companion
         run: |

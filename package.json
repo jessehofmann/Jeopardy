@@ -14,7 +14,7 @@
     "test": "npm --prefix shared test && npm --prefix server test",
     "test:catalog": "npm --prefix shared test",
     "test:catalog:strict": "npm --prefix shared run test:strict",
-    "typecheck": "npm --prefix web exec tsc -- --noEmit && npm --prefix mobile exec tsc -- --noEmit",
+    "typecheck": "npm --prefix web run typecheck && npm --prefix mobile run typecheck",
     "catalog:sample": "npm --prefix shared run sample --"
   },
   "devDependencies": {
