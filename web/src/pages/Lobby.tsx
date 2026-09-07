@@ -1,5 +1,7 @@
 import React from "react";
 import type { RoomState } from "../types";
+import QrCode from "../components/QrCode";
+import { COMPANION_URL, companionJoinUrl } from "../config";
 
 interface LobbyProps {
   roomCode: string;
@@ -33,11 +35,14 @@ const Lobby: React.FC<LobbyProps> = ({ roomCode, roomState, onBegin }) => {
         />
       </div>
 
-      <div className="lobby-room-code-block">
-        <div className="lobby-room-code-label">ROOM CODE</div>
-        <div className="lobby-room-code">{roomCode}</div>
-        <div className="lobby-room-code-hint">
-          Open <strong>jeopardy-companion.vercel.app</strong> and enter this code to join
+      <div className="lobby-join-block">
+        <QrCode value={companionJoinUrl(roomCode)} size={168} className="lobby-qr" />
+        <div className="lobby-room-code-block">
+          <div className="lobby-room-code-label">ROOM CODE</div>
+          <div className="lobby-room-code">{roomCode}</div>
+          <div className="lobby-room-code-hint">
+            Scan the code, or open <strong>{COMPANION_URL}</strong> and enter <strong>{roomCode}</strong>
+          </div>
         </div>
       </div>
 

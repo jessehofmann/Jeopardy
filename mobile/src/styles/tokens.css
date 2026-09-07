@@ -1,0 +1,68 @@
+/* ============================================================================
+   Companion-app design tokens. The phone console has its own visual language
+   (dark navy glass, lavender/mint accents) distinct from the broadcast board.
+   Values map 1:1 to what was hardcoded before.
+   ========================================================================== */
+
+:root {
+  /* ---- Palette ---- */
+  --c-navy-a: #07114a;
+  --c-navy-b: #030720;
+  --c-panel: rgba(8, 18, 71, 0.82);
+  --c-panel-border: rgba(133, 164, 255, 0.22);
+
+  --c-gold: #ffd700;
+  --c-gold-soft: #ffd871;
+  --c-gold-deep: #f3b60e;
+
+  --c-text: #f5f7ff;
+  --c-text-2: #f1f4ff;
+  --c-accent: #93a8ff;      /* lavender — labels, links */
+  --c-muted: #7a86b8;
+
+  --c-positive: #86efac;
+  --c-positive-deep: #2a5c30;
+  --c-danger: #f87171;
+  --c-danger-soft: #fca5a5;
+  --c-warn: #ff9c1a;
+
+  --c-blue: #060CE9;
+
+  /* ---- Radius / motion ---- */
+  --r-sm: 8px;
+  --r-md: 14px;
+  --r-lg: 24px;
+  --r-pill: 999px;
+
+  --dur-fast: 0.15s;
+  --dur-base: 0.2s;
+
+  --focus-ring: 0 0 0 3px rgba(147, 168, 255, 0.6), 0 0 0 5px rgba(3, 7, 32, 0.9);
+
+  /* Minimum comfortable touch target. */
+  --tap: 44px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+:where(button, a, input, textarea, select, [tabindex]):focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+  border-radius: var(--r-sm);
+}
+
+/* Kill the grey iOS/Android tap flash — we provide our own :active states. */
+button,
+a,
+[role="button"] {
+  -webkit-tap-highlight-color: transparent;
+}

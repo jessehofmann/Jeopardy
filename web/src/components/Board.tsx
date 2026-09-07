@@ -47,6 +47,15 @@ const Board: React.FC<BoardProps> = ({
     }
 
     audio.playBoardFill();
+
+    // Reduced motion: reveal the whole board at once, skip the staggered fill.
+    if (window.matchMedia?.("(prefers-reduced-motion: reduce)").matches) {
+      const every = new Set<string>();
+      for (const cat of categories) for (const clue of cat.clues) every.add(clue.id);
+      setFilledCells(every);
+      return;
+    }
+
     const duration = Math.max(500, audio.getBoardFillDuration() - 1000);
 
     // Collect clue cell IDs only — category headers appear immediately
@@ -57,11 +66,17 @@ const Board: React.FC<BoardProps> = ({
       }
     }
 
-    // Fisher-Yates shuffle
-    for (let i = allIds.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [allIds[i], allIds[j]] = [allIds[j], allIds[i]];
-    }
+    // Deterministic scramble: hash(clueId + boardKey) so every client fills the
+    // board in the same order (matches the deterministic board seed).
+    const hash = (str: string) => {
+      let h = 2166136261;
+      for (let i = 0; i < str.length; i++) {
+        h ^= str.charCodeAt(i);
+        h = Math.imul(h, 16777619);
+      }
+      return h >>> 0;
+    };
+    allIds.sort((a, b) => hash(a + boardKey) - hash(b + boardKey));
 
     const staggerMs = duration / allIds.length;
     const timers: ReturnType<typeof setTimeout>[] = [];
@@ -144,12 +159,24 @@ const Board: React.FC<BoardProps> = ({
             const clue = category.clues[rowIndex];
             const isRevealed = !revealedCategoryIds || revealedCategoryIds.includes(category.id);
             const isFilled = filledCells.has(clue.id) || boardKey === undefined;
+            const isPickable = allowManualPick && isRevealed && allCategoriesRevealed && !clue.isAnswered;
             return (
               <div
                 key={clue.id}
                 data-clue-id={clue.id}
                 className={`clue-cell${clue.isAnswered ? " answered" : ""}${isFilled ? " is-filled" : ""}${!isRevealed ? " is-hidden-cat" : ""}`}
                 onClick={(e) => isRevealed && handleClueClick(clue, e)}
+                role={isPickable ? "button" : undefined}
+                tabIndex={isPickable ? 0 : undefined}
+                aria-label={isPickable ? `${category.name}, $${clue.value}` : undefined}
+                aria-disabled={clue.isAnswered || undefined}
+                onKeyDown={(e) => {
+                  if (isPickable && (e.key === "Enter" || e.key === " ")) {
+                    e.preventDefault();
+                    setOriginRect((e.currentTarget as HTMLDivElement).getBoundingClientRect());
+                    setSelectedClue(clue);
+                  }
+                }}
               >
                 {isFilled && !clue.isAnswered && `$${clue.value}`}
               </div>

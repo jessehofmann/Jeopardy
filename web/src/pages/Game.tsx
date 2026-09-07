@@ -290,9 +290,11 @@ const Game: React.FC<GameProps> = ({ initialRoomCode, initialRoomState, boardSoc
 
     const handleClose = () => {
       setIsSynced(false);
-      setConnectionStatus("Disconnected");
       if (attempt < MAX_RECONNECT_ATTEMPTS) {
+        setConnectionStatus("Connection lost — reconnecting…");
         scheduleReconnect(roomCode, attempt + 1);
+      } else {
+        setConnectionStatus("Disconnected");
       }
     };
 
@@ -397,7 +399,19 @@ const Game: React.FC<GameProps> = ({ initialRoomCode, initialRoomState, boardSoc
             </div>
           )}
         </div>
-        {displayStatus && <div className="board-connection-pill">{displayStatus}</div>}
+        {displayStatus && (
+          <div className="board-connection-pill" role="status">
+            {displayStatus}
+            {connectionStatus === "Disconnected" && (
+              <button
+                className="board-connection-retry"
+                onClick={() => { setReconnectAttempt(0); scheduleReconnect(initialRoomCode, 1); }}
+              >
+                Retry
+              </button>
+            )}
+          </div>
+        )}
       </div>
       <div className="game-top-bar">
         <div className="board-owner-pill">Owner: {boardOwnerPlayerName ?? "Unassigned"}</div>
@@ -419,7 +433,7 @@ const Game: React.FC<GameProps> = ({ initialRoomCode, initialRoomState, boardSoc
             <Board
               categories={categories}
               onClueAnswered={handleClueAnswered}
-              selectedClueId={showDailyDoubleSplash || (isDailyDoubleActive && !dailyDoubleWager) ? null : selectedClueId}
+              selectedClueId={showDailyDoubleSplash || (isDailyDoubleActive && dailyDoubleWager == null) ? null : selectedClueId}
               allowManualPick={!isSynced}
               answerRevealed={answerRevealed}
               firstBuzzedPlayerName={firstBuzzedPlayerName}

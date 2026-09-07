@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Teko:wght@500;700&family=Bebas+Neue&family=Barlow+Condensed:wght@500;600;700&family=Montserrat:wght@600;700&family=Merriweather:wght@700&display=swap");
+@import "./tokens.css";
 
 * {
   margin: 0;
@@ -12,9 +13,9 @@ html, body {
 }
 
 body {
-  background-color: #060CE9;
+  background-color: var(--c-blue);
   color: white;
-  font-family: "Montserrat", "Arial Narrow", Arial, sans-serif;
+  font-family: var(--font-text);
 }
 
 /* MAIN MENU */
@@ -26,23 +27,24 @@ body {
   align-items: center;
   justify-content: center;
   height: 100vh;
+  height: 100dvh;
   gap: 8px;
   padding: 24px 16px;
-  background: radial-gradient(ellipse at center, #0a0acd 0%, #04047a 100%);
+  background: radial-gradient(ellipse at center, var(--c-blue-panel) 0%, var(--c-blue-deep) 100%);
 }
 
 .main-menu-companion-hint {
   position: absolute;
   top: 12px;
   right: 16px;
-  font-size: 0.72rem;
-  color: rgba(255, 255, 255, 0.45);
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.72);
   letter-spacing: 0.02em;
 }
 
 .main-menu-companion-url {
-  color: rgba(255, 215, 0, 0.7);
-  font-weight: 600;
+  color: var(--c-gold-bright);
+  font-weight: 700;
 }
 
 .logo-container {
@@ -70,12 +72,12 @@ body {
 }
 
 .menu-room-label {
-  font-family: "Montserrat", "Arial Narrow", Arial, sans-serif;
+  font-family: var(--font-text);
   font-size: 0.82rem;
   font-weight: 700;
   letter-spacing: 1.8px;
   text-transform: uppercase;
-  color: #dce7ff;
+  color: var(--c-text-soft);
   text-align: center;
 }
 
@@ -89,7 +91,7 @@ body {
   text-align: center;
   text-transform: uppercase;
   letter-spacing: 6px;
-  font-family: "Bebas Neue", "Teko", "Arial Narrow", sans-serif;
+  font-family: var(--font-bebas);
   font-size: 2rem;
 }
 
@@ -97,15 +99,49 @@ body {
   color: rgba(220, 231, 255, 0.52);
 }
 
+.menu-room-input-row {
+  display: flex;
+  gap: 8px;
+  align-items: stretch;
+}
+
+.menu-room-input-row .menu-room-input {
+  flex: 1;
+}
+
+.menu-room-shuffle {
+  flex-shrink: 0;
+  width: 48px;
+  border-radius: var(--r-md);
+  border: 2px solid rgba(255, 215, 0, 0.72);
+  background: rgba(4, 6, 55, 0.92);
+  color: var(--c-gold);
+  font-size: 1.4rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: background var(--dur-fast);
+}
+
+.menu-room-shuffle:hover {
+  background: rgba(255, 215, 0, 0.14);
+}
+
+.menu-room-hint {
+  text-align: center;
+  font-size: 0.78rem;
+  color: rgba(220, 231, 255, 0.7);
+  margin: 0;
+}
+
 .menu-room-status {
   min-height: 18px;
   text-align: center;
   font-size: 0.85rem;
-  color: #dce7ff;
+  color: var(--c-text-soft);
 }
 
 .menu-room-status.is-error {
-  color: #ffd5d5;
+  color: var(--c-danger-soft);
 }
 
 .jeopardy-logo-img {
@@ -118,13 +154,13 @@ body {
 }
 
 .jeopardy-logo {
-  font-family: "Teko", "Arial Narrow", sans-serif;
+  font-family: var(--font-teko);
   font-size: 9rem;
   font-weight: 700;
-  color: #FFD700;
+  color: var(--c-gold);
   text-shadow:
-    3px 3px 0px #b8860b,
-    6px 6px 0px #8b6914,
+    3px 3px 0px var(--c-gold-shadow),
+    6px 6px 0px var(--c-gold-shadow-2),
     0 0 40px rgba(255, 215, 0, 0.6),
     0 0 80px rgba(255, 215, 0, 0.3);
   letter-spacing: 3px;
@@ -142,12 +178,12 @@ body {
 .menu-button {
   padding: 16px 30px;
   font-size: 1.3rem;
-  font-family: "Teko", "Arial Narrow", sans-serif;
+  font-family: var(--font-teko);
   font-weight: 700;
   letter-spacing: 2px;
-  background: linear-gradient(180deg, #FFD700 0%, #b8860b 100%);
-  color: #060CE9;
-  border: 3px solid #b8860b;
+  background: linear-gradient(180deg, var(--c-gold) 0%, var(--c-gold-shadow) 100%);
+  color: var(--c-blue);
+  border: 3px solid var(--c-gold-shadow);
   border-radius: 4px;
   cursor: pointer;
   transition: all 0.2s ease;
@@ -162,19 +198,19 @@ body {
 }
 
 .menu-button:hover {
-  background: linear-gradient(180deg, #fff 0%, #FFD700 100%);
+  background: linear-gradient(180deg, #fff 0%, var(--c-gold) 100%);
   transform: scale(1.04);
   box-shadow: 0 5px 20px rgba(255, 215, 0, 0.5);
 }
 
 .menu-button.secondary {
-  background: linear-gradient(180deg, #1a1aff 0%, #060CE9 100%);
-  color: #FFD700;
-  border: 3px solid #FFD700;
+  background: linear-gradient(180deg, var(--c-blue-bright) 0%, var(--c-blue) 100%);
+  color: var(--c-gold);
+  border: 3px solid var(--c-gold);
 }
 
 .menu-button.secondary:hover {
-  background: linear-gradient(180deg, #3333ff 0%, #1a1aff 100%);
+  background: linear-gradient(180deg, #3333ff 0%, var(--c-blue-bright) 100%);
 }
 
 /* HOW TO PLAY MODAL */
@@ -192,8 +228,8 @@ body {
 
 .htp-modal {
   position: relative;
-  background: radial-gradient(ellipse at top, #1a1ad4 0%, #04047a 100%);
-  border: 2px solid #FFD700;
+  background: radial-gradient(ellipse at top, #1a1ad4 0%, var(--c-blue-deep) 100%);
+  border: 2px solid var(--c-gold);
   border-radius: 12px;
   width: 100%;
   max-width: 720px;
@@ -229,11 +265,11 @@ body {
 }
 
 .htp-title {
-  font-family: "Teko", "Arial Narrow", sans-serif;
+  font-family: var(--font-teko);
   font-size: 2.4rem;
   font-weight: 700;
-  color: #FFD700;
-  text-shadow: 2px 2px 0 #b8860b;
+  color: var(--c-gold);
+  text-shadow: 2px 2px 0 var(--c-gold-shadow);
   letter-spacing: 4px;
   text-align: center;
   padding: 20px 48px 12px;
@@ -274,10 +310,10 @@ body {
 }
 
 .htp-section h2 {
-  font-family: "Montserrat", "Arial Narrow", sans-serif;
+  font-family: var(--font-text);
   font-size: 0.75rem;
   font-weight: 700;
-  color: #FFD700;
+  color: var(--c-gold);
   letter-spacing: 3px;
   text-transform: uppercase;
   margin: 0 0 10px;
@@ -316,10 +352,11 @@ body {
   align-items: center;
   justify-content: center;
   min-height: 100vh;
+  min-height: 100dvh;
   gap: 24px;
   padding: 24px 20px;
   box-sizing: border-box;
-  background: radial-gradient(ellipse at center, #0a0acd 0%, #04047a 100%);
+  background: radial-gradient(ellipse at center, var(--c-blue-panel) 0%, var(--c-blue-deep) 100%);
 }
 
 .lobby-logo-container {
@@ -331,6 +368,19 @@ body {
   overflow: hidden;
 }
 
+.lobby-join-block {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(16px, 4vw, 40px);
+  flex-wrap: wrap;
+}
+
+.lobby-qr {
+  flex-shrink: 0;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
+}
+
 .lobby-room-code-block {
   text-align: center;
   display: flex;
@@ -340,7 +390,7 @@ body {
 }
 
 .lobby-room-code-label {
-  font-family: "Montserrat", "Arial Narrow", Arial, sans-serif;
+  font-family: var(--font-text);
   font-size: 0.78rem;
   font-weight: 700;
   letter-spacing: 3px;
@@ -349,16 +399,16 @@ body {
 }
 
 .lobby-room-code {
-  font-family: "Bebas Neue", "Teko", "Arial Narrow", sans-serif;
+  font-family: var(--font-bebas);
   font-size: clamp(3.5rem, 10vw, 6rem);
   letter-spacing: 14px;
-  color: #FFD700;
+  color: var(--c-gold);
   line-height: 1;
   text-shadow: 0 0 30px rgba(255, 215, 0, 0.6);
 }
 
 .lobby-room-code-hint {
-  font-family: "Montserrat", "Arial Narrow", Arial, sans-serif;
+  font-family: var(--font-text);
   font-size: 0.78rem;
   color: rgba(220, 231, 255, 0.7);
   letter-spacing: 0.5px;
@@ -378,7 +428,7 @@ body {
 }
 
 .lobby-status-message {
-  font-family: "Teko", "Arial Narrow", sans-serif;
+  font-family: var(--font-teko);
   font-size: 1.25rem;
   font-weight: 600;
   letter-spacing: 1px;
@@ -388,7 +438,7 @@ body {
 }
 
 .lobby-status-message.is-ready {
-  color: #4cff72;
+  color: var(--c-positive);
   text-shadow: 0 0 16px rgba(76, 255, 114, 0.5);
 }
 
@@ -426,12 +476,12 @@ body {
 
 .lobby-connection-row.is-connected .lobby-connection-dot,
 .lobby-connection-dot.is-connected {
-  background: #4cff72;
+  background: var(--c-positive);
   box-shadow: 0 0 8px rgba(76, 255, 114, 0.7);
 }
 
 .lobby-connection-label {
-  font-family: "Montserrat", "Arial Narrow", Arial, sans-serif;
+  font-family: var(--font-text);
   font-size: 0.78rem;
   font-weight: 700;
   letter-spacing: 1.5px;
@@ -441,21 +491,21 @@ body {
 }
 
 .lobby-connection-state {
-  font-family: "Teko", "Arial Narrow", sans-serif;
+  font-family: var(--font-teko);
   font-size: 1rem;
   letter-spacing: 1px;
   color: rgba(220, 231, 255, 0.5);
 }
 
 .lobby-connection-row.is-connected .lobby-connection-state {
-  color: #4cff72;
+  color: var(--c-positive);
 }
 
 .lobby-contestants-count {
-  font-family: "Teko", "Arial Narrow", sans-serif;
+  font-family: var(--font-teko);
   font-size: 1.1rem;
   font-weight: 700;
-  color: #FFD700;
+  color: var(--c-gold);
   background: rgba(255, 215, 0, 0.12);
   border-radius: 12px;
   padding: 0 10px;
@@ -476,7 +526,7 @@ body {
   display: flex;
   align-items: center;
   gap: 10px;
-  font-family: "Teko", "Arial Narrow", sans-serif;
+  font-family: var(--font-teko);
   font-size: 1.15rem;
   letter-spacing: 1px;
   color: #ffffff;
@@ -493,7 +543,8 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  background: radial-gradient(ellipse at center, #0a0acd 0%, #04047a 100%);
+  min-height: 100dvh;
+  background: radial-gradient(ellipse at center, var(--c-blue-panel) 0%, var(--c-blue-deep) 100%);
   color: white;
   padding: 24px 32px;
   box-sizing: border-box;
@@ -513,10 +564,10 @@ body {
 }
 
 .cbp-title {
-  font-family: "Teko", "Arial Narrow", sans-serif;
+  font-family: var(--font-teko);
   font-size: clamp(2rem, 5vw, 3.5rem);
   letter-spacing: 4px;
-  color: #FFD700;
+  color: var(--c-gold);
   margin: 0;
   text-shadow: 2px 2px 0 rgba(0,0,0,0.5);
 }
@@ -541,7 +592,7 @@ body {
 }
 
 .cbp-active-name {
-  color: #FFD700;
+  color: var(--c-gold);
   font-size: 1rem;
 }
 
@@ -607,7 +658,7 @@ body {
   font-size: 0.85rem;
   margin: 0;
   background: rgba(255,0,0,0.1);
-  border-left: 3px solid #ff4444;
+  border-left: 3px solid var(--c-danger);
   padding: 8px 12px;
   border-radius: 0 4px 4px 0;
 }
@@ -645,7 +696,7 @@ body {
   padding: 1px 5px;
   font-family: "Courier New", Courier, monospace;
   font-size: 0.85em;
-  color: #ffe066;
+  color: var(--c-gold-bright);
 }
 
 .cbp-code-block {
@@ -676,7 +727,7 @@ body {
 .menu-button.secondary.is-active {
   background: rgba(255, 215, 0, 0.15);
   border-color: rgba(255, 215, 0, 0.6);
-  color: #FFD700;
+  color: var(--c-gold);
 }
 
 /* GAME */
@@ -684,10 +735,11 @@ body {
   display: flex;
   flex-direction: column;
   height: 100vh;
+  height: 100dvh;
   overflow: hidden;
   padding: 8px;
   gap: 8px;
-  background: radial-gradient(ellipse at center, #0a0acd 0%, #04047a 100%);
+  background: radial-gradient(ellipse at center, var(--c-blue-panel) 0%, var(--c-blue-deep) 100%);
 }
 
 .round-indicator {
@@ -697,16 +749,16 @@ body {
   align-items: center;
   min-height: 52px;
   padding: 6px 16px;
-  background-color: #04047a;
-  border: 2px solid #FFD700;
+  background-color: var(--c-blue-deep);
+  border: 2px solid var(--c-gold);
   border-radius: 4px;
 }
 
 .round-indicator span {
-  font-family: "Barlow Condensed", "Arial Narrow", sans-serif;
+  font-family: var(--font-barlow);
   font-size: 1.5rem;
   font-weight: 700;
-  color: #FFD700;
+  color: var(--c-gold);
   letter-spacing: 2.5px;
   text-transform: uppercase;
 }
@@ -724,20 +776,20 @@ body {
 .back-button {
   padding: 0 14px;
   height: 40px;
-  font-family: "Teko", "Arial Narrow", sans-serif;
+  font-family: var(--font-teko);
   font-size: 0.9rem;
   font-weight: 700;
   letter-spacing: 2px;
-  background: linear-gradient(180deg, #FFD700 0%, #b8860b 100%);
-  color: #060CE9;
-  border: 2px solid #b8860b;
+  background: linear-gradient(180deg, var(--c-gold) 0%, var(--c-gold-shadow) 100%);
+  color: var(--c-blue);
+  border: 2px solid var(--c-gold-shadow);
   border-radius: 6px;
   cursor: pointer;
   transition: all 0.2s ease;
 }
 
 .back-button:hover {
-  background: linear-gradient(180deg, #fff 0%, #FFD700 100%);
+  background: linear-gradient(180deg, #fff 0%, var(--c-gold) 100%);
 }
 
 .board-owner-pill {
@@ -749,7 +801,7 @@ body {
   border: 2px solid rgba(255, 215, 0, 0.5);
   background: rgba(2, 6, 66, 0.85);
   color: #e7f3ff;
-  font-family: "Barlow Condensed", "Arial Narrow", sans-serif;
+  font-family: var(--font-barlow);
   font-size: 0.88rem;
   letter-spacing: 1px;
   text-transform: uppercase;
@@ -777,7 +829,7 @@ body {
 }
 
 .board-room-code-label {
-  font-family: "Teko", "Arial Narrow", sans-serif;
+  font-family: var(--font-teko);
   font-size: 0.7rem;
   font-weight: 700;
   letter-spacing: 2px;
@@ -786,11 +838,11 @@ body {
 }
 
 .board-room-code-value {
-  font-family: "Bebas Neue", "Teko", "Arial Narrow", sans-serif;
+  font-family: var(--font-bebas);
   font-size: 1.4rem;
   font-weight: 700;
   letter-spacing: 4px;
-  color: #FFD700;
+  color: var(--c-gold);
   text-shadow: 0 0 8px rgba(255, 215, 0, 0.5);
 }
 
@@ -800,7 +852,7 @@ body {
   border-radius: 999px;
   border: 1px solid rgba(255, 130, 130, 0.75);
   background: rgba(120, 11, 11, 0.58);
-  font-family: "Barlow Condensed", "Arial Narrow", sans-serif;
+  font-family: var(--font-barlow);
   font-size: 0.75rem;
   letter-spacing: 1px;
   text-transform: uppercase;
@@ -809,11 +861,11 @@ body {
 
 .board-sync-button {
   padding: 6px 12px;
-  font-family: "Teko", "Arial Narrow", sans-serif;
+  font-family: var(--font-teko);
   font-size: 0.9rem;
   font-weight: 700;
   letter-spacing: 2px;
-  background: linear-gradient(180deg, #5ec7ff 0%, #0c6ed2 100%);
+  background: linear-gradient(180deg, var(--c-info) 0%, #0c6ed2 100%);
   color: #f0f7ff;
   border: 2px solid #064f98;
   border-radius: 4px;
@@ -824,8 +876,22 @@ body {
   position: absolute;
   bottom: -21px;
   left: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
   font-size: 0.72rem;
   color: #d8e8ff;
+}
+
+.board-connection-retry {
+  background: rgba(255, 215, 0, 0.16);
+  border: 1px solid rgba(255, 215, 0, 0.5);
+  color: var(--c-gold);
+  border-radius: var(--r-pill);
+  padding: 2px 10px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  cursor: pointer;
 }
 
 /* ROUND BANNER */
@@ -844,12 +910,12 @@ body {
 }
 
 .round-banner h2 {
-  font-family: "Teko", "Arial Narrow", sans-serif;
+  font-family: var(--font-teko);
   font-size: 5rem;
   font-weight: 700;
-  color: #FFD700;
+  color: var(--c-gold);
   text-shadow:
-    3px 3px 0px #b8860b,
+    3px 3px 0px var(--c-gold-shadow),
     0 0 40px rgba(255, 215, 0, 0.8);
   letter-spacing: 4px;
   animation: zoomIn 0.4s ease;
@@ -869,50 +935,50 @@ body {
 .board {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
-  gap: 6px;
+  gap: clamp(3px, 0.6vh, 6px);
   flex: 1;
+  min-height: 0;
 }
 
 .category-header {
   opacity: 0;
   transform: scaleY(0.4);
   transition: none;
-  background: linear-gradient(180deg, #0a0acd 0%, #060CE9 100%);
+  background: linear-gradient(180deg, var(--c-blue-panel) 0%, var(--c-blue) 100%);
   border: 3px solid #000;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
   padding: 8px 10px 6px;
-  font-family: "Bebas Neue", "Barlow Condensed", "Arial Narrow", sans-serif;
-  font-size: 2rem;
+  font-family: "Bebas Neue", var(--font-barlow);
+  font-size: clamp(0.85rem, 2.7vh, 2rem);
   font-weight: 400;
   color: white;
   text-transform: uppercase;
   letter-spacing: 0.4px;
-  line-height: 0.88;
-  min-height: 80px;
+  line-height: 0.9;
+  min-height: clamp(36px, 8vh, 82px);
   text-shadow: 0 1px 2px rgba(0,0,0,0.7);
 }
 
 .clue-cell {
   opacity: 0;
   transform: scaleY(0.4);
-  transition: none;
-  background: linear-gradient(180deg, #0a0acd 0%, #060CE9 100%);
+  background: linear-gradient(180deg, var(--c-blue-panel) 0%, var(--c-blue) 100%);
   border: 3px solid #000;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: "Teko", "Arial Narrow", sans-serif;
-  font-size: 2.4rem;
+  font-family: var(--font-teko);
+  font-size: clamp(1rem, 4vh, 2.6rem);
   font-weight: 700;
-  color: #FFD700;
+  color: var(--c-gold);
   cursor: pointer;
-  transition: all 0.15s ease;
-  min-height: 100px;
+  transition: background 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
+  min-height: clamp(42px, 10.5vh, 104px);
   text-shadow:
-    2px 2px 0px #b8860b,
+    2px 2px 0px var(--c-gold-shadow),
     0 0 10px rgba(255, 215, 0, 0.3);
 }
 
@@ -938,7 +1004,7 @@ body {
 }
 
 .clue-cell:hover:not(.answered) {
-  background: linear-gradient(180deg, #1a1aff 0%, #0a0acd 100%);
+  background: linear-gradient(180deg, var(--c-blue-bright) 0%, var(--c-blue-panel) 100%);
   transform: scale(1.03);
   box-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
 }
@@ -953,10 +1019,11 @@ body {
 .scoreboard {
   display: flex;
   justify-content: center;
-  gap: 20px;
-  padding: 10px;
-  background: linear-gradient(180deg, #04047a 0%, #030360 100%);
-  border-top: 3px solid #FFD700;
+  flex-wrap: wrap;
+  gap: clamp(8px, 1.5vw, 20px);
+  padding: clamp(6px, 1vh, 10px);
+  background: linear-gradient(180deg, var(--c-blue-deep) 0%, var(--c-blue-deeper) 100%);
+  border-top: 3px solid var(--c-gold);
   border-radius: 4px;
 }
 
@@ -964,10 +1031,10 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-width: 160px;
-  height: 88px;
+  min-width: clamp(104px, 14vw, 180px);
+  height: clamp(58px, 9vh, 92px);
   overflow: hidden;
-  border: 2px solid #FFD700;
+  border: 2px solid var(--c-gold);
   border-radius: 4px;
   padding: 8px 16px;
   background-color: rgba(0,0,0,0.2);
@@ -995,7 +1062,7 @@ body {
 
 .player-score.is-board-owner {
   box-shadow: 0 0 12px 3px rgba(255, 215, 0, 0.7), inset 0 0 8px rgba(255, 215, 0, 0.12);
-  border-color: #FFD700;
+  border-color: var(--c-gold);
 }
 
 .player-score.is-answering {
@@ -1003,7 +1070,7 @@ body {
 }
 
 .player-name {
-  font-family: "Montserrat", "Arial Narrow", sans-serif;
+  font-family: var(--font-text);
   font-size: 1rem;
   font-weight: 700;
   color: white;
@@ -1017,11 +1084,11 @@ body {
 }
 
 .player-points {
-  font-family: "Teko", "Arial Narrow", sans-serif;
+  font-family: var(--font-teko);
   font-size: 2rem;
   font-weight: 700;
-  color: #FFD700;
-  text-shadow: 1px 1px 0px #b8860b;
+  color: var(--c-gold);
+  text-shadow: 1px 1px 0px var(--c-gold-shadow);
 }
 
 .player-score.is-locked-out {
@@ -1031,7 +1098,7 @@ body {
 
 .player-locked-out {
   margin-top: 4px;
-  font-family: "Barlow Condensed", "Arial Narrow", sans-serif;
+  font-family: var(--font-barlow);
   font-size: 0.78rem;
   letter-spacing: 1.5px;
   text-transform: uppercase;
@@ -1041,7 +1108,7 @@ body {
 
 .player-connection-state {
   margin-top: 4px;
-  font-family: "Barlow Condensed", "Arial Narrow", sans-serif;
+  font-family: var(--font-barlow);
   font-size: 0.82rem;
   letter-spacing: 1px;
   text-transform: uppercase;
@@ -1070,7 +1137,7 @@ body {
   inset: 0;
   background:
     radial-gradient(circle at 50% 40%, rgba(58, 72, 219, 0.35) 0%, rgba(58, 72, 219, 0) 55%),
-    linear-gradient(180deg, #1230b8 0%, #0821a1 100%);
+    linear-gradient(180deg, var(--c-blue-modal-a) 0%, var(--c-blue-modal-b) 100%);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1079,9 +1146,9 @@ body {
 }
 
 .modal-question {
-  font-family: "Merriweather", Georgia, serif;
+  font-family: var(--font-serif);
   font-weight: 700;
-  color: #f7f7f7;
+  color: var(--c-ink);
   line-height: 1.08;
   text-transform: uppercase;
   text-align: center;
@@ -1102,10 +1169,10 @@ body {
   padding: 3vh 8vw 4vh;
   text-align: center;
   background: linear-gradient(to top, rgba(5, 20, 130, 0.98) 55%, transparent);
-  font-family: "Merriweather", Georgia, serif;
+  font-family: var(--font-serif);
   font-size: clamp(1.8rem, 2.8vw, 3rem);
   font-weight: 700;
-  color: #f3d04b;
+  color: var(--c-gold-answer);
   text-shadow: 2px 2px 0 #000;
 }
 
@@ -1113,10 +1180,10 @@ body {
   position: absolute;
   top: 2.5vh;
   right: 3vw;
-  font-family: "Teko", "Arial Narrow", sans-serif;
+  font-family: var(--font-teko);
   font-size: clamp(2.5rem, 5vw, 4.5rem);
   font-weight: 700;
-  color: #FFD700;
+  color: var(--c-gold);
   text-shadow: 0 0 20px rgba(255, 215, 0, 0.6), 2px 2px 0 #000;
   line-height: 1;
   min-width: 2ch;
@@ -1125,7 +1192,7 @@ body {
 }
 
 .modal-buzzer-timer.is-urgent {
-  color: #ff4444;
+  color: var(--c-danger);
   text-shadow: 0 0 20px rgba(255, 68, 68, 0.7), 2px 2px 0 #000;
   animation: buzzer-pulse 0.4s ease-in-out infinite alternate;
 }
@@ -1141,10 +1208,10 @@ body {
   left: 0;
   right: 0;
   text-align: center;
-  font-family: "Barlow Condensed", "Arial Narrow", sans-serif;
+  font-family: var(--font-barlow);
   font-size: clamp(1rem, 1.9vw, 1.5rem);
   font-weight: 700;
-  color: #84ecff;
+  color: var(--c-cyan);
   letter-spacing: 1.6px;
   text-transform: uppercase;
   text-shadow: 1px 1px 0 #001541;
@@ -1190,7 +1257,7 @@ body {
 }
 
 .fj-eyebrow {
-  font-family: "Barlow Condensed", "Arial Narrow", sans-serif;
+  font-family: var(--font-barlow);
   font-size: clamp(1rem, 2.5vh, 2.2rem);
   font-weight: 700;
   letter-spacing: 8px;
@@ -1199,15 +1266,15 @@ body {
 }
 
 .fj-big-title {
-  font-family: "Teko", "Arial Narrow", sans-serif;
+  font-family: var(--font-teko);
   font-size: clamp(4rem, 14vh, 11rem);
   font-weight: 700;
-  color: #FFD700;
+  color: var(--c-gold);
   letter-spacing: 4px;
   text-transform: uppercase;
   text-shadow:
-    4px 4px 0 #b8860b,
-    8px 8px 0 #8b6914,
+    4px 4px 0 var(--c-gold-shadow),
+    8px 8px 0 var(--c-gold-shadow-2),
     0 0 60px rgba(255, 215, 0, 0.8),
     0 0 120px rgba(255, 215, 0, 0.4);
 }
@@ -1223,7 +1290,7 @@ body {
 }
 
 .fj-category-label {
-  font-family: "Barlow Condensed", "Arial Narrow", sans-serif;
+  font-family: var(--font-barlow);
   font-size: clamp(0.8rem, 1.8vh, 1.4rem);
   font-weight: 700;
   letter-spacing: 5px;
@@ -1233,7 +1300,7 @@ body {
 }
 
 .fj-category-name {
-  font-family: "Bebas Neue", "Teko", "Arial Narrow", sans-serif;
+  font-family: var(--font-bebas);
   font-size: clamp(2.5rem, 7vh, 6.5rem);
   color: #fff;
   letter-spacing: 3px;
@@ -1250,7 +1317,7 @@ body {
 }
 
 .fj-wager-label {
-  font-family: "Barlow Condensed", "Arial Narrow", sans-serif;
+  font-family: var(--font-barlow);
   font-size: clamp(0.85rem, 1.8vh, 1.4rem);
   letter-spacing: 3px;
   color: rgba(255,255,255,0.6);
@@ -1276,13 +1343,13 @@ body {
 }
 
 .fj-player-chip.is-ready {
-  border-color: #FFD700;
+  border-color: var(--c-gold);
   background: rgba(255, 215, 0, 0.12);
   box-shadow: 0 0 16px rgba(255, 215, 0, 0.3);
 }
 
 .fj-chip-name {
-  font-family: "Montserrat", sans-serif;
+  font-family: var(--font-text);
   font-size: clamp(1rem, 1.8vw, 1.4rem);
   font-weight: 700;
   color: #fff;
@@ -1292,7 +1359,7 @@ body {
 
 .fj-chip-status {
   font-size: clamp(1rem, 1.8vw, 1.4rem);
-  color: #FFD700;
+  color: var(--c-gold);
 }
 
 /* ── Question phase ─────────────────────────────────────── */
@@ -1310,7 +1377,7 @@ body {
 }
 
 .fj-question-title {
-  font-family: "Barlow Condensed", "Arial Narrow", sans-serif;
+  font-family: var(--font-barlow);
   font-size: clamp(1rem, 2vh, 1.8rem);
   font-weight: 700;
   letter-spacing: 3px;
@@ -1324,7 +1391,7 @@ body {
 }
 
 .fj-question-category {
-  font-family: "Barlow Condensed", "Arial Narrow", sans-serif;
+  font-family: var(--font-barlow);
   font-size: clamp(1rem, 2vh, 1.8rem);
   font-weight: 700;
   letter-spacing: 3px;
@@ -1343,9 +1410,9 @@ body {
 }
 
 .fj-question-text {
-  font-family: "Merriweather", Georgia, serif;
+  font-family: var(--font-serif);
   font-weight: 700;
-  color: #f7f7f7;
+  color: var(--c-ink);
   text-align: center;
   line-height: 1.08;
   text-transform: uppercase;
@@ -1365,18 +1432,18 @@ body {
 }
 
 .fj-countdown {
-  font-family: "Teko", "Arial Narrow", sans-serif;
+  font-family: var(--font-teko);
   font-size: clamp(2.5rem, 6vh, 6rem);
   font-weight: 700;
-  color: #FFD700;
+  color: var(--c-gold);
   letter-spacing: 2px;
-  text-shadow: 2px 2px 0 #b8860b;
+  text-shadow: 2px 2px 0 var(--c-gold-shadow);
   transition: color 0.3s ease;
   line-height: 1;
 }
 
 .fj-countdown.is-urgent {
-  color: #ff4444;
+  color: var(--c-danger);
   text-shadow: 2px 2px 0 #8b0000;
   animation: fjPulse 0.5s ease infinite alternate;
 }
@@ -1396,7 +1463,7 @@ body {
 
 /* ── Reveal phase ─────────────────────────────────────── */
 .fj-reveal-question {
-  font-family: "Merriweather", Georgia, serif;
+  font-family: var(--font-serif);
   font-size: clamp(1.4rem, 4vh, 3.5rem);
   font-weight: 700;
   color: rgba(247, 247, 247, 0.92);
@@ -1432,10 +1499,10 @@ body {
 }
 
 .fj-correct-text {
-  font-family: "Merriweather", Georgia, serif;
+  font-family: var(--font-serif);
   font-size: clamp(1rem, 2.2vh, 2rem);
   font-weight: 700;
-  color: #FFD700;
+  color: var(--c-gold);
   text-transform: uppercase;
 }
 
@@ -1517,7 +1584,7 @@ body {
 }
 
 .fj-card-name {
-  font-family: "Montserrat", sans-serif;
+  font-family: var(--font-text);
   font-size: clamp(0.85rem, 1.6vh, 1.3rem);
   font-weight: 700;
   color: #fff;
@@ -1532,9 +1599,9 @@ body {
 }
 
 .fj-card-answer {
-  font-family: "Merriweather", Georgia, serif;
+  font-family: var(--font-serif);
   font-size: clamp(0.75rem, 1.3vh, 1.1rem);
-  color: #dce7ff;
+  color: var(--c-text-soft);
   font-style: italic;
 }
 
@@ -1545,7 +1612,7 @@ body {
 }
 
 .fj-card-delta {
-  font-family: "Teko", sans-serif;
+  font-family: var(--font-teko);
   font-size: clamp(1.5rem, 3.5vh, 2.8rem);
   font-weight: 700;
   letter-spacing: 1px;
@@ -1555,14 +1622,14 @@ body {
 .fj-card-delta.is-negative { color: #e05555; text-shadow: 0 0 12px rgba(224, 85, 85, 0.5); }
 
 .fj-card-total {
-  font-family: "Teko", sans-serif;
+  font-family: var(--font-teko);
   font-size: clamp(1rem, 2vh, 1.6rem);
-  color: #FFD700;
+  color: var(--c-gold);
   font-weight: 700;
 }
 
 .fj-card-hidden {
-  font-family: "Teko", sans-serif;
+  font-family: var(--font-teko);
   font-size: clamp(2.5rem, 5vh, 4.5rem);
   color: rgba(255,255,255,0.2);
   font-weight: 700;
@@ -1578,14 +1645,14 @@ body {
 }
 
 .fj-gameover-title {
-  font-family: "Teko", "Arial Narrow", sans-serif;
+  font-family: var(--font-teko);
   font-size: clamp(3rem, 10vh, 9rem);
   font-weight: 700;
-  color: #FFD700;
+  color: var(--c-gold);
   letter-spacing: 5px;
   text-transform: uppercase;
   text-shadow:
-    4px 4px 0 #b8860b,
+    4px 4px 0 var(--c-gold-shadow),
     0 0 60px rgba(255, 215, 0, 0.7);
   animation: fjZoomIn 0.5s cubic-bezier(0.22, 1, 0.36, 1);
 }
@@ -1610,15 +1677,15 @@ body {
 }
 
 .fj-lb-row.rank-1 {
-  border-color: #FFD700;
+  border-color: var(--c-gold);
   background: rgba(255, 215, 0, 0.1);
   box-shadow: 0 0 30px rgba(255, 215, 0, 0.25);
 }
-.fj-lb-row.rank-2 { border-color: #adb5bd; }
-.fj-lb-row.rank-3 { border-color: #cd7f32; }
+.fj-lb-row.rank-2 { border-color: var(--c-rank-silver); }
+.fj-lb-row.rank-3 { border-color: var(--c-rank-bronze); }
 
 .fj-lb-rank {
-  font-family: "Teko", sans-serif;
+  font-family: var(--font-teko);
   font-size: clamp(1.2rem, 2.8vh, 2.2rem);
   font-weight: 700;
   color: rgba(255,255,255,0.5);
@@ -1626,16 +1693,16 @@ body {
   text-transform: uppercase;
 }
 
-.fj-lb-row.rank-1 .fj-lb-rank { color: #FFD700; }
-.fj-lb-row.rank-2 .fj-lb-rank { color: #adb5bd; }
-.fj-lb-row.rank-3 .fj-lb-rank { color: #cd7f32; }
+.fj-lb-row.rank-1 .fj-lb-rank { color: var(--c-gold); }
+.fj-lb-row.rank-2 .fj-lb-rank { color: var(--c-rank-silver); }
+.fj-lb-row.rank-3 .fj-lb-rank { color: var(--c-rank-bronze); }
 .fj-lb-row.rank-4 .fj-lb-rank,
 .fj-lb-row.rank-4 { border-color: rgba(255,255,255,0.2); }
 .fj-lb-row.rank-4 .fj-lb-rank { color: rgba(255,255,255,0.55); }
 
 .fj-lb-name {
   flex: 1;
-  font-family: "Montserrat", sans-serif;
+  font-family: var(--font-text);
   font-size: clamp(1.1rem, 2.4vh, 2rem);
   font-weight: 700;
   color: #fff;
@@ -1644,10 +1711,10 @@ body {
 }
 
 .fj-lb-score {
-  font-family: "Teko", sans-serif;
+  font-family: var(--font-teko);
   font-size: clamp(1.6rem, 3.2vh, 2.8rem);
   font-weight: 700;
-  color: #FFD700;
+  color: var(--c-gold);
   letter-spacing: 1px;
 }
 
@@ -1686,23 +1753,23 @@ body {
 }
 
 .dd-splash-label {
-  font-family: "Teko", "Arial Narrow", sans-serif;
+  font-family: var(--font-teko);
   font-size: clamp(5rem, 14vw, 13rem);
   font-weight: 700;
-  color: #FFD700;
+  color: var(--c-gold);
   letter-spacing: 6px;
   text-transform: uppercase;
   line-height: 0.9;
   text-shadow:
-    4px 4px 0px #b8860b,
-    8px 8px 0px #8b6914,
+    4px 4px 0px var(--c-gold-shadow),
+    8px 8px 0px var(--c-gold-shadow-2),
     0 0 60px rgba(255, 215, 0, 0.9),
     0 0 120px rgba(255, 215, 0, 0.5),
     0 0 200px rgba(255, 180, 0, 0.3);
 }
 
 .dd-splash-wager {
-  font-family: "Bebas Neue", "Teko", "Arial Narrow", sans-serif;
+  font-family: var(--font-bebas);
   font-size: clamp(2.5rem, 6vw, 5.5rem);
   color: #fff;
   letter-spacing: 4px;
@@ -1721,8 +1788,8 @@ body {
 .modal-content.is-daily-double {
   background:
     radial-gradient(circle at center, rgba(180, 120, 0, 0.25) 0%, rgba(58, 72, 219, 0) 50%),
-    linear-gradient(180deg, #1230b8 0%, #0821a1 100%);
-  border-color: #FFD700;
+    linear-gradient(180deg, var(--c-blue-modal-a) 0%, var(--c-blue-modal-b) 100%);
+  border-color: var(--c-gold);
   box-shadow:
     inset 0 0 80px rgba(255, 255, 255, 0.06),
     0 0 60px rgba(255, 215, 0, 0.25);
@@ -1754,22 +1821,22 @@ body {
 }
 
 .modal-dd-label {
-  font-family: "Teko", "Arial Narrow", sans-serif;
+  font-family: var(--font-teko);
   font-size: clamp(3rem, 7vw, 7rem);
   font-weight: 700;
-  color: #FFD700;
+  color: var(--c-gold);
   letter-spacing: 4px;
   text-transform: uppercase;
   text-shadow:
-    3px 3px 0px #b8860b,
-    6px 6px 0px #8b6914,
+    3px 3px 0px var(--c-gold-shadow),
+    6px 6px 0px var(--c-gold-shadow-2),
     0 0 40px rgba(255, 215, 0, 0.8),
     0 0 80px rgba(255, 215, 0, 0.4);
   line-height: 1;
 }
 
 .modal-dd-wager {
-  font-family: "Bebas Neue", "Teko", "Arial Narrow", sans-serif;
+  font-family: var(--font-bebas);
   font-size: clamp(1.8rem, 3.5vw, 3.5rem);
   color: #fff;
   letter-spacing: 3px;
@@ -1788,7 +1855,7 @@ body {
 
 .modal-button {
   padding: 12px 28px;
-  font-family: "Teko", "Arial Narrow", sans-serif;
+  font-family: var(--font-teko);
   font-size: 1.2rem;
   font-weight: 700;
   letter-spacing: 2px;
@@ -1799,13 +1866,13 @@ body {
 }
 
 .modal-button.close {
-  background: linear-gradient(180deg, #FFD700 0%, #b8860b 100%);
-  color: #060CE9;
-  border: 2px solid #b8860b;
+  background: linear-gradient(180deg, var(--c-gold) 0%, var(--c-gold-shadow) 100%);
+  color: var(--c-blue);
+  border: 2px solid var(--c-gold-shadow);
 }
 
 .modal-button.close:hover {
-  background: linear-gradient(180deg, #fff 0%, #FFD700 100%);
+  background: linear-gradient(180deg, #fff 0%, var(--c-gold) 100%);
   transform: scale(1.04);
 }
 
@@ -1814,11 +1881,10 @@ body {
   position: fixed;
   inset: 0;
   z-index: 9999;
-  background: radial-gradient(ellipse at center, #0a0acd 0%, #04047a 100%);
+  background: radial-gradient(ellipse at center, var(--c-blue-panel) 0%, var(--c-blue-deep) 100%);
   display: flex;
   align-items: center;
   justify-content: center;
-  cursor: pointer;
 }
 
 .audio-unlock-content {
@@ -1837,11 +1903,11 @@ body {
 .audio-unlock-button {
   padding: 18px 48px;
   font-size: 1.5rem;
-  font-family: "Teko", "Arial Narrow", sans-serif;
+  font-family: var(--font-teko);
   font-weight: 700;
   letter-spacing: 0.1em;
-  background: linear-gradient(180deg, #FFD700 0%, #b8860b 100%);
-  color: #060CE9;
+  background: linear-gradient(180deg, var(--c-gold) 0%, var(--c-gold-shadow) 100%);
+  color: var(--c-blue);
   border: none;
   border-radius: 6px;
   cursor: pointer;

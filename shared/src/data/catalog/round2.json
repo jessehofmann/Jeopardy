@@ -1913,5 +1913,1905 @@
         }
       ]
     }
+  },
+  {
+    "id": "world-religions",
+    "name": "World Religions",
+    "cluesByValue": {
+      "400": [
+        {
+          "question": "Followers of this faith fast during daylight in the month of Ramadan and pray five times daily",
+          "answer": "Islam"
+        },
+        {
+          "question": "This faith centered on the teachings of a 1st-century Nazarene is the world's largest by adherents",
+          "answer": "Christianity"
+        },
+        {
+          "question": "Adherents of this Indian religion seek release from the cycle of rebirth called samsara",
+          "answer": "Hinduism"
+        }
+      ],
+      "800": [
+        {
+          "question": "This religion founded by Siddhartha Gautama teaches the Four Noble Truths and an Eightfold Path",
+          "answer": "Buddhism"
+        },
+        {
+          "question": "The Torah, the Talmud, and observance of the Sabbath are central to this monotheistic faith",
+          "answer": "Judaism"
+        },
+        {
+          "question": "Followers of this faith founded by Guru Nanak in 15th-century Punjab worship at a gurdwara",
+          "answer": "Sikhism"
+        }
+      ],
+      "1200": [
+        {
+          "question": "This dualistic Persian religion founded by Zoroaster influenced later ideas of heaven and a final judgment",
+          "answer": "Zoroastrianism"
+        },
+        {
+          "question": "Practitioners of this East Asian tradition attributed to Laozi seek harmony with the Way, or Dao",
+          "answer": "Taoism"
+        },
+        {
+          "question": "This Japanese indigenous religion venerates kami, spirits residing in natural features and objects",
+          "answer": "Shinto"
+        }
+      ],
+      "1600": [
+        {
+          "question": "Emerging in 19th-century Persia, this religion teaches the essential oneness of humanity and of all revealed religions",
+          "answer": "The Baha'i Faith"
+        },
+        {
+          "question": "The 5th-century-BC teacher Mahavira systematized this Indian religion built on radical nonviolence, or ahimsa",
+          "answer": "Jainism"
+        },
+        {
+          "question": "This 2,000-member ethnoreligious group of northern Israel practices a secretive offshoot of Ismaili Islam",
+          "answer": "The Druze"
+        }
+      ],
+      "2000": [
+        {
+          "question": "This Chinese tradition attributed to a 5th-century-BC teacher stresses filial piety, ritual, and social harmony",
+          "answer": "Confucianism"
+        },
+        {
+          "question": "This West African diasporic religion of the Yoruba, carried to Cuba, venerates spirits called orishas",
+          "answer": "Santeria"
+        },
+        {
+          "question": "Anabaptist groups like the Amish and Hutterites trace to this 16th-century movement of adult baptism",
+          "answer": "The Radical Reformation"
+        }
+      ]
+    }
+  },
+  {
+    "id": "ancient-rome",
+    "name": "Ancient Rome",
+    "cluesByValue": {
+      "400": [
+        {
+          "question": "This general crossed the Rubicon in 49 BC and was assassinated on the Ides of March",
+          "answer": "Julius Caesar"
+        },
+        {
+          "question": "Rome was said to be founded by twins Romulus and Remus, who were suckled by one of these animals",
+          "answer": "A wolf"
+        },
+        {
+          "question": "The Romans built these long channels, some elevated on arches, to carry water into their cities",
+          "answer": "Aqueducts"
+        }
+      ],
+      "800": [
+        {
+          "question": "This first Roman emperor, Caesar's heir, was born Octavian and ruled from 27 BC to AD 14",
+          "answer": "Augustus"
+        },
+        {
+          "question": "This 79 AD volcanic eruption buried the Roman town of Pompeii",
+          "answer": "Mount Vesuvius (erupting)"
+        },
+        {
+          "question": "Rome's legislative body, whose members wore a purple stripe, met in a building called the Curia",
+          "answer": "The Senate"
+        }
+      ],
+      "1200": [
+        {
+          "question": "This emperor made Christianity legal with the Edict of Milan and founded a new capital on the Bosphorus",
+          "answer": "Constantine"
+        },
+        {
+          "question": "Carthaginian general Hannibal famously marched these animals over the Alps to attack Italy",
+          "answer": "Elephants"
+        },
+        {
+          "question": "This 73 BC slave revolt led by a Thracian gladiator was crushed by Crassus and Pompey",
+          "answer": "The revolt of Spartacus"
+        }
+      ],
+      "1600": [
+        {
+          "question": "The 'Five Good Emperors' ended with this philosopher-emperor and author of the 'Meditations'",
+          "answer": "Marcus Aurelius"
+        },
+        {
+          "question": "This 116-book history of Rome from its founding was written by Livy under Augustus",
+          "answer": "Ab Urbe Condita (The History of Rome)"
+        },
+        {
+          "question": "Rome's western half fell in 476 when the German chieftain Odoacer deposed a boy emperor with this diminutive name",
+          "answer": "Romulus Augustulus"
+        }
+      ],
+      "2000": [
+        {
+          "question": "This unpopular emperor blamed the 64 AD fire on Christians and reputedly performed while the city burned",
+          "answer": "Nero"
+        },
+        {
+          "question": "The Roman republic's chief magistrates, elected in pairs for one-year terms, held this title",
+          "answer": "Consul"
+        },
+        {
+          "question": "Diocletian split imperial rule among four men in this arrangement whose name means 'rule of four'",
+          "answer": "The Tetrarchy"
+        }
+      ]
+    }
+  },
+  {
+    "id": "the-cold-war",
+    "name": "The Cold War",
+    "cluesByValue": {
+      "400": [
+        {
+          "question": "This concrete barrier divided a German city from 1961 until it was torn down in 1989",
+          "answer": "The Berlin Wall"
+        },
+        {
+          "question": "The 1962 missile crisis brought the U.S. to the brink of nuclear war with the Soviets over this island",
+          "answer": "Cuba"
+        },
+        {
+          "question": "Winston Churchill said an 'iron' one of these had descended across Europe",
+          "answer": "A curtain"
+        }
+      ],
+      "800": [
+        {
+          "question": "This 1949 Western military alliance was formed to counter Soviet expansion in Europe",
+          "answer": "NATO"
+        },
+        {
+          "question": "The Soviet-led answer to that alliance was this 1955 pact named for the Polish capital",
+          "answer": "The Warsaw Pact"
+        },
+        {
+          "question": "This U.S. policy of resisting the spread of communism was outlined by diplomat George Kennan",
+          "answer": "Containment"
+        }
+      ],
+      "1200": [
+        {
+          "question": "This U.S. program named for a Secretary of State poured billions into rebuilding Western Europe after WWII",
+          "answer": "The Marshall Plan"
+        },
+        {
+          "question": "In 1948-49 the Western Allies supplied a blockaded city entirely by air in this operation",
+          "answer": "The Berlin Airlift"
+        },
+        {
+          "question": "This Soviet leader denounced Stalin's crimes in a 1956 'secret speech' and later pounded a shoe at the UN",
+          "answer": "Nikita Khrushchev"
+        }
+      ],
+      "1600": [
+        {
+          "question": "This 1972 treaty between the U.S. and USSR limited anti-ballistic missile systems; its acronym is SALT I's companion",
+          "answer": "The ABM Treaty"
+        },
+        {
+          "question": "The 1975 Apollo-Soyuz mission and this policy of eased tensions marked the mid-1970s thaw",
+          "answer": "Detente"
+        },
+        {
+          "question": "Warsaw Pact tanks crushed this 1968 Czechoslovak reform movement led by Alexander Dubcek",
+          "answer": "The Prague Spring"
+        }
+      ],
+      "2000": [
+        {
+          "question": "This 1961 U.S.-backed invasion of Cuba by exiles ended in a fiasco at a swampy landing site",
+          "answer": "The Bay of Pigs"
+        },
+        {
+          "question": "Soviet leader Gorbachev paired glasnost, or openness, with this restructuring policy in the late 1980s",
+          "answer": "Perestroika"
+        },
+        {
+          "question": "This 1950-53 conflict, sometimes called the Cold War's first hot war, ended in an armistice near the 38th parallel",
+          "answer": "The Korean War"
+        }
+      ]
+    }
+  },
+  {
+    "id": "chemistry",
+    "name": "Chemistry",
+    "cluesByValue": {
+      "400": [
+        {
+          "question": "On the periodic table, this lightest element occupies the first position with atomic number 1",
+          "answer": "Hydrogen"
+        },
+        {
+          "question": "A solution with a pH below 7 is described by this term",
+          "answer": "Acidic"
+        },
+        {
+          "question": "This gas, symbol CO2, is exhaled by animals and absorbed by plants",
+          "answer": "Carbon dioxide"
+        }
+      ],
+      "800": [
+        {
+          "question": "This Russian chemist arranged the known elements by weight in 1869, leaving gaps for undiscovered ones",
+          "answer": "Dmitri Mendeleev"
+        },
+        {
+          "question": "Table salt is the common name for this ionic compound, formula NaCl",
+          "answer": "Sodium chloride"
+        },
+        {
+          "question": "Elements in the far-right column of the periodic table are largely unreactive and known by this two-word name",
+          "answer": "Noble gases"
+        }
+      ],
+      "1200": [
+        {
+          "question": "This number, about 6.022 times 10 to the 23rd, is the count of particles in one mole",
+          "answer": "Avogadro's number"
+        },
+        {
+          "question": "A reaction that releases heat to its surroundings is described by this term",
+          "answer": "Exothermic"
+        },
+        {
+          "question": "This form of carbon, arranged in sheets one atom thick, earned a 2010 Nobel Prize",
+          "answer": "Graphene"
+        }
+      ],
+      "1600": [
+        {
+          "question": "This French scientist, guillotined in 1794, named oxygen and hydrogen and established the law of conservation of mass",
+          "answer": "Antoine Lavoisier"
+        },
+        {
+          "question": "The unusually strong attraction between water molecules that gives water its high surface tension is this kind of intermolecular force",
+          "answer": "Hydrogen bonding"
+        },
+        {
+          "question": "This catalytic process fixes atmospheric nitrogen into ammonia and feeds much of the world",
+          "answer": "The Haber-Bosch process"
+        }
+      ],
+      "2000": [
+        {
+          "question": "This equilibrium principle states that a system under stress shifts to counteract the change; it is named for a French engineer",
+          "answer": "Le Chatelier's principle"
+        },
+        {
+          "question": "Polish-born, she is the only person to win Nobel Prizes in two different sciences, physics and chemistry",
+          "answer": "Marie Curie"
+        },
+        {
+          "question": "This spectroscopic technique, abbreviated NMR, exploits nuclear spin and underlies the MRI scanner",
+          "answer": "Nuclear magnetic resonance"
+        }
+      ]
+    }
+  },
+  {
+    "id": "explorers",
+    "name": "Explorers",
+    "cluesByValue": {
+      "400": [
+        {
+          "question": "Sailing for Spain in 1492, this Genoese navigator reached the Bahamas believing he had found Asia",
+          "answer": "Christopher Columbus"
+        },
+        {
+          "question": "This Venetian traveler described his journeys to the court of Kublai Khan in a famous book",
+          "answer": "Marco Polo"
+        },
+        {
+          "question": "Sacagawea guided this pair of American captains to the Pacific between 1804 and 1806",
+          "answer": "Lewis and Clark"
+        }
+      ],
+      "800": [
+        {
+          "question": "This Portuguese explorer's expedition was the first to circumnavigate the globe, though he died in the Philippines",
+          "answer": "Ferdinand Magellan"
+        },
+        {
+          "question": "In 1911 this Norwegian became the first person to reach the South Pole, beating Robert Scott",
+          "answer": "Roald Amundsen"
+        },
+        {
+          "question": "This English sea captain charted New Zealand and eastern Australia before being killed in Hawaii in 1779",
+          "answer": "James Cook"
+        }
+      ],
+      "1200": [
+        {
+          "question": "This Portuguese navigator became the first European to reach India by sea, rounding Africa in 1498",
+          "answer": "Vasco da Gama"
+        },
+        {
+          "question": "Journalist Henry Stanley reportedly greeted this missing Scottish missionary in Africa with a famous four-word line",
+          "answer": "David Livingstone"
+        },
+        {
+          "question": "This Spanish conquistador toppled the Aztec empire and captured its capital Tenochtitlan in 1521",
+          "answer": "Hernan Cortes"
+        }
+      ],
+      "1600": [
+        {
+          "question": "This Englishman's 1577-80 voyage made him the second commander to circle the globe; Elizabeth I knighted him aboard ship",
+          "answer": "Francis Drake"
+        },
+        {
+          "question": "This conquistador crossed the Isthmus of Panama in 1513 and became the first European to see the eastern Pacific",
+          "answer": "Vasco Nunez de Balboa"
+        },
+        {
+          "question": "This American claimed to have reached the North Pole in 1909, a feat long disputed",
+          "answer": "Robert Peary"
+        }
+      ],
+      "2000": [
+        {
+          "question": "This Ming-dynasty admiral led enormous treasure fleets across the Indian Ocean in the early 1400s",
+          "answer": "Zheng He"
+        },
+        {
+          "question": "This Scottish explorer disappeared in 1806 while tracing the course of the Niger River",
+          "answer": "Mungo Park"
+        },
+        {
+          "question": "This 14th-century Moroccan scholar traveled some 75,000 miles across the Islamic world and beyond, recorded in the 'Rihla'",
+          "answer": "Ibn Battuta"
+        }
+      ]
+    }
+  },
+  {
+    "id": "the-periodic-table",
+    "name": "The Periodic Table",
+    "cluesByValue": {
+      "400": [
+        {
+          "question": "This yellow nonmetal, symbol S, smells of rotten eggs when combined with hydrogen",
+          "answer": "Sulfur"
+        },
+        {
+          "question": "Symbol Au, this soft yellow metal has long been prized for coins and jewelry",
+          "answer": "Gold"
+        },
+        {
+          "question": "This gas, symbol He, makes party balloons float and your voice squeak",
+          "answer": "Helium"
+        }
+      ],
+      "800": [
+        {
+          "question": "This liquid metal at room temperature, symbol Hg, was once used in thermometers",
+          "answer": "Mercury"
+        },
+        {
+          "question": "Symbol Na from the Latin natrium, this soft metal reacts violently with water",
+          "answer": "Sodium"
+        },
+        {
+          "question": "This element, symbol Fe, is the main component of steel and the Earth's core",
+          "answer": "Iron"
+        }
+      ],
+      "1200": [
+        {
+          "question": "This element, symbol W from wolfram, has the highest melting point of any metal and glows in old light bulbs",
+          "answer": "Tungsten"
+        },
+        {
+          "question": "Symbol Pb from plumbum, this dense soft metal was used in Roman pipes and is now known to be a neurotoxin",
+          "answer": "Lead"
+        },
+        {
+          "question": "This lightest alkali metal, symbol Li, is central to modern rechargeable batteries",
+          "answer": "Lithium"
+        }
+      ],
+      "1600": [
+        {
+          "question": "Element 118, the heaviest yet synthesized, honors this Russian physicist who directed much superheavy-element research",
+          "answer": "Yuri Oganessian"
+        },
+        {
+          "question": "This element, symbol Sb from stibium, was used as ancient kohl eyeliner",
+          "answer": "Antimony"
+        },
+        {
+          "question": "The two liquid elements at standard conditions are mercury and this only nonmetallic one, symbol Br",
+          "answer": "Bromine"
+        }
+      ],
+      "2000": [
+        {
+          "question": "This synthetic element, atomic number 43, was the first to be produced artificially, in 1937",
+          "answer": "Technetium"
+        },
+        {
+          "question": "This rare-earth element, symbol Nd, forms the strongest permanent magnets when alloyed with iron and boron",
+          "answer": "Neodymium"
+        },
+        {
+          "question": "This element, symbol Sn from stannum, gave its name to a common can and to soldiers cast for children",
+          "answer": "Tin"
+        }
+      ]
+    }
+  },
+  {
+    "id": "renaissance-art",
+    "name": "Renaissance Art",
+    "cluesByValue": {
+      "400": [
+        {
+          "question": "This Florentine polymath painted the Mona Lisa and The Last Supper",
+          "answer": "Leonardo da Vinci"
+        },
+        {
+          "question": "This artist spent four years on his back painting a Vatican ceiling for Pope Julius II",
+          "answer": "Michelangelo"
+        },
+        {
+          "question": "This youngest of the three great High Renaissance masters painted 'The School of Athens'",
+          "answer": "Raphael"
+        }
+      ],
+      "800": [
+        {
+          "question": "Michelangelo's 17-foot marble figure of this biblical giant-slayer stands in Florence",
+          "answer": "David"
+        },
+        {
+          "question": "This Botticelli painting shows the goddess of love arriving on a shell",
+          "answer": "The Birth of Venus"
+        },
+        {
+          "question": "This dome atop Florence's cathedral was engineered by Filippo Brunelleschi without external scaffolding",
+          "answer": "The Duomo (of Florence)"
+        }
+      ],
+      "1200": [
+        {
+          "question": "This Venetian master, famous for rich color, painted 'Assumption of the Virgin' and many portraits of Charles V",
+          "answer": "Titian"
+        },
+        {
+          "question": "This northern painter of the 'Arnolfini Portrait' pioneered oil glazing techniques in Bruges",
+          "answer": "Jan van Eyck"
+        },
+        {
+          "question": "This German artist of 'Melencolia I' and a famous woodcut rhinoceros brought Italian ideas north of the Alps",
+          "answer": "Albrecht Durer"
+        }
+      ],
+      "1600": [
+        {
+          "question": "This sculptor's gilded bronze doors for the Florence Baptistery were dubbed the 'Gates of Paradise'",
+          "answer": "Lorenzo Ghiberti"
+        },
+        {
+          "question": "This Dutch painter of nightmarish scenes like 'The Garden of Earthly Delights' worked around 1500",
+          "answer": "Hieronymus Bosch"
+        },
+        {
+          "question": "Vasari's 1550 book 'Lives of the Most Excellent Painters, Sculptors, and Architects' effectively founded this discipline",
+          "answer": "Art history"
+        }
+      ],
+      "2000": [
+        {
+          "question": "This early Renaissance painter of the Arena Chapel frescoes in Padua broke with flat Byzantine style around 1305",
+          "answer": "Giotto"
+        },
+        {
+          "question": "This Mannerist painter's elongated 'Madonna with the Long Neck' pushed beyond High Renaissance balance",
+          "answer": "Parmigianino"
+        },
+        {
+          "question": "This treatise on linear perspective, 'De pictura', was written in 1435 by this Florentine humanist and architect",
+          "answer": "Leon Battista Alberti"
+        }
+      ]
+    }
+  },
+  {
+    "id": "poetry",
+    "name": "Poets & Poetry",
+    "cluesByValue": {
+      "400": [
+        {
+          "question": "This reclusive Amherst poet left nearly 1,800 short poems, most published only after her 1886 death",
+          "answer": "Emily Dickinson"
+        },
+        {
+          "question": "This English Romantic drowned off Italy in 1822, leaving works like 'Ozymandias' and 'Ode to the West Wind'",
+          "answer": "Percy Bysshe Shelley"
+        },
+        {
+          "question": "A 14-line poem with a fixed rhyme scheme, favored by Shakespeare and Petrarch",
+          "answer": "A sonnet"
+        }
+      ],
+      "800": [
+        {
+          "question": "This American wrote 'The Road Not Taken' and read at John F. Kennedy's 1961 inauguration",
+          "answer": "Robert Frost"
+        },
+        {
+          "question": "This poet's 1855 collection 'Leaves of Grass' celebrated the American self in free verse",
+          "answer": "Walt Whitman"
+        },
+        {
+          "question": "This three-line Japanese form traditionally has a 5-7-5 syllable pattern and a seasonal reference",
+          "answer": "Haiku"
+        }
+      ],
+      "1200": [
+        {
+          "question": "This modernist's 1922 poem 'The Waste Land' opens 'April is the cruellest month'",
+          "answer": "T. S. Eliot"
+        },
+        {
+          "question": "This Harlem Renaissance poet asked what happens to 'a dream deferred'",
+          "answer": "Langston Hughes"
+        },
+        {
+          "question": "This Chilean diplomat won the 1971 Nobel for verse including 'Twenty Love Poems and a Song of Despair'",
+          "answer": "Pablo Neruda"
+        }
+      ],
+      "1600": [
+        {
+          "question": "This blind Puritan dictated the epic 'Paradise Lost' to his daughters in the 1660s",
+          "answer": "John Milton"
+        },
+        {
+          "question": "This Welsh poet urged readers to 'rage against the dying of the light'",
+          "answer": "Dylan Thomas"
+        },
+        {
+          "question": "The Italian form of a stanza used by Dante, an interlocking three-line rhyme, is called this",
+          "answer": "Terza rima"
+        }
+      ],
+      "2000": [
+        {
+          "question": "This ancient Greek poet of Lesbos, admired by Plato, survives mostly in fragments about love and longing",
+          "answer": "Sappho"
+        },
+        {
+          "question": "This Roman poet's 'Aeneid', left unfinished at his death in 19 BC, traces a Trojan's founding of Rome's line",
+          "answer": "Virgil"
+        },
+        {
+          "question": "This English Jesuit priest coined 'sprung rhythm'; his poems went unpublished until 1918, decades after his death",
+          "answer": "Gerard Manley Hopkins"
+        }
+      ]
+    }
+  },
+  {
+    "id": "architecture",
+    "name": "Architecture",
+    "cluesByValue": {
+      "400": [
+        {
+          "question": "This ancient Greek temple to Athena crowns the Acropolis of Athens",
+          "answer": "The Parthenon"
+        },
+        {
+          "question": "This tall, pointed style of medieval European cathedral features flying buttresses and ribbed vaults",
+          "answer": "Gothic"
+        },
+        {
+          "question": "This American architect designed Fallingwater, a house cantilevered over a Pennsylvania waterfall",
+          "answer": "Frank Lloyd Wright"
+        }
+      ],
+      "800": [
+        {
+          "question": "This Roman temple, now a church, has a coffered concrete dome with an open oculus at its center",
+          "answer": "The Pantheon"
+        },
+        {
+          "question": "This Swiss-French pioneer of modernism laid out five points and designed the Villa Savoye",
+          "answer": "Le Corbusier"
+        },
+        {
+          "question": "This Catalan architect left Barcelona's Sagrada Familia unfinished at his 1926 death",
+          "answer": "Antoni Gaudi"
+        }
+      ],
+      "1200": [
+        {
+          "question": "This German school of design, led by Walter Gropius in the 1920s, fused craft and industry before the Nazis closed it",
+          "answer": "The Bauhaus"
+        },
+        {
+          "question": "This architect of the Guggenheim Bilbao is known for sweeping titanium-clad forms",
+          "answer": "Frank Gehry"
+        },
+        {
+          "question": "The load-bearing central shaft with a spiral stair in a medieval tower is called this",
+          "answer": "A newel"
+        }
+      ],
+      "1600": [
+        {
+          "question": "This Venetian architect's symmetrical villas and his treatise 'The Four Books of Architecture' shaped Jefferson's Monticello",
+          "answer": "Andrea Palladio"
+        },
+        {
+          "question": "This architect rebuilt London's St Paul's Cathedral after the 1666 Great Fire",
+          "answer": "Christopher Wren"
+        },
+        {
+          "question": "This horizontal projecting element crowns a classical entablature above the frieze",
+          "answer": "The cornice"
+        }
+      ],
+      "2000": [
+        {
+          "question": "This Ottoman court architect designed the Selimiye Mosque at Edirne, considered his masterpiece, in the 1570s",
+          "answer": "Mimar Sinan"
+        },
+        {
+          "question": "This Finnish-American designed the swooping TWA Flight Center at Idlewild and the St. Louis arch",
+          "answer": "Eero Saarinen"
+        },
+        {
+          "question": "This Iraqi-British architect, the first woman to win the Pritzker Prize, designed the London Aquatics Centre",
+          "answer": "Zaha Hadid"
+        }
+      ]
+    }
+  },
+  {
+    "id": "the-supreme-court",
+    "name": "The Supreme Court",
+    "cluesByValue": {
+      "400": [
+        {
+          "question": "This title designates the member who leads the Court and presides over a presidential impeachment trial",
+          "answer": "Chief Justice"
+        },
+        {
+          "question": "The Court has had this many seats since 1869",
+          "answer": "Nine"
+        },
+        {
+          "question": "This 1954 ruling declared segregated public schools unconstitutional",
+          "answer": "Brown v. Board of Education"
+        }
+      ],
+      "800": [
+        {
+          "question": "This 1803 decision established the Court's power to strike down laws as unconstitutional",
+          "answer": "Marbury v. Madison"
+        },
+        {
+          "question": "This 1966 ruling requires police to inform suspects of their rights before questioning",
+          "answer": "Miranda v. Arizona"
+        },
+        {
+          "question": "This second woman on the Court, appointed in 1993, became a pop-culture icon as 'Notorious RBG'",
+          "answer": "Ruth Bader Ginsburg"
+        }
+      ],
+      "1200": [
+        {
+          "question": "This 1857 decision held that people of African descent could not be citizens, inflaming sectional tensions",
+          "answer": "Dred Scott v. Sandford"
+        },
+        {
+          "question": "This 1896 case upheld 'separate but equal' segregation for nearly 60 years",
+          "answer": "Plessy v. Ferguson"
+        },
+        {
+          "question": "This first Black justice, appointed in 1967, had earlier argued the 1954 school-desegregation case",
+          "answer": "Thurgood Marshall"
+        }
+      ],
+      "1600": [
+        {
+          "question": "This long-serving early chief justice, in office 1801-1835, greatly expanded federal judicial power",
+          "answer": "John Marshall"
+        },
+        {
+          "question": "This 1973 decision recognized a constitutional right to abortion before being overturned in 2022",
+          "answer": "Roe v. Wade"
+        },
+        {
+          "question": "This 1974 ruling forced a president to hand over the Oval Office tape recordings",
+          "answer": "United States v. Nixon"
+        }
+      ],
+      "2000": [
+        {
+          "question": "This clause of Article VI makes federal law supreme over conflicting state law; the Court invoked it in McCulloch v. Maryland",
+          "answer": "The Supremacy Clause"
+        },
+        {
+          "question": "This 1819 case upheld the national bank and the doctrine of implied powers",
+          "answer": "McCulloch v. Maryland"
+        },
+        {
+          "question": "This chief justice presided over the desegregation era and the reapportionment 'one person, one vote' rulings",
+          "answer": "Earl Warren"
+        }
+      ]
+    }
+  },
+  {
+    "id": "rivers-of-the-world",
+    "name": "Rivers of the World",
+    "cluesByValue": {
+      "400": [
+        {
+          "question": "This African river, the longest in the world, flows north through Egypt to the Mediterranean",
+          "answer": "The Nile"
+        },
+        {
+          "question": "This South American river carries more water than any other and drains a vast rainforest",
+          "answer": "The Amazon"
+        },
+        {
+          "question": "Paris sits on the banks of this river, spanned by the Pont Neuf",
+          "answer": "The Seine"
+        }
+      ],
+      "800": [
+        {
+          "question": "This 'Father of Waters' drains 31 U.S. states and reaches the Gulf of Mexico past New Orleans",
+          "answer": "The Mississippi"
+        },
+        {
+          "question": "This Chinese river, the country's longest, is dammed by the enormous Three Gorges project",
+          "answer": "The Yangtze"
+        },
+        {
+          "question": "Vienna, Budapest, and Belgrade all lie on this second-longest European river",
+          "answer": "The Danube"
+        }
+      ],
+      "1200": [
+        {
+          "question": "This sacred river of Hinduism descends from the Himalayas and flows past Varanasi",
+          "answer": "The Ganges"
+        },
+        {
+          "question": "The ancient civilization of Mesopotamia grew between this river and the Euphrates",
+          "answer": "The Tigris"
+        },
+        {
+          "question": "This river of the Pacific Northwest was navigated by Lewis and Clark to the ocean and is dammed at Grand Coulee",
+          "answer": "The Columbia"
+        }
+      ],
+      "1600": [
+        {
+          "question": "This longest river entirely within Russia flows to the Caspian Sea and is celebrated in a famous boatmen's song",
+          "answer": "The Volga"
+        },
+        {
+          "question": "Draining much of the Gran Chaco, this river joins the Parana to form the Rio de la Plata estuary",
+          "answer": "The Paraguay River"
+        },
+        {
+          "question": "Timbuktu sits near a great bend of this third-longest African river",
+          "answer": "The Niger"
+        }
+      ],
+      "2000": [
+        {
+          "question": "This African river plunges over Victoria Falls between Zambia and Zimbabwe",
+          "answer": "The Zambezi"
+        },
+        {
+          "question": "This river rises in the Black Forest and its name in antiquity, Rhenus, marked a Roman frontier",
+          "answer": "The Rhine"
+        },
+        {
+          "question": "The Angel Falls, the world's highest uninterrupted waterfall, drops into a tributary of this Venezuelan river",
+          "answer": "The Orinoco"
+        }
+      ]
+    }
+  },
+  {
+    "id": "opera",
+    "name": "Opera",
+    "cluesByValue": {
+      "400": [
+        {
+          "question": "This Italian composer wrote 'La boheme', 'Tosca', and 'Madama Butterfly'",
+          "answer": "Giacomo Puccini"
+        },
+        {
+          "question": "The high solo song in which a character expresses emotion, often stopping the plot, is called this",
+          "answer": "An aria"
+        },
+        {
+          "question": "This Mozart opera about a servant outwitting his lord is subtitled 'The Day of Madness'",
+          "answer": "The Marriage of Figaro"
+        }
+      ],
+      "800": [
+        {
+          "question": "This German composer's four-opera cycle 'The Ring of the Nibelung' takes about 15 hours to perform",
+          "answer": "Richard Wagner"
+        },
+        {
+          "question": "This Verdi opera set in Egypt features a triumphal march and a heroine entombed alive",
+          "answer": "Aida"
+        },
+        {
+          "question": "This lower female voice type sits between soprano and contralto and often plays trouser roles",
+          "answer": "Mezzo-soprano"
+        }
+      ],
+      "1200": [
+        {
+          "question": "This Bizet opera about a Spanish factory worker and a soldier was a flop at its 1875 premiere",
+          "answer": "Carmen"
+        },
+        {
+          "question": "This Russian composer based an opera on Pushkin's verse novel 'Eugene Onegin'",
+          "answer": "Pyotr Ilyich Tchaikovsky"
+        },
+        {
+          "question": "This recurring musical theme associated with a character or idea is a hallmark of Wagner's technique",
+          "answer": "A leitmotif"
+        }
+      ],
+      "1600": [
+        {
+          "question": "Monteverdi's 1607 'L'Orfeo', among the earliest surviving operas, retells this Greek myth of a musician in the underworld",
+          "answer": "Orpheus"
+        },
+        {
+          "question": "This composer's 'Der Rosenkavalier' and 'Salome' pushed late-Romantic German opera to its limits",
+          "answer": "Richard Strauss"
+        },
+        {
+          "question": "This bel canto composer of 'The Barber of Seville' retired from opera at 37 and turned to cooking",
+          "answer": "Gioachino Rossini"
+        }
+      ],
+      "2000": [
+        {
+          "question": "This Czech composer's 'Rusalka' contains the 'Song to the Moon'",
+          "answer": "Antonin Dvorak"
+        },
+        {
+          "question": "This American minimalist wrote 'Nixon in China' and 'Doctor Atomic'",
+          "answer": "John Adams"
+        },
+        {
+          "question": "This English composer's 'Peter Grimes' revived native opera in 1945; he founded the Aldeburgh Festival",
+          "answer": "Benjamin Britten"
+        }
+      ]
+    }
+  },
+  {
+    "id": "presidential-elections",
+    "name": "Presidential Elections",
+    "cluesByValue": {
+      "400": [
+        {
+          "question": "A candidate needs this many electoral votes to win the presidency",
+          "answer": "270"
+        },
+        {
+          "question": "Presidential elections are always held in years divisible by this number",
+          "answer": "Four"
+        },
+        {
+          "question": "In 2008 this senator from Illinois defeated John McCain to become president",
+          "answer": "Barack Obama"
+        }
+      ],
+      "800": [
+        {
+          "question": "This running mate tied his own presidential candidate in the 1800 Electoral College, sending the choice to the House",
+          "answer": "Aaron Burr"
+        },
+        {
+          "question": "In 2000 the outcome hinged on a recount in this state and a Supreme Court ruling",
+          "answer": "Florida"
+        },
+        {
+          "question": "This Democrat won four presidential elections, the only person to do so",
+          "answer": "Franklin D. Roosevelt"
+        }
+      ],
+      "1200": [
+        {
+          "question": "This 1948 winner triumphantly held up a newspaper that wrongly declared 'Dewey Defeats' him",
+          "answer": "Harry Truman"
+        },
+        {
+          "question": "In 1912 this former president ran on the Bull Moose ticket, splitting the Republican vote and electing Wilson",
+          "answer": "Theodore Roosevelt"
+        },
+        {
+          "question": "The disputed 1876 Hayes-Tilden race was resolved by a special 15-member bipartisan panel that Congress created",
+          "answer": "The Electoral Commission (of 1877)"
+        }
+      ],
+      "1600": [
+        {
+          "question": "This candidate won a plurality of both the popular and electoral vote in 1824 but lost when the House chose John Quincy Adams",
+          "answer": "Andrew Jackson"
+        },
+        {
+          "question": "The 1860 election of Lincoln, who wasn't even on the ballot in most Southern states, triggered this",
+          "answer": "Secession (the Civil War)"
+        },
+        {
+          "question": "This amendment, ratified in 1804, separated the electoral votes for president and vice president",
+          "answer": "The 12th Amendment"
+        }
+      ],
+      "2000": [
+        {
+          "question": "This 1968 third-party candidate, a segregationist Alabama governor, carried five Deep South states",
+          "answer": "George Wallace"
+        },
+        {
+          "question": "The only elected president denied his own party's renomination for a second term, this 1856 Democrat was passed over for Buchanan",
+          "answer": "Franklin Pierce"
+        },
+        {
+          "question": "This 1872 candidate died after the popular vote but before the Electoral College met, scattering his electoral votes",
+          "answer": "Horace Greeley"
+        }
+      ]
+    }
+  },
+  {
+    "id": "ancient-greece",
+    "name": "Ancient Greece",
+    "cluesByValue": {
+      "400": [
+        {
+          "question": "This city-state, known for its military discipline, raised boys in barracks from age seven",
+          "answer": "Sparta"
+        },
+        {
+          "question": "This philosopher was sentenced to drink hemlock in 399 BC for 'corrupting the youth' of Athens",
+          "answer": "Socrates"
+        },
+        {
+          "question": "The Greeks besieged this city for ten years, finally entering it hidden inside a wooden horse",
+          "answer": "Troy"
+        }
+      ],
+      "800": [
+        {
+          "question": "This student of Plato tutored Alexander the Great and founded a school called the Lyceum",
+          "answer": "Aristotle"
+        },
+        {
+          "question": "In 480 BC a small Greek force made a famous last stand against Persia at this narrow pass",
+          "answer": "Thermopylae"
+        },
+        {
+          "question": "Athenian democracy allowed citizens to banish a dangerous politician for ten years by this vote using pottery shards",
+          "answer": "Ostracism"
+        }
+      ],
+      "1200": [
+        {
+          "question": "This 27-year war between Athens and Sparta was chronicled by the historian Thucydides",
+          "answer": "The Peloponnesian War"
+        },
+        {
+          "question": "This blind poet is traditionally credited with the 'Iliad' and the 'Odyssey'",
+          "answer": "Homer"
+        },
+        {
+          "question": "This mathematician of Samos is remembered for a theorem about right triangles",
+          "answer": "Pythagoras"
+        }
+      ],
+      "1600": [
+        {
+          "question": "This Athenian statesman led the city during its golden age and funded the building of the Parthenon",
+          "answer": "Pericles"
+        },
+        {
+          "question": "This physician of Kos gave his name to an oath still associated with medical ethics",
+          "answer": "Hippocrates"
+        },
+        {
+          "question": "This 4th-century-BC orator delivered the 'Philippics' warning Athens about the king of Macedon",
+          "answer": "Demosthenes"
+        }
+      ],
+      "2000": [
+        {
+          "question": "This Theban general shattered the myth of Spartan invincibility at the Battle of Leuctra in 371 BC",
+          "answer": "Epaminondas"
+        },
+        {
+          "question": "This mathematician of Syracuse reportedly ran naked shouting 'Eureka' after a discovery in his bath",
+          "answer": "Archimedes"
+        },
+        {
+          "question": "This Athenian tragedian added a third actor to drama and wrote 'Oedipus Rex' and 'Antigone'",
+          "answer": "Sophocles"
+        }
+      ]
+    }
+  },
+  {
+    "id": "composers",
+    "name": "Classical Composers",
+    "cluesByValue": {
+      "400": [
+        {
+          "question": "This deaf German composed nine symphonies, the last featuring the 'Ode to Joy'",
+          "answer": "Ludwig van Beethoven"
+        },
+        {
+          "question": "This Austrian child prodigy wrote 'Eine kleine Nachtmusik' and the opera 'The Magic Flute'",
+          "answer": "Wolfgang Amadeus Mozart"
+        },
+        {
+          "question": "This Baroque master of Leipzig wrote the 'Brandenburg Concertos' and had 20 children",
+          "answer": "Johann Sebastian Bach"
+        }
+      ],
+      "800": [
+        {
+          "question": "This Russian wrote the ballets 'Swan Lake', 'The Nutcracker', and 'Sleeping Beauty'",
+          "answer": "Pyotr Ilyich Tchaikovsky"
+        },
+        {
+          "question": "This composer's 'The Rite of Spring' sparked a riot at its 1913 Paris premiere",
+          "answer": "Igor Stravinsky"
+        },
+        {
+          "question": "This 'Waltz King' of Vienna wrote 'The Blue Danube'",
+          "answer": "Johann Strauss II"
+        }
+      ],
+      "1200": [
+        {
+          "question": "This Polish composer wrote almost exclusively for solo piano, including 24 preludes and many nocturnes",
+          "answer": "Frederic Chopin"
+        },
+        {
+          "question": "This Italian wrote 'The Four Seasons', a set of violin concertos evoking the weather",
+          "answer": "Antonio Vivaldi"
+        },
+        {
+          "question": "This Austrian, called the 'Father of the Symphony', spent decades serving the Esterhazy family",
+          "answer": "Joseph Haydn"
+        }
+      ],
+      "1600": [
+        {
+          "question": "This Hungarian and Bela Bartok's colleague, he toured to collect folk songs and wrote a widely used music-teaching method",
+          "answer": "Zoltan Kodaly"
+        },
+        {
+          "question": "This Finnish composer wrote the patriotic tone poem 'Finlandia'",
+          "answer": "Jean Sibelius"
+        },
+        {
+          "question": "This Frenchman's shimmering 'Prelude to the Afternoon of a Faun' is a landmark of musical Impressionism",
+          "answer": "Claude Debussy"
+        }
+      ],
+      "2000": [
+        {
+          "question": "This composer, censured twice by Stalin's regime, wrote a symphony premiered in besieged Leningrad in 1942",
+          "answer": "Dmitri Shostakovich"
+        },
+        {
+          "question": "This Austrian's twelve-tone method abandoned traditional keys; his pupils included Berg and Webern",
+          "answer": "Arnold Schoenberg"
+        },
+        {
+          "question": "This American wrote 'Appalachian Spring' and 'Fanfare for the Common Man'",
+          "answer": "Aaron Copland"
+        }
+      ]
+    }
+  },
+  {
+    "id": "physics",
+    "name": "Physics",
+    "cluesByValue": {
+      "400": [
+        {
+          "question": "This force pulls objects toward the center of the Earth at about 9.8 meters per second squared",
+          "answer": "Gravity"
+        },
+        {
+          "question": "Light travels at roughly 186,000 miles per second in this medium",
+          "answer": "A vacuum"
+        },
+        {
+          "question": "This unit of power equals one joule per second and is named for a Scottish engineer",
+          "answer": "The watt"
+        }
+      ],
+      "800": [
+        {
+          "question": "This physicist's three laws of motion and law of universal gravitation appeared in the 1687 'Principia'",
+          "answer": "Isaac Newton"
+        },
+        {
+          "question": "This principle of quantum mechanics says you cannot know a particle's exact position and momentum at once",
+          "answer": "The Heisenberg uncertainty principle"
+        },
+        {
+          "question": "This quantity, the product of mass and velocity, is conserved in collisions",
+          "answer": "Momentum"
+        }
+      ],
+      "1200": [
+        {
+          "question": "This first law of thermodynamics is essentially a statement that this quantity can be neither created nor destroyed",
+          "answer": "Energy (conservation of energy)"
+        },
+        {
+          "question": "This 1887 experiment failed to detect the 'luminiferous aether', paving the way for relativity",
+          "answer": "The Michelson-Morley experiment"
+        },
+        {
+          "question": "This effect, the shift in wavelength as a source moves toward or away from you, explains a passing siren's pitch change",
+          "answer": "The Doppler effect"
+        }
+      ],
+      "1600": [
+        {
+          "question": "This Danish physicist's 1913 model pictured electrons in fixed orbits around the nucleus",
+          "answer": "Niels Bohr"
+        },
+        {
+          "question": "This subatomic particle, predicted by Pauli and detected in 1956, is nearly massless and rarely interacts",
+          "answer": "The neutrino"
+        },
+        {
+          "question": "This law states that the force between two charges is proportional to their product over the distance squared, an inverse-square rule like gravity",
+          "answer": "Coulomb's law"
+        }
+      ],
+      "2000": [
+        {
+          "question": "This 1964 proposal by a British physicist explained how particles acquire mass; the associated boson was found in 2012",
+          "answer": "The Higgs mechanism (Peter Higgs)"
+        },
+        {
+          "question": "This Indian physicist's statistics govern particles like photons, which are named partly for him",
+          "answer": "Satyendra Nath Bose"
+        },
+        {
+          "question": "In special relativity, this apparent contradiction has one sibling age less after a fast round-trip voyage",
+          "answer": "The twin paradox"
+        }
+      ]
+    }
+  },
+  {
+    "id": "philosophy",
+    "name": "Philosophy",
+    "cluesByValue": {
+      "400": [
+        {
+          "question": "This Frenchman reasoned his way to certainty with the phrase 'I think, therefore I am'",
+          "answer": "Rene Descartes"
+        },
+        {
+          "question": "This ancient Athenian wrote 'The Republic' and founded the Academy",
+          "answer": "Plato"
+        },
+        {
+          "question": "This branch of philosophy concerns what is right and wrong, good and bad",
+          "answer": "Ethics"
+        }
+      ],
+      "800": [
+        {
+          "question": "This German argued that we can never know 'the thing in itself' and formulated the categorical imperative",
+          "answer": "Immanuel Kant"
+        },
+        {
+          "question": "This school of ancient thought, associated with Zeno and Marcus Aurelius, urged acceptance of what we cannot control",
+          "answer": "Stoicism"
+        },
+        {
+          "question": "This Chinese teacher's 'Analects' stress benevolence, ritual, and respect for elders",
+          "answer": "Confucius"
+        }
+      ],
+      "1200": [
+        {
+          "question": "This Englishman argued the state of nature is 'nasty, brutish, and short' and justified an absolute sovereign in 'Leviathan'",
+          "answer": "Thomas Hobbes"
+        },
+        {
+          "question": "This 19th-century German declared that 'God is dead' and wrote of the 'Ubermensch'",
+          "answer": "Friedrich Nietzsche"
+        },
+        {
+          "question": "This ethical theory associated with Bentham and Mill seeks the greatest happiness for the greatest number",
+          "answer": "Utilitarianism"
+        }
+      ],
+      "1600": [
+        {
+          "question": "This Danish thinker, often called the first existentialist, wrote 'Fear and Trembling' about Abraham",
+          "answer": "Soren Kierkegaard"
+        },
+        {
+          "question": "This medieval Italian friar synthesized Aristotle and Christian theology in the 'Summa Theologica'",
+          "answer": "Thomas Aquinas"
+        },
+        {
+          "question": "This French existentialist wrote 'Being and Nothingness' and declined the Nobel Prize in Literature",
+          "answer": "Jean-Paul Sartre"
+        }
+      ],
+      "2000": [
+        {
+          "question": "This Austrian-British philosopher's 'Tractatus' concludes 'whereof one cannot speak, thereof one must be silent'",
+          "answer": "Ludwig Wittgenstein"
+        },
+        {
+          "question": "This American pragmatist and psychologist wrote 'The Varieties of Religious Experience'",
+          "answer": "William James"
+        },
+        {
+          "question": "This 1971 book by John Rawls asks readers to design society behind a 'veil of ignorance'",
+          "answer": "A Theory of Justice"
+        }
+      ]
+    }
+  },
+  {
+    "id": "the-civil-war",
+    "name": "The Civil War",
+    "cluesByValue": {
+      "400": [
+        {
+          "question": "The war began in 1861 when Confederates shelled this federal fort in Charleston harbor",
+          "answer": "Fort Sumter"
+        },
+        {
+          "question": "This general commanded the Confederate Army of Northern Virginia and surrendered in 1865",
+          "answer": "Robert E. Lee"
+        },
+        {
+          "question": "Lincoln's 1863 proclamation declared free the enslaved people in the rebelling states, using this word for the act",
+          "answer": "Emancipation"
+        }
+      ],
+      "800": [
+        {
+          "question": "This bloodiest single day of the war took place near a Maryland creek in September 1862",
+          "answer": "Antietam (Sharpsburg)"
+        },
+        {
+          "question": "This Union general captured Vicksburg, then Atlanta was taken by his subordinate Sherman",
+          "answer": "Ulysses S. Grant"
+        },
+        {
+          "question": "Lee's surrender took place at this Virginia village's courthouse in April 1865",
+          "answer": "Appomattox"
+        }
+      ],
+      "1200": [
+        {
+          "question": "This three-day July 1863 battle in Pennsylvania is often called the war's turning point",
+          "answer": "The Battle of Gettysburg"
+        },
+        {
+          "question": "This first clash of ironclad warships, in 1862, ended in a draw off the Virginia coast",
+          "answer": "The Battle of Hampton Roads (Monitor v. Merrimack)"
+        },
+        {
+          "question": "This Confederate president had earlier served as U.S. Secretary of War",
+          "answer": "Jefferson Davis"
+        }
+      ],
+      "1600": [
+        {
+          "question": "This Confederate general earned his nickname 'Stonewall' at the First Battle of Bull Run",
+          "answer": "Thomas Jonathan Jackson"
+        },
+        {
+          "question": "Sherman's 1864 'March to the Sea' ended at this Georgia port city, which he offered to Lincoln as a Christmas gift",
+          "answer": "Savannah"
+        },
+        {
+          "question": "Black soldiers of this all-volunteer Union regiment, led by Robert Gould Shaw, charged Fort Wagner in an assault later dramatized in 'Glory'",
+          "answer": "The 54th Massachusetts"
+        }
+      ],
+      "2000": [
+        {
+          "question": "This 1863 New York City uprising against conscription became the deadliest civil disturbance in U.S. history to that point",
+          "answer": "The Draft Riots"
+        },
+        {
+          "question": "This Union cavalry officer, the youngest general in the army, later died at Little Bighorn",
+          "answer": "George Armstrong Custer"
+        },
+        {
+          "question": "This 1862 Union defeat in Virginia saw wave after wave of troops cut down before a stone wall at Marye's Heights",
+          "answer": "The Battle of Fredericksburg"
+        }
+      ]
+    }
+  },
+  {
+    "id": "space-exploration",
+    "name": "Space Exploration",
+    "cluesByValue": {
+      "400": [
+        {
+          "question": "In 1969 this astronaut became the first person to walk on the Moon",
+          "answer": "Neil Armstrong"
+        },
+        {
+          "question": "This first artificial satellite, launched by the USSR in 1957, was a polished metal sphere with antennas",
+          "answer": "Sputnik"
+        },
+        {
+          "question": "This U.S. space agency, founded in 1958, runs human spaceflight from Houston and launches from Florida",
+          "answer": "NASA"
+        }
+      ],
+      "800": [
+        {
+          "question": "This Soviet cosmonaut became the first human in space in April 1961",
+          "answer": "Yuri Gagarin"
+        },
+        {
+          "question": "This space telescope, launched in 1990 and later repaired by shuttle crews, has produced iconic deep-field images",
+          "answer": "The Hubble Space Telescope"
+        },
+        {
+          "question": "This first American to orbit the Earth, in 1962, returned to space aboard the shuttle at age 77",
+          "answer": "John Glenn"
+        }
+      ],
+      "1200": [
+        {
+          "question": "This 1970 mission suffered an oxygen-tank explosion, prompting the line 'Houston, we've had a problem'",
+          "answer": "Apollo 13"
+        },
+        {
+          "question": "This first woman in space orbited the Earth 48 times in 1963 aboard Vostok 6",
+          "answer": "Valentina Tereshkova"
+        },
+        {
+          "question": "This pair of probes launched in 1977 carry a golden record and have since left the solar system",
+          "answer": "Voyager 1 and 2"
+        }
+      ],
+      "1600": [
+        {
+          "question": "This rocket scientist, brought to the U.S. after developing Germany's V-2, led the design of the Saturn V",
+          "answer": "Wernher von Braun"
+        },
+        {
+          "question": "This Soviet space station, whose name means 'peace', orbited from 1986 until it was deorbited in 2001",
+          "answer": "Mir"
+        },
+        {
+          "question": "This 2012 rover, delivered to Mars by a 'sky crane', is roughly the size of a car",
+          "answer": "Curiosity"
+        }
+      ],
+      "2000": [
+        {
+          "question": "This 1967 treaty bars nations from claiming sovereignty over the Moon or placing nuclear weapons in orbit",
+          "answer": "The Outer Space Treaty"
+        },
+        {
+          "question": "This engineer was NASA's flight director during Apollo 11 and 13 and wore his wife's hand-made vests",
+          "answer": "Gene Kranz"
+        },
+        {
+          "question": "This 2005 mission by the European Space Agency landed the Huygens probe on Saturn's moon Titan",
+          "answer": "Cassini-Huygens"
+        }
+      ]
+    }
+  },
+  {
+    "id": "world-war-ii",
+    "name": "World War II",
+    "cluesByValue": {
+      "400": [
+        {
+          "question": "The war in Europe began in September 1939 when Germany invaded this country",
+          "answer": "Poland"
+        },
+        {
+          "question": "This June 6, 1944 Allied landing on the beaches of Normandy is known by this one-letter-plus-word name",
+          "answer": "D-Day"
+        },
+        {
+          "question": "The U.S. entered the war after a December 1941 surprise attack on this Hawaiian naval base",
+          "answer": "Pearl Harbor"
+        }
+      ],
+      "800": [
+        {
+          "question": "This British prime minister rallied his nation with speeches about fighting 'on the beaches'",
+          "answer": "Winston Churchill"
+        },
+        {
+          "question": "This 1942 naval battle near a central Pacific atoll turned the tide against Japan",
+          "answer": "The Battle of Midway"
+        },
+        {
+          "question": "The RAF's 1940 defense of English skies against the Luftwaffe denied Hitler the air superiority he needed to attempt an invasion",
+          "answer": "The Battle of Britain"
+        }
+      ],
+      "1200": [
+        {
+          "question": "This Soviet city, now Volgograd, was the site of a brutal 1942-43 battle that broke the German advance",
+          "answer": "Stalingrad"
+        },
+        {
+          "question": "This general commanded Allied forces in Europe and later became U.S. president",
+          "answer": "Dwight D. Eisenhower"
+        },
+        {
+          "question": "Germany's surrender in May 1945 is commemorated as this two-letter 'Day'",
+          "answer": "V-E Day"
+        }
+      ],
+      "1600": [
+        {
+          "question": "Germany's last major western offensive, launched through the Ardennes in December 1944, dented but did not break the Allied line",
+          "answer": "The Battle of the Bulge"
+        },
+        {
+          "question": "This Japanese admiral planned the Pearl Harbor attack and was killed in 1943 when his plane was ambushed",
+          "answer": "Isoroku Yamamoto"
+        },
+        {
+          "question": "This code name covered the U.S. effort to build the atomic bomb, centered at Los Alamos",
+          "answer": "The Manhattan Project"
+        }
+      ],
+      "2000": [
+        {
+          "question": "Roosevelt, Churchill, and Stalin met together for the first time in November 1943 in the capital of Iran",
+          "answer": "The Tehran Conference"
+        },
+        {
+          "question": "British codebreakers at Bletchley Park cracked German ciphers produced by this rotor machine",
+          "answer": "Enigma"
+        },
+        {
+          "question": "This Free French general led resistance from London and later became president of the Fifth Republic",
+          "answer": "Charles de Gaulle"
+        }
+      ]
+    }
+  },
+  {
+    "id": "economics",
+    "name": "Economics",
+    "cluesByValue": {
+      "400": [
+        {
+          "question": "This Scottish thinker's 1776 book 'The Wealth of Nations' described an 'invisible hand' guiding markets",
+          "answer": "Adam Smith"
+        },
+        {
+          "question": "If buyers want more of a good but the quantity available holds steady, the market price will do this",
+          "answer": "It rises"
+        },
+        {
+          "question": "This general rise in prices over time erodes the purchasing power of money",
+          "answer": "Inflation"
+        }
+      ],
+      "800": [
+        {
+          "question": "This British economist argued governments should spend to counter downturns, an idea dominant after the 1930s",
+          "answer": "John Maynard Keynes"
+        },
+        {
+          "question": "This measure sums the market value of all final goods and services produced in a country in a year",
+          "answer": "Gross domestic product (GDP)"
+        },
+        {
+          "question": "This 19th-century German's critique of capitalism, 'Das Kapital', underpinned later communist movements",
+          "answer": "Karl Marx"
+        }
+      ],
+      "1200": [
+        {
+          "question": "This term describes a period of two consecutive quarters of declining economic output",
+          "answer": "A recession"
+        },
+        {
+          "question": "This economist championed free markets and monetarism from the University of Chicago, winning the 1976 Nobel",
+          "answer": "Milton Friedman"
+        },
+        {
+          "question": "This principle says a country should produce what it can make at lower opportunity cost and trade for the rest",
+          "answer": "Comparative advantage"
+        }
+      ],
+      "1600": [
+        {
+          "question": "This English clergyman warned in 1798 that population grows faster than the food supply",
+          "answer": "Thomas Malthus"
+        },
+        {
+          "question": "This curve, popularized on a napkin in the 1970s, suggests tax revenue can fall if rates get too high",
+          "answer": "The Laffer curve"
+        },
+        {
+          "question": "This 2013 book by Thomas Piketty argued that returns on capital outpace economic growth, widening inequality",
+          "answer": "Capital in the Twenty-First Century"
+        }
+      ],
+      "2000": [
+        {
+          "question": "This game-theory scenario, in which two suspects betray each other despite mutual silence being better, is named for these detained figures",
+          "answer": "The prisoner's dilemma"
+        },
+        {
+          "question": "This economist and mathematician's equilibrium concept earned a 1994 Nobel and inspired the film 'A Beautiful Mind'",
+          "answer": "John Nash"
+        },
+        {
+          "question": "The Economist magazine gauges whether currencies are over- or undervalued by comparing the price of one McDonald's sandwich around the world",
+          "answer": "The Big Mac Index"
+        }
+      ]
+    }
+  },
+  {
+    "id": "mountains",
+    "name": "Mountains",
+    "cluesByValue": {
+      "400": [
+        {
+          "question": "At about 29,000 feet, this Himalayan peak on the Nepal-China border is the highest on Earth",
+          "answer": "Mount Everest"
+        },
+        {
+          "question": "This dormant volcano is the highest peak in Africa and rises from the plains of Tanzania",
+          "answer": "Mount Kilimanjaro"
+        },
+        {
+          "question": "This mountain range runs down the western side of South America",
+          "answer": "The Andes"
+        }
+      ],
+      "800": [
+        {
+          "question": "This highest peak in the contiguous United States sits in California's Sierra Nevada",
+          "answer": "Mount Whitney"
+        },
+        {
+          "question": "This snow-capped Japanese volcano, last erupting in 1707, is a frequent subject of Hokusai's prints",
+          "answer": "Mount Fuji"
+        },
+        {
+          "question": "This mountain range forms a traditional boundary between Europe and Asia in Russia",
+          "answer": "The Ural Mountains"
+        }
+      ],
+      "1200": [
+        {
+          "question": "This peak in the Alps on the Italian-Swiss border has a distinctive pyramid shape and inspired a chocolate logo",
+          "answer": "The Matterhorn"
+        },
+        {
+          "question": "This highest peak in North America, in Alaska, was officially renamed from Mount McKinley in 2015",
+          "answer": "Denali"
+        },
+        {
+          "question": "The 1953 first confirmed summit of Everest was made by Edmund Hillary and this Sherpa",
+          "answer": "Tenzing Norgay"
+        }
+      ],
+      "1600": [
+        {
+          "question": "This Turkish peak, where Noah's Ark is said to have landed, is that country's highest point",
+          "answer": "Mount Ararat"
+        },
+        {
+          "question": "This is the term for the fourteen mountains on Earth that exceed 8,000 meters, all in Asia",
+          "answer": "The eight-thousanders"
+        },
+        {
+          "question": "This mountain in Wyoming's Teton range gave its French name, meaning 'large teat', to the whole group",
+          "answer": "Grand Teton"
+        }
+      ],
+      "2000": [
+        {
+          "question": "Measured from its base on the ocean floor, this Hawaiian volcano is taller than Everest",
+          "answer": "Mauna Kea"
+        },
+        {
+          "question": "This Greek mountain, the mythological home of the gods, is that country's highest",
+          "answer": "Mount Olympus"
+        },
+        {
+          "question": "K2, the world's second-highest mountain, lies in this range on the Pakistan-China border",
+          "answer": "The Karakoram"
+        }
+      ]
+    }
+  },
+  {
+    "id": "the-middle-ages",
+    "name": "The Middle Ages",
+    "cluesByValue": {
+      "400": [
+        {
+          "question": "This social system bound lords, vassals, and serfs through land grants and obligations",
+          "answer": "Feudalism"
+        },
+        {
+          "question": "This 14th-century pandemic, spread by fleas on rats, killed perhaps a third of Europe",
+          "answer": "The Black Death"
+        },
+        {
+          "question": "These Christian military expeditions aimed to capture the Holy Land from Muslim control",
+          "answer": "The Crusades"
+        }
+      ],
+      "800": [
+        {
+          "question": "This Frankish king was crowned Emperor of the Romans by the Pope on Christmas Day, 800",
+          "answer": "Charlemagne"
+        },
+        {
+          "question": "This 1215 English charter, forced on King John by his barons, limited royal power",
+          "answer": "Magna Carta"
+        },
+        {
+          "question": "Seafaring raiders from Scandinavia who terrorized and traded across Europe from the 8th century",
+          "answer": "The Vikings"
+        }
+      ],
+      "1200": [
+        {
+          "question": "This 1066 battle brought William of Normandy to the English throne",
+          "answer": "The Battle of Hastings"
+        },
+        {
+          "question": "This long series of conflicts between England and France lasted from 1337 to 1453",
+          "answer": "The Hundred Years' War"
+        },
+        {
+          "question": "This teenage French peasant claimed divine visions, lifted the siege of Orleans, and was burned in 1431",
+          "answer": "Joan of Arc"
+        }
+      ],
+      "1600": [
+        {
+          "question": "This split in 1054 permanently divided Christianity into Roman Catholic and Eastern Orthodox halves",
+          "answer": "The Great Schism (East-West Schism)"
+        },
+        {
+          "question": "This Italian merchant of Venice dictated an account of his travels to Asia while in a Genoese prison around 1298",
+          "answer": "Marco Polo"
+        },
+        {
+          "question": "This university, the oldest in the English-speaking world, was teaching by the late 11th century",
+          "answer": "Oxford"
+        }
+      ],
+      "2000": [
+        {
+          "question": "This 'Venerable' English monk completed a history of the English church and people in 731",
+          "answer": "Bede"
+        },
+        {
+          "question": "This Byzantine emperor codified Roman law into a compilation later called the Corpus Juris Civilis",
+          "answer": "Justinian I"
+        },
+        {
+          "question": "This 1378-1417 crisis saw rival claimants to the papacy in Rome and Avignon simultaneously",
+          "answer": "The Western Schism"
+        }
+      ]
+    }
+  },
+  {
+    "id": "languages",
+    "name": "Languages",
+    "cluesByValue": {
+      "400": [
+        {
+          "question": "With over a billion native speakers, this language of China has more first-language speakers than any other",
+          "answer": "Mandarin Chinese"
+        },
+        {
+          "question": "This Romance language of about 500 million speakers is official in Spain and most of Central and South America",
+          "answer": "Spanish"
+        },
+        {
+          "question": "This global lingua franca of business and science is the official language of the skies for pilots",
+          "answer": "English"
+        }
+      ],
+      "800": [
+        {
+          "question": "This ancient language of Rome is the ancestor of the Romance languages and still official in Vatican City",
+          "answer": "Latin"
+        },
+        {
+          "question": "This constructed language, created by L. L. Zamenhof in 1887, was meant to be a universal second tongue",
+          "answer": "Esperanto"
+        },
+        {
+          "question": "This East African Bantu language, heavily influenced by Arabic, is a lingua franca in Kenya and Tanzania",
+          "answer": "Swahili"
+        }
+      ],
+      "1200": [
+        {
+          "question": "This 1799 stone slab, inscribed in three scripts, was the key to deciphering Egyptian hieroglyphs",
+          "answer": "The Rosetta Stone"
+        },
+        {
+          "question": "This language isolate spoken in the western Pyrenees is unrelated to any other known language",
+          "answer": "Basque"
+        },
+        {
+          "question": "This Semitic language of ancient Judea, largely dormant for centuries, was revived as a spoken tongue in modern Israel",
+          "answer": "Hebrew"
+        }
+      ],
+      "1600": [
+        {
+          "question": "This linguist proposed a 'universal grammar' innate to humans and revolutionized the field in the 1950s",
+          "answer": "Noam Chomsky"
+        },
+        {
+          "question": "This hypothesis holds that the language you speak shapes how you think, named for two American linguists",
+          "answer": "The Sapir-Whorf hypothesis (linguistic relativity)"
+        },
+        {
+          "question": "This writing system of Korea, introduced in 1443, was designed to be easy for common people to learn",
+          "answer": "Hangul"
+        }
+      ],
+      "2000": [
+        {
+          "question": "This reconstructed ancestor of languages from Iceland to India is abbreviated PIE",
+          "answer": "Proto-Indo-European"
+        },
+        {
+          "question": "The click-consonant tongues of the San and Khoekhoe peoples of southern Africa are grouped under this name",
+          "answer": "The Khoisan languages"
+        },
+        {
+          "question": "This 19th-century German scholar's 'law' describes a regular consonant shift that separated Germanic from other Indo-European languages",
+          "answer": "Grimm's law"
+        }
+      ]
+    }
+  },
+  {
+    "id": "modern-art",
+    "name": "Modern Art",
+    "cluesByValue": {
+      "400": [
+        {
+          "question": "This Spanish co-founder of Cubism painted the anti-war mural 'Guernica'",
+          "answer": "Pablo Picasso"
+        },
+        {
+          "question": "This Dutch post-Impressionist painted 'The Starry Night' while in an asylum and cut off part of his ear",
+          "answer": "Vincent van Gogh"
+        },
+        {
+          "question": "This American pop artist silk-screened Campbell's soup cans and Marilyn Monroe",
+          "answer": "Andy Warhol"
+        }
+      ],
+      "800": [
+        {
+          "question": "This French leader of Fauvism, later known for cut-paper collages, was Picasso's great rival",
+          "answer": "Henri Matisse"
+        },
+        {
+          "question": "This Spanish Surrealist painted melting clocks in 'The Persistence of Memory'",
+          "answer": "Salvador Dali"
+        },
+        {
+          "question": "This movement of Monet and Renoir took its name from a mocking review of a Monet sunrise painting",
+          "answer": "Impressionism"
+        }
+      ],
+      "1200": [
+        {
+          "question": "This American Abstract Expressionist laid canvases on the floor and dripped and flung paint across them",
+          "answer": "Jackson Pollock"
+        },
+        {
+          "question": "This Russian, often credited with the first purely abstract paintings, wrote 'Concerning the Spiritual in Art'",
+          "answer": "Wassily Kandinsky"
+        },
+        {
+          "question": "This Frenchman submitted a urinal titled 'Fountain' to a 1917 exhibition as a 'readymade'",
+          "answer": "Marcel Duchamp"
+        }
+      ],
+      "1600": [
+        {
+          "question": "This Mexican painter turned her physical suffering into vivid self-portraits, often with a unibrow and Tehuana dress",
+          "answer": "Frida Kahlo"
+        },
+        {
+          "question": "This Romanian sculptor reduced forms to essentials in works like 'Bird in Space'",
+          "answer": "Constantin Brancusi"
+        },
+        {
+          "question": "This color-field painter's large canvases of luminous rectangles fill a nondenominational chapel in Houston",
+          "answer": "Mark Rothko"
+        }
+      ],
+      "2000": [
+        {
+          "question": "This German artist survived a plane crash, according to his own myth, and worked in felt and animal fat",
+          "answer": "Joseph Beuys"
+        },
+        {
+          "question": "This Dutch painter of the De Stijl movement made grids of black lines with red, yellow, and blue blocks",
+          "answer": "Piet Mondrian"
+        },
+        {
+          "question": "This British artist's works include a shark preserved in formaldehyde and a diamond-encrusted skull",
+          "answer": "Damien Hirst"
+        }
+      ]
+    }
   }
 ]

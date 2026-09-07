@@ -95,7 +95,7 @@ const CustomBoardPage: React.FC<CustomBoardPageProps> = ({ pendingBoardName, onL
         {showHowTo && (
           <div className="htp-overlay" onClick={closeHowTo}>
             <div className="htp-modal" onClick={(e) => e.stopPropagation()}>
-              <button className="htp-close-btn" onClick={closeHowTo}>✕</button>
+              <button className="htp-close-btn" onClick={closeHowTo} aria-label="Close">✕</button>
               <h1 className="htp-title">CUSTOM BOARD FORMAT</h1>
               <div className="htp-content">
 

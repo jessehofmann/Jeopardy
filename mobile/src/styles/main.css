@@ -1,10 +1,11 @@
+@import "./tokens.css";
 :root {
   color-scheme: dark;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   background:
     radial-gradient(circle at top, rgba(64, 97, 255, 0.35), transparent 40%),
     linear-gradient(180deg, #07114a 0%, #030720 100%);
-  color: #f5f7ff;
+  color: var(--c-text);
 }
 
 * {
@@ -20,6 +21,7 @@ body,
 
 body {
   min-height: 100vh;
+  min-height: 100dvh;
 }
 
 button,
@@ -33,15 +35,36 @@ button {
 
 .companion-shell {
   min-height: 100vh;
+  min-height: 100dvh;
+  padding-bottom: env(safe-area-inset-bottom);
 }
 
 .connection-banner {
   width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
   text-align: center;
   padding: 8px 12px;
+  padding-top: calc(8px + env(safe-area-inset-top));
   font-size: 0.85rem;
   letter-spacing: 0.04em;
   border-bottom: 1px solid rgba(145, 169, 255, 0.22);
+}
+
+.connection-retry-btn {
+  flex-shrink: 0;
+  background: rgba(255, 255, 255, 0.16);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  color: inherit;
+  border-radius: var(--r-pill);
+  padding: 4px 14px;
+  font-weight: 700;
+  font-size: 0.8rem;
+}
+.connection-retry-btn:active {
+  background: rgba(255, 255, 255, 0.3);
 }
 
 .connection-banner.is-online {
@@ -97,7 +120,7 @@ button {
   text-transform: uppercase;
   letter-spacing: 0.18em;
   font-size: 0.75rem;
-  color: #93a8ff;
+  color: var(--c-accent);
 }
 
 .hero-card h1,
@@ -129,7 +152,7 @@ button {
   font-family: "Teko", "Arial Narrow", sans-serif;
   font-size: 2rem;
   font-weight: 700;
-  color: #FFD700;
+  color: var(--c-gold);
   line-height: 1;
 }
 
@@ -163,14 +186,14 @@ button {
 
 .primary-action,
 .join-action {
-  background: linear-gradient(180deg, #ffd84b 0%, #f3b60e 100%);
+  background: linear-gradient(180deg, #ffd84b 0%, var(--c-gold-deep) 100%);
   color: #0b1c68;
 }
 
 .secondary-action,
 .score-button {
   background: rgba(73, 101, 210, 0.28);
-  color: #f1f4ff;
+  color: var(--c-text-2);
   border: 1px solid rgba(145, 169, 255, 0.32);
 }
 
@@ -197,7 +220,7 @@ button {
   border-radius: 18px;
   border: 1px solid rgba(145, 169, 255, 0.26);
   background: rgba(3, 8, 34, 0.85);
-  color: #f5f7ff;
+  color: var(--c-text);
 }
 
 .room-code-input {
@@ -259,6 +282,81 @@ button {
   margin-top: 18px;
 }
 
+/* A lone action reads better full width; only split when there are two. */
+.host-clue-preview .host-actions-grid:not(.is-split) {
+  grid-template-columns: 1fr;
+}
+
+.host-clue-status {
+  margin: 8px 0 4px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--c-accent);
+}
+
+/* Keep the judge / advance buttons reachable without scrolling the clue back
+   into view — the host is thumbing this one-handed during play. */
+.host-clue-preview .host-actions-grid {
+  position: sticky;
+  bottom: 8px;
+  z-index: 5;
+  padding: 10px;
+  margin-left: -10px;
+  margin-right: -10px;
+  border-radius: 16px;
+  background: rgba(8, 18, 71, 0.92);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 -6px 24px rgba(3, 7, 32, 0.55);
+}
+.host-clue-preview .host-actions-grid button {
+  min-height: 52px;
+}
+
+.host-undo-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(147, 168, 255, 0.16);
+  border: 1px solid rgba(147, 168, 255, 0.4);
+  color: var(--c-accent);
+  border-radius: var(--r-pill);
+  padding: 6px 12px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  min-height: 36px;
+}
+.host-undo-btn:active {
+  background: rgba(147, 168, 255, 0.3);
+}
+
+/* Correct / Incorrect are the game's highest-consequence taps — make them
+   unmistakable and hard to fat-finger. */
+.host-judge-btn {
+  border: 2px solid;
+  border-radius: 16px;
+  padding: 18px;
+  font-weight: 800;
+  font-size: 1.05rem;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+.host-judge-btn.is-correct {
+  background: rgba(134, 239, 172, 0.16);
+  border-color: var(--c-positive);
+  color: var(--c-positive);
+}
+.host-judge-btn.is-correct:active {
+  background: rgba(134, 239, 172, 0.3);
+}
+.host-judge-btn.is-wrong {
+  background: rgba(248, 113, 113, 0.14);
+  border-color: var(--c-danger);
+  color: var(--c-danger-soft);
+}
+.host-judge-btn.is-wrong:active {
+  background: rgba(248, 113, 113, 0.26);
+}
+
 .roster-panel {
   margin-top: 18px;
 }
@@ -315,24 +413,29 @@ button {
 .host-kick-btn {
   background: transparent;
   border: none;
-  color: rgba(255, 100, 100, 0.5);
-  font-size: 0.75rem;
-  padding: 2px 4px;
+  color: var(--c-danger-soft);
+  opacity: 0.55;
+  min-width: var(--tap);
+  min-height: var(--tap);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
   flex-shrink: 0;
-  line-height: 1;
-  border-radius: 4px;
-  transition: color 0.15s;
+  border-radius: var(--r-sm);
+  transition: opacity var(--dur-fast), background var(--dur-fast);
 }
 
-.host-kick-btn:hover {
-  color: rgba(255, 80, 80, 0.9);
+.host-kick-btn:hover,
+.host-kick-btn:active {
+  opacity: 1;
+  background: rgba(248, 113, 113, 0.14);
 }
 
 .host-score-points {
   font-size: 1.38rem;
   font-weight: 800;
-  color: #ffd871;
+  color: var(--c-gold-soft);
 }
 
 .host-score-adjust {
@@ -343,7 +446,7 @@ button {
 .score-adjust-button {
   border: 1px solid rgba(145, 169, 255, 0.35);
   background: rgba(73, 101, 210, 0.28);
-  color: #f1f4ff;
+  color: var(--c-text-2);
   border-radius: 10px;
   padding: 6px 10px;
   font-size: 0.78rem;
@@ -377,9 +480,9 @@ button {
   font-family: "Teko", sans-serif;
   font-weight: 600;
   letter-spacing: 0.04em;
-  background: #060CE9;
-  color: #FFD700;
-  border: 1px solid #FFD700;
+  background: var(--c-blue);
+  color: var(--c-gold);
+  border: 1px solid var(--c-gold);
   border-radius: 6px;
   cursor: pointer;
 }
@@ -405,6 +508,7 @@ button {
   color: #e5ebff;
   font-weight: 700;
   padding: 12px 10px;
+  min-height: var(--tap);
   text-transform: uppercase;
   letter-spacing: 0.04em;
 }
@@ -427,23 +531,25 @@ button {
   background: rgba(26, 44, 136, 0.48);
   color: #f4d55f;
   font-weight: 700;
+  font-size: 1.05rem;
   padding: 10px 6px;
+  min-height: 56px;
 }
 
 .host-clue-button:disabled {
   background: rgba(22, 24, 38, 0.8);
-  color: #7a86b8;
+  color: var(--c-muted);
   cursor: not-allowed;
 }
 
 .host-clue-button.is-selected {
-  background: linear-gradient(180deg, #ffd84b 0%, #f3b60e 100%);
+  background: linear-gradient(180deg, #ffd84b 0%, var(--c-gold-deep) 100%);
   color: #0b1c68;
 }
 
 .host-clue-button.is-daily-double {
-  background: linear-gradient(180deg, #ff9c1a 0%, #c95f00 100%);
-  border-color: #FFD700;
+  background: linear-gradient(180deg, var(--c-warn) 0%, #c95f00 100%);
+  border-color: var(--c-gold);
   color: #fff;
   box-shadow: 0 0 10px rgba(255, 180, 0, 0.4);
 }
@@ -451,7 +557,7 @@ button {
 .host-clue-button.is-daily-double:disabled {
   background: rgba(22, 24, 38, 0.8);
   border-color: rgba(145, 169, 255, 0.32);
-  color: #7a86b8;
+  color: var(--c-muted);
   box-shadow: none;
 }
 
@@ -489,7 +595,7 @@ button {
 }
 
 .host-preview-answer {
-  color: #ffd871;
+  color: var(--c-gold-soft);
   font-weight: 700;
   font-size: 1.08rem;
 }
@@ -499,12 +605,14 @@ button {
 }
 
 .host-dd-badge {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   margin: 4px auto 8px;
   padding: 6px 16px;
   border-radius: 999px;
-  background: linear-gradient(180deg, #ff9c1a 0%, #c95f00 100%);
-  border: 1px solid #FFD700;
+  background: linear-gradient(180deg, var(--c-warn) 0%, #c95f00 100%);
+  border: 1px solid var(--c-gold);
   color: #fff;
   font-weight: 800;
   font-size: 0.95rem;
@@ -523,12 +631,12 @@ button {
 .host-dd-wager-owner {
   font-weight: 700;
   font-size: 1rem;
-  color: #ffd871;
+  color: var(--c-gold-soft);
 }
 
 .host-dd-wager-range {
   font-size: 0.82rem;
-  color: #93a8ff;
+  color: var(--c-accent);
 }
 
 .host-dd-wager-input {
@@ -558,7 +666,7 @@ button {
 .host-dd-active-wager {
   font-size: 1.1rem;
   font-weight: 800;
-  color: #ffd871;
+  color: var(--c-gold-soft);
   margin: 4px 0 8px;
 }
 
@@ -581,7 +689,7 @@ button {
 }
 
 .player-card {
-  min-height: calc(100vh - 120px);
+  min-height: calc(100dvh - 120px);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -595,8 +703,32 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: min(100%, 380px);
+  width: min(100%, 420px);
   align-self: center;
+}
+
+/* Buzzers open (or already buzzed): collapse secondary chrome so the button
+   owns the screen — this is the only thing a contestant should be looking at. */
+.player-card.is-live .player-meta,
+.player-card.is-live .player-score-label {
+  display: none;
+}
+.player-card.is-live .player-score-display {
+  margin: 0;
+}
+.player-card.is-live .player-score-value {
+  font-size: 1.4rem;
+}
+.player-card.is-live .buzzer-wrapper {
+  width: min(100%, 520px);
+}
+.player-card.is-live .buzzer-button {
+  font-size: clamp(2.4rem, 9vw, 4rem);
+}
+.player-card.is-live h1,
+.player-card.is-live .player-name-sig {
+  font-size: 1.3rem;
+  max-height: 44px;
 }
 
 .buzzer-wrapper::before,
@@ -726,12 +858,13 @@ button {
   margin: 4px auto 0;
 }
 
-.player-name-controls {
-  display: flex;
-  flex-direction: column;
+.player-settings-btn {
+  min-width: var(--tap);
+  min-height: var(--tap);
+  display: inline-flex;
   align-items: center;
-  gap: 8px;
-  margin-top: 4px;
+  justify-content: center;
+  padding: 0;
 }
 
 .name-display-toggle {
@@ -759,7 +892,7 @@ button {
   background: rgba(255, 215, 0, 0.12);
   border: 2px solid rgba(255, 215, 0, 0.5);
   border-radius: 20px;
-  color: #FFD700;
+  color: var(--c-gold);
   font-size: 0.82rem;
   font-weight: 700;
   padding: 8px 18px;
@@ -854,7 +987,7 @@ button {
 .host-fj-category {
   font-size: clamp(1.3rem, 4vw, 1.8rem);
   font-weight: 800;
-  color: #ffd700;
+  color: var(--c-gold);
   margin: 8px 0 16px;
   text-transform: uppercase;
   letter-spacing: 0.04em;
@@ -920,7 +1053,7 @@ button {
 .host-fj-chip.is-ready {
   background: rgba(22, 163, 74, 0.2);
   border-color: rgba(22, 163, 74, 0.5);
-  color: #86efac;
+  color: var(--c-positive);
 }
 
 .host-fj-question {
@@ -933,7 +1066,7 @@ button {
 
 .host-fj-correct-answer {
   font-size: 0.95rem;
-  color: #86efac;
+  color: var(--c-positive);
   background: rgba(22, 163, 74, 0.15);
   border: 1px solid rgba(22, 163, 74, 0.35);
   border-radius: 8px;
@@ -1028,7 +1161,7 @@ button {
 .host-fj-final-score {
   font-weight: 800;
   font-size: 1rem;
-  color: #ffd700;
+  color: var(--c-gold);
 }
 
 /* Settings + skip bar at the bottom of the host screen */
@@ -1066,7 +1199,7 @@ button {
   background: rgba(145, 169, 255, 0.1);
   border: 1px solid rgba(145, 169, 255, 0.3);
   border-radius: 6px;
-  color: #f5f7ff;
+  color: var(--c-text);
   font-size: 0.95rem;
   text-align: center;
   outline: none;
@@ -1093,13 +1226,13 @@ button {
 }
 
 .host-skip-round2 {
-  background: linear-gradient(135deg, #1b3a1e, #2a5c30);
+  background: linear-gradient(135deg, #1b3a1e, var(--c-positive-deep));
   border-color: rgba(100, 220, 100, 0.45);
   color: #90ee90;
 }
 
 .host-skip-round2:hover {
-  background: linear-gradient(135deg, #2a5c30, #3a7a40);
+  background: linear-gradient(135deg, var(--c-positive-deep), #3a7a40);
 }
 
 .host-confirm-overlay {
@@ -1114,7 +1247,7 @@ button {
 
 .host-confirm-dialog {
   background: #0d1b8a;
-  border: 2px solid #ffd700;
+  border: 2px solid var(--c-gold);
   border-radius: 12px;
   padding: 28px 32px;
   text-align: center;
@@ -1125,7 +1258,7 @@ button {
 .host-confirm-title {
   font-size: 1.2rem;
   font-weight: 700;
-  color: #ffd700;
+  color: var(--c-gold);
   margin-bottom: 8px;
 }
 
@@ -1165,7 +1298,7 @@ button {
 .host-fj-start-button {
   background: linear-gradient(135deg, #1a237e, #283593);
   border: 1px solid rgba(255, 215, 0, 0.45);
-  color: #ffd700;
+  color: var(--c-gold);
   font-size: 0.95rem;
   font-weight: 700;
   letter-spacing: 0.06em;
@@ -1201,7 +1334,7 @@ button {
 .player-fj-category {
   font-size: clamp(1.4rem, 5vw, 2rem);
   font-weight: 800;
-  color: #ffd700;
+  color: var(--c-gold);
   text-transform: uppercase;
   letter-spacing: 0.05em;
   margin: 0;
@@ -1250,7 +1383,7 @@ button {
 
 .fj-answer-tab.is-active {
   background: rgba(145, 169, 255, 0.28);
-  color: #f5f7ff;
+  color: var(--c-text);
 }
 
 .player-fj-answer-preview {
@@ -1281,7 +1414,7 @@ button {
   border-radius: 8px;
   overflow: hidden;
   border: 1px solid rgba(145, 169, 255, 0.35);
-  background: #060CE9;
+  background: var(--c-blue);
 }
 
 .sig-pad-canvas {
@@ -1319,7 +1452,7 @@ button {
 
 .sig-pad-clear:not(:disabled):hover {
   background: rgba(145, 169, 255, 0.12);
-  color: #f5f7ff;
+  color: var(--c-text);
 }
 
 .sig-pad-clear:disabled {
@@ -1346,7 +1479,7 @@ button {
   background: rgba(145, 169, 255, 0.1);
   border: 1px solid rgba(145, 169, 255, 0.3);
   border-radius: 8px;
-  color: #f5f7ff;
+  color: var(--c-text);
   font-size: 1rem;
   outline: none;
   transition: border-color 0.2s;
@@ -1378,14 +1511,14 @@ button {
   font-size: 0.85rem;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: #86efac;
+  color: var(--c-positive);
   margin: 0;
 }
 
 .player-fj-locked-amount {
   font-size: 1.4rem;
   font-weight: 800;
-  color: #f5f7ff;
+  color: var(--c-text);
   margin: 0;
 }
 
@@ -1394,13 +1527,13 @@ button {
   font-size: clamp(3rem, 15vw, 5rem);
   font-weight: 900;
   text-align: center;
-  color: #f5f7ff;
+  color: var(--c-text);
   line-height: 1;
   transition: color 0.3s;
 }
 
 .player-fj-timer.is-urgent {
-  color: #f87171;
+  color: var(--c-danger);
   animation: fj-pulse-mobile 0.6s ease-in-out infinite alternate;
 }
 
@@ -1444,8 +1577,8 @@ button {
   letter-spacing: 0.06em;
 }
 
-.player-fj-result.is-correct  .player-fj-result-badge { color: #86efac; }
-.player-fj-result.is-incorrect .player-fj-result-badge { color: #fca5a5; }
+.player-fj-result.is-correct  .player-fj-result-badge { color: var(--c-positive); }
+.player-fj-result.is-incorrect .player-fj-result-badge { color: var(--c-danger-soft); }
 
 .player-fj-result-answer {
   font-size: 0.95rem;
@@ -1460,7 +1593,7 @@ button {
 }
 
 .player-fj-result.is-correct  .player-fj-result-change { color: #4ade80; }
-.player-fj-result.is-incorrect .player-fj-result-change { color: #f87171; }
+.player-fj-result.is-incorrect .player-fj-result-change { color: var(--c-danger); }
 
 .player-fj-result-total {
   font-size: 0.9rem;
@@ -1478,7 +1611,7 @@ button {
 
 .custom-board-btn.is-active {
   opacity: 1;
-  color: #FFD700;
+  color: var(--c-gold);
   border-color: rgba(255, 215, 0, 0.4);
 }
 
@@ -1509,7 +1642,7 @@ button {
   font-size: 1.1rem;
   font-weight: 700;
   margin: 0;
-  color: #FFD700;
+  color: var(--c-gold);
 }
 
 .custom-board-hint {
@@ -1577,7 +1710,7 @@ button {
   flex-direction: column;
   align-items: center;
   gap: 10px;
-  min-height: calc(100vh - 40px);
+  min-height: calc(100dvh - 40px);
   padding: 40px 24px 32px;
   text-align: center;
 }
@@ -1596,7 +1729,7 @@ button {
   font-family: "Barlow Condensed", "Arial Narrow", sans-serif;
   font-size: 0.9rem;
   font-weight: 700;
-  color: #FFD700;
+  color: var(--c-gold);
   letter-spacing: 3px;
   text-transform: uppercase;
   margin-bottom: 4px;
@@ -1693,5 +1826,5 @@ button {
 }
 
 .join-board-url:hover {
-  color: #FFD700;
+  color: var(--c-gold);
 }

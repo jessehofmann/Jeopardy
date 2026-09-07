@@ -1912,5 +1912,1910 @@
         }
       ]
     }
+  },
+  {
+    "id": "the-human-body",
+    "name": "The Human Body",
+    "cluesByValue": {
+      "200": [
+        {
+          "question": "An adult skeleton has this many bones, down from about 270 at birth as some fuse together",
+          "answer": "206"
+        },
+        {
+          "question": "You have 12 pairs of these curved bones protecting your chest cavity",
+          "answer": "Ribs"
+        },
+        {
+          "question": "This largest organ of the body forms a protective outer covering",
+          "answer": "The skin"
+        }
+      ],
+      "400": [
+        {
+          "question": "Blood is filtered by this pair of bean-shaped organs before urine forms",
+          "answer": "The kidneys"
+        },
+        {
+          "question": "This spongy pair of organs takes in oxygen and expels carbon dioxide",
+          "answer": "The lungs"
+        },
+        {
+          "question": "Adults have 32 of these, including four wisdom ones",
+          "answer": "Teeth"
+        }
+      ],
+      "600": [
+        {
+          "question": "The smallest bone in the body, the stapes, sits inside this sensory organ",
+          "answer": "The ear"
+        },
+        {
+          "question": "This gland in the neck regulates metabolism by releasing hormones like thyroxine",
+          "answer": "The thyroid"
+        },
+        {
+          "question": "Roughly 60% of the human body is made up of this simple molecule",
+          "answer": "Water"
+        }
+      ],
+      "800": [
+        {
+          "question": "This J-shaped organ uses hydrochloric acid to begin breaking down food",
+          "answer": "The stomach"
+        },
+        {
+          "question": "The medulla oblongata is part of this organ that controls involuntary functions",
+          "answer": "The brain"
+        },
+        {
+          "question": "This largest internal organ produces bile and filters toxins from blood",
+          "answer": "The liver"
+        }
+      ],
+      "1000": [
+        {
+          "question": "This fluid connective tissue is roughly 55% plasma by volume",
+          "answer": "Blood"
+        },
+        {
+          "question": "The femur, the longest bone in the body, is found in this part of the leg",
+          "answer": "The thigh"
+        },
+        {
+          "question": "Insulin, which regulates blood sugar, is produced by this organ near the stomach",
+          "answer": "The pancreas"
+        }
+      ]
+    }
+  },
+  {
+    "id": "colors",
+    "name": "Colors",
+    "cluesByValue": {
+      "200": [
+        {
+          "question": "Mixing blue and yellow paint produces this color",
+          "answer": "Green"
+        },
+        {
+          "question": "A traffic light tells you to stop when it shows this color",
+          "answer": "Red"
+        },
+        {
+          "question": "Bananas and school buses are both famously this color",
+          "answer": "Yellow"
+        }
+      ],
+      "400": [
+        {
+          "question": "This color sits between red and yellow on the spectrum and shares its name with a fruit",
+          "answer": "Orange"
+        },
+        {
+          "question": "The absence of all visible light appears as this 'color'",
+          "answer": "Black"
+        },
+        {
+          "question": "A clear midday sky over the ocean is typically this color",
+          "answer": "Blue"
+        }
+      ],
+      "600": [
+        {
+          "question": "This pale purple color is named for a flowering shrub",
+          "answer": "Lavender"
+        },
+        {
+          "question": "This bluish shade sits between blue and violet and is the 'I' in the Roy G. Biv mnemonic",
+          "answer": "Indigo"
+        },
+        {
+          "question": "This vivid red shares its name with a Gone with the Wind heroine and the letter Hester Prynne must wear",
+          "answer": "Scarlet"
+        }
+      ],
+      "800": [
+        {
+          "question": "This color, a mix of red and blue, was historically associated with royalty due to dye cost",
+          "answer": "Purple"
+        },
+        {
+          "question": "In much of East Asia this is the color of mourning, while in the West it signifies purity and weddings",
+          "answer": "White"
+        },
+        {
+          "question": "This bright blue-green color is named for a semiprecious stone",
+          "answer": "Turquoise"
+        }
+      ],
+      "1000": [
+        {
+          "question": "This yellowish-brown color shares its name with the capital of Italy's Umbria region and a pigment",
+          "answer": "Burnt umber"
+        },
+        {
+          "question": "Isaac Newton identified seven colors in the visible spectrum, ending with red and this one",
+          "answer": "Violet"
+        },
+        {
+          "question": "This deep blue pigment was once made by grinding lapis lazuli",
+          "answer": "Ultramarine"
+        }
+      ]
+    }
+  },
+  {
+    "id": "fairy-tales",
+    "name": "Fairy Tales",
+    "cluesByValue": {
+      "200": [
+        {
+          "question": "This girl visits her grandmother and encounters a wolf in a red hood",
+          "answer": "Little Red Riding Hood"
+        },
+        {
+          "question": "A pumpkin becomes a coach in this tale of a girl and a glass slipper",
+          "answer": "Cinderella"
+        },
+        {
+          "question": "This wooden puppet's nose grows when he lies",
+          "answer": "Pinocchio"
+        }
+      ],
+      "400": [
+        {
+          "question": "Three of these animals build houses of straw, sticks, and brick",
+          "answer": "The Three Little Pigs"
+        },
+        {
+          "question": "This girl eats porridge and sleeps in a bed belonging to bears",
+          "answer": "Goldilocks"
+        },
+        {
+          "question": "A girl trades her voice for legs in this Hans Christian Andersen tale",
+          "answer": "The Little Mermaid"
+        }
+      ],
+      "600": [
+        {
+          "question": "This tiny girl, no bigger than a thumb, is born from a flower",
+          "answer": "Thumbelina"
+        },
+        {
+          "question": "A miller's daughter must guess the name of this imp to keep her child",
+          "answer": "Rumpelstiltskin"
+        },
+        {
+          "question": "This princess is awakened from a century-long sleep by a kiss",
+          "answer": "Sleeping Beauty"
+        }
+      ],
+      "800": [
+        {
+          "question": "The Brothers Grimm collected German folk tales; their first names were Jacob and this",
+          "answer": "Wilhelm"
+        },
+        {
+          "question": "In this tale, a girl with long golden hair is trapped in a tower",
+          "answer": "Rapunzel"
+        },
+        {
+          "question": "A vain emperor parades in nonexistent finery in this Andersen story",
+          "answer": "The Emperor's New Clothes"
+        }
+      ],
+      "1000": [
+        {
+          "question": "This French author's 1697 collection 'Tales of Mother Goose' included Puss in Boots",
+          "answer": "Charles Perrault"
+        },
+        {
+          "question": "Siblings leave a trail of breadcrumbs and find a witch's candy house in this tale",
+          "answer": "Hansel and Gretel"
+        },
+        {
+          "question": "This Andersen tale follows a mocked waterbird that matures into a swan",
+          "answer": "The Ugly Duckling"
+        }
+      ]
+    }
+  },
+  {
+    "id": "weather",
+    "name": "Weather",
+    "cluesByValue": {
+      "200": [
+        {
+          "question": "This frozen precipitation forms six-sided crystals and blankets the ground white",
+          "answer": "Snow"
+        },
+        {
+          "question": "A flash of light in a storm, followed seconds later by thunder",
+          "answer": "Lightning"
+        },
+        {
+          "question": "This arc of colors appears when sunlight passes through water droplets",
+          "answer": "A rainbow"
+        }
+      ],
+      "400": [
+        {
+          "question": "This violently rotating column of air extends from a thunderstorm to the ground",
+          "answer": "A tornado"
+        },
+        {
+          "question": "Meteorologists measure air pressure with this mercury-based instrument",
+          "answer": "A barometer"
+        },
+        {
+          "question": "This word describes the amount of water vapor in the air",
+          "answer": "Humidity"
+        }
+      ],
+      "600": [
+        {
+          "question": "These fair-weather clouds look like puffy cotton balls with flat bottoms",
+          "answer": "Cumulus clouds"
+        },
+        {
+          "question": "In the Northern Hemisphere, hurricanes rotate in this direction",
+          "answer": "Counterclockwise"
+        },
+        {
+          "question": "This cold season phenomenon coats surfaces in ice when rain freezes on contact",
+          "answer": "Freezing rain (an ice storm)"
+        }
+      ],
+      "800": [
+        {
+          "question": "Atlantic tropical cyclones are called hurricanes; in the western Pacific they are called this",
+          "answer": "Typhoons"
+        },
+        {
+          "question": "This scale, revised in 2007, rates tornado intensity from 0 to 5",
+          "answer": "The Enhanced Fujita scale"
+        },
+        {
+          "question": "This term describes a long period of abnormally low rainfall",
+          "answer": "A drought"
+        }
+      ],
+      "1000": [
+        {
+          "question": "This boundary between two air masses of different temperatures brings changing weather",
+          "answer": "A front"
+        },
+        {
+          "question": "The El Nino pattern involves warming of surface waters in this ocean",
+          "answer": "The Pacific"
+        },
+        {
+          "question": "This layer of the atmosphere contains most weather and ends at the tropopause",
+          "answer": "The troposphere"
+        }
+      ]
+    }
+  },
+  {
+    "id": "dogs",
+    "name": "Dogs",
+    "cluesByValue": {
+      "200": [
+        {
+          "question": "This tiny breed shares its name with a Mexican state",
+          "answer": "The Chihuahua"
+        },
+        {
+          "question": "A dog wags this body part when happy",
+          "answer": "Its tail"
+        },
+        {
+          "question": "Lassie, the famous TV dog, was this herding breed from Scotland",
+          "answer": "A Collie"
+        }
+      ],
+      "400": [
+        {
+          "question": "This spotted breed is the traditional mascot of firehouses",
+          "answer": "The Dalmatian"
+        },
+        {
+          "question": "Golden and Labrador varieties of this gun dog were bred to fetch downed birds for hunters",
+          "answer": "The Retriever"
+        },
+        {
+          "question": "This wrinkly-faced breed's name is French for 'flat-faced'",
+          "answer": "The Pug"
+        }
+      ],
+      "600": [
+        {
+          "question": "This tall, slender breed is the fastest dog and can hit 45 miles per hour",
+          "answer": "The Greyhound"
+        },
+        {
+          "question": "This German breed's name means 'badger dog' and it has a long low body",
+          "answer": "The Dachshund"
+        },
+        {
+          "question": "A group of dogs raised and trained together for hunting is called this",
+          "answer": "A pack"
+        }
+      ],
+      "800": [
+        {
+          "question": "This large Swiss mountain breed traditionally carried a small barrel of brandy for rescues",
+          "answer": "The Saint Bernard"
+        },
+        {
+          "question": "Toto in the 1939 'Wizard of Oz' film was portrayed by a brindle dog of this small Scottish breed",
+          "answer": "A Cairn Terrier"
+        },
+        {
+          "question": "This breed of sled dog is closely associated with the Iditarod race in Alaska",
+          "answer": "The Siberian Husky"
+        }
+      ],
+      "1000": [
+        {
+          "question": "Charles Darwin's dog and a common pointer share this name meaning a large hunting hound",
+          "answer": "A mastiff"
+        },
+        {
+          "question": "This national dog of France is often given elaborate show clips and comes in toy, miniature, and standard sizes",
+          "answer": "The Poodle"
+        },
+        {
+          "question": "The Westminster Kennel Club Dog Show is held annually in this U.S. city",
+          "answer": "New York City"
+        }
+      ]
+    }
+  },
+  {
+    "id": "the-kitchen",
+    "name": "In the Kitchen",
+    "cluesByValue": {
+      "200": [
+        {
+          "question": "You use this utensil with tines to spear food and lift it to your mouth",
+          "answer": "A fork"
+        },
+        {
+          "question": "This appliance keeps food cold, typically running around 37 degrees Fahrenheit",
+          "answer": "The refrigerator"
+        },
+        {
+          "question": "Bread goes into this appliance and pops up browned and crisp",
+          "answer": "A toaster"
+        }
+      ],
+      "400": [
+        {
+          "question": "This flat tool is used to flip pancakes and burgers on a griddle",
+          "answer": "A spatula"
+        },
+        {
+          "question": "This heavy pot with a lid is ideal for slow-cooking stews for hours",
+          "answer": "A Dutch oven"
+        },
+        {
+          "question": "This microwave-safe measurement tool has markings for cups and milliliters",
+          "answer": "A measuring cup"
+        }
+      ],
+      "600": [
+        {
+          "question": "This French term refers to having all ingredients prepped and measured before cooking",
+          "answer": "Mise en place"
+        },
+        {
+          "question": "A chef's knife, a paring knife, and this serrated knife handle most kitchen tasks",
+          "answer": "A bread knife"
+        },
+        {
+          "question": "This spinning tool dries washed lettuce leaves using centrifugal force",
+          "answer": "A salad spinner"
+        }
+      ],
+      "800": [
+        {
+          "question": "This dish, cooked in a shallow pan and finished under a broiler, is a baked egg dish from Italy",
+          "answer": "A frittata"
+        },
+        {
+          "question": "This cooking method uses a small amount of very hot fat over high heat, common in Asian cuisine",
+          "answer": "Stir-frying"
+        },
+        {
+          "question": "The Maillard reaction is the browning of food that also produces this savory taste, the fifth taste",
+          "answer": "Umami"
+        }
+      ],
+      "1000": [
+        {
+          "question": "This kitchen tool, its name from the French for 'to whip', incorporates air into eggs and cream",
+          "answer": "A whisk"
+        },
+        {
+          "question": "Sourdough bread rises using this naturally cultivated mixture of flour and water",
+          "answer": "A starter"
+        },
+        {
+          "question": "This Japanese knife style, its name meaning 'three virtues', is an all-purpose blade",
+          "answer": "The santoku"
+        }
+      ]
+    }
+  },
+  {
+    "id": "cartoons",
+    "name": "Saturday Morning Cartoons",
+    "cluesByValue": {
+      "200": [
+        {
+          "question": "This yellow, sponge-shaped character lives in a pineapple under the sea",
+          "answer": "SpongeBob SquarePants"
+        },
+        {
+          "question": "Fred Flintstone shouts this three-syllable exclamation of joy",
+          "answer": "Yabba dabba doo"
+        },
+        {
+          "question": "This Looney Tunes rabbit asks 'What's up, Doc?'",
+          "answer": "Bugs Bunny"
+        }
+      ],
+      "400": [
+        {
+          "question": "Scooby-Doo travels with four teenagers in this psychedelically painted van",
+          "answer": "The Mystery Machine"
+        },
+        {
+          "question": "This blue speech-bubble-loving forest dwellers are three apples high and led by Papa",
+          "answer": "The Smurfs"
+        },
+        {
+          "question": "Charlie Brown's dog, a beagle with a vivid imagination",
+          "answer": "Snoopy"
+        }
+      ],
+      "600": [
+        {
+          "question": "This crime-fighting canine detective needs a phone booth to change and often muddles his catchphrases",
+          "answer": "Underdog"
+        },
+        {
+          "question": "Tom chases this clever house mouse across decades of MGM shorts",
+          "answer": "Jerry"
+        },
+        {
+          "question": "This bumbling Hanna-Barbera bear of Jellystone Park is 'smarter than the average'",
+          "answer": "Yogi Bear"
+        }
+      ],
+      "800": [
+        {
+          "question": "This Nickelodeon show features a boy genius, his sister Vicky is her babysitter... wait, his fairy godparents grant wishes",
+          "answer": "The Fairly OddParents"
+        },
+        {
+          "question": "Aang is the title character of this animated series about a boy who can bend all four elements",
+          "answer": "Avatar: The Last Airbender"
+        },
+        {
+          "question": "This space-age Hanna-Barbera family had a robot maid named Rosie",
+          "answer": "The Jetsons"
+        }
+      ],
+      "1000": [
+        {
+          "question": "This 1990s MTV duo, created by Mike Judge, snickered on a couch watching music videos",
+          "answer": "Beavis and Butt-Head"
+        },
+        {
+          "question": "Chuck Jones directed this 1953 short 'Duck Amuck', in which an animator torments its star",
+          "answer": "Daffy Duck"
+        },
+        {
+          "question": "In 'Animaniacs', these two lab mice plot nightly to take over the world",
+          "answer": "Pinky and the Brain"
+        }
+      ]
+    }
+  },
+  {
+    "id": "islands",
+    "name": "Islands",
+    "cluesByValue": {
+      "200": [
+        {
+          "question": "Mauna Kea and the active Kilauea volcano both rise from this largest island of its Pacific state",
+          "answer": "The Big Island"
+        },
+        {
+          "question": "The Statue of Liberty stands on Liberty Island in the harbor of this U.S. city",
+          "answer": "New York City"
+        },
+        {
+          "question": "Australia is sometimes called the world's largest island, though it's usually classed as this landmass type",
+          "answer": "A continent"
+        }
+      ],
+      "400": [
+        {
+          "question": "This Mediterranean island south of Italy is the largest in that sea and home to Mount Etna",
+          "answer": "Sicily"
+        },
+        {
+          "question": "Kangaroo Island lies off the coast of this Southern Hemisphere country",
+          "answer": "Australia"
+        },
+        {
+          "question": "This Caribbean nation shares the island of Hispaniola with Haiti",
+          "answer": "The Dominican Republic"
+        }
+      ],
+      "600": [
+        {
+          "question": "This island nation off the southeast coast of Africa is the fourth largest island in the world",
+          "answer": "Madagascar"
+        },
+        {
+          "question": "Easter Island, famous for its stone heads, belongs to this South American country",
+          "answer": "Chile"
+        },
+        {
+          "question": "Home to Jakarta and more than 150 million people, it is the most heavily populated island on Earth",
+          "answer": "Java",
+          "volatile": true
+        }
+      ],
+      "800": [
+        {
+          "question": "Napoleon was first exiled to Elba and later to this remote South Atlantic island",
+          "answer": "Saint Helena"
+        },
+        {
+          "question": "The Galapagos Islands, which shaped Darwin's thinking, are governed by this country",
+          "answer": "Ecuador"
+        },
+        {
+          "question": "Greenland, the world's largest island, is an autonomous territory of this Nordic kingdom",
+          "answer": "Denmark"
+        }
+      ],
+      "1000": [
+        {
+          "question": "This archipelago nation of over 300 islands in the South Pacific was formerly the New Hebrides",
+          "answer": "Vanuatu"
+        },
+        {
+          "question": "Zanzibar, a semi-autonomous archipelago, is part of this East African country",
+          "answer": "Tanzania"
+        },
+        {
+          "question": "Second in size only to Sicily among Mediterranean islands, this rugged land lies west of the Italian mainland",
+          "answer": "Sardinia",
+          "volatile": true
+        }
+      ]
+    }
+  },
+  {
+    "id": "the-olympics",
+    "name": "The Olympic Games",
+    "cluesByValue": {
+      "200": [
+        {
+          "question": "The interlocking Olympic rings number this many, one traditionally said to stand for each inhabited continent",
+          "answer": "Five"
+        },
+        {
+          "question": "Athletes who finish first, second, and third receive medals of gold, silver, and this",
+          "answer": "Bronze"
+        },
+        {
+          "question": "The modern Olympics were revived in 1896 in this Greek capital",
+          "answer": "Athens"
+        }
+      ],
+      "400": [
+        {
+          "question": "This Frenchman, Baron Pierre de Coubertin, founded the modern Olympic movement and this committee",
+          "answer": "The International Olympic Committee"
+        },
+        {
+          "question": "The Games are traditionally staged once per this span, which the Greeks called an Olympiad",
+          "answer": "Every four years"
+        },
+        {
+          "question": "This flame is lit in Olympia, Greece and carried by relay to the host city",
+          "answer": "The Olympic torch (flame)"
+        }
+      ],
+      "600": [
+        {
+          "question": "Jesse Owens won four gold medals at these 1936 Games, embarrassing the Nazi host regime",
+          "answer": "The Berlin Olympics"
+        },
+        {
+          "question": "This event combining swimming, cycling, and running debuted at the 2000 Sydney Games",
+          "answer": "The triathlon"
+        },
+        {
+          "question": "The 1980 Moscow Games were boycotted by the U.S. over the Soviet invasion of this country",
+          "answer": "Afghanistan"
+        }
+      ],
+      "800": [
+        {
+          "question": "Swimmer Michael Phelps holds the record for most career Olympic gold medals with this many",
+          "answer": "23"
+        },
+        {
+          "question": "The 1972 Munich Games were marred by a terrorist attack on athletes from this country",
+          "answer": "Israel"
+        },
+        {
+          "question": "First recorded in 776 BC at a sanctuary of Zeus, this festival was the model Coubertin revived in the 1890s",
+          "answer": "The ancient Olympic Games"
+        }
+      ],
+      "1000": [
+        {
+          "question": "This host city of the 2016 Summer Games was the first in South America to hold them",
+          "answer": "Rio de Janeiro"
+        },
+        {
+          "question": "Nadia Comaneci scored the first perfect 10 in Olympic gymnastics at these 1976 Games",
+          "answer": "The Montreal Olympics"
+        },
+        {
+          "question": "The Paralympic Games are held shortly after the Olympics in the same host city, a tradition since this 1988 host city",
+          "answer": "Seoul"
+        }
+      ]
+    }
+  },
+  {
+    "id": "trees-and-plants",
+    "name": "Trees & Plants",
+    "cluesByValue": {
+      "200": [
+        {
+          "question": "This process lets green plants convert sunlight, water, and carbon dioxide into food",
+          "answer": "Photosynthesis"
+        },
+        {
+          "question": "Acorns are the nuts produced by this common shade tree",
+          "answer": "The oak"
+        },
+        {
+          "question": "This desert plant stores water in its thick stems and is often covered in spines",
+          "answer": "A cactus"
+        }
+      ],
+      "400": [
+        {
+          "question": "Vermont producers tap these trees in late winter and boil about 40 gallons of sap for one gallon of syrup",
+          "answer": "Maple trees"
+        },
+        {
+          "question": "This tall grass with a hollow woody stem grows very fast and feeds pandas",
+          "answer": "Bamboo"
+        },
+        {
+          "question": "The rings visible in a tree's cross-section each represent roughly this span of growth",
+          "answer": "One year"
+        }
+      ],
+      "600": [
+        {
+          "question": "These towering California conifers include the tallest trees on Earth",
+          "answer": "Redwoods"
+        },
+        {
+          "question": "This carnivorous bog plant snaps shut on insects that touch its trigger hairs",
+          "answer": "The Venus flytrap"
+        },
+        {
+          "question": "The waxy protective layer on a leaf's surface that limits water loss is called this",
+          "answer": "The cuticle"
+        }
+      ],
+      "800": [
+        {
+          "question": "This Middle Eastern tree, sacred in many traditions, produces fruit eaten fresh or pressed into oil",
+          "answer": "The olive tree"
+        },
+        {
+          "question": "Bristlecone pines in the White Mountains include Methuselah, nearly 5,000 years old, making them the oldest of these",
+          "answer": "Non-clonal trees (individual trees)"
+        },
+        {
+          "question": "This underground network of fungal threads that trades nutrients with tree roots is called the 'wood wide web' or this",
+          "answer": "Mycorrhizae"
+        }
+      ],
+      "1000": [
+        {
+          "question": "This Australian genus, favored by koalas, contains flammable oils and over 700 species",
+          "answer": "Eucalyptus"
+        },
+        {
+          "question": "Ginkgo biloba is called a living fossil because it is the sole survivor of an order dating back over 200 million years; its leaves have this distinctive shape",
+          "answer": "Fan-shaped"
+        },
+        {
+          "question": "The general term for a plant that completes its life cycle in a single growing season is this",
+          "answer": "An annual"
+        }
+      ]
+    }
+  },
+  {
+    "id": "first-ladies",
+    "name": "First Ladies",
+    "cluesByValue": {
+      "200": [
+        {
+          "question": "This wife of the 44th president championed healthy eating with her 'Let's Move!' campaign",
+          "answer": "Michelle Obama"
+        },
+        {
+          "question": "Jacqueline Kennedy oversaw a famous televised tour restoring the decor of this residence",
+          "answer": "The White House"
+        },
+        {
+          "question": "The longest-serving presidential spouse, from 1933 to 1945, she later chaired the UN Commission on Human Rights",
+          "answer": "Eleanor Roosevelt"
+        }
+      ],
+      "400": [
+        {
+          "question": "This former fashion model and wife of the 45th president focused on the 'Be Best' initiative",
+          "answer": "Melania Trump"
+        },
+        {
+          "question": "Nancy Reagan's anti-drug campaign used this three-word slogan",
+          "answer": "Just Say No"
+        },
+        {
+          "question": "This wife of John Adams urged him to 'Remember the Ladies' in a 1776 letter",
+          "answer": "Abigail Adams"
+        }
+      ],
+      "600": [
+        {
+          "question": "A trained librarian, this wife of George W. Bush promoted literacy and founded a national book festival",
+          "answer": "Laura Bush"
+        },
+        {
+          "question": "After the president's disabling 1919 stroke, this second wife tightly controlled who and what reached his desk",
+          "answer": "Edith Wilson"
+        },
+        {
+          "question": "Lady Bird Johnson led a national campaign for this cause, planting wildflowers along highways",
+          "answer": "Beautification (of America)"
+        }
+      ],
+      "800": [
+        {
+          "question": "Legend credits her with rescuing a Gilbert Stuart portrait of Washington as British troops closed on the capital in 1814",
+          "answer": "Dolley Madison"
+        },
+        {
+          "question": "This wife of Gerald Ford spoke openly about her breast cancer and later founded a namesake addiction clinic",
+          "answer": "Betty Ford"
+        },
+        {
+          "question": "Before marrying Bill, this first lady kept her maiden name Rodham for years and had a legal career in Arkansas",
+          "answer": "Hillary Clinton"
+        }
+      ],
+      "1000": [
+        {
+          "question": "The first presidential spouse to hold a college degree, she barred liquor from mansion functions in the 1870s",
+          "answer": "Lucy Hayes"
+        },
+        {
+          "question": "Frances Folsom married this president in the White House in 1886, becoming the youngest first lady at 21",
+          "answer": "Grover Cleveland"
+        },
+        {
+          "question": "This second wife of Ronald... no: this wife of Warren Harding was nicknamed 'The Duchess' by her husband",
+          "answer": "Florence Harding"
+        }
+      ]
+    }
+  },
+  {
+    "id": "currency",
+    "name": "Money & Currency",
+    "cluesByValue": {
+      "200": [
+        {
+          "question": "The rarely seen U.S. two-dollar bill features this president, author of the Declaration of Independence",
+          "answer": "Thomas Jefferson"
+        },
+        {
+          "question": "This shared currency, launched in 1999, is used by countries like France, Germany, and Spain",
+          "answer": "The euro"
+        },
+        {
+          "question": "There are this many cents in a U.S. quarter",
+          "answer": "25"
+        }
+      ],
+      "400": [
+        {
+          "question": "Japan's currency is called this",
+          "answer": "The yen"
+        },
+        {
+          "question": "Abraham Lincoln appears on the U.S. penny and this denomination of paper bill",
+          "answer": "The five-dollar bill"
+        },
+        {
+          "question": "The United Kingdom kept this currency rather than adopting the euro",
+          "answer": "The pound (sterling)"
+        }
+      ],
+      "600": [
+        {
+          "question": "This precious metal was the basis of the international monetary standard abandoned by the U.S. in 1971",
+          "answer": "Gold"
+        },
+        {
+          "question": "Mexico, several other Latin American nations, and the Philippines all use a currency with this name",
+          "answer": "The peso"
+        },
+        {
+          "question": "The U.S. $100 bill features this bespectacled founding father who never was president",
+          "answer": "Benjamin Franklin"
+        }
+      ],
+      "800": [
+        {
+          "question": "This term describes a rapid, out-of-control rise in prices, famously afflicting 1920s Germany and 2000s Zimbabwe",
+          "answer": "Hyperinflation"
+        },
+        {
+          "question": "India's currency is the rupee; this neighboring country to its northeast uses the ngultrum",
+          "answer": "Bhutan"
+        },
+        {
+          "question": "The world's oldest currency still in use, dating to around 800 AD, is this British unit",
+          "answer": "The pound sterling"
+        }
+      ],
+      "1000": [
+        {
+          "question": "This 17th-century institution, the world's second oldest central bank still operating, sets UK interest rates",
+          "answer": "The Bank of England"
+        },
+        {
+          "question": "Bitcoin, introduced in a 2008 white paper, was created under this pseudonym",
+          "answer": "Satoshi Nakamoto"
+        },
+        {
+          "question": "This 1944 conference in New Hampshire established a postwar monetary order and the IMF",
+          "answer": "Bretton Woods"
+        }
+      ]
+    }
+  },
+  {
+    "id": "landmarks",
+    "name": "World Landmarks",
+    "cluesByValue": {
+      "200": [
+        {
+          "question": "This iron tower, built for an 1889 world's fair, is the symbol of Paris",
+          "answer": "The Eiffel Tower"
+        },
+        {
+          "question": "This white marble mausoleum in Agra was built by an emperor for his late wife",
+          "answer": "The Taj Mahal"
+        },
+        {
+          "question": "Tourists toss coins over a shoulder into this Baroque marvel completed in Rome in 1762",
+          "answer": "The Trevi Fountain"
+        }
+      ],
+      "400": [
+        {
+          "question": "This ancient amphitheater in Rome once hosted gladiatorial contests before crowds of 50,000",
+          "answer": "The Colosseum"
+        },
+        {
+          "question": "These stone figures with elongated ears stand watch on Easter Island",
+          "answer": "The Moai"
+        },
+        {
+          "question": "This defensive structure winds over 13,000 miles across northern China",
+          "answer": "The Great Wall of China"
+        }
+      ],
+      "600": [
+        {
+          "question": "This prehistoric ring of standing stones sits on Salisbury Plain in England",
+          "answer": "Stonehenge"
+        },
+        {
+          "question": "This Incan citadel sits high in the Andes above the Urubamba River in Peru",
+          "answer": "Machu Picchu"
+        },
+        {
+          "question": "Christ the Redeemer overlooks this Brazilian city from atop Corcovado mountain",
+          "answer": "Rio de Janeiro"
+        }
+      ],
+      "800": [
+        {
+          "question": "This rose-red city carved into sandstone cliffs was the capital of the Nabataeans in Jordan",
+          "answer": "Petra"
+        },
+        {
+          "question": "This Cambodian temple complex, the largest religious monument in the world, appears on the national flag",
+          "answer": "Angkor Wat"
+        },
+        {
+          "question": "The only surviving Ancient Wonder of the World is this structure at Giza",
+          "answer": "The Great Pyramid"
+        }
+      ],
+      "1000": [
+        {
+          "question": "This sail-shaped performing arts venue on Bennelong Point was designed by Jorn Utzon",
+          "answer": "The Sydney Opera House"
+        },
+        {
+          "question": "This 2,700-foot skyscraper in Dubai has been the world's tallest building since 2010",
+          "answer": "The Burj Khalifa"
+        },
+        {
+          "question": "This Byzantine church turned mosque turned museum turned mosque again dominates Istanbul's skyline",
+          "answer": "Hagia Sophia"
+        }
+      ]
+    }
+  },
+  {
+    "id": "board-games",
+    "name": "Board Games",
+    "cluesByValue": {
+      "200": [
+        {
+          "question": "In this real-estate trading game, landing on Boardwalk with a hotel can cost a rival $2,000",
+          "answer": "Monopoly"
+        },
+        {
+          "question": "This game of diagonal moves and kinging is played on the same board as chess",
+          "answer": "Checkers"
+        },
+        {
+          "question": "In this word game, tiles are placed on a 15-by-15 grid for points",
+          "answer": "Scrabble"
+        }
+      ],
+      "400": [
+        {
+          "question": "This murder-mystery game asks players to deduce the culprit, weapon, and room",
+          "answer": "Clue"
+        },
+        {
+          "question": "This ancient game from India, played on a checkered board, has a king, queen, and pawns",
+          "answer": "Chess"
+        },
+        {
+          "question": "In this game, players connect colored roads and settlements to earn points and trade sheep and ore",
+          "answer": "Catan"
+        }
+      ],
+      "600": [
+        {
+          "question": "This children's race game to a sweet-themed castle needs no reading and teaches colors",
+          "answer": "Candy Land"
+        },
+        {
+          "question": "This tile-based game originated in China and uses suits of bamboo, circles, and characters",
+          "answer": "Mahjong"
+        },
+        {
+          "question": "In this Milton Bradley game, players draw plastic body parts from a nervous patient without buzzing",
+          "answer": "Operation"
+        }
+      ],
+      "800": [
+        {
+          "question": "This abstract strategy game of black and white stones on a 19-by-19 grid originated in China over 2,500 years ago",
+          "answer": "Go"
+        },
+        {
+          "question": "This game of world conquest divides the map into 42 territories and uses armies and dice",
+          "answer": "Risk"
+        },
+        {
+          "question": "The oldest known board game, found in ancient Ur, is often called this today",
+          "answer": "The Royal Game of Ur (Twenty Squares)"
+        }
+      ],
+      "1000": [
+        {
+          "question": "This 1995 German game of the year, involving wooden meeples claiming roads and cities, is named for a French town",
+          "answer": "Carcassonne"
+        },
+        {
+          "question": "This game of naval combat has players call out grid coordinates hoping to strike an opponent's hidden fleet",
+          "answer": "Battleship"
+        },
+        {
+          "question": "Alan Moon designed this game of claiming railway routes across a map, winner of the 2004 Game of the Year in Germany",
+          "answer": "Ticket to Ride"
+        }
+      ]
+    }
+  },
+  {
+    "id": "the-solar-system",
+    "name": "The Solar System",
+    "cluesByValue": {
+      "200": [
+        {
+          "question": "This star at the center of our system provides the light and heat that sustain life on Earth",
+          "answer": "The Sun"
+        },
+        {
+          "question": "Earth's only natural satellite, it causes the ocean tides",
+          "answer": "The Moon"
+        },
+        {
+          "question": "This red planet, fourth from the sun, is named for the Roman god of war",
+          "answer": "Mars"
+        }
+      ],
+      "400": [
+        {
+          "question": "This largest planet has a Great Red Spot that is a centuries-old storm",
+          "answer": "Jupiter"
+        },
+        {
+          "question": "These small rocky bodies orbit mostly in a belt between Mars and Jupiter",
+          "answer": "Asteroids"
+        },
+        {
+          "question": "This ringed planet is the sixth from the sun and second in size only to Jupiter",
+          "answer": "Saturn",
+          "volatile": true
+        }
+      ],
+      "600": [
+        {
+          "question": "Reclassified in 2006, this distant world is now called a dwarf planet",
+          "answer": "Pluto"
+        },
+        {
+          "question": "This bluish planet, the eighth from the sun, was the first found by mathematical prediction",
+          "answer": "Neptune"
+        },
+        {
+          "question": "A 'shooting star' is really one of these burning up in the atmosphere",
+          "answer": "A meteor"
+        }
+      ],
+      "800": [
+        {
+          "question": "This tilted-on-its-side planet, discovered by William Herschel in 1781, is an ice giant",
+          "answer": "Uranus"
+        },
+        {
+          "question": "This vast region of icy bodies beyond Neptune is home to Pluto and Eris",
+          "answer": "The Kuiper Belt"
+        },
+        {
+          "question": "This closest planet to the sun has virtually no atmosphere and extreme temperature swings",
+          "answer": "Mercury"
+        }
+      ],
+      "1000": [
+        {
+          "question": "This spherical shell of icy objects, far beyond the planets, is thought to be the source of long-period comets",
+          "answer": "The Oort Cloud"
+        },
+        {
+          "question": "Jupiter's four largest moons were first observed in 1610 and bear this astronomer's name",
+          "answer": "Galileo"
+        },
+        {
+          "question": "This term describes a moon that always shows the same face to its planet, like ours does",
+          "answer": "Tidal locking"
+        }
+      ]
+    }
+  },
+  {
+    "id": "shakespeare",
+    "name": "Shakespeare",
+    "cluesByValue": {
+      "200": [
+        {
+          "question": "This 'star-crossed lovers' tragedy is set in Verona and involves feuding families",
+          "answer": "Romeo and Juliet"
+        },
+        {
+          "question": "This Danish prince ponders 'To be or not to be'",
+          "answer": "Hamlet"
+        },
+        {
+          "question": "Shakespeare was born and died in this English market town on the Avon",
+          "answer": "Stratford-upon-Avon"
+        }
+      ],
+      "400": [
+        {
+          "question": "Three witches greet a Scottish general with prophecies in this 'cursed' tragedy",
+          "answer": "Macbeth"
+        },
+        {
+          "question": "This comedy features the mischievous fairy Puck and a weaver named Bottom given a donkey's head",
+          "answer": "A Midsummer Night's Dream"
+        },
+        {
+          "question": "This aging king divides his kingdom among his daughters with disastrous results",
+          "answer": "King Lear"
+        }
+      ],
+      "600": [
+        {
+          "question": "Shakespeare's plays were gathered in 1623 into a single collected volume now known by this name",
+          "answer": "The First Folio"
+        },
+        {
+          "question": "This Moorish general of Venice is manipulated into jealousy by his ensign Iago",
+          "answer": "Othello"
+        },
+        {
+          "question": "This Roman play depicts the assassination of a dictator on the Ides of March",
+          "answer": "Julius Caesar"
+        }
+      ],
+      "800": [
+        {
+          "question": "Shakespeare's acting company built this famous open-air playhouse on London's South Bank in 1599",
+          "answer": "The Globe Theatre"
+        },
+        {
+          "question": "In this late romance, the sorcerer Prospero raises a storm to strand his enemies on an island",
+          "answer": "The Tempest"
+        },
+        {
+          "question": "This 154-poem sequence includes 'Shall I compare thee to a summer's day'",
+          "answer": "The Sonnets"
+        }
+      ],
+      "1000": [
+        {
+          "question": "Shakespeare left his wife his 'second-best' one of these in his will",
+          "answer": "Bed"
+        },
+        {
+          "question": "This 'problem play' about the siege of Troy is one of Shakespeare's most cynical works",
+          "answer": "Troilus and Cressida"
+        },
+        {
+          "question": "This early farce about two sets of identical twins separated in a shipwreck is Shakespeare's shortest play",
+          "answer": "The Comedy of Errors"
+        }
+      ]
+    }
+  },
+  {
+    "id": "nursery-rhymes",
+    "name": "Nursery Rhymes",
+    "cluesByValue": {
+      "200": [
+        {
+          "question": "This character sat on a wall and had a great fall that all the king's horses couldn't fix",
+          "answer": "Humpty Dumpty"
+        },
+        {
+          "question": "This little girl lost her sheep and didn't know where to find them",
+          "answer": "Little Bo-Peep"
+        },
+        {
+          "question": "Jack went up the hill with Jill, then fell down and broke this body part, per the rhyme",
+          "answer": "His crown (his head)"
+        }
+      ],
+      "400": [
+        {
+          "question": "Washed out of the waterspout by rain, this tiny climber dries in the sun and goes up again",
+          "answer": "The Itsy Bitsy Spider"
+        },
+        {
+          "question": "This blackbird-filled dish was 'set before the king' in a rhyme about sixpence and rye",
+          "answer": "A pie (four and twenty blackbirds baked in a pie)"
+        },
+        {
+          "question": "Old Mother Hubbard went to this piece of furniture to fetch her poor dog a bone",
+          "answer": "The cupboard"
+        }
+      ],
+      "600": [
+        {
+          "question": "A rhyme tells of this merry old monarch who 'called for his pipe and called for his bowl and called for his fiddlers three'",
+          "answer": "Old King Cole"
+        },
+        {
+          "question": "In one rhyme, this animal 'jumped over the moon' while a dish ran away with a spoon",
+          "answer": "The cow"
+        },
+        {
+          "question": "Wee Willie Winkie runs through the town in his nightgown checking that children are doing this",
+          "answer": "Sleeping (in bed)"
+        }
+      ],
+      "800": [
+        {
+          "question": "This rhyme, 'Ring a Ring o' Roses', is sometimes wrongly said to be about this medieval epidemic",
+          "answer": "The Black Death (the plague)"
+        },
+        {
+          "question": "Georgie Porgie did this to the girls and made them cry, then ran away when the boys came out to play",
+          "answer": "Kissed them"
+        },
+        {
+          "question": "In a rhyme later borrowed by Lewis Carroll, this royal figure 'made some tarts all on a summer's day' before the knave stole them",
+          "answer": "The Queen of Hearts"
+        }
+      ],
+      "1000": [
+        {
+          "question": "Many classic English nursery rhymes were gathered in an 18th-century collection credited to this fictional goose",
+          "answer": "Mother Goose"
+        },
+        {
+          "question": "He 'had ten thousand men' and marched them 'up to the top of the hill and marched them down again'",
+          "answer": "The Grand Old Duke of York"
+        },
+        {
+          "question": "In 'Sing a Song of Sixpence', a maid in the garden has her nose snipped off by one of these birds",
+          "answer": "A blackbird"
+        }
+      ]
+    }
+  },
+  {
+    "id": "the-bible",
+    "name": "The Bible",
+    "cluesByValue": {
+      "200": [
+        {
+          "question": "According to Genesis, God created the world in this many days, then rested",
+          "answer": "Six"
+        },
+        {
+          "question": "This man built an ark to survive a great flood, taking animals two by two",
+          "answer": "Noah"
+        },
+        {
+          "question": "The first two humans in the Garden of Eden were Adam and this woman",
+          "answer": "Eve"
+        }
+      ],
+      "400": [
+        {
+          "question": "This shepherd boy killed the giant Goliath with a sling and later became king of Israel",
+          "answer": "David"
+        },
+        {
+          "question": "Moses received the Ten Commandments from God atop this peak after leading his people out of Egypt",
+          "answer": "Mount Sinai"
+        },
+        {
+          "question": "This first book of the Bible tells of creation and the patriarchs",
+          "answer": "Genesis"
+        }
+      ],
+      "600": [
+        {
+          "question": "This strong man's power lay in his uncut hair until Delilah betrayed him",
+          "answer": "Samson"
+        },
+        {
+          "question": "This wife of Ahab is a byword for a scheming, wicked woman",
+          "answer": "Jezebel"
+        },
+        {
+          "question": "Jesus delivered a famous sermon from this landform, including the Beatitudes",
+          "answer": "The Mount (the Sermon on the Mount)"
+        }
+      ],
+      "800": [
+        {
+          "question": "This prophet was swallowed by a great fish after fleeing God's command to preach in Nineveh",
+          "answer": "Jonah"
+        },
+        {
+          "question": "This patient man of Uz lost everything in a test of his faith, described in a book bearing his name",
+          "answer": "Job"
+        },
+        {
+          "question": "The last book of the Christian Bible, filled with apocalyptic visions, bears this name",
+          "answer": "Revelation"
+        }
+      ],
+      "1000": [
+        {
+          "question": "This tax collector became an apostle and is traditionally credited with the first Gospel",
+          "answer": "Matthew"
+        },
+        {
+          "question": "According to Genesis, humanity's attempt to build a structure reaching heaven led God to scatter people and confuse their speech",
+          "answer": "The Tower of Babel"
+        },
+        {
+          "question": "This King James phrase for a scapegoat animal sent into the wilderness on the Day of Atonement is now a term for a demon",
+          "answer": "Azazel"
+        }
+      ]
+    }
+  },
+  {
+    "id": "cats",
+    "name": "Cats",
+    "cluesByValue": {
+      "200": [
+        {
+          "question": "A cat makes this rumbling sound, usually a sign of contentment",
+          "answer": "Purring"
+        },
+        {
+          "question": "This cartoon cat, created by Jim Davis, loves lasagna and hates Mondays",
+          "answer": "Garfield"
+        },
+        {
+          "question": "A group of lions is called this, unlike most other cats",
+          "answer": "A pride"
+        }
+      ],
+      "400": [
+        {
+          "question": "This tailless cat breed originated on a British island in the Irish Sea",
+          "answer": "The Manx"
+        },
+        {
+          "question": "Cats have a reflective layer behind the retina, causing this glowing effect in photos",
+          "answer": "Eyeshine"
+        },
+        {
+          "question": "This fluffy long-haired breed is named for a region of Iran",
+          "answer": "The Persian"
+        }
+      ],
+      "600": [
+        {
+          "question": "This large tufted-eared wild cat of northern forests is the state animal of no U.S. state but roams Canada widely",
+          "answer": "The lynx"
+        },
+        {
+          "question": "A cat's rough tongue is covered in tiny backward-facing spines made of this same material as fingernails",
+          "answer": "Keratin"
+        },
+        {
+          "question": "This herb sends about two-thirds of cats into a temporary state of blissful frenzy",
+          "answer": "Catnip"
+        }
+      ],
+      "800": [
+        {
+          "question": "This spotted breed was developed to resemble a wild ocelot or leopard but with a domestic temperament",
+          "answer": "The Bengal"
+        },
+        {
+          "question": "Ancient Egyptians associated cats with this feline-headed goddess of home and fertility",
+          "answer": "Bastet"
+        },
+        {
+          "question": "This is the term for a cat that has both male and female coloring due to genetics, almost always resulting in a sterile male",
+          "answer": "A tortoiseshell (a calico)"
+        }
+      ],
+      "1000": [
+        {
+          "question": "This heaviest of the domestic cat breeds, from a northeastern U.S. state, can exceed 20 pounds",
+          "answer": "The Maine Coon"
+        },
+        {
+          "question": "This 1939 T.S. Eliot poetry book about felines became the basis of a long-running Andrew Lloyd Webber musical",
+          "answer": "Old Possum's Book of Practical Cats"
+        },
+        {
+          "question": "A cat's ability to right itself in mid-air and land on its feet is governed by this sense organ system in the inner ear",
+          "answer": "The vestibular system"
+        }
+      ]
+    }
+  },
+  {
+    "id": "transportation",
+    "name": "Getting Around",
+    "cluesByValue": {
+      "200": [
+        {
+          "question": "This two-wheeled human-powered vehicle has pedals, a chain, and handlebars",
+          "answer": "A bicycle"
+        },
+        {
+          "question": "Passengers board this aircraft at a gate and stow luggage in overhead bins",
+          "answer": "An airplane"
+        },
+        {
+          "question": "In cities, people hail one of these yellow cars and pay by the meter",
+          "answer": "A taxi"
+        }
+      ],
+      "400": [
+        {
+          "question": "This narrow boat is propelled through Venice's canals by a standing oarsman",
+          "answer": "A gondola"
+        },
+        {
+          "question": "The Wright brothers made the first powered flight in 1903 at this North Carolina site",
+          "answer": "Kitty Hawk"
+        },
+        {
+          "question": "This vehicle runs on rails and can carry hundreds of passengers or tons of freight between cities",
+          "answer": "A train"
+        }
+      ],
+      "600": [
+        {
+          "question": "Henry Ford's moving version of this manufacturing method made the Model T affordable",
+          "answer": "The assembly line"
+        },
+        {
+          "question": "This vehicle uses a large envelope of hot air or helium to rise; the first crewed flight was in 1783 in France",
+          "answer": "A balloon"
+        },
+        {
+          "question": "This canal, opened in 1914, cut thousands of miles off the sea voyage between the Atlantic and Pacific",
+          "answer": "The Panama Canal"
+        }
+      ],
+      "800": [
+        {
+          "question": "This German engineer's name became synonymous with a compression-ignition engine patented in 1892",
+          "answer": "Rudolf Diesel"
+        },
+        {
+          "question": "Japan's high-speed rail network, launched in 1964, is popularly called this 'bullet' name",
+          "answer": "The Shinkansen"
+        },
+        {
+          "question": "This form of transport uses magnetic levitation to float a train above its guideway, eliminating rolling friction",
+          "answer": "Maglev"
+        }
+      ],
+      "1000": [
+        {
+          "question": "This first transcontinental railroad in the U.S. was completed in 1869 with a golden spike at Promontory, Utah",
+          "answer": "The Union Pacific and Central Pacific (the First Transcontinental Railroad)"
+        },
+        {
+          "question": "The Concorde, retired in 2003, flew at twice this speed, expressed as a ratio named for an Austrian physicist",
+          "answer": "Mach (twice the speed of sound, Mach 2)"
+        },
+        {
+          "question": "Opened in 1863 as the world's first subterranean passenger railway, this network is nicknamed 'the Tube'",
+          "answer": "The London Underground"
+        }
+      ]
+    }
+  },
+  {
+    "id": "superheroes",
+    "name": "Superheroes",
+    "cluesByValue": {
+      "200": [
+        {
+          "question": "This last son of Krypton was raised in Smallville as Clark Kent",
+          "answer": "Superman"
+        },
+        {
+          "question": "Bitten by a radioactive arachnid, this teenager shoots webs and fights crime in New York",
+          "answer": "Spider-Man"
+        },
+        {
+          "question": "This billionaire Bruce Wayne fights Gotham crime dressed as a nocturnal flying mammal",
+          "answer": "Batman"
+        }
+      ],
+      "400": [
+        {
+          "question": "This Amazon princess wields a Lasso of Truth and deflects bullets with her bracelets",
+          "answer": "Wonder Woman"
+        },
+        {
+          "question": "Exposure to gamma radiation turns scientist Bruce Banner into this green rage monster",
+          "answer": "The Hulk"
+        },
+        {
+          "question": "This Marvel team includes Iron Man, Captain America, and Thor and 'assembles' against threats",
+          "answer": "The Avengers"
+        }
+      ],
+      "600": [
+        {
+          "question": "This Wakandan king wears a vibranium suit and was played on film by Chadwick Boseman",
+          "answer": "Black Panther"
+        },
+        {
+          "question": "This mutant team led by Professor X includes Wolverine, Storm, and Cyclops",
+          "answer": "The X-Men"
+        },
+        {
+          "question": "This scarlet-clad archer of the Green Arrow's world... actually this fast hero can run faster than light and is secretly Barry Allen",
+          "answer": "The Flash"
+        }
+      ],
+      "800": [
+        {
+          "question": "This artist co-created Spider-Man and Doctor Strange with Stan Lee and had a distinctive 'crackle' energy style",
+          "answer": "Steve Ditko"
+        },
+        {
+          "question": "This antihero mercenary, known for breaking the fourth wall, was played by Ryan Reynolds",
+          "answer": "Deadpool"
+        },
+        {
+          "question": "DC's trinity of Superman, Batman, and Wonder Woman are all founding members of this team",
+          "answer": "The Justice League"
+        }
+      ],
+      "1000": [
+        {
+          "question": "This publisher, home to the X-Men and Fantastic Four, was called Timely Comics when it began in 1939",
+          "answer": "Marvel Comics"
+        },
+        {
+          "question": "The first superhero to headline his own comic book, debuting in 1936, was this masked pulp crime-fighter with two guns",
+          "answer": "The Phantom"
+        },
+        {
+          "question": "Featuring Superman's debut, this 1938 issue is the most sought-after comic book, with graded copies selling for millions",
+          "answer": "Action Comics No. 1",
+          "volatile": true
+        }
+      ]
+    }
+  },
+  {
+    "id": "fruits-and-vegetables",
+    "name": "Fruits & Vegetables",
+    "cluesByValue": {
+      "200": [
+        {
+          "question": "This orange root vegetable is famously good for your eyesight and loved by rabbits",
+          "answer": "The carrot"
+        },
+        {
+          "question": "This yellow tropical fruit grows in bunches called hands and is peeled before eating",
+          "answer": "The banana"
+        },
+        {
+          "question": "Popeye gained strength by eating cans of this leafy green",
+          "answer": "Spinach"
+        }
+      ],
+      "400": [
+        {
+          "question": "Botanically a berry, this red or green salad 'vegetable' is over 90 percent water",
+          "answer": "The tomato"
+        },
+        {
+          "question": "This large green-skinned melon has sweet red flesh dotted with black seeds",
+          "answer": "The watermelon"
+        },
+        {
+          "question": "This bulb vegetable can make you cry when you cut it, due to a sulfur compound",
+          "answer": "The onion"
+        }
+      ],
+      "600": [
+        {
+          "question": "This tree fruit, high in monounsaturated fat, is the key ingredient in guacamole",
+          "answer": "The avocado"
+        },
+        {
+          "question": "This cruciferous vegetable comes in green and purple varieties and looks like a small tree",
+          "answer": "Broccoli"
+        },
+        {
+          "question": "This stalk vegetable is often stewed with sugar into a pie filling, though its leaves are toxic",
+          "answer": "Rhubarb"
+        }
+      ],
+      "800": [
+        {
+          "question": "This spiky tropical fruit is not related to either of the two foods in its English name",
+          "answer": "The pineapple"
+        },
+        {
+          "question": "This ancient grain, a staple in the Andes, is technically the seed of a plant related to spinach",
+          "answer": "Quinoa"
+        },
+        {
+          "question": "This citrus fruit, a cross of the pomelo and the orange, is named for how it grows in clusters",
+          "answer": "The grapefruit"
+        }
+      ],
+      "1000": [
+        {
+          "question": "This large brown-skinned tropical fruit with soft, sweet orange flesh, a type of 'sapote', flavors many Mexican milkshakes",
+          "answer": "The mamey"
+        },
+        {
+          "question": "This purple root vegetable stains everything it touches and was bred by the Victorians for its sweet flesh; borscht is made from it",
+          "answer": "The beet"
+        },
+        {
+          "question": "A knobby, warty green gourd with a sharply astringent taste, common in Okinawan champuru and Indian curries",
+          "answer": "The bitter melon"
+        }
+      ]
+    }
+  },
+  {
+    "id": "tv-sitcoms",
+    "name": "TV Sitcoms",
+    "cluesByValue": {
+      "200": [
+        {
+          "question": "Ross, Rachel, Monica, Chandler, Joey, and Phoebe hang out at Central Perk in this 1994-2004 NBC hit",
+          "answer": "Friends"
+        },
+        {
+          "question": "This 'show about nothing' starred a comedian playing a version of himself alongside George, Elaine, and Kramer",
+          "answer": "Seinfeld"
+        },
+        {
+          "question": "Homer, Marge, Bart, Lisa, and Maggie are the animated family in this long-running Fox series",
+          "answer": "The Simpsons"
+        }
+      ],
+      "400": [
+        {
+          "question": "This Boston bar 'where everybody knows your name' was the setting of an NBC hit from 1982 to 1993",
+          "answer": "Cheers"
+        },
+        {
+          "question": "Michael Scott is the cringe-inducing regional manager of a paper company in the Scranton branch on this mockumentary",
+          "answer": "The Office"
+        },
+        {
+          "question": "This CBS show followed Sheldon, Leonard, and their physicist friends and a waitress neighbor named Penny",
+          "answer": "The Big Bang Theory"
+        }
+      ],
+      "600": [
+        {
+          "question": "This 1970s CBS series set at a Korean War field hospital aired a two-and-a-half-hour finale in 1983 seen by over 100 million viewers",
+          "answer": "M*A*S*H",
+          "volatile": true
+        },
+        {
+          "question": "Larry David co-created 'Seinfeld' and then starred as an exaggerated version of himself in this HBO series",
+          "answer": "Curb Your Enthusiasm"
+        },
+        {
+          "question": "This ABC family sitcom starred a stand-up comedian as an obstetrician heading a Brooklyn household of five kids",
+          "answer": "The Cosby Show"
+        }
+      ],
+      "800": [
+        {
+          "question": "This Dick Van Dyke vehicle of the 1960s followed a TV comedy writer at home in New Rochelle and at work",
+          "answer": "The Dick Van Dyke Show"
+        },
+        {
+          "question": "This British sitcom set in a Torquay hotel starred John Cleese as a rude, flustered proprietor",
+          "answer": "Fawlty Towers"
+        },
+        {
+          "question": "This NBC series about a Pittsburgh cab company introduced Danny DeVito as the dispatcher Louie De Palma",
+          "answer": "Taxi"
+        }
+      ],
+      "1000": [
+        {
+          "question": "This 1950s sitcom pioneered the multi-camera film format and the rerun, and its star's real-life pregnancy was written in",
+          "answer": "I Love Lucy"
+        },
+        {
+          "question": "Tina Fey created and starred in this NBC show about the head writer of a live sketch program, playing off Alec Baldwin",
+          "answer": "30 Rock"
+        },
+        {
+          "question": "This Norman Lear sitcom about a Queens bigot broke ground on race and politics starting in 1971",
+          "answer": "All in the Family"
+        }
+      ]
+    }
+  },
+  {
+    "id": "flags",
+    "name": "Flags of the World",
+    "cluesByValue": {
+      "200": [
+        {
+          "question": "The U.S. flag has 50 stars and this many stripes",
+          "answer": "13"
+        },
+        {
+          "question": "This country's flag is a red circle on a white field, symbolizing the rising sun",
+          "answer": "Japan"
+        },
+        {
+          "question": "The flag of this northern neighbor of the U.S. features a red maple leaf",
+          "answer": "Canada"
+        }
+      ],
+      "400": [
+        {
+          "question": "This Scandinavian country's flag, the oldest in continuous use, is a white cross on red",
+          "answer": "Denmark"
+        },
+        {
+          "question": "The only national flag that is not rectangular belongs to this Himalayan country and is two stacked pennants",
+          "answer": "Nepal"
+        },
+        {
+          "question": "This country's green flag with a sword and Arabic script for the shahada is one of only a few with writing",
+          "answer": "Saudi Arabia"
+        }
+      ],
+      "600": [
+        {
+          "question": "This African country's flag has a green, yellow, and red horizontal design with a blue disc and star, the model for many others",
+          "answer": "Ethiopia"
+        },
+        {
+          "question": "The Union Jack appears in the canton of the flags of Australia, New Zealand, and this Pacific island nation",
+          "answer": "Fiji"
+        },
+        {
+          "question": "This South American nation's yellow-blue-red flag is nearly identical to Ecuador's and Venezuela's, all legacies of Simon Bolivar's union",
+          "answer": "Colombia"
+        }
+      ],
+      "800": [
+        {
+          "question": "This country's flag features a golden double-headed eagle on red, a Byzantine-derived symbol",
+          "answer": "Albania"
+        },
+        {
+          "question": "The maple-leaf-like emblem, a cedar tree, appears on the flag of this Middle Eastern country",
+          "answer": "Lebanon"
+        },
+        {
+          "question": "This landlocked African country flies the only current national flag with a firearm on it",
+          "answer": "Mozambique"
+        }
+      ],
+      "1000": [
+        {
+          "question": "The study of flags is called this, from the Latin for a Roman cavalry standard",
+          "answer": "Vexillology"
+        },
+        {
+          "question": "Adopted in 1994, this nation's six-band flag with a green Y-shape marked the end of apartheid",
+          "answer": "South Africa"
+        },
+        {
+          "question": "Paraguay's flag is unusual for having different emblems on this feature",
+          "answer": "The two sides (obverse and reverse)"
+        }
+      ]
+    }
+  },
+  {
+    "id": "candy",
+    "name": "Sweets & Candy",
+    "cluesByValue": {
+      "200": [
+        {
+          "question": "These small candy-coated chocolates 'melt in your mouth, not in your hand'",
+          "answer": "M&M's"
+        },
+        {
+          "question": "This sticky treat is made by pulling and folding heated sugar, a boardwalk staple in Atlantic City",
+          "answer": "Taffy (saltwater taffy)"
+        },
+        {
+          "question": "A candy on a stick, this treat is also the name for a medical exam tongue depressor's cousin",
+          "answer": "A lollipop"
+        }
+      ],
+      "400": [
+        {
+          "question": "This foil-wrapped teardrop of milk chocolate, first sold in 1907, is topped with a little paper plume",
+          "answer": "The Hershey's Kiss"
+        },
+        {
+          "question": "These fruit-flavored gelatin bears were invented in 1920s Germany by Hans Riegel",
+          "answer": "Gummi bears"
+        },
+        {
+          "question": "This red-and-white striped peppermint stick is bent into a hook for hanging on a Christmas tree",
+          "answer": "The candy cane"
+        }
+      ],
+      "600": [
+        {
+          "question": "This nougat, caramel, and peanut bar is named for a horse-racing event and the family that made it",
+          "answer": "Snickers"
+        },
+        {
+          "question": "This spun-sugar carnival treat is called 'fairy floss' in Australia",
+          "answer": "Cotton candy"
+        },
+        {
+          "question": "These chalky candy hearts printed with short phrases appear every February",
+          "answer": "Conversation hearts (Sweethearts)"
+        }
+      ],
+      "800": [
+        {
+          "question": "This British-born confection of chocolate-covered caramel and shortbread shares its name with a Scottish tartan pattern",
+          "answer": "Millionaire's shortbread (Twix, accept either)"
+        },
+        {
+          "question": "Turkish delight, the sweet that tempts Edmund in a Narnia book, is traditionally dusted with this white powder",
+          "answer": "Powdered sugar (confectioners' sugar)"
+        },
+        {
+          "question": "This hard candy's name comes from the French for 'burnt sugar' and describes a topping torched on creme brulee",
+          "answer": "Caramel"
+        }
+      ],
+      "1000": [
+        {
+          "question": "This chewy caramel candy in a black-and-orange wrapper has been made by Tootsie Roll since 1914",
+          "answer": "Mary Jane"
+        },
+        {
+          "question": "This aerated chocolate bar, full of bubbles, was introduced by Rowntree's in 1935",
+          "answer": "The Aero bar"
+        },
+        {
+          "question": "The Aztecs made an unsweetened bitter drink from the beans of this tree, the source of all chocolate",
+          "answer": "The cacao tree"
+        }
+      ]
+    }
   }
 ]

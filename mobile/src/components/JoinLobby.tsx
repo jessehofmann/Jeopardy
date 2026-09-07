@@ -1,5 +1,6 @@
 import { useState } from "react";
 import SignaturePad from "./SignaturePad";
+import { BOARD_URL } from "../config";
 
 interface JoinLobbyProps {
   defaultRoomCode: string;
@@ -22,7 +23,7 @@ const JoinLobby = ({ defaultRoomCode, onJoinAsHost, onJoinRoom }: JoinLobbyProps
           <h2>Enter Room</h2>
           <p>Enter the room code and your name, then sign to join.</p>
           <div className="join-board-link">
-            Board: <a href="https://jeopardy-main.vercel.app" target="_blank" rel="noopener noreferrer" className="join-board-url">jeopardy-main.vercel.app</a>
+            Board: <a href={BOARD_URL.startsWith("http") ? BOARD_URL : `https://${BOARD_URL}`} target="_blank" rel="noopener noreferrer" className="join-board-url">{BOARD_URL}</a>
           </div>
         </div>
 

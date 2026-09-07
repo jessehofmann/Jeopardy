@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { randomRoomCode } from "../config";
 
 interface MainMenuProps {
   onStartGame: (roomCode: string) => void;
@@ -12,7 +13,7 @@ interface MainMenuProps {
 }
 
 const MainMenu: React.FC<MainMenuProps> = ({ onStartGame, onRejoinGame, onHowToPlay, onCustomBoard, pendingCustomBoardName, isStartingGame, startGameError, apiBase }) => {
-  const [roomCode, setRoomCode] = useState("");
+  const [roomCode, setRoomCode] = useState(randomRoomCode);
   const [roomExists, setRoomExists] = useState(false);
   const normalizedRoomCode = roomCode.toUpperCase().replace(/[^A-Z0-9]/g, "").slice(0, 4);
   const canAct = normalizedRoomCode.length === 4 && !isStartingGame;
@@ -40,16 +41,34 @@ const MainMenu: React.FC<MainMenuProps> = ({ onStartGame, onRejoinGame, onHowToP
       </div>
       <div className="menu-room-panel">
         <label className="menu-room-label" htmlFor="menu-room-code">
-          Room Code Required For New Game
+          {isRejoin ? "Rejoin this room" : "Your room code — players use it to join"}
         </label>
-        <input
-          id="menu-room-code"
-          className="menu-room-input"
-          value={normalizedRoomCode}
-          onChange={(event) => setRoomCode(event.target.value)}
-          placeholder="ABCD"
-          maxLength={4}
-        />
+        <div className="menu-room-input-row">
+          <input
+            id="menu-room-code"
+            className="menu-room-input"
+            value={normalizedRoomCode}
+            onChange={(event) => setRoomCode(event.target.value)}
+            placeholder="ABCD"
+            maxLength={4}
+            aria-describedby="menu-room-hint"
+          />
+          {!isRejoin && (
+            <button
+              type="button"
+              className="menu-room-shuffle"
+              onClick={() => setRoomCode(randomRoomCode())}
+              aria-label="Pick a new random room code"
+            >
+              ⟳
+            </button>
+          )}
+        </div>
+        <p id="menu-room-hint" className="menu-room-hint">
+          {isRejoin
+            ? "A game with this code is already running."
+            : "Pre-filled for you — keep it or type your own."}
+        </p>
         {startGameError && <div className="menu-room-status is-error">{startGameError}</div>}
         {isStartingGame && <div className="menu-room-status">Starting room...</div>}
       </div>

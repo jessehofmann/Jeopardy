@@ -6,6 +6,7 @@ import HowToPlay from "./pages/HowToPlay";
 import CustomBoardPage from "./pages/CustomBoardPage";
 import type { RoomState } from "./types";
 import { audio } from "./audio";
+import Icon from "./components/Icon";
 import "./styles/main.css";
 
 type Page = "menu" | "lobby" | "game" | "customboard";
@@ -20,8 +21,8 @@ function getRecentClueHistory() {
 
     const parsed = JSON.parse(raw);
     return {
-      round1: Array.isArray(parsed?.round1) ? parsed.round1.map((id) => String(id)) : [],
-      round2: Array.isArray(parsed?.round2) ? parsed.round2.map((id) => String(id)) : [],
+      round1: Array.isArray(parsed?.round1) ? parsed.round1.map((id: unknown) => String(id)) : [],
+      round2: Array.isArray(parsed?.round2) ? parsed.round2.map((id: unknown) => String(id)) : [],
     };
   } catch {
     return { round1: [] as string[], round2: [] as string[] };
@@ -280,24 +281,28 @@ const App: React.FC = () => {
           <button
             className={`top-ctrl-btn${muted ? " is-muted" : ""}`}
             onClick={handleToggleMute}
-            title={muted ? "Unmute" : "Mute"}
+            aria-label={muted ? "Unmute" : "Mute"}
+            aria-pressed={muted}
           >
-            {muted ? "🔇" : "🔊"}
+            <Icon name={muted ? "volume-off" : "volume"} />
           </button>
           <button
             className={`top-ctrl-btn${isFullscreen ? " is-active" : ""}`}
             onClick={handleToggleFullscreen}
-            title={isFullscreen ? "Exit Fullscreen" : "Fullscreen"}
+            aria-label={isFullscreen ? "Exit fullscreen" : "Enter fullscreen"}
+            aria-pressed={isFullscreen}
           >
-            ⤢
+            <Icon name={isFullscreen ? "fullscreen-exit" : "fullscreen"} />
           </button>
         </div>
       )}
       {!audioUnlocked && (
-        <div className="audio-unlock-overlay" onClick={handleUnlockAudio}>
+        <div className="audio-unlock-overlay">
           <div className="audio-unlock-content">
             <img className="audio-unlock-logo" src="/assets/images/JeopardyLogo.png" alt="Jeopardy!" />
-            <button className="audio-unlock-button">CLICK TO START</button>
+            <button className="audio-unlock-button" onClick={handleUnlockAudio} autoFocus>
+              CLICK TO START
+            </button>
           </div>
         </div>
       )}

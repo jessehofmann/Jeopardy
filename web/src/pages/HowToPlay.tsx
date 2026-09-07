@@ -1,22 +1,43 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 
 interface HowToPlayProps {
   onClose: () => void;
 }
 
 const HowToPlay: React.FC<HowToPlayProps> = ({ onClose }) => {
+  const modalRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const prev = document.activeElement as HTMLElement | null;
+    modalRef.current?.focus();
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && onClose();
+    document.addEventListener("keydown", onKey);
+    return () => {
+      document.removeEventListener("keydown", onKey);
+      prev?.focus?.();
+    };
+  }, [onClose]);
+
   return (
     <div className="htp-overlay" onClick={onClose}>
-      <div className="htp-modal" onClick={(e) => e.stopPropagation()}>
-        <button className="htp-close-btn" onClick={onClose}>✕</button>
-        <h1 className="htp-title">HOW TO PLAY</h1>
+      <div
+        ref={modalRef}
+        className="htp-modal"
+        onClick={(e) => e.stopPropagation()}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="htp-title"
+        tabIndex={-1}
+      >
+        <button className="htp-close-btn" onClick={onClose} aria-label="Close">✕</button>
+        <h1 className="htp-title" id="htp-title">HOW TO PLAY</h1>
 
         <div className="htp-content">
 
           <div className="htp-section">
             <h2>SETUP</h2>
-            <p>One device (TV or laptop) runs the board — open the game at the URL shown in the room and click <strong>New Game</strong> with a 4-letter room code you choose.</p>
-            <p>Everyone else opens the companion app on their phone. The host joins with the same room code using <strong>Join as Host</strong>. Players join with their name using <strong>Join as Player</strong>.</p>
+            <p>One device (TV or laptop) runs the board. Click <strong>New Game</strong> — a room code is filled in for you, or type your own.</p>
+            <p>Everyone else opens the companion app on their phone — scan the QR code on the lobby screen, or type the room code. The host joins with <strong>Join as Host</strong>; players join with their name.</p>
           </div>
 
           <div className="htp-section">

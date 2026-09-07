@@ -2,6 +2,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import JoinLobby from "./components/JoinLobby";
 import HostConsole from "./components/HostConsole";
 import PlayerController from "./components/PlayerController";
+import { BOARD_URL, roomCodeFromUrl } from "./config";
 import type { CompanionScreen, RoomState } from "./types";
 
 const fallbackRoom: RoomState = {
@@ -67,6 +68,15 @@ const App = () => {
   const [room, setRoom] = useState<RoomState>(fallbackRoom);
   const [isConnected, setIsConnected] = useState(false);
   const [serverMessage, setServerMessage] = useState("Connecting to room server...");
+  const [canManualRetry, setCanManualRetry] = useState(false);
+
+  const retryConnection = () => {
+    if (reconnectTimerRef.current) clearTimeout(reconnectTimerRef.current);
+    reconnectAttemptRef.current = 0;
+    setCanManualRetry(false);
+    setServerMessage("Reconnecting…");
+    connectWebSocket();
+  };
 
   // Reconnection state
   const reconnectAttemptRef = useRef(0);
@@ -93,6 +103,7 @@ const App = () => {
 
     socket.addEventListener("open", () => {
       setIsConnected(true);
+      setCanManualRetry(false);
       reconnectAttemptRef.current = 0;
       const session = sessionRef.current;
 
@@ -127,10 +138,11 @@ const App = () => {
         setServerMessage(`Connection lost. Reconnecting in ${Math.round(delayMs / 1000)}s… (${attempt + 1}/${MAX_RECONNECT_ATTEMPTS})`);
         reconnectTimerRef.current = setTimeout(() => connectWebSocket(), delayMs);
       } else if (session.role && attempt >= MAX_RECONNECT_ATTEMPTS) {
-        setServerMessage("Could not reconnect. Please rejoin manually.");
-        sessionRef.current = { role: null, roomCode: "", playerName: "Contestant", playerId: null, nameSignatureDataUrl: null };
+        setServerMessage("Couldn't reconnect to the room.");
+        setCanManualRetry(true);
       } else {
-        setServerMessage("Disconnected from server. Refresh to reconnect.");
+        setServerMessage("Disconnected from the server.");
+        setCanManualRetry(true);
       }
     });
 
@@ -328,13 +340,16 @@ const App = () => {
 
   return (
     <div className="companion-shell">
-      <div className={`connection-banner ${isConnected ? "is-online" : "is-offline"}`}>
-        {serverMessage}
+      <div className={`connection-banner ${isConnected ? "is-online" : "is-offline"}`} role="status" aria-live="polite">
+        <span>{serverMessage}</span>
+        {canManualRetry && (
+          <button className="connection-retry-btn" onClick={retryConnection}>Retry</button>
+        )}
       </div>
 
       {screen === "landing" && (
         <JoinLobby
-          defaultRoomCode={room.roomCode === "----" ? "" : room.roomCode}
+          defaultRoomCode={room.roomCode === "----" ? roomCodeFromUrl() : room.roomCode}
           onJoinAsHost={handleJoinAsHost}
           onJoinRoom={handleJoinRoom}
         />
@@ -349,7 +364,7 @@ const App = () => {
             <div className="waiting-instructions">
               <div className="waiting-instructions-title">How to host</div>
               <ol className="waiting-instructions-list">
-                <li>Open <strong>jeopardy-main.vercel.app</strong> on the big screen and enter your room code to create the board.</li>
+                <li>Open <strong>{BOARD_URL}</strong> on the big screen and enter your room code to create the board.</li>
                 <li>Wait for contestants to join using this companion app, then press <strong>Begin Game</strong> on the board.</li>
                 <li>Select clues from the board on this phone, open buzzers when ready, and score answers.</li>
               </ol>

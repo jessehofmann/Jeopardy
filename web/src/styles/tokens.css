@@ -1,0 +1,94 @@
+/* ============================================================================
+   Design tokens — the single source of truth for the board / audience display.
+   Values map 1:1 to what was previously hardcoded, so introducing them is a
+   no-op visually; every future tweak happens here.
+   ========================================================================== */
+
+:root {
+  color-scheme: dark;
+
+  /* ---- Brand palette ---- */
+  --c-blue: #060CE9;          /* Jeopardy board blue */
+  --c-blue-bright: #1a1aff;
+  --c-blue-deep: #04047a;
+  --c-blue-deeper: #030360;
+  --c-blue-panel: #0a0acd;
+  --c-blue-modal-a: #1230b8;
+  --c-blue-modal-b: #0821a1;
+
+  --c-gold: #FFD700;
+  --c-gold-bright: #ffe066;
+  --c-gold-dim: rgba(255, 215, 0, 0.75);
+  --c-gold-shadow: #b8860b;
+  --c-gold-shadow-2: #8b6914;
+  --c-gold-answer: #f3d04b;
+
+  --c-white: #ffffff;
+  --c-black: #000000;
+  --c-ink: #f7f7f7;
+  --c-text: #ffffff;
+  --c-text-soft: #dce7ff;
+  --c-text-dim: rgba(255, 255, 255, 0.62);
+
+  --c-danger: #ff4444;
+  --c-danger-soft: #ffd5d5;
+  --c-positive: #4cff72;
+  --c-cyan: #84ecff;
+  --c-info: #5ec7ff;
+
+  --c-rank-silver: #adb5bd;
+  --c-rank-bronze: #cd7f32;
+
+  /* ---- Surfaces ---- */
+  --surface-panel: rgba(2, 6, 66, 0.85);
+  --surface-scrim: rgba(0, 0, 0, 0.75);
+  --board-cell: linear-gradient(180deg, #0a0acd 0%, #060CE9 100%);
+  --menu-bg: radial-gradient(ellipse at center, #0a0acd 0%, #04047a 100%);
+
+  /* ---- Type ---- (exact current stacks; consolidation is a separate, eyes-on change) */
+  --font-teko: "Teko", "Arial Narrow", sans-serif;
+  --font-bebas: "Bebas Neue", "Teko", "Arial Narrow", sans-serif;
+  --font-barlow: "Barlow Condensed", "Arial Narrow", sans-serif;
+  --font-text: "Montserrat", "Arial Narrow", Arial, sans-serif;
+  --font-serif: "Merriweather", Georgia, serif;
+
+  /* Semantic aliases for new rules. */
+  --font-display: var(--font-teko);
+  --font-condensed: var(--font-barlow);
+
+  /* ---- Space / radius / motion ---- */
+  --r-sm: 4px;
+  --r-md: 6px;
+  --r-lg: 12px;
+  --r-pill: 999px;
+
+  --dur-fast: 0.15s;
+  --dur-base: 0.2s;
+  --dur-slow: 0.5s;
+  --dur-zoom: 0.7s;
+  --ease-out: cubic-bezier(0.2, 0, 0.2, 1);
+  --ease-emph: cubic-bezier(0.22, 1, 0.36, 1);
+
+  --focus-ring: 0 0 0 3px rgba(255, 215, 0, 0.55), 0 0 0 5px rgba(4, 4, 122, 0.9);
+}
+
+/* Respect the OS "reduce motion" setting everywhere. Keyframe animations
+   collapse to their end state; transitions become near-instant. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Visible keyboard focus for every interactive element. Mouse clicks don't
+   trigger :focus-visible, so this is invisible to pointer users. */
+:where(button, a, input, textarea, select, [tabindex]):focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+  border-radius: var(--r-sm);
+}
