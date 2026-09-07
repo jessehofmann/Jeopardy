@@ -156,6 +156,45 @@ button {
   line-height: 1;
 }
 
+.player-score-display {
+  border-radius: 12px;
+  transition: background 0.2s, box-shadow 0.2s;
+}
+.player-score-display.flash-up {
+  background: rgba(134, 239, 172, 0.18);
+  box-shadow: 0 0 0 2px var(--c-positive);
+}
+.player-score-display.flash-down {
+  background: rgba(248, 113, 113, 0.18);
+  box-shadow: 0 0 0 2px var(--c-danger);
+}
+@media (prefers-reduced-motion: reduce) {
+  .player-score-display { transition: none; }
+}
+
+.player-clue-value {
+  margin: 2px 0 0;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--c-accent);
+}
+
+.player-rename-row {
+  display: flex;
+  gap: 8px;
+  align-items: stretch;
+}
+.player-rename-row .player-name-input {
+  flex: 1;
+  padding: 12px 14px;
+  font-size: 1rem;
+}
+.player-rename-row .primary-action {
+  flex-shrink: 0;
+}
+
 .hero-card h1 {
   font-size: clamp(2.4rem, 6vw, 4.6rem);
   line-height: 0.95;
@@ -327,6 +366,74 @@ button {
 }
 .host-undo-btn:active {
   background: rgba(147, 168, 255, 0.3);
+}
+
+.host-undo-ruling {
+  margin: 10px auto 0;
+}
+
+.host-clue-progress {
+  margin: 4px 0 0;
+  font-size: 0.78rem;
+  color: rgba(245, 247, 255, 0.55);
+  letter-spacing: 0.03em;
+}
+
+.host-reveal-strip-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 6px;
+}
+
+.host-reveal-all-btn {
+  flex-shrink: 0;
+  background: var(--c-gold);
+  color: #0b1c68;
+  border: 0;
+  border-radius: var(--r-pill);
+  padding: 6px 14px;
+  font-weight: 800;
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.host-award-row {
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px dashed rgba(145, 169, 255, 0.28);
+}
+
+.host-award-label {
+  display: block;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--c-accent);
+  margin-bottom: 8px;
+}
+
+.host-award-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+}
+
+.host-award-btn {
+  background: rgba(134, 239, 172, 0.14);
+  border: 1px solid var(--c-positive);
+  color: var(--c-positive);
+  border-radius: var(--r-pill);
+  padding: 10px 16px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  min-height: 44px;
+}
+.host-award-btn:active {
+  background: rgba(134, 239, 172, 0.28);
 }
 
 /* Correct / Incorrect are the game's highest-consequence taps — make them
@@ -854,7 +961,8 @@ button {
   max-width: min(90%, 360px);
   max-height: 80px;
   object-fit: contain;
-  filter: invert(1) brightness(1.4);
+  /* Ink is white on transparent — a soft shadow keeps it legible on any card */
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.55));
   margin: 4px auto 0;
 }
 

@@ -22,6 +22,7 @@ interface PlayerControllerProps {
   onSubmitFinalAnswer: (answer: string, dataUrl?: string | null) => void;
   onToggleNameDisplay?: () => void;
   onUpdateSignature?: (dataUrl: string | null) => void;
+  onUpdateName?: (name: string) => void;
 }
 
 const PlayerController = ({
@@ -35,6 +36,7 @@ const PlayerController = ({
   onSubmitFinalAnswer,
   onToggleNameDisplay,
   onUpdateSignature,
+  onUpdateName,
 }: PlayerControllerProps) => {
   // Optimistic buzz: flip the button the instant it's tapped, before the
   // server round-trip confirms, so feedback doesn't depend on latency.
@@ -65,6 +67,24 @@ const PlayerController = ({
   // Name change state
   const [showNameEdit, setShowNameEdit] = useState(false);
   const [newSigDataUrl, setNewSigDataUrl] = useState<string | null>(null);
+  const [nameInput, setNameInput] = useState(playerName);
+  useEffect(() => { setNameInput(playerName); }, [playerName]);
+
+  // Score-change feedback: flash + haptic the moment the host's ruling lands.
+  const prevScoreRef = useRef<number | null>(null);
+  const [scoreFlash, setScoreFlash] = useState<"up" | "down" | null>(null);
+  useEffect(() => {
+    const score = myPlayer?.score;
+    if (score == null) return;
+    const prev = prevScoreRef.current;
+    prevScoreRef.current = score;
+    if (prev == null || score === prev) return;
+    const dir = score > prev ? "up" : "down";
+    setScoreFlash(dir);
+    vibrate(dir === "up" ? [0, 25, 40, 25] : 120);
+    const t = setTimeout(() => setScoreFlash(null), 1200);
+    return () => clearTimeout(t);
+  }, [myPlayer?.score]);
 
   // Countdown timer driven by server deadline
   const [timeLeft, setTimeLeft] = useState(30);
@@ -126,7 +146,7 @@ const PlayerController = ({
 
   const statusText = useMemo(() => {
     if (room.isDailyDoubleActive) return "Daily Double! The board owner is answering.";
-    if (isLockedOut) return "You answered incorrectly — locked out for this clue.";
+    if (isLockedOut) return "You answered incorrectly — locked out until the next clue.";
     if (hasBuzzed) return "Buzz sent. Wait for the host to call on you.";
     if (!room.buzzersOpen) return "Host has the buzzers locked.";
     return "Buzzers are open. Tap as soon as you know it.";
@@ -166,7 +186,7 @@ const PlayerController = ({
       <header className="player-header">
         <button className="ghost-action" onClick={onBack}>Leave</button>
         <div className="room-badge">Room {room.roomCode}</div>
-        {room.gamePhase === "playing" && (onToggleNameDisplay || onUpdateSignature) && (
+        {room.gamePhase === "playing" && (onToggleNameDisplay || onUpdateSignature || onUpdateName) && (
           <button
             className="ghost-action player-settings-btn"
             onClick={() => setShowSettings(true)}
@@ -182,6 +202,32 @@ const PlayerController = ({
         <div className="name-edit-overlay" onClick={() => setShowSettings(false)}>
           <div className="name-edit-card" onClick={(e) => e.stopPropagation()}>
             <p className="eyebrow" style={{ marginBottom: 12 }}>Your Name</p>
+            {onUpdateName && (
+              <form
+                className="player-rename-row"
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  const next = nameInput.trim();
+                  if (next && next !== playerName) onUpdateName(next);
+                  setShowSettings(false);
+                }}
+              >
+                <input
+                  className="player-name-input"
+                  value={nameInput}
+                  onChange={(e) => setNameInput(e.target.value)}
+                  maxLength={20}
+                  aria-label="Display name"
+                />
+                <button
+                  className="primary-action"
+                  type="submit"
+                  disabled={!nameInput.trim() || nameInput.trim() === playerName}
+                >
+                  Save
+                </button>
+              </form>
+            )}
             {myPlayer?.nameSignatureDataUrl && onToggleNameDisplay && (
               <button className="name-display-toggle" onClick={onToggleNameDisplay} type="button">
                 {myPlayer.showNameSignature ? "Show Text Name" : "Show Handwritten Name"}
@@ -245,7 +291,7 @@ const PlayerController = ({
           ) : (
             <h1>{playerName}</h1>
           )}
-          <div className="player-score-display">
+          <div className={`player-score-display${scoreFlash ? ` flash-${scoreFlash}` : ""}`}>
             <span className="player-score-label">Score</span>
             <span className="player-score-value">
               {myPlayer != null
@@ -255,6 +301,9 @@ const PlayerController = ({
                 : "$0"}
             </span>
           </div>
+          {room.selectedClueValue > 0 && !room.answerRevealed && (
+            <p className="player-clue-value">${room.selectedClueValue.toLocaleString()} clue in play</p>
+          )}
           <p className="player-status-copy" aria-live="polite">{statusText}</p>
           <div className={`buzzer-wrapper${!hasBuzzed && !isLocked ? " is-active" : ""}${hasBuzzed ? " is-buzzed" : ""}${isLockedOut ? " is-locked-out" : ""}`}>
             <button
@@ -314,8 +363,20 @@ const PlayerController = ({
           ) : (
             <div className="player-fj-locked">
               <p className="player-fj-locked-label">Wager locked in!</p>
-              <p className="player-fj-locked-amount">${parsedWager.toLocaleString()}</p>
+              <p className="player-fj-locked-amount">
+                ${(myPlayer?.finalWager ?? parsedWager).toLocaleString()}
+              </p>
               <p className="player-fj-instruction">Wait for the host to reveal the question.</p>
+              <button
+                className="ghost-action"
+                type="button"
+                onClick={() => {
+                  setWagerInput(String(myPlayer?.finalWager ?? parsedWager));
+                  setWagerLocked(false);
+                }}
+              >
+                Edit wager
+              </button>
             </div>
           )}
         </section>

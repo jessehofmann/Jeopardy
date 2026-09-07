@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import type { RoomState } from "../types";
 import { generateGameCatalogs, pickFinalJeopardyClue } from "../data/clueCatalog";
 import Icon from "./Icon";
@@ -23,8 +23,12 @@ interface HostConsoleProps {
   onCloseRoom: () => void;
   onKickPlayer: (playerId: string) => void;
   onRevealCategory: (categoryId: string) => void;
+  onRevealAllCategories: (categoryIds: string[]) => void;
   onOpenBuzzers: () => void;
   onSkipToRound2: () => void;
+  onUndoRuling: () => void;
+  onReopenClue: () => void;
+  onAwardClue: (playerId: string) => void;
 }
 
 const HostConsole = ({
@@ -47,8 +51,12 @@ const HostConsole = ({
   onCloseRoom,
   onKickPlayer,
   onRevealCategory,
+  onRevealAllCategories,
   onOpenBuzzers,
   onSkipToRound2,
+  onUndoRuling,
+  onReopenClue,
+  onAwardClue,
 }: HostConsoleProps) => {
   const isInFinalJeopardy = room.gamePhase !== "playing";
   const isRoundTwo = room.roundLabel.toLowerCase().includes("double") || room.roundLabel.toLowerCase().includes("round 2");
@@ -72,7 +80,18 @@ const HostConsole = ({
   const roundLabel = isRoundTwo ? "Round 2 - Double Jeopardy" : "Round 1";
   const [selectedCategoryId, setSelectedCategoryId] = useState<string>(catalog[0]?.id ?? "");
   const [wagerInput, setWagerInput] = useState<string>("");
-  const [buzzerTimerSeconds, setBuzzerTimerSeconds] = useState<number>(5);
+  const [buzzerTimerSeconds, setBuzzerTimerSeconds] = useState<number>(() => {
+    try {
+      const saved = parseInt(localStorage.getItem("jeopardy.host.buzzerSeconds") || "", 10);
+      if (Number.isFinite(saved) && saved >= 1 && saved <= 30) return saved;
+    } catch { /* ignore */ }
+    return 5;
+  });
+  useEffect(() => {
+    try {
+      localStorage.setItem("jeopardy.host.buzzerSeconds", String(buzzerTimerSeconds));
+    } catch { /* ignore */ }
+  }, [buzzerTimerSeconds]);
   const [confirmSkip, setConfirmSkip] = useState<null | "round2" | "final">(null);
   const [confirmEndGame, setConfirmEndGame] = useState(false);
   const [confirmKick, setConfirmKick] = useState<{ id: string; name: string } | null>(null);
@@ -116,6 +135,17 @@ const HostConsole = ({
   const hasActiveClue = Boolean(room.selectedClueId);
   const hasBuzzedPlayer = Boolean(room.firstBuzzedPlayerId);
   const wagerSubmitted = room.dailyDoubleWager != null; // 0 is a valid wager
+
+  const answeredSet = new Set(room.answeredClueIds);
+  const totalCluesThisRound = catalog.reduce((n, c) => n + c.clues.length, 0);
+  const cluesLeft = catalog.reduce(
+    (n, c) => n + c.clues.filter((clue) => !answeredSet.has(clue.id)).length,
+    0
+  );
+  const unrevealedCategoryIds = catalog
+    .filter((c) => !(room.revealedCategoryIds ?? []).includes(c.id))
+    .map((c) => c.id);
+  const canReopen = !hasActiveClue && room.answeredClueIds.length > 0;
 
   const submitDailyDoubleWager = () => {
     if (!isWagerValid) return;
@@ -359,13 +389,31 @@ const HostConsole = ({
               <div>
                 <p className="panel-label">Clue Selection</p>
                 <h2>Category Then Dollar Amount</h2>
+                <p className="host-clue-progress">
+                  {cluesLeft} of {totalCluesThisRound} clues left this round
+                </p>
               </div>
+              {canReopen && (
+                <button className="host-undo-btn" onClick={onReopenClue}>
+                  <Icon name="undo" size={14} /> Reopen last clue
+                </button>
+              )}
             </div>
 
             {/* Category reveal controls */}
             {catalog.some((cat) => !(room.revealedCategoryIds ?? []).includes(cat.id)) && (
               <div className="host-reveal-strip">
-                <p className="panel-label" style={{ marginBottom: 6 }}>Reveal Categories (web board is hidden until revealed)</p>
+                <div className="host-reveal-strip-head">
+                  <p className="panel-label" style={{ margin: 0 }}>Reveal Categories (web board is hidden until revealed)</p>
+                  {unrevealedCategoryIds.length > 1 && (
+                    <button
+                      className="host-reveal-all-btn"
+                      onClick={() => onRevealAllCategories(unrevealedCategoryIds)}
+                    >
+                      Reveal all
+                    </button>
+                  )}
+                </div>
                 <div className="host-reveal-buttons">
                   {catalog.map((cat) => {
                     const isRevealed = (room.revealedCategoryIds ?? []).includes(cat.id);
@@ -476,6 +524,26 @@ const HostConsole = ({
             <p className="host-preview-question">{previewClue.clue.question}</p>
             <p className="host-preview-answer">Answer: {previewClue.clue.answer}</p>
 
+            {/* No-buzz / correction path: hand the clue to whoever actually knew it */}
+            {!room.isDailyDoubleActive &&
+              (cluePhase === "buzzers-open" || cluePhase === "done") &&
+              room.players.length > 0 && (
+                <div className="host-award-row">
+                  <span className="host-award-label">Award to</span>
+                  <div className="host-award-buttons">
+                    {room.players.map((p) => (
+                      <button
+                        key={p.id}
+                        className="host-award-btn"
+                        onClick={() => onAwardClue(p.id)}
+                      >
+                        {p.name}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              )}
+
             <div className={`host-actions-grid${clueActions.length > 1 ? " is-split" : ""}`}>
               {clueActions.map((a) => (
                 <button
@@ -496,6 +564,12 @@ const HostConsole = ({
                 </button>
               ))}
             </div>
+
+            {room.canUndoRuling && (
+              <button className="host-undo-btn host-undo-ruling" onClick={onUndoRuling}>
+                <Icon name="undo" size={14} /> Undo last ruling
+              </button>
+            )}
           </div>
         )}
       </section>

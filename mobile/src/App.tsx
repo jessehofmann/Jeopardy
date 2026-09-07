@@ -261,6 +261,24 @@ const App = () => {
     sendMessage("host:closeClue");
   };
 
+  const undoRuling = () => {
+    sendMessage("host:undoRuling");
+  };
+
+  const reopenClue = () => {
+    sendMessage("host:reopenClue");
+  };
+
+  const awardClue = (targetPlayerId: string) => {
+    sendMessage("host:awardClue", { playerId: targetPlayerId });
+  };
+
+  const revealAllCategories = (categoryIds: string[]) => {
+    for (const categoryId of categoryIds) {
+      sendMessage("host:revealCategory", { categoryId });
+    }
+  };
+
   const startFinalJeopardy = (category: string, question: string, answer: string) => {
     sendMessage("host:startFinalJeopardy", { category, question, answer });
   };
@@ -324,6 +342,12 @@ const App = () => {
   const updateSignature = (nameSignatureDataUrl: string | null) => {
     sendMessage("player:updateSignature", { nameSignatureDataUrl });
     sessionRef.current.nameSignatureDataUrl = nameSignatureDataUrl;
+  };
+
+  const updateName = (name: string) => {
+    sendMessage("player:updateName", { name });
+    setPlayerName(name);
+    sessionRef.current.playerName = name;
   };
 
   const markPlayerBuzzed = () => {
@@ -402,10 +426,14 @@ const App = () => {
           onEndGame={endGame}
           onRestartGame={restartGame}
           onRevealCategory={revealCategory}
+          onRevealAllCategories={revealAllCategories}
           onOpenBuzzers={openBuzzers}
           onSkipToRound2={skipToRound2}
           onCloseRoom={leaveRoom}
           onKickPlayer={kickPlayer}
+          onUndoRuling={undoRuling}
+          onReopenClue={reopenClue}
+          onAwardClue={awardClue}
         />
       )}
 
@@ -421,6 +449,7 @@ const App = () => {
           onSubmitFinalAnswer={submitFinalAnswer}
           onToggleNameDisplay={toggleNameDisplay}
           onUpdateSignature={updateSignature}
+          onUpdateName={updateName}
         />
       )}
     </div>
