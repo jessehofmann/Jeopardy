@@ -214,36 +214,38 @@ body {
   font-family: var(--font-teko);
   font-weight: 700;
   letter-spacing: 2px;
-  background: linear-gradient(180deg, var(--c-gold) 0%, var(--c-gold-shadow) 100%);
+  background: var(--c-gold);
   color: var(--c-blue);
-  border: 3px solid var(--c-gold-shadow);
+  border: 2px solid var(--c-gold);
   border-radius: 4px;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: background 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
   text-transform: uppercase;
 }
 
 .menu-button:disabled {
   cursor: not-allowed;
-  opacity: 0.65;
+  opacity: 0.55;
   transform: none;
   box-shadow: none;
 }
 
-.menu-button:hover {
-  background: linear-gradient(180deg, #fff 0%, var(--c-gold) 100%);
-  transform: scale(1.04);
-  box-shadow: 0 5px 20px rgba(255, 215, 0, 0.5);
+.menu-button:hover:not(:disabled) {
+  background: #fff;
+  border-color: #fff;
+  transform: scale(1.03);
 }
 
 .menu-button.secondary {
-  background: linear-gradient(180deg, var(--c-blue-bright) 0%, var(--c-blue) 100%);
+  background: transparent;
   color: var(--c-gold);
-  border: 3px solid var(--c-gold);
+  border: 2px solid var(--c-gold);
 }
 
-.menu-button.secondary:hover {
-  background: linear-gradient(180deg, #3333ff 0%, var(--c-blue-bright) 100%);
+.menu-button.secondary:hover:not(:disabled) {
+  background: rgba(255, 215, 0, 0.12);
+  border-color: var(--c-gold);
+  transform: scale(1.03);
 }
 
 /* HOW TO PLAY MODAL */
@@ -747,13 +749,14 @@ body {
 }
 
 .menu-button.rejoin {
-  background: linear-gradient(180deg, #4af, #06c 100%);
+  background: #2f7fe0;
   color: #fff;
-  border: 3px solid #4af;
+  border: 2px solid #2f7fe0;
 }
 
-.menu-button.rejoin:hover {
-  background: linear-gradient(180deg, #7df, #09f 100%);
+.menu-button.rejoin:hover:not(:disabled) {
+  background: #4a97f5;
+  border-color: #4a97f5;
 }
 
 /* Active state for custom board button on main menu */
@@ -817,16 +820,17 @@ body {
   font-size: 0.9rem;
   font-weight: 700;
   letter-spacing: 2px;
-  background: linear-gradient(180deg, var(--c-gold) 0%, var(--c-gold-shadow) 100%);
+  background: var(--c-gold);
   color: var(--c-blue);
-  border: 2px solid var(--c-gold-shadow);
+  border: 2px solid var(--c-gold);
   border-radius: 6px;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: background 0.15s ease;
 }
 
 .back-button:hover {
-  background: linear-gradient(180deg, #fff 0%, var(--c-gold) 100%);
+  background: #fff;
+  border-color: #fff;
 }
 
 .board-owner-pill {
@@ -994,12 +998,13 @@ body {
   gap: clamp(3px, 0.6vh, 6px);
   flex: 1;
   min-height: 0;
+  /* depth for the trilon flip */
+  perspective: 1400px;
 }
 
 .category-header {
   background: var(--c-blue-deep);
   border: 3px solid #000;
-  border-bottom: 3px solid var(--c-gold);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
   display: flex;
   align-items: center;
@@ -1019,7 +1024,9 @@ body {
 
 .clue-cell {
   opacity: 0;
-  transform: scaleY(0.4);
+  transform: rotateX(-91deg);
+  transform-origin: center;
+  backface-visibility: hidden;
   background: var(--c-blue-cell);
   border: 3px solid #000;
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.07);
@@ -1030,7 +1037,7 @@ body {
   font-size: clamp(1rem, 4vh, 2.6rem);
   color: var(--c-gold);
   cursor: pointer;
-  transition: background 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
+  transition: background 0.15s ease, box-shadow 0.15s ease;
   min-height: clamp(42px, 10.5vh, 104px);
 }
 
@@ -1045,13 +1052,14 @@ body {
 
 .category-header.is-filled {
   opacity: 1;
-  transform: scaleY(1);
 }
 
+/* Trilon flip: each cell rotates in on its horizontal axis when the board fills */
 .clue-cell.is-filled {
   opacity: 1;
-  transform: scaleY(1);
-  transition: opacity 0.25s ease, transform 0.25s ease;
+  transform: rotateX(0deg);
+  transition: transform 0.45s var(--ease-emph), opacity 0.18s ease,
+    background 0.15s ease, box-shadow 0.15s ease;
 }
 
 .clue-cell.is-hidden-cat {
@@ -1098,35 +1106,41 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-width: clamp(104px, 14vw, 180px);
-  height: clamp(64px, 10vh, 100px);
+  min-width: clamp(96px, 12vw, 152px);
+  height: clamp(80px, 13vh, 132px);
   min-height: 0;
   flex: 0 0 auto;
   overflow: hidden;
   border: 2px solid rgba(150, 170, 255, 0.28);
-  border-radius: 4px;
-  padding: 8px 16px;
-  background: linear-gradient(180deg, #0b0f8a 0%, #05063f 100%);
+  border-radius: 4px 4px 2px 2px;
+  padding: 0;
+  background: linear-gradient(180deg, #0b0f8a 0%, #070a52 55%, #04052f 100%);
   transition: border-color 0.2s, box-shadow 0.2s;
 }
 
+/* Name band across the top of the podium face */
 .player-score-zone-name {
-  flex: 1 1 0;
-  min-height: 0;
+  flex: 0 0 auto;
+  height: clamp(26px, 4.4vh, 42px);
+  width: 100%;
+  padding: 3px 8px;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100%;
   overflow: hidden;
+  background: rgba(0, 0, 0, 0.3);
+  border-bottom: 1px solid rgba(150, 170, 255, 0.22);
 }
 
+/* Illuminated score readout below the band */
 .player-score-zone-points {
-  flex-shrink: 0;
+  flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   width: 100%;
+  padding: 4px 8px;
 }
 
 .player-score.is-board-owner {
@@ -1151,10 +1165,15 @@ body {
 
 .player-name {
   font-family: var(--font-text);
-  font-size: 1rem;
+  font-size: clamp(0.72rem, 1.5vh, 0.95rem);
   font-weight: 700;
   color: white;
-  letter-spacing: 2px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
 }
 
 .player-name-sig {
@@ -1171,16 +1190,25 @@ body {
 
 .player-points {
   font-family: var(--font-teko);
-  font-size: 2rem;
+  font-size: clamp(1.6rem, 3.6vh, 2.6rem);
   font-weight: 700;
-  color: var(--c-gold);
-  text-shadow: 1px 1px 0px var(--c-gold-shadow);
+  letter-spacing: 0.5px;
+  line-height: 1;
+  /* Same gold bevel as the board dollar values */
+  background: var(--gradient-gold-text);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 2px 1px rgba(0, 0, 0, 0.45));
 }
 
 /* Negative totals read red, as on the show. */
 .player-points.is-negative {
+  background: none;
   color: var(--c-score-negative);
-  text-shadow: none;
+  -webkit-text-fill-color: var(--c-score-negative);
+  filter: none;
 }
 
 .player-score.is-locked-out {
@@ -1245,8 +1273,9 @@ body {
 .modal-content {
   position: absolute;
   inset: 0;
+  /* Lit from the centre, dark at the edges — the broadcast clue vignette */
   background:
-    radial-gradient(circle at 50% 40%, rgba(58, 72, 219, 0.35) 0%, rgba(58, 72, 219, 0) 55%),
+    radial-gradient(ellipse 125% 125% at 50% 44%, rgba(58, 72, 219, 0) 38%, rgba(2, 8, 56, 0.72) 100%),
     linear-gradient(180deg, var(--c-blue-modal-a) 0%, var(--c-blue-modal-b) 100%);
   display: flex;
   flex-direction: column;
@@ -1254,6 +1283,29 @@ body {
   justify-content: center;
   overflow: hidden;
 }
+
+.modal-clue-head {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 0.6em;
+  padding: 1.6vh 12vw 0;
+  font-family: var(--font-text);
+  font-weight: 700;
+  font-size: clamp(0.8rem, 1.7vw, 1.35rem);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--c-gold-dim);
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
+}
+
+.modal-clue-head-sep { opacity: 0.55; }
+.modal-clue-head-value { color: var(--c-gold); }
 
 .modal-question {
   font-family: var(--font-serif);
@@ -1274,9 +1326,26 @@ body {
   bottom: 0;
   left: 0;
   right: 0;
-  padding: 3vh 8vw 4vh;
+  z-index: 2;
+  padding: 2.4vh 8vw 3.4vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4vh;
   text-align: center;
   background: linear-gradient(to top, rgba(5, 20, 130, 0.98) 55%, transparent);
+}
+
+.modal-answer-label {
+  font-family: var(--font-text);
+  font-weight: 700;
+  font-size: clamp(0.62rem, 1vw, 0.9rem);
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: rgba(255, 215, 0, 0.6);
+}
+
+.modal-answer-text {
   font-family: var(--font-serif);
   font-size: clamp(1.8rem, 2.8vw, 3rem);
   font-weight: 700;
@@ -1337,9 +1406,10 @@ body {
 
 .modal-buzzed-player {
   position: absolute;
-  top: 3vh;
+  top: 6vh;
   left: 0;
   right: 0;
+  z-index: 2;
   text-align: center;
   font-family: var(--font-barlow);
   font-size: clamp(1rem, 1.9vw, 1.5rem);
@@ -2066,14 +2136,15 @@ body {
 }
 
 .modal-button.close {
-  background: linear-gradient(180deg, var(--c-gold) 0%, var(--c-gold-shadow) 100%);
+  background: var(--c-gold);
   color: var(--c-blue);
-  border: 2px solid var(--c-gold-shadow);
+  border: 2px solid var(--c-gold);
 }
 
 .modal-button.close:hover {
-  background: linear-gradient(180deg, #fff 0%, var(--c-gold) 100%);
-  transform: scale(1.04);
+  background: #fff;
+  border-color: #fff;
+  transform: scale(1.03);
 }
 
 /* AUDIO UNLOCK OVERLAY */

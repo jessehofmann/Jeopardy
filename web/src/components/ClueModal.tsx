@@ -11,6 +11,7 @@ interface ClueModalProps {
   dailyDoubleWager?: number | null;
   originRect?: DOMRect | null;
   buzzerDeadlineMs?: number | null;
+  categoryName?: string | null;
 }
 
 const ClueModal: React.FC<ClueModalProps> = ({
@@ -23,6 +24,7 @@ const ClueModal: React.FC<ClueModalProps> = ({
   dailyDoubleWager,
   originRect,
   buzzerDeadlineMs,
+  categoryName,
 }) => {
   const [localShowAnswer, setLocalShowAnswer] = useState(false);
   const showAnswer = isSynced ? (answerRevealed ?? false) : localShowAnswer;
@@ -188,6 +190,13 @@ const ClueModal: React.FC<ClueModalProps> = ({
         aria-label={showDailyDouble ? "Daily Double clue" : `Clue for $${clue.value}`}
         tabIndex={-1}
       >
+        {!showDailyDouble && (categoryName || clue.value > 0) && (
+          <div className="modal-clue-head">
+            {categoryName && <span className="modal-clue-head-cat">{categoryName}</span>}
+            {categoryName && clue.value > 0 && <span className="modal-clue-head-sep">·</span>}
+            {clue.value > 0 && <span className="modal-clue-head-value">${clue.value.toLocaleString()}</span>}
+          </div>
+        )}
         {isSynced && buzzerTimeLeft !== null && !firstBuzzedPlayerName && (
           <>
             <div className={`modal-buzzer-timer ${buzzerTimeLeft <= 2 ? "is-urgent" : ""}`}>
@@ -221,7 +230,10 @@ const ClueModal: React.FC<ClueModalProps> = ({
           <div className="modal-buzzed-player">First buzz: {firstBuzzedPlayerName}</div>
         )}
         {showAnswer && (
-          <div className="modal-answer">Answer: {clue.answer}</div>
+          <div className="modal-answer">
+            <span className="modal-answer-label">Correct response</span>
+            <span className="modal-answer-text">{clue.answer}</span>
+          </div>
         )}
         {!isSynced && (
           <div className="modal-buttons">
